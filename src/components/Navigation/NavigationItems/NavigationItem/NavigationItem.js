@@ -7,6 +7,7 @@ const NavigationItem = (props) => (
         <NavLink
             // activeClassName={classes.active}
             exact
+            className={[classes[props.Type]].join(' ')}
             to={props.link}>
             {props.children}
         </NavLink>

@@ -33,13 +33,7 @@
 
 
 
-.Form form {
-  padding: 0px;
-  margin: 0;
-}
-.Form h2 {
-  font-size: 3rem;
-}
+
 .Misc form div {
   border:1px solid #eee;
   padding: 10px;
@@ -52,13 +46,13 @@ align-items: center;
 
 }
 
-.Misc form div:last-of-type {
+/* .Misc form div:last-of-type {
   display: grid;
   grid-template-columns: 3fr 1fr;
 
-} 
+}  */
 
-.Misc form div:last-of-type input {
+.Misc form div:last-of-type .SendButton {
   background: rgb(116, 47, 110);
   padding: 10px;
   color: #fff;
@@ -72,6 +66,8 @@ align-items: center;
 .Misc form div label {
   background: #444;
   color: #fff;
+  text-transform: capitalize;
+
   font-weight: bold;
   font-size: 1rem;
   padding: 6px;
@@ -84,13 +80,17 @@ align-items: center;
 }
 
 .Misc form div input {
+  border: 1px solid #ccc;
+  outline: none;
   background: none;
+  display: flex;
+    width: 100%;
+    box-sizing: border-box;
   border: none;
   font-size: 1rem;
 }
 .Misc form div textarea {
   font-family: Raleway;
- 
   border: none;
   background: none;
   font-size: 1rem;

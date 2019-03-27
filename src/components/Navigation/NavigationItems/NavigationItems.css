@@ -27,7 +27,7 @@
 
     .Container{
         position:fixed;
-    top: 17%;
+    top: 12%;
     left: 35%;
 text-align: center;
     }
@@ -43,7 +43,7 @@ text-align: center;
 @media (max-width:849px) and (min-width:625px) {
     .Container{
         position:fixed;
-    top: 17%;
+    top: 14%;
     left: 35%;
 text-align: center;
     }

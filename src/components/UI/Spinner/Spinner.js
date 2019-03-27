@@ -3,7 +3,13 @@ import React from 'react';
 import classes from './Spinner.css';
 
 const spinner = () => (
-    <div className={classes.Loader}>Loading...</div>
+    <div className={classes.semipolar}>
+        <div className={classes.ring}></div>
+        <div className={classes.ring}></div>
+        <div className={classes.ring}></div>
+        <div className={classes.ring}></div>
+        <div className={classes.ring}></div>
+    </div>
 );
 
 export default spinner;
