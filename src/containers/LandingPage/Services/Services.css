@@ -1,0 +1,139 @@
+
+.Services {
+    display: grid;
+    height: auto;
+    grid-template-columns: repeat(3,1fr);
+   padding: 10px;
+  
+  }
+  
+  
+  .Services div {
+    text-align: center;
+    background: #fff;
+    width: 90%;
+    border-radius: 10px;
+    margin: 10px auto 50px auto;
+    
+    -webkit-box-shadow: 0px 10px 30px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 30px -9px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 30px -9px rgba(0,0,0,0.75);
+    
+  }
+  
+  .ServiceIcon {
+    font-size: 3.4rem;
+    padding: 30px 0px 30px 90px;
+    margin: 0px 0px 30px 0px;
+    text-align: left;
+    color: rgb(116, 47, 110);
+    filter: grayscale(0%);
+    border-bottom: 2px solid rgb(116, 47, 110);
+  }
+  .ServiceTitle{
+    font-size: 3.1rem;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .Services p:last-of-type{
+    padding: 0px 90px 20px 90px; 
+    text-align: left;
+  }
+  
+
+  
+@media (min-width:1213px) {
+  .ServiceIcon {
+    font-size: 2.4rem;
+    padding: 10px 30px;
+    margin: 0px 0px 30px 0px;
+    
+  }
+  .ServiceTitle{
+    font-size: 2.1rem;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .Services p:last-of-type{
+    padding: 0px 20px; 
+    text-align: left;
+  }
+
+}
+
+
+@media (max-width:1212px) and (min-width:850px) {
+  .ServiceIcon {
+    font-size: 2.4rem;
+    padding: 10px 30px;
+    margin: 0px 0px 30px 0px;
+    
+  }
+  .ServiceTitle{
+    font-size: 2.1rem;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .Services p:last-of-type{
+    padding: 0px 20px; 
+    text-align: left;
+  }
+}
+
+@media (max-width:849px) and (min-width:625px) {
+  .Services {
+    display: grid;
+    grid-template-columns: 1fr;
+   }
+    .Services div {
+     width: 70%;
+   }
+ 
+   .ServiceIcon {
+     font-size: 2.4rem;
+     padding: 10px 30px;
+     margin: 0px 0px 30px 0px;
+     
+   }
+   .ServiceTitle{
+     font-size: 2.1rem;
+     padding: 0;
+     margin: 0;
+   }
+   
+   .Services p:last-of-type{
+     padding: 0px 20px; 
+     text-align: left;
+   }
+ 
+}
+
+@media (max-width:624px) and (min-width:0px) {
+  .Services{
+    display: grid;
+    grid-template-columns: 1fr;
+   }
+   .Services div {
+     width: 80%;
+   }
+ 
+   .ServiceIcon {
+     font-size: 2.4rem;
+     padding: 10px 30px;
+     margin: 0px 0px 30px 0px;
+     
+   }
+   .ServiceTitle{
+     font-size: 2.1rem;
+     padding: 0;
+     margin: 0;
+   }
+   
+   .Services p:last-of-type{
+     padding: 0px 20px; 
+     text-align: left;
+   }
+}

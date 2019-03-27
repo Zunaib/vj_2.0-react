@@ -1,0 +1,59 @@
+.Container{
+
+}
+
+.Button{
+
+}
+
+.NavigationItems {
+    list-style: none;
+    align-items: center;
+    display: inline-block;
+    height: 100%;
+}
+
+@media (min-width:1213px){
+    .NavigationItems{
+        flex-flow: row;
+        display: flex;
+        margin: 30px 0;
+    padding-right: 170px;
+    }
+}
+
+  
+@media (max-width:1212px)  {
+
+    .Container{
+        position:fixed;
+    top: 17%;
+    left: 35%;
+text-align: center;
+    }
+
+    .NavigationItems {
+        display: inline-block
+    }
+  }
+  
+
+  
+  
+@media (max-width:849px) and (min-width:625px) {
+    .Container{
+        position:fixed;
+    top: 17%;
+    left: 35%;
+text-align: center;
+    }
+  }
+  
+  @media (max-width:624px) and (min-width:0px) {
+    .Container{
+        position:fixed;
+    top: 17%;
+    left: 27%;
+text-align: center;
+    }
+  }
