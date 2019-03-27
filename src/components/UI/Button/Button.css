@@ -1,0 +1,86 @@
+.Button {
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.Button:first-of-type {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.Button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.Success {
+    color: #5C9210;
+}
+
+.Danger {
+    color: #944317;
+}
+
+.Defaultbutton{
+    margin-right: 20px;
+    width: 100px;
+    border-radius: 55px;
+    color: rgb(247, 247, 247);
+    background-color: rgb(116, 47, 110);
+}
+
+.Defaultbutton:hover{
+    background-color: #73236B;
+}
+
+.NavButton{
+    margin-right: 20px;
+    width: 100px;
+    border-radius: 55px;
+    color: rgb(247, 247, 247);
+    background-color: rgb(116, 47, 110);
+}
+
+.NavButton:hover{
+    background-color: #73236B;
+}
+
+@media (max-width:1212px)  {
+    .NavButton{
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-top: 40px;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width:849px) and (min-width:625px) {
+
+    .NavButton{
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-top: 35px;
+        font-size: 1rem;
+    }
+  }
+  
+  @media (max-width:624px) and (min-width:0px) {
+    .NavButton{
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-top: 30px;
+        font-size: 1rem;
+    }
+  }

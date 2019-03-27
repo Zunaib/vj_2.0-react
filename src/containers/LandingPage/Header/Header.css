@@ -1,0 +1,152 @@
+
+
+.Header {
+  background: url("../../../assets/images/LandingImage.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: -130px 0 0 0 ;
+  max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: 880px;
+    position: relative;
+    top: 0;
+    left: 0;
+ 
+}
+
+.Header div.head {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 70%;
+  grid-template-columns: repeat(2,1fr);
+  margin: 0 auto;
+  padding-top: 22%;
+  align-items: center;
+  
+}
+
+.Header div.head  {
+  color:  rgb(247, 247, 247);;
+
+}
+
+
+.Header div.head h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 0px;
+  margin: 0;
+  letter-spacing: 4px;
+  border-right: 2px solid  rgb(247, 247, 247);
+}
+
+.Header div.head p {
+  padding-left: 30px;
+  font-size: 1.5rem;
+}
+
+
+.Contact {
+ background:#73236B;
+ display: block;
+ color: #fff;
+ font-weight: bold;
+ width: 50%;
+ margin: 0 auto;
+ text-align: center;
+ padding: 12px;
+ border-radius: 55px;
+ text-decoration: none; 
+ -webkit-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+ -moz-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+ box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+}
+
+@media (min-width:1213px) {
+
+  .Header div.head {
+    width: 75%;
+    padding-top: 22%;
+  }
+  .Header div.head h1 {
+    font-size: 4rem;
+    
+  }
+
+}
+
+
+@media (max-width:1212px) and (min-width:850px) {
+  .Header {
+    height: 350px;
+    background-position: bottom;
+  }
+
+  .Header div.head {
+    width: 75%;
+    padding-top: 400px;
+    grid-template-columns: 1fr;
+    
+  }
+  .Header div.head h1 {
+    font-size: 3rem;
+    color: rgba(126, 126, 126, 0.658);
+    border-right: 2px solid  rgba(126, 126, 126, 0.658);
+    
+  }
+  .Header div.head p {
+    font-size: 2rem;
+    color: rgba(126, 126, 126, 0.658);
+    
+  }
+}
+
+@media (max-width:849px) and (min-width:625px) {
+  .Header {
+    height: 880px;
+  }
+  
+  .Header div.head {
+    width: 75%;
+    padding-top: 195px;
+    grid-template-columns: 1fr;
+  }
+  .Header div.head h1 {
+    font-size: 2rem;
+    
+  }
+  .Header div.head p {
+    font-size: 1rem;
+    
+  }
+}
+
+@media (max-width:624px) and (min-width:0px) {
+  .Header {
+    background-size: 160%;
+    height: 270px;
+    position: relative;
+   
+  }
+  
+  .Header div.head {
+    width: 75%;
+    grid-template-columns: 1fr;
+    padding-top: 290px;
+    
+  }
+  .Header div.head h1 {
+    font-size: 2.3rem;
+    border: none;
+    color: rgba(126, 126, 126, 0.658);
+    border-right: 2px solid  rgba(126, 126, 126, 0.658);
+  }
+  
+  .Header div.head p {
+    padding-left: 0px;
+    color: rgba(126, 126, 126, 0.658);;
+  }
+}

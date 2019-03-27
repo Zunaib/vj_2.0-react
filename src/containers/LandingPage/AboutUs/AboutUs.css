@@ -1,0 +1,71 @@
+.Misc {
+    width: 70%;
+    padding: 90px 0;
+    margin: 70px auto 70px auto;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    align-items: center;
+  
+  }
+  
+  .Misc h2 {
+    font-size: 3rem;
+    color: #ddd;
+    text-transform: uppercase;
+   line-height: 4.2rem; 
+   padding-right: 10px;
+   border-right: 3px solid #ddd;
+  }
+  
+  
+  
+  .Misc div {
+    position: relative;
+  
+  }
+  
+  .Misc div p {
+    padding-left: 10px;
+  }
+
+
+
+
+
+@media (max-width:1212px) and (min-width:850px) {
+  .Misc{
+    margin-top: 370px;
+  }
+
+ 
+}
+
+@media (max-width:849px) and (min-width:625px) {
+  .Misc  {
+    width: 90%;
+    margin-top: -400px;
+    display: grid;
+    grid-template-columns: 1fr;
+    
+  }
+  .Misc  div p {
+    padding: 0px 90px;
+  }
+  
+}
+
+@media (max-width:624px) and (min-width:0px) {
+
+
+  .Misc  {
+    margin-top: 370px;
+    width: 90%;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    
+  }
+  .Misc  div p {
+    padding: 0px 10px;
+  }
+}

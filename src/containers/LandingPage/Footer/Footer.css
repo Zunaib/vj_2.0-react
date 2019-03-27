@@ -1,0 +1,38 @@
+.Footer {
+    background: rgb(116, 47, 110);
+    color: #fff;
+    padding: 20px;
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+   
+  }
+  
+.Footer ul {
+    
+    list-style: none;
+    display: grid;
+    padding: 0;
+    margin: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+  }
+  
+.Footer ul li a {
+    color: #eee;
+  }
+  
+  
+  @media (max-width:624px) and (min-width:0px) {
+    .Footer {
+      padding: 20px 0;
+      text-align: center;
+      grid-template-columns:1fr;
+    
+    }
+    .Footer ul li a {
+   font-size: 1.8rem;
+    }
+  }

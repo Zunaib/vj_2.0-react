@@ -1,0 +1,16 @@
+import React from 'react';
+import classes from './Footer.css';
+
+const Footer = () => (
+    <footer className={classes.Footer}>
+        <h3>Vogue Junction By Miscellaneous</h3>
+        <p>Support <br /> Miscellaneous@supportme.com</p>
+        <ul>
+            <li><a href="/"><i className="fab fa-facebook-f"></i></a></li>
+            <li><a href="/"><i className="fab fa-twitter"></i></a></li>
+            <li><a href="/"><i className="fab fa-instagram"></i></a></li>
+        </ul>
+    </footer>
+);
+
+export default Footer;

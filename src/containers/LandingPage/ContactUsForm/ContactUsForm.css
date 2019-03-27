@@ -1,0 +1,156 @@
+
+.Misc {
+  width: 70%;
+  padding: 90px 0;
+  margin: 50px auto 70px auto;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  align-items: center;
+
+}
+
+.Misc h2 {
+  font-size: 3rem;
+  color: #ddd;
+  text-transform: uppercase;
+ line-height: 4.2rem; 
+ padding-right: 10px;
+ border-right: 3px solid #ddd;
+}
+
+
+
+.Misc div {
+  position: relative;
+  margin-left: 10px;
+
+}
+
+.Misc div p {
+  padding-left: 10px;
+}
+
+
+
+
+.Form form {
+  padding: 0px;
+  margin: 0;
+}
+.Form h2 {
+  font-size: 3rem;
+}
+.Misc form div {
+  border:1px solid #eee;
+  padding: 10px;
+border-radius: 10px;
+font-size: 1.1rem;
+display: grid;
+margin-bottom: 10px;
+grid-template-columns: 1fr 3fr;
+align-items: center;
+
+}
+
+.Misc form div:last-of-type {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+
+} 
+
+.Misc form div:last-of-type input {
+  background: rgb(116, 47, 110);
+  padding: 10px;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+}
+
+.Misc form div label {
+  background: #444;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 6px;
+  text-align: center;
+  margin-right: 10px;
+  border-radius:10px;
+  -webkit-box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+}
+
+.Misc form div input {
+  background: none;
+  border: none;
+  font-size: 1rem;
+}
+.Misc form div textarea {
+  font-family: Raleway;
+ 
+  border: none;
+  background: none;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.error {
+  color: rgb(255, 57, 57);
+  font-size: 1.3rem;
+}
+
+.Send {
+  background:#73236B;
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 12px;
+  border-radius: 55px;
+  text-decoration: none; 
+ }
+
+
+   
+@media (max-width:1212px) and (min-width:850px) {
+  .Misc{
+    margin-top: 50px;
+  }
+
+ 
+}
+
+@media (max-width:849px) and (min-width:625px) {
+  .Misc  {
+    margin-top: -100px;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    
+  }
+  .Misc  div p {
+    padding: 0px 90px;
+  }
+  
+}
+
+@media (max-width:624px) and (min-width:0px) {
+
+
+  .Misc  {
+    margin-top: 10px;
+    width: 90%;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    
+  }
+  .Misc  div p {
+    padding: 0px 10px;
+  }
+}
