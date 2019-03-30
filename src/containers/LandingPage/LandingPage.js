@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import classes from './LandingPage.css';
 
-import Header from './Header/Header';
-import AboutUs from './AboutUs/AboutUs';
-import Services from './Services/Services';
-import Gallery from './Gallery/Gallery';
-import Mission from './Mission/Mission';
-import ContactUsForm from './ContactUsForm/ContactUsForm';
-import Footer from './Footer/Footer';
+import Header from '../../components/LandingPage/Header/Header';
+import AboutUs from '../../components/LandingPage/AboutUs/AboutUs';
+import Services from '../../components/LandingPage/Services/Services';
+import Gallery from '../../components/LandingPage/Gallery/Gallery';
+import Mission from '../../components/LandingPage/Mission/Mission';
+import ContactUsForm from '../../components/LandingPage/ContactUsForm/ContactUsForm';
+import Footer from '../../components/LandingPage/Footer/Footer';
 
 export class LandingPage extends Component {
     render() {

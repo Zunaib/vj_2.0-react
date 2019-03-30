@@ -6,20 +6,37 @@
 
 }
 
-.NavigationItems {
+.NavigationItemsLanding {
     list-style: none;
     align-items: center;
     display: inline-block;
     height: 100%;
+   
+}
+
+.NavigationItemsWeb {
+    list-style: none;
+    align-items: center;
+    display: inline-block;
+    height: 100%;
+   
 }
 
 @media (min-width:1213px){
-    .NavigationItems{
+    .NavigationItemsLanding{
         flex-flow: row;
         display: flex;
         margin: 30px 0;
     padding-right: 170px;
     }
+    
+    .NavigationItemsWeb{
+        display: flex;
+        margin: 30px 0;
+    padding-right: 170px;
+    }
+
+
 }
 
   
@@ -27,12 +44,12 @@
 
     .Container{
         position:fixed;
-    top: 17%;
+    top: 12%;
     left: 35%;
 text-align: center;
     }
 
-    .NavigationItems {
+    .NavigationItemsLanding {
         display: inline-block
     }
   }
@@ -43,7 +60,7 @@ text-align: center;
 @media (max-width:849px) and (min-width:625px) {
     .Container{
         position:fixed;
-    top: 17%;
+    top: 14%;
     left: 35%;
 text-align: center;
     }

@@ -1,0 +1,225 @@
+.Background{
+    background: url('../../assets/images/Login.jpg');
+    position: fixed;
+    background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.Main{
+    position: fixed;
+    width: 70%;
+    height: 60%;
+    top: 33%;
+    left: 25%;
+    margin: -100px 0 0 -150px;
+    /* background: yellow; */
+     text-decoration: none; 
+ -webkit-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+ -moz-box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+ box-shadow: 0px 10px 54px -11px rgba(0,0,0,0.75);
+}
+
+
+.ImageSide{
+    /* background-color: blue; */
+    background-size: 100%;
+  background-repeat: no-repeat;
+    width:40%;
+    height: 100%;
+    float: left;
+}
+
+.Image{
+background: url('../../assets/images/Login.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+}
+
+.FormSide{
+    background-color: #FFFFFF;
+    height: 100%;
+    float: left;
+    width:60%;
+}
+
+.Form{
+    margin-left:80px;
+  width: 80%;
+    
+}
+
+.Form h3{
+    color: #303030;
+}
+.Form div{
+    position: relative;
+  
+}
+
+.Form div p {
+    padding-left: 10px;
+  }
+
+  .Form form div {
+    border:2px solid #eee;
+    padding: 10px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  display: grid;
+  margin-bottom: 10px;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  
+  }
+
+  
+.Form form div label {
+    background: #444;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 6px;
+    text-align: center;
+    margin-right: 10px;
+    border-radius:10px;
+    -webkit-box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+  }
+  
+
+  .Form form div input {
+    border: 1px solid #ccc;
+    outline: none;
+    background: none;
+    display: flex;
+      width: 100%;
+      box-sizing: border-box;
+    border: none;
+    font-size: 1rem;
+  }
+
+
+.Logo{
+    margin-top:45px;
+}
+
+.Forgot {
+    color: #303030;
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  
+@media (max-width:1212px) and (min-width:991px) {
+    .Main{
+        top: 33%;
+        left: 28%;
+    }
+    .Form{
+        margin-left:40px;
+      width: 80%;
+        
+    }
+  }
+  
+  @media (max-width:990px) and (min-width:770px) {
+    .Main{
+        top: 23%;
+        left: 31%;
+    }
+    .Form{
+        /* margin-left:40px; */
+      width: 80%;
+      height: 100%;
+        
+    }
+    .ImageSide{
+        background-color: blue;
+        background-size: 100%;
+      background-repeat: no-repeat;
+        width:100%;
+        height: 40%;
+        float: none;
+    }
+
+    .FormSide{
+        background-color: #FFFFFF;
+        width: 100%;
+        margin-top: -45px;
+        float: none;
+    }
+    
+  }
+  
+  @media (max-width:769px) and (min-width:600px) {
+    .Main{
+        top: 30%;
+        left: 41%;
+        width: 60%;
+    height: 50%;
+    }
+
+    .Form{
+        /* margin-left:40px; */
+      width: 80%;
+      height: 100%;
+      margin-left:30px;
+        
+    }
+    .ImageSide{
+        background-color: blue;
+        background-size: 100%;
+      background-repeat: no-repeat;
+        width:100%;
+        height: 40%;
+        float: none;
+    }
+
+    .FormSide{
+        background-color: #FFFFFF;
+        width: 100%;
+        margin-top: -45px;
+        float: none;
+    }
+  }
+
+  @media (max-width:599px) and (min-width:300px) {
+    .Main{
+        top: 30%;
+        left: 45%;
+        width: 70%;
+    height: 50%;
+    }
+
+    .Form{
+        /* margin-left:40px; */
+      width: 80%;
+      height: 100%;
+      margin-left:30px;
+        
+    }
+    .ImageSide{
+        background-color: blue;
+        background-size: 100%;
+      background-repeat: no-repeat;
+        width:100%;
+        height: 40%;
+        float: none;
+    }
+
+    .FormSide{
+        background-color: #FFFFFF;
+        width: 100%;
+        margin-top: -45px;
+        float: none;
+    }
+  }

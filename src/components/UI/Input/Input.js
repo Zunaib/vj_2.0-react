@@ -39,6 +39,14 @@ const input = (props) => {
                 </select>
             );
             break;
+        case ('password'):
+            inputElement = <input
+                className={inputClasses.join(' ')}
+                {...props.elementConfig}
+                type={props.elementType}
+                value={props.value}
+                onChange={props.changed} />;
+            break;
         default:
             inputElement = <input
                 className={inputClasses.join(' ')}
@@ -46,10 +54,14 @@ const input = (props) => {
                 value={props.value}
                 onChange={props.changed} />;
     }
+    let label = null;
+    if (props.label) {
+        label = <label>{props.label}</label>;
+    }
 
     return (
         <div className={classes.Input}>
-            <label className={classes.Label}>{props.label}</label>
+            {label}
             {inputElement}
         </div>
     );

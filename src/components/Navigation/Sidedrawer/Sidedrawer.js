@@ -16,10 +16,10 @@ const Sidedrawer = (props) => {
             <Backdrop show={props.open} clicked={props.closed} />
             <div className={attachedClasses.join(' ')}>
                 <div className={classes.Logo}>
-                    <Logo logoType="Black"/>
+                    <Logo logoType="White" />
                 </div>
                 <nav>
-                    <NavigationItems />
+                    <NavigationItems Type="Web" webClicked={props.ToLandingToolbar} />
                 </nav>
             </div>
         </Auxilary>
