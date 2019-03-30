@@ -6,14 +6,21 @@ import VJLogo from '../../assets/images/VJ_LOGO.png';
 const Logo = (props) => {
     let image = null;
     if (props.logoType === "White") {
-        image = (<img src={VJLogoWhite} alt="Vogue Junction Logo" />);
+        image = (
+            <div className={classes.LogoWhite}>
+                <img src={VJLogoWhite} alt="Vogue Junction Logo" />
+            </div>
+        );
     } else if (props.logoType === "Black") {
-        image = (<img src={VJLogo} alt="Vogue Junction Logo" />);
+        image = (
+            <div className={classes.Logo}>
+            <img src={VJLogo} alt="Vogue Junction Logo" />
+            </div>
+            );
     }
     return (
-        <div className={classes.Logo}>
+        <div >
             {image}
-            <h4>Vogue Junction</h4>
         </div>
     );
 }

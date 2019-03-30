@@ -7,7 +7,7 @@ const NavBackDrop = (props) => (
         className={classes.NavBackdrop}
         onClick={props.clicked}
     >
-     <NavigationItems/>   
+        <NavigationItems Type="Landing" dashboardClicked={props.ToWebToolbar} />
     </div> : null
 );
 

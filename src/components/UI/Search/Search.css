@@ -1,0 +1,32 @@
+
+.Search {
+    width: 100%;
+    padding: 90px 0;
+    margin: 82px auto 70px auto;
+    margin-left: 20px;
+    align-items: center;
+  
+  }
+  
+  .Search form div {
+      
+    padding: 10px;
+  border-radius: 60px;
+  width:50%;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  align-items: center;
+  
+  }
+  
+
+  .Search form div input {
+    background-color: rgb(238, 238, 238);
+    border: 1px solid rgb(238, 238, 238);
+    outline: none;
+    display: flex;
+      width: 100%;
+      box-sizing: border-box;
+    border-radius: 60px;
+    font-size: 0.8rem;
+  }

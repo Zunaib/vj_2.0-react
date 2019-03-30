@@ -1,4 +1,6 @@
 
+
+
 .Misc {
   width: 70%;
   padding: 90px 0;
@@ -89,6 +91,11 @@ align-items: center;
   border: none;
   font-size: 1rem;
 }
+
+.Misc form div.Input input.Invalid {
+    border: 2px solid red;
+}
+
 .Misc form div textarea {
   font-family: Raleway;
   border: none;
@@ -98,8 +105,9 @@ align-items: center;
 }
 
 .error {
-  color: rgb(255, 57, 57);
-  font-size: 1.3rem;
+  color: rgb(116, 47, 110);
+  font-size: 1rem;
+  font-style: italic;
 }
 
 .Send {

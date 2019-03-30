@@ -1,28 +1,15 @@
 import React, { Component } from 'react';
-import classes from './SignUp.css';
+import classes from './Login.css';
 import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import axios from '../../axios';
 
-class SignUp extends Component {
+class Login extends Component {
 
     state = {
-        signupForm: {
-            Username: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Your Name Here'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            },
+        loginForm: {
             email: {
                 elementType: 'input',
                 elementConfig: {
@@ -57,34 +44,33 @@ class SignUp extends Component {
 
 
     fieldclearHandler = () => {
-        let updatedsignupForm = {
-            ...this.state.signupForm
+        let updatedloginForm = {
+            ...this.state.loginForm
         };
         let updatedFormElement;
-        for (let formElementIdentifier in updatedsignupForm) {
+        for (let formElementIdentifier in updatedloginForm) {
             updatedFormElement = {
-                ...updatedsignupForm[formElementIdentifier]
+                ...updatedloginForm[formElementIdentifier]
             };
             updatedFormElement.value = "";
-            updatedsignupForm[formElementIdentifier] = updatedFormElement;
+            updatedloginForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ signupForm: updatedsignupForm });
+        this.setState({ loginForm: updatedloginForm });
     }
 
-    signupHandler = (event) => {
+    loginHandler = (event) => {
         event.preventDefault();
         this.setState({ loading: true });
         const formData = {};
-        for (let formElementIdentifier in this.state.signupForm) {
-            formData[formElementIdentifier] = this.state.signupForm[formElementIdentifier].value;
+        for (let formElementIdentifier in this.state.loginForm) {
+            formData[formElementIdentifier] = this.state.loginForm[formElementIdentifier].value;
         }
-        const signup = {
-            userName: formData.fullName,
+        const login = {
             email: formData.email,
             password: formData.password
         }
-        axios.post('/api/signup', signup)
+        axios.post('/api/login', login)
             .then(response => {
                 this.setState({ loading: false });
                 this.props.history.push('/dashboard');
@@ -115,40 +101,41 @@ class SignUp extends Component {
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
-        const updatedsignupForm = {
-            ...this.state.signupForm
+        const updatedloginForm = {
+            ...this.state.loginForm
         };
         const updatedFormElement = {
-            ...updatedsignupForm[inputIdentifier]
+            ...updatedloginForm[inputIdentifier]
         };
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
-        updatedsignupForm[inputIdentifier] = updatedFormElement;
+        updatedloginForm[inputIdentifier] = updatedFormElement;
 
         let formIsValid = true;
-        for (let inputIdentifier in updatedsignupForm) {
-            formIsValid = updatedsignupForm[inputIdentifier].valid && formIsValid;
+        for (let inputIdentifier in updatedloginForm) {
+            formIsValid = updatedloginForm[inputIdentifier].valid && formIsValid;
         }
-        this.setState({ signupForm: updatedsignupForm, formIsValid: formIsValid });
+        this.setState({ loginForm: updatedloginForm, formIsValid: formIsValid });
     }
 
     render() {
 
         let button = null;
+        let forgetpassword = <a className={classes.Forgot} href="/login">Forgot Password ?</a>;
         if (this.state.formIsValid) {
-            button = <Button btnType="LoginButton" disabled={!this.state.formIsValid}>REGISTER</Button>;
+            button = <Button btnType="LoginButton" disabled={!this.state.formIsValid}>LOGIN</Button>;
         }
 
         const formElementsArray = [];
-        for (let key in this.state.signupForm) {
+        for (let key in this.state.loginForm) {
             formElementsArray.push({
                 id: key,
-                config: this.state.signupForm[key]
+                config: this.state.loginForm[key]
             });
         }
         let form = (
-            <form onSubmit={this.signupHandler}>
+            <form onSubmit={this.loginHandler}>
                 {formElementsArray.map(formElement => (
                     <Input
                         label={formElement.id}
@@ -161,7 +148,9 @@ class SignUp extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
+
                 {button}
+                {forgetpassword}
             </form>
         );
 
@@ -182,9 +171,8 @@ class SignUp extends Component {
                             <Logo logoType="Black" />
                         </div>
                         <div className={classes.Form} >
-                            <h3>Register</h3>
+                            <h3>Login</h3>
                             {form}
-
                         </div>
                     </div>
                 </div>
@@ -194,4 +182,4 @@ class SignUp extends Component {
 
 }
 
-export default SignUp;
+export default Login;

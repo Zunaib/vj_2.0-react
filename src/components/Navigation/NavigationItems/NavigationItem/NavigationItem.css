@@ -34,6 +34,42 @@
 }
 
 
+.NavigationItem{
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    font-size: 0.85rem;
+}
+
+.NavigationItemWeb a {
+    color: #a5a5a5;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+.NavigationItemWeb a:hover,
+.NavigationItemWeb a:active,
+.NavigationItemWeb a.active{
+    color: #a5a5a5;
+}
+
+.NavigationItemWeb a.NavButton{
+    margin-right: 20px;
+    width: 100px;
+    border-radius: 55px;
+    color: rgb(247, 247, 247);
+    background-color: rgb(116, 47, 110);
+    font-weight: bold;
+}
+
+.NavigationItemWeb a.NavButton:hover{
+    background-color: #73236B;
+}
+
+
 @media (min-width:1213px){
     .NavigationItem{
         margin: 0;
@@ -68,6 +104,43 @@
     }
     
     .NavigationItem a.NavButton:hover{
+        background-color: #73236B;
+    }
+
+
+    .NavigationItemWeb{
+        margin: 0;
+        height: 100%;
+        width:auto;
+        display: flex;
+        align-items: center; 
+        font-size: 0.85rem;
+    }
+    
+    .NavigationItemWeb a {
+        height: 100%;
+    margin-right: 20px;
+        padding: 22px 10px;
+        border-bottom: 4px solid transparent; 
+    }
+    
+    .NavigationItemWeb a:hover,
+    .NavigationItemWeb a:active,
+    .NavigationItemWeb a.active{
+        color: #a5a5a5;
+    }
+    .NavigationItemWeb a.NavButton{
+        margin-right: 20px;
+        width: 100px;
+        padding-top: 8px;
+        text-align: center;
+        height: 5px;
+        border-radius: 55px;
+        color: rgb(247, 247, 247);
+        background-color: rgb(116, 47, 110);
+    }
+    
+    .NavigationItemWeb a.NavButton:hover{
         background-color: #73236B;
     }
 }
@@ -110,7 +183,37 @@
     
     .NavigationItem a.NavButton:hover{
         background-color: #73236B;
+   
+   
+   
+   
+   
     }
+
+
+    .NavigationItemWeb{
+        margin: 0;
+        height: 100%;
+        width:auto;
+        display: flex;
+        align-items: center; 
+        font-size: 0.85rem;
+    }
+    
+    .NavigationItemWeb a {
+        height: 100%;
+    margin-right: 20px;
+        padding-bottom: 10px;
+        border-bottom: 4px solid transparent; 
+    }
+    
+    .NavigationItemWeb a:hover,
+    .NavigationItemWeb a:active,
+    .NavigationItemWeb a.active{
+        color: #a5a5a5;
+    }
+
+
   }
   
   

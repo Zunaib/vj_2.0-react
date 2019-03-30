@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import classes from './ContactUsForm.css';
-import axios from '../../../axios-orders';
-import Input from '../../../components/UI/Input/Input';
-import Button from '../../../components/UI/Button/Button';
-import Spinner from '../../../components/UI/Spinner/Spinner';
+import axios from '../../../axios';
+import Input from '../../UI/Input/Input';
+import Button from '../../UI/Button/Button';
+import Spinner from '../../UI/Spinner/Spinner';
 
 class ContactUsForm extends Component {
   state = {
@@ -53,6 +53,23 @@ class ContactUsForm extends Component {
     loading: false
   }
 
+  
+  fieldclearHandler = () => {
+    let updatedcontactUsForm = {
+      ...this.state.contactUsForm
+    };
+    let updatedFormElement;
+    for (let formElementIdentifier in updatedcontactUsForm) {
+      updatedFormElement = {
+        ...updatedcontactUsForm[formElementIdentifier]
+      };
+      updatedFormElement.value = "";
+      updatedcontactUsForm[formElementIdentifier] = updatedFormElement;
+    }
+
+    this.setState({ contactUsForm: updatedcontactUsForm });
+  }
+
   contactUsHandler = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
@@ -61,11 +78,11 @@ class ContactUsForm extends Component {
       formData[formElementIdentifier] = this.state.contactUsForm[formElementIdentifier].value;
     }
     const contactUs = {
-      ingredients: this.props.ingredients,
-      price: this.props.price,
-      contactUsData: formData
+      name: formData.name,
+      email: formData.email,
+      message: formData.message
     }
-    axios.post('/contactUs.json', contactUs)
+    axios.post('/api/contactUs', contactUs)
       .then(response => {
         this.setState({ loading: false });
         this.props.history.push('/');
@@ -73,6 +90,7 @@ class ContactUsForm extends Component {
       .catch(error => {
         this.setState({ loading: false });
       });
+    this.fieldclearHandler();
   }
 
   checkValidity(value, rules) {
@@ -113,6 +131,14 @@ class ContactUsForm extends Component {
   }
 
   render() {
+    let button = null;
+    let error = null;
+    if (this.state.formIsValid) {
+      button = <Button btnType="SendButton" disabled={!this.state.formIsValid}>Send</Button>;
+    }
+    if (!this.state.formIsValid) {
+      error = <p className={classes.error}>Fill In All Fields With Valid Input To Send.</p>
+    }
 
     const formElementsArray = [];
     for (let key in this.state.contactUsForm) {
@@ -135,16 +161,19 @@ class ContactUsForm extends Component {
             touched={formElement.config.touched}
             changed={(event) => this.inputChangedHandler(event, formElement.id)} />
         ))}
-        <Button  btnType="SendButton" disabled={!this.state.formIsValid}>Send</Button>
+        {button}
+        {error}
       </form>
     );
     if (this.state.loading) {
       form = <Spinner />;
     }
+
     return (
       <section className={classes.Misc}>
         <h2>Contact Us</h2>
         {form}
+
       </section>
     );
 
