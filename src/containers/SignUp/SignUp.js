@@ -80,17 +80,24 @@ class SignUp extends Component {
             formData[formElementIdentifier] = this.state.signupForm[formElementIdentifier].value;
         }
         const signup = {
-            userName: formData.fullName,
+            userName: formData.Username,
             email: formData.email,
             password: formData.password
         }
+
+
+
+        console.log("Reached in");
         axios.post('/api/signup', signup)
-            .then(response => {
+            .then((response) => {
                 this.setState({ loading: false });
+                console.log("Reached in S");
+                console.log(response);
                 this.props.history.push('/dashboard');
             })
             .catch(error => {
                 this.setState({ loading: false });
+                console.log("Reached in E");
             });
         this.fieldclearHandler();
     }
