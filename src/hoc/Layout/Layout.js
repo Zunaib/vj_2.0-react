@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classes from './Layout.css';
 import Auxilary from '../Auxilary/Auxilary';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import NavBackDrop from '../../components/Navigation/Sidedrawer/NavBackDrop/NavBackDrop';
@@ -27,11 +26,38 @@ class Layout extends Component {
         this.setState((prevState) => {
             return { webToolBar: !prevState.webToolBar }
         });
+        localStorage.setItem("webToolBar", true);
     }
     landingPageToggleHandler = () => {
         this.setState((prevState) => {
             return { webToolBar: !prevState.webToolBar }
         });
+        localStorage.setItem("webToolBar", false);
+    }
+
+
+
+    hydrateStateWithLocalStorage() {
+        // for all items in state
+        for (let key in this.state) {
+            // if the key exists in localStorage
+            if (localStorage.hasOwnProperty(key)) {
+                // get the key's value from localStorage
+                let value = localStorage.getItem(key);
+                // parse the localStorage string and setState
+                try {
+                    value = JSON.parse(value);
+                    this.setState({ [key]: value });
+                } catch (e) {
+                    // handle empty string
+                    this.setState({ [key]: value });
+                }
+            }
+        }
+    }
+
+    componentDidMount = () => {
+        this.hydrateStateWithLocalStorage();
     }
 
 
@@ -48,17 +74,17 @@ class Layout extends Component {
                         ToLandingToolbar={this.landingPageToggleHandler}
 
                     /> */}
-                    <main className={classes.Content}>
+                    <main>
                         {this.props.children}
                     </main>
                 </Auxilary>
             );
-        } else {
+        } else if (!this.state.webToolBar) {
             layout = (
                 <Auxilary>
                     <Toolbar Type="Landing" drawerToggleClicked={this.sideDrawerToggleHandler} ToWebToolbar={this.webPageToggleHandler} />
                     <NavBackDrop show={this.state.showSideDrawer} clicked={this.sideDrawerClosedHandler} ToWebToolbar={this.webPageToggleHandler} />
-                    <main className={classes.Content}>
+                    <main>
                         {this.props.children}
                     </main>
                 </Auxilary>
