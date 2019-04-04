@@ -1,10 +1,49 @@
 .Container{
+margin-top: -20px;
+}
+
+.Badge {
+    position: relative;
+    top: -10px;
+    padding: 1px 5px;
+    border-radius: 100%;
+    border: 1px solid;
+    border-color:#9830b0;
+    color:#9830b0;
+  }
+
+.NotificationIcon{
+    margin-left: 25px;
+}
+
+
+.ImageButton{
+    display: flex;
+    align-items: center; 
+   justify-content: center;
+}
+
+.ImageButton h4{
+    margin-left: 35px;
+    color: black;
+    white-space: nowrap;
+    display: inline-block;
+    flex: 1;
+}
+
+
+.ImageButton img{
+    flex: 1;
+    height: 50px;
+    width: 50px;
+    margin-left: 15px;
+    object-position: top;
+    object-fit: cover;
+  border-radius: 100%;
+
 
 }
 
-.Button{
-
-}
 
 .NavigationItemsLanding {
     list-style: none;
@@ -16,6 +55,7 @@
 
 .NavigationItemsWeb {
     list-style: none;
+    justify-content: center;
     align-items: center;
     display: inline-block;
     height: 100%;

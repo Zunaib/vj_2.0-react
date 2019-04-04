@@ -15,7 +15,7 @@ const Toolbar = (props) => {
                     <Logo logoType="White" />
                 </div>
                 <nav className={classes.DesktopOnly}>
-                    <NavigationItems Type="Landing" dashboardClicked={props.ToWebToolbar} />
+                    <NavigationItems Type="Landing" />
                 </nav>
             </nav>
         );
@@ -29,7 +29,8 @@ const Toolbar = (props) => {
 
                 </div>
                 <nav className={classes.DesktopOnly}>
-                    <NavigationItems Type="Web" webClicked={props.ToLandingToolbar} />
+                    <NavigationItems Type="Web" />
+
                 </nav>
             </nav>
         );
