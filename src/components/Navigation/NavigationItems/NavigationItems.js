@@ -1,26 +1,54 @@
 import React from 'react';
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
+import display from '../../../assets/images/DP.jpg';
+import Button from '../../UI/Button/Button';
 
 const NavigationItems = (props) => {
     let navitems = null;
     if (props.Type === "Landing") {
         navitems = (
             <ul className={classes.NavigationItemsLanding}>
-                <NavigationItem navitemType = "Landing" link="/dashboard" clicked={props.dashboardClicked}>Dashboard</NavigationItem>
-                <NavigationItem navitemType = "Landing" link="/">About</NavigationItem>
-                <NavigationItem navitemType = "Landing" link="/">Mission</NavigationItem>
-                <NavigationItem navitemType = "Landing" Type="NavButton" link="/login">Log In</NavigationItem>
-                <NavigationItem navitemType = "Landing" Type="NavButton" link="/signup">Sign Up</NavigationItem>
+                {/* <NavigationItem navitemType="Landing" link="/dashboard">Dashboard</NavigationItem> */}
+                <NavigationItem navitemType="Landing" link="/">About</NavigationItem>
+                <NavigationItem navitemType="Landing" link="/">Mission</NavigationItem>
+                <NavigationItem navitemType="Landing" Type="NavButton" link="/login">Log In</NavigationItem>
+                <NavigationItem navitemType="Landing" Type="NavButton" link="/signup">Sign Up</NavigationItem>
             </ul>
         );
     } else if (props.Type === "Web") {
         navitems = (
             <ul className={classes.NavigationItemsWeb}>
-                <NavigationItem navitemType = "Web" link="/" clicked={props.webClicked}>Web</NavigationItem>
+                {/* <NavigationItem navitemType = "Web" link="/" clicked={props.webClicked}>Web</NavigationItem>
                 <NavigationItem navitemType = "Web" link="/">Messages</NavigationItem>
                 <NavigationItem navitemType = "Web" link="/">Notifications</NavigationItem>
-                <NavigationItem navitemType = "Web" link="/">Image</NavigationItem>
+                <Button btnType="NavbarImageButton">REGISTER</Button>; */}
+                {/* <div className={classes.NavProfile}> */}
+
+
+                <NavigationItem navitemType="Web" link="/testinguserprofile">Profile Setting</NavigationItem>
+                <NavigationItem navitemType="Web" link="/designerprofile">Designer</NavigationItem>
+
+                <div className={classes.MessageIcon} >
+                    <i className="fas fa-inbox">
+                        <span className={classes.Badge}>3</span>
+                    </i>
+                </div>
+                <div className={classes.NotificationIcon} >
+                    <i className="fas fa-bell">
+                        <span className={classes.Badge}>3</span>
+                    </i>
+                </div>
+
+                <div className={classes.ImageButton} >
+                    <h4>Zunaib Imtiaz</h4>
+                    <img className={classes.Image} src={display} />
+                </div>
+                {/* </div> */}
+
+
+
+
             </ul>
         );
     }
