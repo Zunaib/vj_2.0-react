@@ -9,7 +9,7 @@ const Card = (props) => {
     if (props.cardType === "productCard") {
         card = (
             <div className={classes.ProductCard}>
-                <img src={testimg} alt="Landing Page Image First" />
+                <img src={testimg} alt="" />
                 <div className={classes.CardText}>
                     <h4><b>Name</b></h4>
                     <div className={classes.Desc}>
@@ -28,7 +28,7 @@ const Card = (props) => {
     } else if (props.cardType === "vlogCard") {
         card = (
             <div className={classes.VlogCard}>
-                <img src={testimg} alt="Landing Page Image First" />
+                <img src={testimg} alt="" />
                 <div className={classes.CardText}>
                     <h4><b>Title</b></h4>
                     <div className={classes.Desc}>
@@ -69,9 +69,7 @@ const Card = (props) => {
                     <div></div>
                 </div>
                 <div className={classes.CardText}>
-                    <h4><b>Name</b></h4>
-                    <div className={classes.Desc}>
-                        Dolce & Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.</div>
+
                 </div>
                 <div className={classes.FormCardInfo}>
                     <div className={classes.FormCardButton}>
@@ -84,7 +82,7 @@ const Card = (props) => {
         card = (
             <div className={classes.ProfileCard}>
                 <div className={classes.ProfileImageButton} >
-                    <img src={display} />
+                    <img src={display} alt="" />
                 </div>
                 <div className={classes.ProfileCardText}>
                     <h4><b>Name</b></h4>

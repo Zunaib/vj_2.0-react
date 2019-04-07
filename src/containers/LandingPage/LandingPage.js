@@ -9,7 +9,9 @@ import Mission from '../../components/LandingPage/Mission/Mission';
 import ContactUsForm from '../../components/LandingPage/ContactUsForm/ContactUsForm';
 import Footer from '../../components/LandingPage/Footer/Footer';
 
+
 export class LandingPage extends Component {
+
     render() {
         return (
             <div className={classes.Container}>
@@ -25,5 +27,6 @@ export class LandingPage extends Component {
         );
     }
 }
+
 
 export default LandingPage;

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import classes from './DesignerProfile.css';
 import display from '../../assets/images/DP.jpg'
 import Card from '../../components/UI/Card/Card';
-
 class DesignerProfile extends Component {
 
     render() {
@@ -14,7 +13,8 @@ class DesignerProfile extends Component {
 
                 <div className={classes.Profile}>
                     <div className={classes.ProfileImageButton} >
-                        <img src={display} />
+                        <img src={display} alt="Display" />
+                        <i className="fas fa-plus"></i>
                     </div>
                     <div className={classes.ProfileInfo} >
                         <h1>Zunaib Imtiaz</h1>
@@ -33,15 +33,15 @@ class DesignerProfile extends Component {
                     <div className={classes.ProfileWork}>
                         <div className={classes.WorkButtons}>
                             <div className={classes.Workbutton} >
-                                <i class="fas fa-palette"></i>
+                                <i className="fas fa-palette"></i>
                                 <h5>Work</h5>
                             </div>
                             <div className={classes.Workbutton}>
-                                <i class="fas fa-user-friends"></i>
+                                <i className="fas fa-user-friends"></i>
                                 <h5>Connections</h5>
                             </div>
                             <div className={classes.Workbutton}>
-                                <i class="far fa-images"></i>
+                                <i className="far fa-images"></i>
                                 <h5>Images</h5>
                             </div>
                         </div>
@@ -50,6 +50,9 @@ class DesignerProfile extends Component {
                             <div className={classes.Work}>
                                 <div className={classes.Content}>
                                     <h3>Latest Collections</h3>
+                                    <div >
+                                        <i className="fas fa-plus"></i>
+                                    </div>
                                     <div className={classes.Collections}>
                                         <Card cardType="collectionCard" />
                                         <Card cardType="collectionCard" />

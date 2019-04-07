@@ -59,6 +59,30 @@
     height: 100%;
 }
 
+.Filters{
+    margin: 0 auto;
+      text-align: center;
+}
+
+.Shifters{
+    margin: 16px auto;
+  width: 30%;
+}
+
+.Shifters h4{
+    float: left;
+    margin: auto;
+  width: 30%;
+  cursor: pointer;
+  color: rgb(78, 78, 78);
+}
+.Shifters h4:hover{
+  cursor: pointer;
+  color: black;
+  font-size: 1.1rem;
+}
+
+
 .Card{
     background-color: white;
     width: 23%;
@@ -125,3 +149,4 @@ div.CardText h4{
     float:left;
     width: 50%;
 }
+

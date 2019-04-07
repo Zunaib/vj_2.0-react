@@ -82,17 +82,14 @@ class ContactUsForm extends Component {
       email: formData.email,
       message: formData.message
     }
-    console.log("Reached in");
 
     axios.post('/api/contactUs', contactUs)
       .then(response => {
         this.setState({ loading: false });
-        console.log("Reached in S");
         this.props.history.push('/');
       })
       .catch(error => {
         this.setState({ loading: false });
-        console.log("Reached in E");
       });
 
       this.fieldclearHandler();

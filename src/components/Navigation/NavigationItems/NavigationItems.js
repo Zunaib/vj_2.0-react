@@ -2,14 +2,13 @@ import React from 'react';
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 import display from '../../../assets/images/DP.jpg';
-import Button from '../../UI/Button/Button';
+// import Button from '../../UI/Button/Button';
 
 const NavigationItems = (props) => {
     let navitems = null;
     if (props.Type === "Landing") {
         navitems = (
             <ul className={classes.NavigationItemsLanding}>
-                {/* <NavigationItem navitemType="Landing" link="/dashboard">Dashboard</NavigationItem> */}
                 <NavigationItem navitemType="Landing" link="/">About</NavigationItem>
                 <NavigationItem navitemType="Landing" link="/">Mission</NavigationItem>
                 <NavigationItem navitemType="Landing" Type="NavButton" link="/login">Log In</NavigationItem>
@@ -25,9 +24,8 @@ const NavigationItems = (props) => {
                 <Button btnType="NavbarImageButton">REGISTER</Button>; */}
                 {/* <div className={classes.NavProfile}> */}
 
-
-                <NavigationItem navitemType="Web" link="/testinguserprofile">Profile Setting</NavigationItem>
-                <NavigationItem navitemType="Web" link="/designerprofile">Designer</NavigationItem>
+                <NavigationItem navitemType="Web" link="/dashboard/testinguserprofile">Profile Setting</NavigationItem>
+                <NavigationItem navitemType="Web" link="/dashboard/designerprofile">Designer</NavigationItem>
 
                 <div className={classes.MessageIcon} >
                     <i className="fas fa-inbox">
@@ -42,7 +40,7 @@ const NavigationItems = (props) => {
 
                 <div className={classes.ImageButton} >
                     <h4>Zunaib Imtiaz</h4>
-                    <img className={classes.Image} src={display} />
+                    <img className={classes.Image} src={display} alt="NavDisplay" />
                 </div>
                 {/* </div> */}
 
