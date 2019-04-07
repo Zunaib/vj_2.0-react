@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Products.css';
+// import classes from './Products.css';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Card from '../../UI/Card/Card';
 
