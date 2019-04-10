@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../Store/Actions/index';
 import classes from './Login.css';
 import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import axios from '../../axios';
+// import axios from '../../axios';
 
 class Login extends Component {
 
@@ -27,7 +30,7 @@ class Login extends Component {
             password: {
                 elementType: 'password',
                 elementConfig: {
-                    type: 'text',
+                    type: 'password',
                     placeholder: ''
                 },
                 value: '',
@@ -38,8 +41,7 @@ class Login extends Component {
                 touched: false
             },
         },
-        formIsValid: false,
-        loading: false
+        formIsValid: false
     }
 
 
@@ -61,26 +63,18 @@ class Login extends Component {
 
     loginHandler = (event) => {
         event.preventDefault();
-        this.setState({ loading: true });
         const formData = {};
         for (let formElementIdentifier in this.state.loginForm) {
             formData[formElementIdentifier] = this.state.loginForm[formElementIdentifier].value;
         }
-        const login = {
+        const loginData = {
             email: formData.email,
             password: formData.password
         }
-        axios.post('/api/login', login)
-            .then(response => {
-                this.setState({ loading: false });
-                this.props.history.push('/dashboard');
-            })
-            .catch(error => {
-                this.setState({ loading: false });
-            });
+        this.props.onAuth(loginData, 'Login');
         this.fieldclearHandler();
-    }
 
+    }
 
     checkValidity(value, rules) {
         let isValid = true;
@@ -154,12 +148,25 @@ class Login extends Component {
             </form>
         );
 
-        if (this.state.loading) {
+        if (this.props.loading) {
             form = <Spinner />;
         }
 
+        let authRedirect = null;
+        if (this.props.isAuth) {
+            authRedirect = <Redirect to='/dashboard' />;
+        }
+
+        let errorMessage = null;
+        if (this.props.error) {
+            console.log(this.props.error);
+            errorMessage = (
+                <p>{this.props.error}</p>
+            )
+        }
         return (
             <div className={classes.Background}>
+                {authRedirect}
                 <div className={classes.Main}>
                     <div className={classes.ImageSide}>
                         <div className={classes.Image} >
@@ -171,6 +178,7 @@ class Login extends Component {
                             <Logo logoType="Black" />
                         </div>
                         <div className={classes.Form} >
+                            {errorMessage}
                             <h3>Login</h3>
                             {form}
                         </div>
@@ -182,4 +190,19 @@ class Login extends Component {
 
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        isAuth: state.Auth.token !== null,
+        loading: state.Auth.loading,
+        error: state.Auth.error
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (loginData, type) => dispatch(actions.Auth(loginData, type))
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

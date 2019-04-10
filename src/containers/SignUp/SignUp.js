@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../Store/Actions/index';
+
 import classes from './SignUp.css';
 import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import axios from '../../axios';
+// import axios from '../../axios';
 
 class SignUp extends Component {
+
 
     state = {
         signupForm: {
@@ -51,8 +56,7 @@ class SignUp extends Component {
                 touched: false
             },
         },
-        formIsValid: false,
-        loading: false
+        formIsValid: false
     }
 
 
@@ -79,26 +83,12 @@ class SignUp extends Component {
         for (let formElementIdentifier in this.state.signupForm) {
             formData[formElementIdentifier] = this.state.signupForm[formElementIdentifier].value;
         }
-        const signup = {
+        const signUpData = {
             userName: formData.Username,
             email: formData.email,
             password: formData.password
         }
-
-
-
-        console.log("Reached in");
-        axios.post('/api/signup', signup)
-            .then((response) => {
-                this.setState({ loading: false });
-                console.log("Reached in S");
-                console.log(response);
-                this.props.history.push('/dashboard');
-            })
-            .catch(error => {
-                this.setState({ loading: false });
-                console.log("Reached in E");
-            });
+        this.props.onAuth(signUpData, 'Signup');
         this.fieldclearHandler();
     }
 
@@ -172,8 +162,13 @@ class SignUp extends Component {
             </form>
         );
 
-        if (this.state.loading) {
+        if (this.props.loading) {
             form = <Spinner />;
+        }
+
+        if (this.props.redirect) {
+            form = <Redirect to='/login' />;
+            this.props.onresetRedirect();
         }
 
         return (
@@ -201,4 +196,20 @@ class SignUp extends Component {
 
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+    return {
+        token:state.Auth.token,
+        loading: state.Auth.loading,
+        error: state.Auth.error,
+        redirect: state.Auth.redirect
+    };
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (signUpData, type) => dispatch(actions.Auth(signUpData, type)),
+        onresetRedirect: () => dispatch(actions.ResetRedirect())
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

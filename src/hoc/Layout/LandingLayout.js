@@ -6,7 +6,8 @@ import NavBackDrop from '../../components/Navigation/Sidedrawer/NavBackDrop/NavB
 
 import LandingPage from '../../containers/LandingPage/LandingPage';
 import Login from '../../containers/LogIn/Login';
-import Signup from '../../containers/SignUp/SignUp';;
+import Signup from '../../containers/SignUp/SignUp';
+import Logout from '../../containers/Logout/Logout';
 
 
 
@@ -41,6 +42,7 @@ class LandingLayout extends Component {
                     <Route exact path='/' component={LandingPage} />
                     <Route path='/login' component={Login} />
                     <Route path='/signup' component={Signup} />
+                    <Route path='/logout' component={Logout} />
                 </Switch>
             </div>
         )

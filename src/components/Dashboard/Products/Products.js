@@ -3,27 +3,23 @@ import React from 'react';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Card from '../../UI/Card/Card';
 
-const Products = (props) => (
+const Products = (props) => {
 
-    <Auxilary>
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-        <Card cardType="productCard" />
-    </Auxilary>
-
-);
+    return (
+        < Auxilary >
+            {
+                props.products.map(product => (
+                    <Card
+                        cardType="productCard"
+                        key={product._id}
+                        name={product.productName}
+                        desc={product.description}
+                        image={product.images}
+                        price={product.price} />
+                ))
+            }
+        </Auxilary >
+    );
+};
 
 export default Products;
