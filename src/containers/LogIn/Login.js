@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../Store/Actions/index';
 import classes from './Login.css';
+
 import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import axios from '../../axios';
+import Snackbar from '../../components/UI/SnackBar/Snackbar';
+import { checkValidity } from '../../Shared/Validator';
+// import axios from '../../axios';
 
 class Login extends Component {
 
@@ -27,19 +33,18 @@ class Login extends Component {
             password: {
                 elementType: 'password',
                 elementConfig: {
-                    type: 'text',
+                    type: 'password',
                     placeholder: ''
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
                 },
                 valid: false,
                 touched: false
             },
         },
-        formIsValid: false,
-        loading: false
+        formIsValid: false
     }
 
 
@@ -61,26 +66,19 @@ class Login extends Component {
 
     loginHandler = (event) => {
         event.preventDefault();
-        this.setState({ loading: true });
         const formData = {};
         for (let formElementIdentifier in this.state.loginForm) {
             formData[formElementIdentifier] = this.state.loginForm[formElementIdentifier].value;
         }
-        const login = {
+        const loginData = {
             email: formData.email,
             password: formData.password
         }
-        axios.post('/api/login', login)
-            .then(response => {
-                this.setState({ loading: false });
-                this.props.history.push('/dashboard');
-            })
-            .catch(error => {
-                this.setState({ loading: false });
-            });
+        this.props.onAuth(loginData, 'Login');
         this.fieldclearHandler();
-    }
+        this.setState({ formIsValid: false });
 
+    }
 
     checkValidity(value, rules) {
         let isValid = true;
@@ -108,7 +106,7 @@ class Login extends Component {
             ...updatedloginForm[inputIdentifier]
         };
         updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+        updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedloginForm[inputIdentifier] = updatedFormElement;
 
@@ -119,12 +117,26 @@ class Login extends Component {
         this.setState({ loginForm: updatedloginForm, formIsValid: formIsValid });
     }
 
+
     render() {
 
-        let button = null;
-        let forgetpassword = <a className={classes.Forgot} href="/login">Forgot Password ?</a>;
-        if (this.state.formIsValid) {
-            button = <Button btnType="LoginButton" disabled={!this.state.formIsValid}>LOGIN</Button>;
+        // let forgetpassword = <a className={classes.Forgot} href="/login">Forgot Password ?</a>;
+
+        let errorsnack = null;
+        if (this.props.error) {
+            let msg = null;
+            if (this.props.error === 'Email_NotFound') {
+                msg = 'Email Not Found';
+            } else {
+                msg = 'Incorrect Password';
+            }
+            errorsnack = (<Snackbar message={msg} snackType="error" errRefresh={this.props.onErrorRefresh} />);
+
+        }
+
+        let authRedirect = null;
+        if (this.props.isAuth) {
+            authRedirect = <Redirect to='/dashboard' />;
         }
 
         const formElementsArray = [];
@@ -148,18 +160,18 @@ class Login extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-
-                {button}
-                {forgetpassword}
+                <Button btnType="LoginButton" >LOGIN</Button>
             </form>
         );
 
-        if (this.state.loading) {
+        if (this.props.loading) {
             form = <Spinner />;
         }
 
         return (
             <div className={classes.Background}>
+                {errorsnack}
+                {authRedirect}
                 <div className={classes.Main}>
                     <div className={classes.ImageSide}>
                         <div className={classes.Image} >
@@ -182,4 +194,20 @@ class Login extends Component {
 
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        isAuth: state.Auth.token,
+        loading: state.Auth.loading,
+        error: state.Auth.error
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (loginData, type) => dispatch(actions.Auth(loginData, type)),
+        onErrorRefresh: () => dispatch(actions.ErrRefresh())
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

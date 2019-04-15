@@ -145,6 +145,11 @@ class ContactData extends Component {
             isValid = pattern.test(value) && isValid
         }
 
+        if (rules.isPassword) {
+            const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+            isValid = pattern.test(value) && isValid
+        }
+
         return isValid;
     }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 // import Sidedrawer from '../../components/Navigation/Sidedrawer/Sidedrawer';
@@ -7,8 +8,6 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import Dashboard from '../../containers/Dashboard/Dashboard';
 import TestUserProfileSeeting from '../../containers/UserAccountSettings/UserAccountSettings';
 import DesignerProfile from '../../containers/DesignerProfile/DesignerProfile';
-
-
 
 class WebLayout extends Component {
 
@@ -27,6 +26,25 @@ class WebLayout extends Component {
         });
     }
     render() {
+
+
+        let routes = (
+            <Switch>
+                <Redirect to="/" />
+            </Switch>
+        );
+
+        if (this.props.isAuth) {
+            routes = (
+                <Switch>
+                    <Route path="/dashboard" exact component={Dashboard} />
+                    <Route path="/dashboard/testinguserprofile" component={TestUserProfileSeeting} />
+                    <Route path="/dashboard/designerprofile" component={DesignerProfile} />
+                    <Redirect to="/dashboard" />
+                </Switch>
+            );
+        }
+
         return (
             <div>
                 <Toolbar Type="Web" drawerToggleClicked={this.sideDrawerToggleHandler} />
@@ -39,14 +57,16 @@ class WebLayout extends Component {
                 <main>
                     {this.props.children}
                 </main>
-                <Switch>
-                    <Route path="/dashboard" exact component={Dashboard} />
-                    <Route path="/dashboard/testinguserprofile" component={TestUserProfileSeeting} />
-                    <Route path="/dashboard/designerprofile" component={DesignerProfile} />
-                </Switch>
+                {routes}
             </div>
         )
     }
 }
 
-export default WebLayout;
+const mapStateToProps = state => {
+    return {
+        isAuth: state.Auth.token
+    }
+}
+
+export default connect(mapStateToProps, null)(WebLayout);

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../Store/Actions/index';
+import { checkValidity } from '../../Shared/Validator';
+
 import classes from './SignUp.css';
 import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import axios from '../../axios';
 
 class SignUp extends Component {
+
 
     state = {
         signupForm: {
@@ -41,18 +46,20 @@ class SignUp extends Component {
                 elementType: 'password',
                 elementConfig: {
                     type: 'text',
-                    placeholder: ''
+                    placeholder: 'Abc@xyz22'
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    isPassword: true,
+                    minLength: 7,
+                    maxLength: 20
                 },
                 valid: false,
                 touched: false
             },
         },
-        formIsValid: false,
-        loading: false
+        formIsValid: false
     }
 
 
@@ -79,46 +86,14 @@ class SignUp extends Component {
         for (let formElementIdentifier in this.state.signupForm) {
             formData[formElementIdentifier] = this.state.signupForm[formElementIdentifier].value;
         }
-        const signup = {
+        const signUpData = {
             userName: formData.Username,
             email: formData.email,
             password: formData.password
         }
-
-
-
-        console.log("Reached in");
-        axios.post('/api/signup', signup)
-            .then((response) => {
-                this.setState({ loading: false });
-                console.log("Reached in S");
-                console.log(response);
-                this.props.history.push('/dashboard');
-            })
-            .catch(error => {
-                this.setState({ loading: false });
-                console.log("Reached in E");
-            });
+        this.props.onAuth(signUpData, 'Signup');
         this.fieldclearHandler();
-    }
-
-
-    checkValidity(value, rules) {
-        let isValid = true;
-        if (!rules) {
-            return true;
-        }
-
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if (rules.isEmail) {
-            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-            isValid = pattern.test(value) && isValid
-        }
-
-        return isValid;
+        this.setState({ formIsValid: false });
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -129,7 +104,7 @@ class SignUp extends Component {
             ...updatedsignupForm[inputIdentifier]
         };
         updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+        updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedsignupForm[inputIdentifier] = updatedFormElement;
 
@@ -141,12 +116,6 @@ class SignUp extends Component {
     }
 
     render() {
-
-        let button = null;
-        if (this.state.formIsValid) {
-            button = <Button btnType="LoginButton" disabled={!this.state.formIsValid}>REGISTER</Button>;
-        }
-
         const formElementsArray = [];
         for (let key in this.state.signupForm) {
             formElementsArray.push({
@@ -168,16 +137,24 @@ class SignUp extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                {button}
+                <Button btnType="LoginButton">REGISTER</Button>
             </form>
         );
 
-        if (this.state.loading) {
+        if (this.props.loading) {
             form = <Spinner />;
         }
 
+        let signRedirect = null;
+        if (this.props.redirect) {
+            signRedirect = <Redirect to='/login' />;
+        }
+
+
+
         return (
             <div className={classes.Background}>
+                {signRedirect}
                 <div className={classes.Main}>
                     <div className={classes.ImageSide}>
                         <div className={classes.Image} >
@@ -201,4 +178,20 @@ class SignUp extends Component {
 
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+    return {
+        token: state.Auth.token,
+        loading: state.Auth.loading,
+        error: state.Auth.error,
+        redirect: state.Auth.redirect
+    };
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (signUpData, type) => dispatch(actions.Auth(signUpData, type)),
+        onresetRedirect: () => dispatch(actions.ResetRedirect())
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

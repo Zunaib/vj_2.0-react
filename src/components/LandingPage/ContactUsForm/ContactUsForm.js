@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../Store/Actions/index';
+
 import classes from './ContactUsForm.css';
-import axios from '../../../axios';
+// import axios from '../../../axios';
 import Input from '../../UI/Input/Input';
 import Button from '../../UI/Button/Button';
 import Spinner from '../../UI/Spinner/Spinner';
+import { checkValidity } from '../../../Shared/Validator';
 
 class ContactUsForm extends Component {
   state = {
@@ -49,8 +53,7 @@ class ContactUsForm extends Component {
         touched: false
       },
     },
-    formIsValid: false,
-    loading: false
+    formIsValid: false
   }
 
 
@@ -72,7 +75,6 @@ class ContactUsForm extends Component {
 
   contactUsHandler = (event) => {
     event.preventDefault();
-    this.setState({ loading: true });
     const formData = {};
     for (let formElementIdentifier in this.state.contactUsForm) {
       formData[formElementIdentifier] = this.state.contactUsForm[formElementIdentifier].value;
@@ -83,17 +85,10 @@ class ContactUsForm extends Component {
       message: formData.message
     }
 
-    axios.post('/api/contactUs', contactUs)
-      .then(response => {
-        this.setState({ loading: false });
-        this.props.history.push('/');
-      })
-      .catch(error => {
-        this.setState({ loading: false });
-      });
+    this.props.onSubmitContactUsForm(contactUs);
 
-      this.fieldclearHandler();
-      
+    this.fieldclearHandler();
+
   }
 
   checkValidity(value, rules) {
@@ -122,7 +117,7 @@ class ContactUsForm extends Component {
       ...updatedcontactUsForm[inputIdentifier]
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+    updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
     updatedFormElement.touched = true;
     updatedcontactUsForm[inputIdentifier] = updatedFormElement;
 
@@ -168,7 +163,7 @@ class ContactUsForm extends Component {
         {error}
       </form>
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
 
@@ -180,52 +175,21 @@ class ContactUsForm extends Component {
       </section>
     );
 
-
-
-
-
-
-
-    // return (
-    //   <section className={classes.Misc}>
-    //     <h2>Contact Us</h2>
-
-
-
-
-    //     <form>
-    //       <p>Fill in the next form to send us a message</p>
-    //       <div>
-    //         <label htmlFor="name">Name</label>
-    //         <input type="text" name="name" placeholder="Your Name Here" onChange={this.getName} />
-    //       </div>
-    //       <div>
-    //         <label htmlFor="email">Email</label>
-    //         <input type="email" name="email" placeholder="Your Email Here" onChange={this.getEmail} />
-    //       </div>
-    //       <div>
-    //         <label htmlFor="name">Message</label>
-    //         <textarea onChange={this.getDescription} maxLength="450" placeholder="Your Message Here"></textarea>
-
-    //       </div>
-    //       <div>
-    //         <p>We will answer as soon as possible</p>
-    //         <a className={classes.Send} href="/">Send</a>
-
-    //       </div>
-
-    //     </form>
-
-
-
-
-
-
-
-
-    //   </section>
-    // );
   }
 }
 
-export default ContactUsForm;
+const mapStateToProps = state => {
+  return {
+    loading: state.contactUs.loading,
+    error: state.contactUs.error
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmitContactUsForm: (contactUsData) => dispatch(actions.ContactUsForm(contactUsData))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactUsForm);

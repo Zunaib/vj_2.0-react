@@ -8,14 +8,14 @@ class UserAccountSettings extends Component {
     render() {
         return (
             <div className={classes.Main}>
-                <div className={classes.Blogs}>
+                <div className={classes.StatsCard}>
                     <Card cardType="profileStatsCard" />
                 </div>
-                <div className={classes.ProductsPanel}>
+                <div className={classes.FormCard}>
                     <Card cardType="formCard" />
 
                 </div>
-                <div className={classes.Vlogs}>
+                <div className={classes.ProfileCard}>
                     <Card cardType="profileCard" />
 
                 </div>

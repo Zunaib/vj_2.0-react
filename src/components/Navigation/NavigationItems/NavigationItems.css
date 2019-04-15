@@ -62,6 +62,12 @@ margin-top: -20px;
    
 }
 
+.Dropdown i{
+    margin-left: 10px;
+    margin-top: -10px;
+font-size: 1.4rem;
+}
+
 @media (min-width:1213px){
     .NavigationItemsLanding{
         flex-flow: row;

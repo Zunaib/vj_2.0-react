@@ -10,7 +10,7 @@
 }
 
 
-.Blogs{
+.StatsCard{
     padding-top: 80px;
     width: 15%;
     height: 100%;
@@ -18,7 +18,7 @@
     float: left
 }
 
-.ProductsPanel{
+.FormCard{
     
     padding-top: 80px;
     /* background-color: rgb(250, 250, 250); */
@@ -32,7 +32,7 @@
 
 
 
-.Vlogs{
+.ProfileCard{
     padding-top: 80px;
     width: 30%;
     height: 100%;

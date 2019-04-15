@@ -11,13 +11,13 @@ const Card = (props) => {
             <div className={classes.ProductCard}>
                 <img src={testimg} alt="" />
                 <div className={classes.CardText}>
-                    <h4><b>Name</b></h4>
+                    <h4><b>{props.name}</b></h4>
                     <div className={classes.Desc}>
                         Dolce & Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.</div>
                 </div>
                 <div className={classes.CardInfo}>
                     <div className={classes.CardPrice}>
-                        <h4>Pkr 1000</h4>
+                        <h4>Pkr {props.price}</h4>
                     </div>
                     <div className={classes.CardButton}>
                         Button

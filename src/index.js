@@ -3,18 +3,42 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { SnackbarProvider } from 'notistack';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import Reducer from './Store/Reducer';
+import * as actions from './Store/Actions/index';
 
 
-const store = createStore(Reducer);
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import ContactUsReducer from './Store/Reducers/ContactUs';
+import DashboardReducer from './Store/Reducers/Dashboard';
+import AuthReducer from './Store/Reducers/Auth';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const rootRecucer = combineReducers({
+    contactUs: ContactUsReducer,
+    Dashboard: DashboardReducer,
+    Auth: AuthReducer
+});
+
+const store = createStore(rootRecucer, composeEnhancers(
+    applyMiddleware(thunk)
+));
+
+const token = localStorage.getItem('token');
+const userId = localStorage.getItem('userId');
+if (token) {
+    store.dispatch(actions.AuthCheckState(token, userId));
+}
 
 const app = (
     <Provider store={store} >
         <BrowserRouter>
-            <App />
+            <SnackbarProvider maxSnack={3}>
+                <App />
+            </SnackbarProvider>
         </BrowserRouter>
     </Provider>
 );
