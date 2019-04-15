@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import classes from './Dashboard.css';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import Products from '../../components/Dashboard/Products/Products';
 import Vlogs from '../../components/Dashboard/Vlogs/Vlogs';
 import Blogs from '../../components/Dashboard/Blogs/Blogs';
@@ -10,29 +11,43 @@ import Blogs from '../../components/Dashboard/Blogs/Blogs';
 class Dashboard extends Component {
 
     componentDidMount = () => {
-        console.log('token in dash' + this.props.token);
-        this.props.onfetchproducts(this.props.token);
-
+        // console.log('token in dash' + this.props.token);
+        if (this.props.token) {
+            this.props.onfetchproducts(this.props.token);
+        }
     }
 
     state = {
-        dashcontent: <Products />
+        dashcontent: 'Products'
+    }
+
+    getContent = (currentContent) => {
+        const Content = {
+            Products: <Products products={this.props.products} />,
+            Blogs: <Blogs />,
+            Vlogs: <Vlogs />
+        };
+        return Content[currentContent];
     }
 
     toggleVlogs = () => {
-        this.setState({ dashcontent: <Vlogs /> })
+        this.setState({ dashcontent: 'Vlogs' })
     }
 
     toggleProducts = () => {
-        this.setState({ dashcontent: <Products /> })
+        this.setState({ dashcontent: 'Products' })
     }
 
     toggleBlogs = () => {
-        this.setState({ dashcontent: <Blogs /> })
+        this.setState({ dashcontent: 'Blogs' })
     }
 
     render() {
 
+        let content = this.getContent(this.state.dashcontent);
+        if (this.props.loading) {
+            content = <Spinner />
+        }
 
         return (
             <div className={classes.Main}>
@@ -50,9 +65,7 @@ class Dashboard extends Component {
                     <div className={classes.Products}>
                         <div className={classes.ProductCard}>
 
-                            {/* {this.state.dashcontent} */}
-
-                            <Products products={this.props.products} />
+                            {content}
 
                         </div>
                     </div>
@@ -76,7 +89,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchproducts: (token) => dispatch(actions.FetchProducts(token))
+        onfetchproducts: (token) => dispatch(actions.Fetch(token))
     }
 }
 

@@ -7,10 +7,11 @@ export const AuthStart = () => {
     };
 };
 
-export const AuthSuccess = (token) => {
+export const AuthSuccess = (token, userId) => {
     return {
         type: actionTypes.Auth_Success,
-        token: token
+        token: token,
+        userId: userId
     };
 };
 
@@ -24,10 +25,17 @@ export const AuthFail = (error) => {
 
 export const AuthLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     return {
         type: actionTypes.Auth_Logout
     };
 };
+
+export const Reset = () => {
+    return {
+        type: actionTypes.Reset
+    };
+}
 
 export const ResetRedirect = () => {
     return {
@@ -36,14 +44,17 @@ export const ResetRedirect = () => {
 };
 
 export const deAuth = () => {
+    console.log('in deauth');
     return dispatch => {
-        axios.post('/api/logout')
+        axios.get('/api/logout')
             .then(response => {
-                console.log(response);
+                console.log("from logout " + response);
                 dispatch(AuthLogout());
+                dispatch(Reset());
             })
             .catch(error => {
-                console.log(error);
+                console.log("from logout " + error);
+                console.log("from logout " + error.message);
             });
     }
 }
@@ -58,28 +69,33 @@ export const Auth = (data, type) => {
             url = '/api/signup';
         }
 
-
         axios.post(url, data)
             .then(response => {
-                console.log(response);
                 localStorage.setItem('token', response.data.token);
-                dispatch(AuthSuccess(response.data.token));
+                localStorage.setItem('userId', response.data.userId);
+                dispatch(AuthSuccess(response.data.token, response.data.userId));
+                if (type === "Signup") {
+                    dispatch(ResetRedirect());
+                }
             })
             .catch(error => {
-                console.log(error);
-                dispatch(AuthFail(error));
+                dispatch(AuthFail(error.response.data.message));
             });
     };
 };
 
-export const AuthCheckState = () => {
+export const AuthCheckState = (token, userId) => {
     return dispatch => {
-        const token = localStorage.getItem('token');
-        console.log(token);
         if (!token) {
             dispatch(AuthLogout());
         } else {
-            dispatch(AuthSuccess(token));
+            dispatch(AuthSuccess(token, userId));
         }
+    }
+}
+
+export const ErrRefresh = () => {
+    return {
+        type: actionTypes.Auth_Error_Refresh
     }
 }

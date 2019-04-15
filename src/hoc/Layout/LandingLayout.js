@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import NavBackDrop from '../../components/Navigation/Sidedrawer/NavBackDrop/NavBackDrop';
@@ -7,7 +8,6 @@ import NavBackDrop from '../../components/Navigation/Sidedrawer/NavBackDrop/NavB
 import LandingPage from '../../containers/LandingPage/LandingPage';
 import Login from '../../containers/LogIn/Login';
 import Signup from '../../containers/SignUp/SignUp';
-import Logout from '../../containers/Logout/Logout';
 
 
 
@@ -31,6 +31,24 @@ class LandingLayout extends Component {
 
 
     render() {
+
+        let routes = (
+            <Switch>
+                <Route exact path='/' component={LandingPage} />
+                <Route path='/login' component={Login} />
+                <Route path='/signup' component={Signup} />
+                <Redirect to="/" />
+            </Switch>
+        );
+
+        if (this.props.isAuth) {
+            routes = (
+                <Switch>
+                    {/* <Redirect to="/" /> */}
+                </Switch>
+            );
+        }
+
         return (
             <div>
                 <Toolbar Type="Landing" drawerToggleClicked={this.sideDrawerToggleHandler} />
@@ -38,15 +56,17 @@ class LandingLayout extends Component {
                 <main>
                     {this.props.children}
                 </main>
-                <Switch>
-                    <Route exact path='/' component={LandingPage} />
-                    <Route path='/login' component={Login} />
-                    <Route path='/signup' component={Signup} />
-                    <Route path='/logout' component={Logout} />
-                </Switch>
+                {routes}
             </div>
         )
     }
 }
 
-export default LandingLayout;
+
+const mapStateToProps = state => {
+    return {
+        isAuth: state.Auth.token
+    }
+}
+
+export default connect(mapStateToProps, null)(LandingLayout);

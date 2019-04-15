@@ -11,12 +11,13 @@ const DashboardReducer = (state = initialState, action) => {
         case actionTypes.Fetch_Products_Start:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                products: []
             };
         case actionTypes.Fetch_Products_Success:
             return {
                 ...state,
-                products: action.products,
+                products: state.products.concat(action.products),
                 loading: false,
                 error: false
             };
@@ -26,6 +27,8 @@ const DashboardReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.error
             };
+        case actionTypes.Reset:
+            return state = initialState;
         default:
             return state;
     }

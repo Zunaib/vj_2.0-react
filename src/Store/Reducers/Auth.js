@@ -2,6 +2,7 @@ import * as actionTypes from '../Actions/ActionTypes';
 
 const initialState = {
     token: null,
+    userId: null,
     error: null,
     loading: false,
     redirect: false
@@ -9,6 +10,12 @@ const initialState = {
 
 const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.Auth_Error_Refresh:
+            return {
+                ...state,
+                error: null,
+                loading: false
+            };
         case actionTypes.Auth_Start:
             return {
                 ...state,
@@ -27,6 +34,7 @@ const AuthReducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 token: null,
+                userId: null,
                 loading: false,
                 redirect: false
             };
@@ -34,6 +42,7 @@ const AuthReducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.token,
+                userId: action.userId,
                 error: null,
                 loading: false,
                 redirect: true
@@ -43,7 +52,8 @@ const AuthReducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 loading: false,
-                redirect: false
+                redirect: false,
+                token: null
             };
         default:
             return state;

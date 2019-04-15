@@ -3,6 +3,7 @@ import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 import display from '../../../assets/images/DP.jpg';
 // import Button from '../../UI/Button/Button';
+import Dropdown from '../../UI/Dropdown/Dropdown';
 
 const NavigationItems = (props) => {
     let navitems = null;
@@ -42,8 +43,11 @@ const NavigationItems = (props) => {
                     <h4>Zunaib Imtiaz</h4>
                     <img className={classes.Image} src={display} alt="NavDisplay" />
                 </div>
-                {/* </div> */}
 
+                <div className={classes.Dropdown} >
+                   
+                    <Dropdown />
+                </div>
 
 
 

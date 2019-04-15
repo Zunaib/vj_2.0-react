@@ -7,6 +7,7 @@ import classes from './ContactUsForm.css';
 import Input from '../../UI/Input/Input';
 import Button from '../../UI/Button/Button';
 import Spinner from '../../UI/Spinner/Spinner';
+import { checkValidity } from '../../../Shared/Validator';
 
 class ContactUsForm extends Component {
   state = {
@@ -116,7 +117,7 @@ class ContactUsForm extends Component {
       ...updatedcontactUsForm[inputIdentifier]
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+    updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
     updatedFormElement.touched = true;
     updatedcontactUsForm[inputIdentifier] = updatedFormElement;
 

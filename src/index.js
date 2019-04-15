@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { SnackbarProvider } from 'notistack';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import * as actions from './Store/Actions/index';
+
 
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
@@ -26,14 +28,17 @@ const store = createStore(rootRecucer, composeEnhancers(
 ));
 
 const token = localStorage.getItem('token');
+const userId = localStorage.getItem('userId');
 if (token) {
-    store.dispatch(actions.AuthCheckState(token));
+    store.dispatch(actions.AuthCheckState(token, userId));
 }
 
 const app = (
     <Provider store={store} >
         <BrowserRouter>
-            <App />
+            <SnackbarProvider maxSnack={3}>
+                <App />
+            </SnackbarProvider>
         </BrowserRouter>
     </Provider>
 );
