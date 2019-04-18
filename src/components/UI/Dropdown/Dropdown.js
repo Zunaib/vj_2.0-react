@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { NavLink } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import classes from './Dropdown.css';
+
 
 class SimpleMenu extends Component {
     state = {
         anchorEl: null,
-        page: null
     };
 
     handleClick = event => {
@@ -16,37 +16,41 @@ class SimpleMenu extends Component {
 
     handleClose = () => {
         this.setState({ anchorEl: null });
-        this.setState({ page: 'Logout' });
-
     };
+
 
     render() {
         const { anchorEl } = this.state;
-
-        let re = null;
-        if (this.state.page === 'Logout') {
-            re = <Redirect to="/logout" />
-        }
-
         return (
-            <div>
-                {re}
-                <Button
+            <div className={classes.Main}>
+                <i className="fas fa-sort-down"
                     aria-owns={anchorEl ? 'simple-menu' : undefined}
                     aria-haspopup="true"
                     onClick={this.handleClick}
-                >
-                    <i className="fas fa-sort-down"></i>
-                </Button>
+                ></i>
+
                 <Menu
+                    className={classes.Menu}
                     id="simple-menu"
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
                 >
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                    <NavLink to="/dashboard/designer" activeClassName={classes.active}>
+                        <MenuItem onClick={this.handleClose} >Use As Designer</MenuItem>
+                    </NavLink>
+                    <NavLink className={classes.Link} to="/dashboard/vlogger">
+                        <MenuItem onClick={this.handleClose}>Use As Vlogger</MenuItem>
+                    </NavLink>
+                    <NavLink className={classes.Link} to="/dashboard/blogger">
+                        <MenuItem onClick={this.handleClose}>Use As Blogger</MenuItem>
+                    </NavLink>
+                    <NavLink className={classes.Link} to="/dashboard/usersettings">
+                        <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+                    </NavLink>
+                    <NavLink className={classes.Link} to="/logout">
+                        <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                    </NavLink>
                 </Menu>
             </div>
         );

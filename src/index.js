@@ -13,6 +13,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import ContactUsReducer from './Store/Reducers/ContactUs';
 import DashboardReducer from './Store/Reducers/Dashboard';
+import UserSettingsReducer from './Store/Reducers/UserSettings';
 import AuthReducer from './Store/Reducers/Auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -20,6 +21,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootRecucer = combineReducers({
     contactUs: ContactUsReducer,
     Dashboard: DashboardReducer,
+    UserSettings: UserSettingsReducer,
     Auth: AuthReducer
 });
 
@@ -29,8 +31,9 @@ const store = createStore(rootRecucer, composeEnhancers(
 
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('userId');
+const userflag = localStorage.getItem('userflag');
 if (token) {
-    store.dispatch(actions.AuthCheckState(token, userId));
+    store.dispatch(actions.AuthCheckState(token, userId, userflag));
 }
 
 const app = (

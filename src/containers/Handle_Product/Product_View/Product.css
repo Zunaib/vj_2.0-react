@@ -1,0 +1,143 @@
+.Main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* background: #1D2B64; 
+background: -webkit-linear-gradient(to bottom, #F8CDDA, rgb(86, 29, 100));  
+background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
+
+ 
+}
+  
+  .Album{
+      background-color: white;
+      position: relative;
+      height: 100%;
+      width: 75%;
+      margin: 42px auto;
+      border-radius: 10px;
+      overflow: hidden;
+  -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+  -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+  box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+  }
+
+.Album_Top{
+    width: 100%;
+    display: flex;
+    padding: 20px;
+}
+.AlbumInfo{
+    float:left;
+    width:50%;
+    text-align: left;
+    margin: 55px 25px;
+}
+
+  .AlbumImage{
+      text-align: center;
+    float:left;
+    width:50%;
+    margin: 45px 25px;
+}
+
+.AlbumImage img{
+    height: 470px;
+    width: 370px;
+    object-position: top;
+    object-fit: cover;
+  border-radius: 5%;
+  -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+    -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+}
+
+
+.Album_Bottom{
+    width: 100%;
+    display: flex;
+    padding: 20px;
+}
+
+
+.ProfileInfo{
+    padding-top: 190px;
+    margin-bottom: 10px;
+}
+
+.ProfileInfo h1{
+    color: rgb(29, 29, 29);
+}
+
+.ConnectIcons i{
+  margin: 20px;
+}
+
+.Desc{
+    margin-top: 15px;
+    padding-right: 30px;
+}
+
+.Desc h4{
+    margin-bottom: -10px;
+}
+.Desc p{
+    width: 100%;
+    color: rgb(87, 87, 87);
+}
+
+
+.WorkDisplay{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.Work h2{
+padding-left: 100px;
+}
+
+.Content{
+width: 100%
+}
+
+.Content div i{
+    color: white;
+    background-color: rgb(116, 47, 110);
+    border-radius: 23px;
+    padding: 15px;
+    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.504);
+  -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.504);
+  box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.504);
+}
+
+.Collections{
+    margin: 0 auto;
+    width: 90%;
+}
+
+
+.WorkButtons{
+    margin: auto;
+  width: 60%;
+}
+
+
+.Workbutton{
+float: left;
+}
+
+
+
+.Workbutton i{
+    padding: 45px 40px;
+    border-radius: 100%;
+    margin: 20px 55px;
+    font-size: 6em;
+    
+  -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.504);
+  -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.504);
+  box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.504);
+}
+

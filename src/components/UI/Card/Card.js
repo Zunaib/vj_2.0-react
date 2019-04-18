@@ -68,13 +68,12 @@ const Card = (props) => {
                 <div className={classes.FormOverlapDiv} >
                     <div></div>
                 </div>
-                <div className={classes.CardText}>
-
-                </div>
                 <div className={classes.FormCardInfo}>
-                    <div className={classes.FormCardButton}>
-                        Update
+                    <div className={classes.FormSide}>
+                        <div className={classes.Form} >
+                            {props.form}
                         </div>
+                    </div>
                 </div>
             </div>
         );
@@ -85,13 +84,10 @@ const Card = (props) => {
                     <img src={display} alt="" />
                 </div>
                 <div className={classes.ProfileCardText}>
-                    <h4><b>Name</b></h4>
-                    <h4><b>Logged In As:</b></h4>
+                    <h4><b>{props.profile.username}</b></h4>
+                    <h4>{props.profile.logger}</h4>
                     <div className={classes.ProfileDesc}>
-                        Dolce & Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.
-                        Dolce & Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.
-                        Dolce & Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.
-                        </div>
+                        {props.profile.desc}</div>
                 </div>
             </div>
         );

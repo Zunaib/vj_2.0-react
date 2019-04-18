@@ -19,14 +19,6 @@ const NavigationItems = (props) => {
     } else if (props.Type === "Web") {
         navitems = (
             <ul className={classes.NavigationItemsWeb}>
-                {/* <NavigationItem navitemType = "Web" link="/" clicked={props.webClicked}>Web</NavigationItem>
-                <NavigationItem navitemType = "Web" link="/">Messages</NavigationItem>
-                <NavigationItem navitemType = "Web" link="/">Notifications</NavigationItem>
-                <Button btnType="NavbarImageButton">REGISTER</Button>; */}
-                {/* <div className={classes.NavProfile}> */}
-
-                <NavigationItem navitemType="Web" link="/dashboard/testinguserprofile">Profile Setting</NavigationItem>
-                <NavigationItem navitemType="Web" link="/dashboard/designerprofile">Designer</NavigationItem>
 
                 <div className={classes.MessageIcon} >
                     <i className="fas fa-inbox">
@@ -45,7 +37,6 @@ const NavigationItems = (props) => {
                 </div>
 
                 <div className={classes.Dropdown} >
-                   
                     <Dropdown />
                 </div>
 

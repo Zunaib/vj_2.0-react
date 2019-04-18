@@ -89,7 +89,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchproducts: (token) => dispatch(actions.Fetch(token))
+        onfetchproducts: (token) => dispatch(actions.FetchDash(token))
     }
 }
 

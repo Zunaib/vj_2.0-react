@@ -5,7 +5,8 @@ const initialState = {
     userId: null,
     error: null,
     loading: false,
-    redirect: false
+    redirect: false,
+    flag: null
 }
 
 const AuthReducer = (state = initialState, action) => {
@@ -36,7 +37,8 @@ const AuthReducer = (state = initialState, action) => {
                 token: null,
                 userId: null,
                 loading: false,
-                redirect: false
+                redirect: false,
+                flag: null
             };
         case actionTypes.Auth_Success:
             return {
@@ -45,7 +47,8 @@ const AuthReducer = (state = initialState, action) => {
                 userId: action.userId,
                 error: null,
                 loading: false,
-                redirect: true
+                redirect: true,
+                flag: action.flag
             };
         case actionTypes.Auth_Reset_Redirect:
             return {

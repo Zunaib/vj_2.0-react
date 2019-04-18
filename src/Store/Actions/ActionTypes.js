@@ -13,3 +13,14 @@ export const ContactUsForm_Failed = 'ContactUsForm_Failed';
 export const Fetch_Products_Start = 'Fetch_Products_Start';
 export const Fetch_Products_Success = 'Fetch_Products_Success';
 export const Fetch_Products_Failed = 'Fetch_Products_Failed';
+
+export const Fetch_UserSettings_Start = 'Fetch_UserSettings_Start';
+export const Fetch_UserSettings_Success = 'Fetch_UserSettings_Success';
+export const Fetch_UserSettings_Failed = 'Fetch_UserSettings_Failed';
+
+export const Update_UserSettings_Start = 'Update_UserSettings_Start';
+export const Update_UserSettings_Success = 'Update_UserSettings_Success';
+export const Update_UserSettings_Failed = 'Update_UserSettings_Failed';
+export const Update_Message_Refresh = "Update_Message_Refresh";
+
+

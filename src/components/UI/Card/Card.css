@@ -251,11 +251,12 @@ div.ProfileCardText h4{
 .FormCard{
     background-color: white;
     width: 90%;
-    height: 70vh;
+    height: 100%;
     float: left;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 45px;
+    padding-bottom: 20px;
     border-radius: 5px;
     -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
     -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
@@ -288,37 +289,91 @@ div.ProfileCardText h4{
     text-align:center;
 }
 
-div.FormCardText h4{
-    padding-top: 30px;
-    margin: auto;
-    font-size: 1.2rem;
-    color: white;
-}
-
-.FormCardText div{
-    margin-top: 90px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 22px;
-    justify-content: center;
-    align-content: center;
-    color: white;
-}
-
 .FormCardInfo{
     
     text-align:center;
 }
 
-.FormCardButton{
-    margin-top: 40px;
-    width: 100%;
-    color: white;
-    display: inline-block;
-    color: white;
+
+.FormSide{
+    margin-top: 100px;
+    height: 100%;
+    width:100%;
 }
 
+.Form{
+    margin-left:55px;
+  width: 100%;
+    
+}
 
+.Form div{
+    position: relative;
+  
+}
+
+  .Form form div {
+    border:2px solid #eee;
+    padding: 5px;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: grid;
+  float: left;
+  width: 40%;
+  margin: 10px;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  }
+
+  
+.Form form div label {
+    color: #444;
+    text-transform: capitalize;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 6px;
+    text-align: center;
+    margin-right: 10px;
+    border-radius:5px;
+  }
+
+.Form form div Button {
+    color: #444;
+    text-transform: capitalize;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 6px;
+    text-align: center;
+    margin-right: 10px;
+    border-radius:5px;
+  }
+  
+
+  .Form form div input {
+    border: 1px solid #ccc;
+    outline: none;
+    background: none;
+    display: flex;
+      width: 100%;
+      box-sizing: border-box;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .Form form div textarea {
+
+    width: 100%;
+    height: 150px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+    background: none;
+    clear: both;
+    border: none;
+}
 
 
 

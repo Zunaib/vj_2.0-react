@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import classes from './DesignerProfile.css';
 import display from '../../assets/images/DP.jpg'
 import Card from '../../components/UI/Card/Card';
+
 class DesignerProfile extends Component {
 
     render() {
@@ -11,11 +13,15 @@ class DesignerProfile extends Component {
                 <div className={classes.TopImage}>
                 </div>
 
+
+                <div className={classes.ProfileImageButton} >
+                    <img src={display} alt="Display" />
+                    <i className="fas fa-plus"></i>
+                </div>
+
+
                 <div className={classes.Profile}>
-                    <div className={classes.ProfileImageButton} >
-                        <img src={display} alt="Display" />
-                        <i className="fas fa-plus"></i>
-                    </div>
+
                     <div className={classes.ProfileInfo} >
                         <h1>Zunaib Imtiaz</h1>
                         <h5>DESIGNER</h5>
@@ -54,10 +60,13 @@ class DesignerProfile extends Component {
                                         <i className="fas fa-plus"></i>
                                     </div>
                                     <div className={classes.Collections}>
+                                        <Link to='/dashboard/zunaib.imtiaz/album'>
+                                            <Card cardType="collectionCard" />
+                                        </Link>
                                         <Card cardType="collectionCard" />
                                         <Card cardType="collectionCard" />
                                         <Card cardType="collectionCard" />
-                                        <Card cardType="collectionCard" />
+
                                     </div>
                                 </div>
 
@@ -92,11 +101,8 @@ class DesignerProfile extends Component {
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         )
     }

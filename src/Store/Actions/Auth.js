@@ -7,11 +7,12 @@ export const AuthStart = () => {
     };
 };
 
-export const AuthSuccess = (token, userId) => {
+export const AuthSuccess = (token, userId, flag) => {
     return {
         type: actionTypes.Auth_Success,
         token: token,
-        userId: userId
+        userId: userId,
+        flag: flag
     };
 };
 
@@ -26,6 +27,7 @@ export const AuthFail = (error) => {
 export const AuthLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userflag');
     return {
         type: actionTypes.Auth_Logout
     };
@@ -44,17 +46,13 @@ export const ResetRedirect = () => {
 };
 
 export const deAuth = () => {
-    console.log('in deauth');
     return dispatch => {
         axios.get('/api/logout')
             .then(response => {
-                console.log("from logout " + response);
                 dispatch(AuthLogout());
                 dispatch(Reset());
             })
             .catch(error => {
-                console.log("from logout " + error);
-                console.log("from logout " + error.message);
             });
     }
 }
@@ -71,9 +69,22 @@ export const Auth = (data, type) => {
 
         axios.post(url, data)
             .then(response => {
+                let flags = response.data.userflags;
+                let flag = null;
+                if (flags.isCustomer) {
+                    flag = 'Customer'
+                } else if (flags.isDesigner) {
+                    flag = 'Designer'
+                } else if (flags.isVlogger) {
+                    flag = 'Vlogger'
+                } else if (flags.isBlogger) {
+                    flag = 'Blogger'
+                }
+
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('userId', response.data.userId);
-                dispatch(AuthSuccess(response.data.token, response.data.userId));
+                localStorage.setItem('userflag', flag);
+                dispatch(AuthSuccess(response.data.token, response.data.userId, flag));
                 if (type === "Signup") {
                     dispatch(ResetRedirect());
                 }
@@ -84,12 +95,12 @@ export const Auth = (data, type) => {
     };
 };
 
-export const AuthCheckState = (token, userId) => {
+export const AuthCheckState = (token, userId, userflag) => {
     return dispatch => {
         if (!token) {
             dispatch(AuthLogout());
         } else {
-            dispatch(AuthSuccess(token, userId));
+            dispatch(AuthSuccess(token, userId, userflag));
         }
     }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import classes from './WebLayout.css';
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 // import Sidedrawer from '../../components/Navigation/Sidedrawer/Sidedrawer';
@@ -8,6 +9,9 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import Dashboard from '../../containers/Dashboard/Dashboard';
 import TestUserProfileSeeting from '../../containers/UserAccountSettings/UserAccountSettings';
 import DesignerProfile from '../../containers/DesignerProfile/DesignerProfile';
+import Album from '../../containers/Handle_Album/Album_View/Album';
+import Handle_Album from '../../containers/Handle_Album/Album_CRUD/Album';
+import Product from '../../containers/Handle_Product/Product_View/Product';
 
 class WebLayout extends Component {
 
@@ -38,8 +42,11 @@ class WebLayout extends Component {
             routes = (
                 <Switch>
                     <Route path="/dashboard" exact component={Dashboard} />
-                    <Route path="/dashboard/testinguserprofile" component={TestUserProfileSeeting} />
-                    <Route path="/dashboard/designerprofile" component={DesignerProfile} />
+                    <Route path="/dashboard/usersettings" component={TestUserProfileSeeting} />
+                    <Route path="/dashboard/designer" component={DesignerProfile} />
+                    <Route path="/dashboard/albums/:album" component={Album} />
+                    <Route path="/dashboard/products/:product" component={Product} />
+                    <Route path="/dashboard/handle_album" component={Handle_Album} />
                     <Redirect to="/dashboard" />
                 </Switch>
             );
@@ -54,7 +61,7 @@ class WebLayout extends Component {
                         ToLandingToolbar={this.landingPageToggleHandler}
 
                     /> */}
-                <main>
+                <main className={classes.Web}>
                     {this.props.children}
                 </main>
                 {routes}

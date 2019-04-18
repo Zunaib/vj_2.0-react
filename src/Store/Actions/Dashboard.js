@@ -23,7 +23,7 @@ export const fetchStart = () => {
     };
 };
 
-export const Fetch = (token) => {
+export const FetchDash = (token) => {
     return dispatch => {
         dispatch(fetchStart());
         axios.get('/api/fetchAllProducts?access_token=' + token)

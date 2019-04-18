@@ -79,6 +79,18 @@
     background-color: #73236B;
 }
 
+.WebButton{
+    margin-right: 20px;
+    width: 100px;
+    border-radius: 55px;
+    color: rgb(247, 247, 247);
+    background-color: rgb(116, 47, 110);
+}
+
+.WebButton:hover{
+    background-color: #73236B;
+}
+
 
 .NavbarImageButton{
     width:100px;

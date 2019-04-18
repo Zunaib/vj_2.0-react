@@ -1,25 +1,58 @@
 import React, { Component } from 'react'
-import classes from './DesignerProfile.css';
-import display from '../../assets/images/DP.jpg'
-import Card from '../../components/UI/Card/Card';
-class DesignerProfile extends Component {
+import classes from './Album.css';
+import display from '../../../assets/images/AlbumCover.jpg';
+import Card from '../../../components/UI/Card/Card';
+
+class Album extends Component {
 
     render() {
         return (
             <div className={classes.Main}>
 
-                <div className={classes.TopImage}>
-                </div>
 
-                <div className={classes.Profile}>
-                    <div className={classes.ProfileImageButton} >
-                        <img src={display} alt="Display" />
-                        <i className="fas fa-plus"></i>
+                <div className={classes.Album}>
+                    <div className={classes.Album_Top}>
+                        <div className={classes.AlbumInfo}>
+                            <h1>Album 123</h1> <h2>Spring123</h2>
+                            <div className={classes.Desc}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</div>
+                        </div>
+                        <div className={classes.AlbumImage} >
+                            <img src={display} alt="Album_Thumbnail" />
+                        </div>
                     </div>
-                    <div className={classes.ProfileInfo} >
-                        <h1>Zunaib Imtiaz</h1>
-                        <h5>DESIGNER</h5>
 
+                    <div className={classes.Album_Bottom}>
+                        <div className={classes.WorkDisplay}>
+                            <div className={classes.Work}>
+                                <h2>Products</h2>
+                                <div className={classes.Content}>
+                                    {/* <div >
+                                        <i className="fas fa-plus"></i>
+                                    </div> */}
+                                    <div className={classes.Collections}>
+                                        <Card cardType="productCard" />
+                                        <Card cardType="productCard" />
+                                        <Card cardType="productCard" />
+                                        <Card cardType="productCard" />
+                                        <Card cardType="productCard" />
+                                        <Card cardType="productCard" />
+                                        <Card cardType="productCard" />
+                                        <Card cardType="productCard" />
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    {/* <div className={classes.ProfileInfo} >
+                        <h1>Zunaib Imtiaz</h1>
+                        <h5>DESIGNER</h5> */}
+
+                    {/* 
                         <div className={classes.ConnectIcons}>
                             <i className="fab fa-pinterest-p" ></i>
                             <i className="fab fa-behance" ></i>
@@ -44,9 +77,9 @@ class DesignerProfile extends Component {
                                 <i className="far fa-images"></i>
                                 <h5>Images</h5>
                             </div>
-                        </div>
+                        </div> */}
 
-                        <div className={classes.WorkDisplay}>
+                    {/* <div className={classes.WorkDisplay}>
                             <div className={classes.Work}>
                                 <div className={classes.Content}>
                                     <h3>Latest Collections</h3>
@@ -54,10 +87,13 @@ class DesignerProfile extends Component {
                                         <i className="fas fa-plus"></i>
                                     </div>
                                     <div className={classes.Collections}>
+                                        <Link to='/dashboard/zunaib.imtiaz/album'>
+                                            <Card cardType="collectionCard" />
+                                        </Link>
                                         <Card cardType="collectionCard" />
                                         <Card cardType="collectionCard" />
                                         <Card cardType="collectionCard" />
-                                        <Card cardType="collectionCard" />
+
                                     </div>
                                 </div>
 
@@ -91,15 +127,13 @@ class DesignerProfile extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
-                    </div>
-
+                    {/* </div> */}
                 </div>
-
             </div>
         )
     }
 }
 
-export default DesignerProfile;
+export default Album;
