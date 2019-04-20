@@ -23,4 +23,13 @@ export const Update_UserSettings_Success = 'Update_UserSettings_Success';
 export const Update_UserSettings_Failed = 'Update_UserSettings_Failed';
 export const Update_Message_Refresh = "Update_Message_Refresh";
 
+export const Add_Album_Start = 'Add_Album_Start';
+export const Add_Album_Success = 'Add_Album_Success';
+export const Add_Album_Failed = 'Add_Album_Failed';
+export const Add_Message_Refresh = "Add_Message_Refresh";
+
+export const Add_Product_Start = 'Add_Product_Start';
+export const Add_Product_Success = 'Add_Product_Success';
+export const Add_Product_Failed = 'Add_Product_Failed';
+export const Add_ProductMessage_Refresh = "Add_Message_Refresh";
 

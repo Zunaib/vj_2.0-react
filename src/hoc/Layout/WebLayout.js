@@ -12,6 +12,8 @@ import DesignerProfile from '../../containers/DesignerProfile/DesignerProfile';
 import Album from '../../containers/Handle_Album/Album_View/Album';
 import Handle_Album from '../../containers/Handle_Album/Album_CRUD/Album';
 import Product from '../../containers/Handle_Product/Product_View/Product';
+import Handle_Product from '../../containers/Handle_Product/Product_CRUD/Product';
+import Cart from '../../containers/Cart/Cart';
 
 class WebLayout extends Component {
 
@@ -47,6 +49,8 @@ class WebLayout extends Component {
                     <Route path="/dashboard/albums/:album" component={Album} />
                     <Route path="/dashboard/products/:product" component={Product} />
                     <Route path="/dashboard/handle_album" component={Handle_Album} />
+                    <Route path="/dashboard/handle_product" component={Handle_Product} />
+                    <Route path="/dashboard/cart" component={Cart} />
                     <Redirect to="/dashboard" />
                 </Switch>
             );

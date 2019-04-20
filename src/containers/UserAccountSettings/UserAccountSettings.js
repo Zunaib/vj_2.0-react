@@ -18,7 +18,6 @@ class UserAccountSettings extends Component {
         if (this.props.token) {
             this.props.onfetchsettings(this.props.token);
             this.getData();
-
         }
     }
     getData() {

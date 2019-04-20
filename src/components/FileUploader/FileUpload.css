@@ -1,0 +1,24 @@
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -100;
+}
+
+.inputfile label{
+	width: 100%;
+	color: white;
+  display: flex;
+}
+
+.inputfile + label:hover {
+    background-color: #73236B;
+    color: white;
+}
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}

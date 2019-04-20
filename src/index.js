@@ -15,6 +15,8 @@ import ContactUsReducer from './Store/Reducers/ContactUs';
 import DashboardReducer from './Store/Reducers/Dashboard';
 import UserSettingsReducer from './Store/Reducers/UserSettings';
 import AuthReducer from './Store/Reducers/Auth';
+import AlbumCrudReducer from './Store/Reducers/Album';
+import ProductCrudReducer from './Store/Reducers/Product';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -22,6 +24,8 @@ const rootRecucer = combineReducers({
     contactUs: ContactUsReducer,
     Dashboard: DashboardReducer,
     UserSettings: UserSettingsReducer,
+    AlbumCrud: AlbumCrudReducer,
+    ProductCrud: ProductCrudReducer,
     Auth: AuthReducer
 });
 
