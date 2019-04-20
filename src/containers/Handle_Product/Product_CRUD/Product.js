@@ -11,7 +11,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
 
 class Product extends Component {
 
@@ -228,25 +228,13 @@ class Product extends Component {
         data.append('price', formData.price);
         data.append('discount', formData.discount);
 
-        // const productData = {
-        //     productName: formData.name,
-        //     quantity: formData.quantity,
-        //     sizes: formData.sizes,
-        //     price: formData.price,
-        //     albumId: formData.album,
-        //     discount: formData.discount,
-        // }
-
         if (this.state.formIsValid && this.state.files) {
             this.props.onaddProduct(this.props.token, data);
-            // this.fieldclearHandler();
-            // this.setState({ formIsValid: false });
+            this.fieldclearHandler();
+            this.setState({ formIsValid: false });
         } else {
             console.log('Invalid')
         }
-
-
-
     }
 
     inputChangedHandler = (event, inputIdentifier) => {

@@ -6,10 +6,11 @@ import testimg from '../../../assets/images/testimg.jpg'
 
 const Card = (props) => {
     let card = null;
+    let imgpath = 'http://localhost:5000' + props.images[0];
     if (props.cardType === "productCard") {
         card = (
             <div className={classes.ProductCard}>
-                <img src={testimg} alt="" />
+                <img src={imgpath} alt="" />
                 <div className={classes.CardText}>
                     <h4><b>{props.name}</b></h4>
                     <div className={classes.Desc}>
