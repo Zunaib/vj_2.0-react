@@ -1,0 +1,35 @@
+
+.Stats{
+    width: 100%
+}
+
+
+.StatsWork{
+    margin: 0 auto;
+    width: 60%;
+}
+
+.StatsWork hr{
+    color: gray;
+    width: 70%;
+}
+.Numbers{
+    margin-top: 30px;
+}
+
+.Numbers p{
+margin-left: 20px;
+}
+
+.AboutWork{
+    margin-top: 45px;
+}
+
+.AboutWork h4{
+    margin: 0 auto;
+   width: 70%;
+}
+
+.Tags{
+    margin-top: 45px;
+}

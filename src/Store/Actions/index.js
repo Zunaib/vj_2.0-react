@@ -1,5 +1,7 @@
 export { ContactUsForm } from './ContactUs';
 export { FetchDash } from './Dashboard';
+export { FetchDesignerProfileContent } from './DesignerProfile'
+export { SetCurrentAlbum, SetCurrentProduct } from './Current'
 export { FetchSettings, UpdateSettings, MsgRefresh } from './UserSettings';
 export { AddAlbum, AlbumMsgRefresh } from './Album';
 export { AddProduct, ProductMsgRefresh } from './Product';

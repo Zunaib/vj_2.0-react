@@ -66,9 +66,10 @@ export const Auth = (data, type) => {
         } else if (type === "Signup") {
             url = '/api/signup';
         }
-
         axios.post(url, data)
             .then(response => {
+
+                console.log(response)
                 let flags = response.data.userflags;
                 let flag = null;
                 if (flags.isCustomer) {
@@ -90,6 +91,7 @@ export const Auth = (data, type) => {
                 }
             })
             .catch(error => {
+                console.log(error)
                 dispatch(AuthFail(error.response.data.message));
             });
     };

@@ -1,27 +1,19 @@
 import React from 'react';
 // import classes from './Vlogs.css';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
-import Card from '../../UI/Card/Card';
+import VlogCard from '../../UI/Card/Vlog/VlogCard';
 
 const Vlogs = (props) => (
 
     <Auxilary>
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
-        <Card cardType="vlogCard" />
+        <VlogCard />
+        <VlogCard />
+        <VlogCard />
+        <VlogCard />
+        <VlogCard />
+        <VlogCard />
+        <VlogCard />
+        <VlogCard />
     </Auxilary>
 
 );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classes from './Product.css';
 import display from '../../../assets/images/testimg.jpg';
-import Card from '../../../components/UI/Card/Card';
+import ProductCard from '../../../components/UI/Card/Product/ProductCard';
 
 class Album extends Component {
 
@@ -63,16 +63,16 @@ class Album extends Component {
                 <div className={classes.Album_Bottom}>
                     <div className={classes.WorkDisplay}>
                         <div className={classes.Work}>
-                            <h2>More Products Like This :</h2>
+                            <h2>More Products From This Designer :</h2>
                             <div className={classes.Content}>
                                 {/* <div >
                                         <i className="fas fa-plus"></i>
                                     </div> */}
                                 <div className={classes.Collections}>
-                                    <Card cardType="productCard" />
-                                    <Card cardType="productCard" />
-                                    <Card cardType="productCard" />
-                                    <Card cardType="productCard" />
+                                    <ProductCard />
+                                    <ProductCard />
+                                    <ProductCard />
+                                    <ProductCard />
 
                                 </div>
                             </div>

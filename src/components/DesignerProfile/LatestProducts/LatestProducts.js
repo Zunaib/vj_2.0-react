@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
-import classes from './Products.css';
-import Auxilary from '../../../hoc/Auxilary/Auxilary';
+import classes from './LatestProducts.css';
+import { NavLink } from 'react-router-dom';
 import ProductCard from '../../UI/Card/Product/ProductCard';
 
-class Products extends Component {
+class LatestProducts extends Component {
 
     send = (product) => {
         console.log(product)
@@ -24,11 +23,20 @@ class Products extends Component {
         )));
 
         return (
-            < Auxilary >
-                {cards}
-            </Auxilary >
+            <div className={classes.Work} >
+                <div className={classes.Content}>
+                    <h3>Latest Products</h3>
+                    <div >
+                        <i className="fas fa-plus"></i>
+                    </div>
+                    <div className={classes.Products}>
+                        {cards}
+                    </div>
+                </div>
+            </div>
         );
     }
-}
 
-export default Products
+};
+
+export default LatestProducts;

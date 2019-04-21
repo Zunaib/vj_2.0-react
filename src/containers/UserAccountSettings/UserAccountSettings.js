@@ -8,7 +8,9 @@ import Snackbar from '../../components/UI/SnackBar/SuccessSnackbar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import Card from '../../components/UI/Card/Card';
+import ProfileCard from '../../components/UI/Card/Profile/ProfileCard';
+import ProfileStatsCard from '../../components/UI/Card/Profile/ProfileStats/ProfileStats';
+import FormCard from '../../components/UI/Card/Form/FormCard';
 import { checkValidity } from '../../Shared/Validator';
 
 
@@ -311,14 +313,14 @@ class UserAccountSettings extends Component {
             <div className={classes.Main}>
                 {snack}
                 <div className={classes.StatsCard}>
-                    <Card cardType="profileStatsCard" />
+                    <ProfileStatsCard />
                 </div>
                 <div className={classes.FormCard}>
-                    <Card cardType="formCard" form={form} />
+                    <FormCard form={form} />
 
                 </div>
                 <div className={classes.ProfileCard}>
-                    <Card cardType="profileCard" profile={profile} />
+                    <ProfileCard profile={profile} />
                 </div>
 
             </div>
