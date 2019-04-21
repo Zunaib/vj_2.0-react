@@ -40,8 +40,11 @@ const store = createStore(rootRecucer, composeEnhancers(
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('userId');
 const userflag = localStorage.getItem('userflag');
+const currentalbum = localStorage.getItem('currentalbum');
+const currentproduct = localStorage.getItem('currentproduct');
 if (token) {
     store.dispatch(actions.AuthCheckState(token, userId, userflag));
+    store.dispatch(actions.SetCurrentonRefresh(token, currentproduct, currentalbum))
 }
 
 const app = (
