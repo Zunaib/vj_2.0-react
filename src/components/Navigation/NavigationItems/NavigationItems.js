@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 import display from '../../../assets/images/DP.jpg';
+import { NavLink } from 'react-router-dom';
 // import Button from '../../UI/Button/Button';
 import Dropdown from '../../UI/Dropdown/Dropdown';
 
@@ -40,7 +41,13 @@ const NavigationItems = (props) => {
                     <Dropdown />
                 </div>
 
-
+                <NavLink className={classes.NavlinkCart} to="/dashboard/cart">
+                    <div className={classes.Cart}>
+                        <i className="fas fa-shopping-cart">
+                            <span className={classes.Badge}>3</span>
+                        </i>
+                    </div>
+                </NavLink>
 
             </ul>
         );

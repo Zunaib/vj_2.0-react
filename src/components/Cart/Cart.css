@@ -16,7 +16,7 @@ background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
       background-color: white;
       position: relative;
       height: 100%;
-      width: 85%;
+      width: 95%;
       margin: 42px auto;
       border-radius: 10px;
       overflow: hidden;
@@ -36,9 +36,9 @@ background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
 .AlbumImage img{
   text-align: center;
   vertical-align: middle;
-  height: 190px;
-  width: 160px;
-  margin: 25px 25px;
+  height: 130px;
+  width: 100px;
+  margin: 10px 25px;
   object-position: top;
   object-fit: cover;
 border-radius: 10%;
@@ -221,9 +221,34 @@ thead > tr {
 
 
 .ibutton i{
+    margin-right: 50px;
     font-size: 2rem;
     color: purple;
 }
+
+.QuanButtons{
+    text-align: right;
+    width: 100%;
+
+}
+
+.ibutton2{
+padding-left: 100px;
+padding-bottom: 3px;
+}
+
+.ibutton2 i{
+    color:white;
+    background-color: purple;
+    border-radius: 100%;
+    margin: 0 3px;
+    padding: 6px 7px;
+    float: right;
+    font-size: 1.2rem;
+}
+
+
+
 
 
 .Tbody{
@@ -242,9 +267,3 @@ vertical-align: middle;
 box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
 }
 
-
-
-.ProceedButton Button{
-    width: 100%;
-    text-align: center;
-    }

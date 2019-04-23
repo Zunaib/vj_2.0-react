@@ -11,6 +11,7 @@ const FormCard = (props) => {
                 <div className={classes.FormSide}>
                     <div className={classes.Form} >
                         {props.form}
+
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ const ProfileCard = (props) => {
     return (
         <div className={classes.ProfileCard}>
             <div className={classes.ProfileImageButton} >
-                <img src={display} alt="" />
+                <img src={props.selectedfile ? props.selectedfileURL : display} alt="Display_Image" />
             </div>
             <div className={classes.ProfileCardText}>
                 <h4><b>{props.profile.username}</b></h4>

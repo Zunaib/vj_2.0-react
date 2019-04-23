@@ -18,7 +18,10 @@ import AuthReducer from './Store/Reducers/Auth';
 import AlbumCrudReducer from './Store/Reducers/Album';
 import ProductCrudReducer from './Store/Reducers/Product';
 import DesignerProfileReducer from './Store/Reducers/DesignerProfile';
-import CurrentReducer from './Store/Reducers/Current';
+import CurrentAlbumReducer from './Store/Reducers/CurrentAlbum';
+import CurrentProductReducer from './Store/Reducers/CurrentProduct';
+import AddtoCartReducer from './Store/Reducers/AddtoCart';
+import CartReducer from './Store/Reducers/Cart';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -30,7 +33,10 @@ const rootRecucer = combineReducers({
     ProductCrud: ProductCrudReducer,
     Auth: AuthReducer,
     DesignerProfile: DesignerProfileReducer,
-    Current: CurrentReducer
+    CurrentAlbum: CurrentAlbumReducer,
+    CurrentProduct: CurrentProductReducer,
+    AddtoCart: AddtoCartReducer,
+    Cart: CartReducer
 });
 
 const store = createStore(rootRecucer, composeEnhancers(
@@ -40,11 +46,8 @@ const store = createStore(rootRecucer, composeEnhancers(
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('userId');
 const userflag = localStorage.getItem('userflag');
-const currentalbum = localStorage.getItem('currentalbum');
-const currentproduct = localStorage.getItem('currentproduct');
 if (token) {
     store.dispatch(actions.AuthCheckState(token, userId, userflag));
-    store.dispatch(actions.SetCurrentonRefresh(token, currentproduct, currentalbum))
 }
 
 const app = (

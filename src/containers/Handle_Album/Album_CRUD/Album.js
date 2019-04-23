@@ -6,7 +6,7 @@ import FormData from 'form-data'
 
 
 import FileUploader from '../../../components/FileUploader/FileUpload';
-import display from '../../../assets/images/AlbumCover.jpg';
+import albumcvr from '../../../assets/images/AlbumCover.jpg';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
@@ -70,12 +70,16 @@ class Album extends Component {
             },
         },
         formIsValid: false,
-        selectedFile: null
+        selectedFile: null,
+        selectedFileURL: null
     }
 
 
     fileSelectedHandler = (event) => {
-        this.setState({ selectedFile: event.target.files[0] })
+        this.setState({
+            selectedFile: event.target.files[0],
+            selectedFileURL: URL.createObjectURL(event.target.files[0])
+        })
     }
 
 
@@ -102,6 +106,7 @@ class Album extends Component {
         for (let formElementIdentifier in this.state.albumForm) {
             formData[formElementIdentifier] = this.state.albumForm[formElementIdentifier].value;
         }
+
 
 
         let data = new FormData();
@@ -165,7 +170,7 @@ class Album extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <FileUploader clicked={this.fileSelectedHandler} />
+                <FileUploader clicked={this.fileSelectedHandler} text="Thumbnail" />
                 <Button btnType="WebButton" >Add Album</Button>
             </form>
         );
@@ -184,6 +189,7 @@ class Album extends Component {
             let msg = "Album Added Successfully";
             snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
         }
+
         return (
             <div className={classes.Main}>
                 {imgsnack}
@@ -201,7 +207,7 @@ class Album extends Component {
                             </div>
                         </div>
                         <div className={classes.AlbumImage} >
-                            <img src={display} alt="Album_Thumbnail" />
+                            <img src={this.state.selectedFile ? this.state.selectedFileURL : albumcvr} alt="Album_Thumbnail" />
                         </div>
                     </div>
                 </div>

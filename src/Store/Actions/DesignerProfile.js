@@ -48,7 +48,7 @@ export const FetchDesignerProfileContent = (token, limit) => {
 
         //Album Fetch
         dispatch(fetchAlbumStart());
-        axios.get('/api/fetchAlbums?access_token=' + token, {
+        axios.get('/api/fetchAlbumsByUser?access_token=' + token, {
             params: {
                 limit: limit
             }
@@ -72,7 +72,7 @@ export const FetchDesignerProfileContent = (token, limit) => {
 
         //Product Fetch
         dispatch(fetchProductStart());
-        axios.get('/api/fetchProducts?access_token=' + token, {
+        axios.get('/api/fetchProductsByUser?access_token=' + token, {
             params: {
                 limit: limit
             }
