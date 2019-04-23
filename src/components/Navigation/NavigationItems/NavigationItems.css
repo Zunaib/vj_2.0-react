@@ -34,8 +34,8 @@ margin-top: -20px;
 
 .ImageButton img{
     flex: 1;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     margin-left: 15px;
     object-position: top;
     object-fit: cover;
@@ -44,6 +44,17 @@ margin-top: -20px;
 
 }
 
+.Cart i{
+    margin-left: 20px;
+    font-size: 1.3rem;
+}
+.Cart i span{
+    font-size: 1rem;
+}
+
+.NavlinkCart{
+    color: black;
+}
 
 .NavigationItemsLanding {
     list-style: none;
@@ -79,8 +90,8 @@ font-size: 1.4rem;
     
     .NavigationItemsWeb{
         display: flex;
-        margin: 30px 0;
-        margin-right: 150px;
+        margin: 20px 0;
+        margin-right: 80px;
     /* padding-right: 150px; */
     }
 

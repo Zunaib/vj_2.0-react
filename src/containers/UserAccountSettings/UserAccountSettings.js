@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import classes from './UserAccountSettings.css';
+import FormData from 'form-data'
 
 
+import FileUploader from '../../components/FileUploader/FileUpload';
 import Snackbar from '../../components/UI/SnackBar/SuccessSnackbar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
@@ -205,9 +207,17 @@ class UserAccountSettings extends Component {
         },
         formIsValid: false,
         userName: "",
-        desc: ""
+        desc: "",
+        selectedFile: null,
+        selectedFileURL: null
     }
 
+    fileSelectedHandler = (event) => {
+        this.setState({
+            selectedFile: event.target.files[0],
+            selectedFileURL: URL.createObjectURL(event.target.files[0])
+        })
+    }
     settingsHandler = (event) => {
         event.preventDefault();
         const formData = {};
@@ -225,23 +235,47 @@ class UserAccountSettings extends Component {
                 action = true;
             }
         }
-        const settingsData = {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            dateofbirth: "1/1/1",
-            description: formData.description,
-            province: formData.province,
-            gender: formData.gender,
-            streetAddress: formData.streetAddress,
-            city: formData.city,
-            zipcode: formData.zipcode,
-            country: formData.country,
-            phone: formData.phone
+
+
+
+        let data = new FormData();
+        if (this.state.selectedFile) {
+            action = true;
+            data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+        }
+        // const settingsData = {
+        //     firstName: formData.firstName,
+        //     lastName: formData.lastName,
+        //     dateofbirth: "1/1/1",
+        //     description: formData.description,
+        //     province: formData.province,
+        //     gender: formData.gender,
+        //     streetAddress: formData.streetAddress,
+        //     city: formData.city,
+        //     zipcode: formData.zipcode,
+        //     country: formData.country,
+        //     phone: formData.phone
+        // }
+
+        data.append('firstName', formData.firstName);
+        data.append('lastName', formData.lastName);
+        data.append('dateofbirth', "1/1/1");
+        data.append('description', formData.description);
+        data.append('province', formData.province);
+        data.append('gender', formData.gender);
+        data.append('streetAddress', formData.streetAddress);
+        data.append('city', formData.city);
+        data.append('zipcode', formData.zipcode);
+        data.append('country', formData.country);
+        data.append('phone', formData.phone);
+
+        if (this.state.formIsValid && this.state.selectedFile && action) {
+            this.props.onUpdateSettings(this.props.token, data);
+            console.log('valid')
+        } else {
+            console.log('Invalid')
         }
 
-        if (action) {
-            this.props.onUpdateSettings(this.props.token, settingsData);
-        }
 
     }
 
@@ -295,6 +329,7 @@ class UserAccountSettings extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
+                <FileUploader clicked={this.fileSelectedHandler} text="Profile Image" />
                 <Button btnType="WebButton">Update</Button>
             </form>
         );
@@ -320,7 +355,7 @@ class UserAccountSettings extends Component {
 
                 </div>
                 <div className={classes.ProfileCard}>
-                    <ProfileCard profile={profile} />
+                    <ProfileCard profile={profile} selectedfile={this.state.selectedFile} selectedfileURL={this.state.selectedFileURL} />
                 </div>
 
             </div>

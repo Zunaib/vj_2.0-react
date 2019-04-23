@@ -6,7 +6,7 @@ import FormData from 'form-data'
 
 
 import FileUploader from '../../../components/FileUploader/MultipleFile';
-import display from '../../../assets/images/testimg.jpg';
+import productimg from '../../../assets/images/testimg.jpg';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
@@ -14,6 +14,21 @@ import { checkValidity } from '../../../Shared/Validator';
 // import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
 
 class Product extends Component {
+
+
+    componentWillMount() {
+        let str = window.location.href;
+        let res = str.split("/");
+        const albumid = res[4];
+        // console.log(albumid)
+        if (albumid === 'handle_product') {
+            // console.log('not sending')
+            this.setState({ album: null })
+        } else {
+            this.setState({ album: albumid })
+            // console.log('sending')
+        }
+    }
 
     state = {
         productForm: {
@@ -118,42 +133,27 @@ class Product extends Component {
                 },
                 valid: false,
                 touched: false
-            },
-            album: {
-                elementType: 'select',
-                elementConfig: {
-                    options: [
-                        { value: 'spring 19', displayValue: 'Spring 19' },
-                        { value: 'summer 18', displayValue: 'Summer 18' },
-                        { value: 'winter 19', displayValue: 'Winter 19' },
-                        { value: 'summer 19', displayValue: 'Summer 19' },
-                        { value: 'summer 17', displayValue: 'Summer 17' },
-                    ]
-                },
-                value: 'Spring 19',
-                validation: {},
-                valid: true
             }
         },
         formIsValid: false,
-        selectedFiles: [],
+        selectedFiles: null,
+        selectedFilesURL: null,
         files: false,
-        maxselected: false
+        maxselected: false,
+        album: null
     }
 
     maxSelectFile = (event) => {
         let files = event.target.files // create file object
-        if (files.length > 5) {
-            this.setState({ maxselected: false })
-            const msg = 'Only 5 images can be uploaded at a time'
-            event.target.value = null // discard selected file
-            console.log(msg)
-            return false;
-
-        } else {
+        if (files.length <= 5 && files.length > 1) {
             this.setState({ maxselected: true })
             console.log('max true');
-            return true;
+            return files.length;
+        } else {
+            this.setState({ maxselected: false })
+            console.log('max false');
+            event.target.value = null // discard selected file
+            return false;
         }
 
 
@@ -161,17 +161,20 @@ class Product extends Component {
 
     fileSelectedHandler = (event) => {
 
-        if (this.maxSelectFile(event)) {
+        let files = this.maxSelectFile(event);
+        if (files) {
             let newfiles = [
-                ...this.state.selectedFiles
             ]
-            newfiles.push(event.target.files[0]);
-            newfiles.push(event.target.files[1]);
-            newfiles.push(event.target.files[2]);
-            newfiles.push(event.target.files[3]);
-            newfiles.push(event.target.files[4]);
-            console.log(newfiles);
-            this.setState({ selectedFiles: newfiles, files: true })
+            let newfilesURL = [
+            ]
+
+            for (let i = 0; i < files; i++) {
+                newfiles.push(event.target.files[i]);
+                newfilesURL.push(URL.createObjectURL(event.target.files[i]));
+            }
+
+
+            this.setState({ selectedFiles: newfiles, selectedFilesURL: newfilesURL, files: true })
         } else {
             console.log('invalid');
         }
@@ -190,7 +193,7 @@ class Product extends Component {
             updatedproductForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ productForm: updatedproductForm, selectedFiles: null, files: false });
+        this.setState({ productForm: updatedproductForm, selectedFiles: null, selectedFilesURL: null, files: false });
     }
 
     productHandler = (event) => {
@@ -199,18 +202,11 @@ class Product extends Component {
         for (let formElementIdentifier in this.state.productForm) {
             formData[formElementIdentifier] = this.state.productForm[formElementIdentifier].value;
         }
-
-
         console.log(this.state.selectedFiles)
-
-
-
-
         let data = new FormData();
         if (this.state.files) {
             console.log('selec file true');
             console.log(this.state.selectedFiles);
-            // data.append('file[]', this.state.selectedFiles);
 
             var ins = 5;
             for (var x = 0; x < ins; x++) {
@@ -218,10 +214,9 @@ class Product extends Component {
             }
 
         }
-
-
-
-
+        if (this.state.album) {
+            data.append('albumId', this.state.album);
+        }
         data.append('productName', formData.name);
         data.append('quantity', formData.quantity);
         data.append('sizes', formData.sizes);
@@ -299,6 +294,7 @@ class Product extends Component {
         //     snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
         // }
 
+
         return (
             <div className={classes.Main}>
                 {/* {imgsnack}
@@ -318,13 +314,13 @@ class Product extends Component {
                         </div>
                         <div className={classes.Images}>
                             <div className={classes.AlbumImage} >
-                                <img src={display} alt="Album_Thumbnail" />
+                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[0] : productimg} alt="Product_Thumbnail" />
                             </div>
                             <div className={classes.AlbumImageSmall} >
-                                <img src={display} alt="Album_Thumbnail" />
-                                <img src={display} alt="Album_Thumbnail" />
-                                <img src={display} alt="Album_Thumbnail" />
-                                <img src={display} alt="Album_Thumbnail" />
+                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[1] : productimg} alt="Product_Thumbnail1" />
+                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[2] : productimg} alt="Product_Thumbnail2" />
+                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[3] : productimg} alt="Product_Thumbnail3" />
+                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[4] : productimg} alt="Product_Thumbnail4" />
                             </div>
                         </div>
                     </div>

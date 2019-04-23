@@ -1,12 +1,12 @@
 import React from 'react';
 import classes from './ProductCard.css';
-import test from '../../../../assets/images/testimg.jpg'
+// import test from '../../../../assets/images/testimg.jpg'
 const ProductCard = (props) => {
 
-    // let imgpath = 'http://localhost:5000' + props.images[0];
+    let imgpath = 'http://localhost:5000' + props.images[0];
     return (
         <div className={classes.ProductCard}>
-            <img src={test} alt="" />
+            <img src={imgpath} alt="" />
             <div className={classes.CardText}>
                 <h4><b>{props.name}</b></h4>
                 <div className={classes.Desc}>

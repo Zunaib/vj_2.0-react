@@ -1,7 +1,10 @@
 export { ContactUsForm } from './ContactUs';
 export { FetchDash } from './Dashboard';
-export { FetchDesignerProfileContent } from './DesignerProfile'
-export { SetCurrentAlbum, SetCurrentProduct, SetCurrentonRefresh } from './Current'
+export { FetchDesignerProfileContent } from './DesignerProfile';
+export { FetchSingleAlbum } from './CurrentAlbum';
+export { FetchSingleProduct } from './CurrentProduct';
+export { AddToCart } from './AddtoCart';
+export { FetchCart } from './Cart';
 export { FetchSettings, UpdateSettings, MsgRefresh } from './UserSettings';
 export { AddAlbum, AlbumMsgRefresh } from './Album';
 export { AddProduct, ProductMsgRefresh } from './Product';

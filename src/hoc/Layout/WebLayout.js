@@ -14,6 +14,7 @@ import Handle_Album from '../../containers/Handle_Album/Album_CRUD/Album';
 import Product from '../../containers/Handle_Product/Product_View/Product';
 import Handle_Product from '../../containers/Handle_Product/Product_CRUD/Product';
 import Cart from '../../containers/Cart/Cart';
+import Checkout from '../../containers/Checkout/Checkout';
 
 class WebLayout extends Component {
 
@@ -49,8 +50,10 @@ class WebLayout extends Component {
                     <Route path="/dashboard/albums/:album" component={Album} />
                     <Route path="/dashboard/products/:product" component={Product} />
                     <Route path="/dashboard/handle_album" component={Handle_Album} />
+                    <Route path="/dashboard/:albumid/handle_product" component={Handle_Product} />
                     <Route path="/dashboard/handle_product" component={Handle_Product} />
                     <Route path="/dashboard/cart" component={Cart} />
+                    <Route path="/dashboard/checkout" component={Checkout} />
                     <Redirect to="/dashboard" />
                 </Switch>
             );

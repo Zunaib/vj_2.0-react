@@ -1,22 +1,51 @@
 import React, { Component } from 'react'
 import classes from './Product.css';
-import display from '../../../assets/images/testimg.jpg';
-import ProductCard from '../../../components/UI/Card/Product/ProductCard';
+import { connect } from 'react-redux';
+import * as actions from '../../../Store/Actions/index';
+import Auxilary from '../../../hoc/Auxilary/Auxilary'
+import Spinner from '../../../components/UI/Spinner/Spinner';
+import Button from '../../../components/UI/Button/Button';
+// import display from '../../../assets/images/testimg.jpg';
+// import ProductCard from '../../../components/UI/Card/Product/ProductCard';
+class Product extends Component {
 
-class Album extends Component {
+    state = {
+        product: null
+    }
 
+    componentWillMount() {
+        let str = window.location.href;
+        let res = str.split("http://localhost:3000/dashboard/products/");
+        const productid = res[1];
+        this.setState({ product: productid })
+        if (this.props.token) {
+            this.props.onfetchcurrentproduct(this.props.token, productid)
+        }
+    }
+
+    addtocart = () => {
+        this.props.onaddtocart(this.props.token, this.state.product);
+    }
     render() {
-        return (
-            <div className={classes.Main}>
 
+        // let productid = this.state.product;
 
-                <div className={classes.Album}>
+        // let path = "/dashboard/" + productid + "/handle_product";
+
+        let productdata = null;
+        if (this.props.loading) {
+            productdata = <Spinner />
+        } else {
+            let product = this.props.currentproduct
+            let product_thumbnail = 'http://localhost:5000' + product.images[0];
+            productdata = (
+                <Auxilary>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumImage} >
-                            <img src={display} alt="Album_Thumbnail" />
+                            <img src={product_thumbnail} alt="Product_Thumbnail" />
                         </div>
                         <div className={classes.AlbumInfo}>
-                            <h1>Product 123</h1> <h3>339$</h3>
+                            <h1>{product.productName}</h1> <h3><small>Rs</small> {product.price}</h3>
                             <div className={classes.Desc}>
                                 <h4>Description</h4>
                                 <p>
@@ -40,9 +69,18 @@ class Album extends Component {
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
                             </p>
                             </div>
+                            <Button btnType="WebButton" clicked={this.addtocart} >Add To Cart</Button>
                         </div>
                     </div>
 
+                </Auxilary>
+
+            )
+        }
+        return (
+            <div className={classes.Main}>
+                <div className={classes.Album}>
+                    {productdata}
                 </div>
 
                 <div className={classes.ProfileWork}>
@@ -69,10 +107,10 @@ class Album extends Component {
                                         <i className="fas fa-plus"></i>
                                     </div> */}
                                 <div className={classes.Collections}>
+                                    {/* <ProductCard />
                                     <ProductCard />
                                     <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
+                                    <ProductCard /> */}
 
                                 </div>
                             </div>
@@ -88,4 +126,19 @@ class Album extends Component {
     }
 }
 
-export default Album;
+const mapStateToProps = state => {
+    return {
+        token: state.Auth.token,
+        currentproduct: state.CurrentProduct.currentproduct,
+        loading: state.CurrentProduct.loading
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onfetchcurrentproduct: (token, productid) => dispatch(actions.FetchSingleProduct(token, productid)),
+        onaddtocart: (token, productid) => dispatch(actions.AddToCart(token, productid))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

@@ -51,7 +51,29 @@ export const Set_Single_Blog = 'Set_Single_Blog';
 export const Fetch_DesignerProfile_Product_Success = 'Fetch_DesignerProfile_Product_Success';
 export const Fetch_DesignerProfile_Product_Failed = 'Fetch_DesignerProfile_Product_Failed';
 export const Fetch_DesignerProfile_Product_Start = 'Fetch_DesignerProfile_Product_Start';
+
 /* Fetch Designer Profile Content Actions For Album*/
 export const Fetch_DesignerProfile_Album_Success = 'Fetch_DesignerProfile_Album_Success';
 export const Fetch_DesignerProfile_Album_Failed = 'Fetch_DesignerProfile_Album_Failed';
 export const Fetch_DesignerProfile_Album_Start = 'Fetch_DesignerProfile_Album_Start';
+
+/* Fetch Current Opened Album */
+export const Fetch_Single_Album_Start = 'Fetch_Single_Album_Start';
+export const Fetch_Single_Album_Failed = 'Fetch_Single_Album_Failed';
+export const Fetch_Single_Album_Success = 'Fetch_Single_Album_Success';
+
+/* Fetch Current Opened Product */
+export const Fetch_Single_Product_Start = 'Fetch_Single_Product_Start';
+export const Fetch_Single_Product_Failed = 'Fetch_Single_Product_Failed';
+export const Fetch_Single_Product_Success = 'Fetch_Single_Product_Success';
+
+
+/* Add Product To Cart*/
+export const Add_ProductToCart_Start = 'Add_ProductToCart_Start';
+export const Add_ProductToCart_Failed = 'Add_ProductToCart_Failed';
+export const Add_ProductToCart_Success = 'Add_ProductToCart_Success';
+
+/* Fetch Cart */
+export const Fetch_Cart_Start = 'Fetch_Cart_Start';
+export const Fetch_Cart_Failed = 'Fetch_Cart_Failed';
+export const Fetch_Cart_Success = 'Fetch_Cart_Success';

@@ -1,13 +1,52 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import classes from './Cart.css';
-import { Link } from 'react-router-dom';
-import display from '../../assets/images/testimg.jpg';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import Button from '../../components/UI/Button/Button';
+import CartBody from '../../components/Cart/Cart';
+import { connect } from 'react-redux';
+import * as actions from '../../Store/Actions/index';
+class Cart extends Component {
 
-class Album extends Component {
+    state = {
+        cart: null
+    }
+
+    componentWillMount() {
+        if (this.props.token) {
+            this.props.onfetchcurrentcart(this.props.token)
+        }
+
+    }
 
     render() {
+
+        const cart = this.props.cart;
+        let carddata = null;
+        if (this.props.loading) {
+            carddata = (
+                <tr className={classes.TbTr}>
+                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
+                        <Spinner />
+                    </td>
+                </tr>)
+                ;
+        } else {
+            carddata = (cart.map((cart, index = cart._id) => (
+                <CartBody
+                    key={cart._id}
+                    name={cart.productId.productName}
+                    price={cart.productId.price}
+                    sizes={cart.productId.sizes}
+                    quantity={cart.productId.quantity}
+                    images={cart.productId.images}
+                />
+
+            )));
+        }
+
         return (
-            <div className={classes.Main}>
+            <div className={classes.Main} >
                 <div className={classes.Album}>
                     <h1>Shopping Cart</h1>
                     <div className={classes.Cart}>
@@ -20,142 +59,47 @@ class Album extends Component {
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Size</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Price</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Qty</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Amount</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join('')}></th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}></th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Cancel</th>
                                 </tr>
                             </thead>
                             <tbody className={classes.Tbody}>
-                                <tr className={classes.TbTr}>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
-                                        <div className={classes.AlbumImage} >
-                                            <img src={display} alt="Album_Thumbnail" />
-                                        </div>
-                                    </td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh10].join(' ')} >
-                                        <span>
-                                            <Link to="#product" className={classes.ThTrTh11}>Spring Jacket</Link>
-                                            <br />
-                                            <small>by Dolce&Gabbana</small>
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>Red</td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>M</td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
-                                        <span>
-                                            <small>$</small>
-                                            549
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh14].join(' ')}>
-                                        <span>
-                                            3433
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh15].join(' ')}>
-                                        <span>
-                                            <small>$</small>
-                                            549
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
-                                        <div className={classes.ibutton}>
-                                            <i class="fas fa-times-circle"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className={classes.TbTr}>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
-                                        <div className={classes.AlbumImage} >
-                                            <img src={display} alt="Album_Thumbnail" />
-                                        </div>
-                                    </td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh10].join(' ')} >
-                                        <span>
-                                            <Link to="#product" className={classes.ThTrTh11}>Spring Jacket</Link>
-                                            <br />
-                                            <small>by Dolce&Gabbana</small>
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>Red</td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>M</td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
-                                        <span>
-                                            <small>$</small>
-                                            549
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh14].join(' ')}>
-                                        <span>
-                                            3433
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh15].join(' ')}>
-                                        <span>
-                                            <small>$</small>
-                                            549
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
-                                        <div className={classes.ibutton}>
-                                            <i class="fas fa-times-circle"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr className={classes.TbTr}>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
-                                        <div className={classes.AlbumImage} >
-                                            <img src={display} alt="Album_Thumbnail" />
-                                        </div>
-                                    </td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh10].join(' ')} >
-                                        <span>
-                                            <Link to="#product" className={classes.ThTrTh11}>Spring Jacket</Link>
-                                            <br />
-                                            <small>by Dolce&Gabbana</small>
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>Red</td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>M</td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
-                                        <span>
-                                            <small>$</small>
-                                            549
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh14].join(' ')}>
-                                        <span>
-                                            3433
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh15].join(' ')}>
-                                        <span>
-                                            <small>$</small>
-                                            549
-                                        </span>
-                                    </td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
-                                        <div className={classes.ibutton}>
-                                            <i class="fas fa-times-circle"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr className={[classes.TbTr, classes.ThTrTh20].join(' ')}>
+                                {carddata}
+                                <tr className={[classes.TbTr, classes.ThTrTh20].join(' ')} >
                                     <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')} colSpan={3}></td>
                                     <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh21].join(' ')}>TOTAL</td>
                                     <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh22].join(' ')}>
-                                        <span><small>$</small>2,346</span>
+                                        <span><small>Rs </small>2,346</span>
+
                                     </td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh23].join(' ')} colSpan={3}></td>
+                                    <td className={classes.ProceedButton}>
+                                        <NavLink to="/dashboard/checkout">
+                                            <Button btnType="WebButton" >Proceed To Checkout</Button>
+                                        </NavLink>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
-            </div >
+            </div>
         )
     }
 }
 
-export default Album;
+const mapStateToProps = state => {
+    return {
+        token: state.Auth.token,
+        cart: state.Cart.cart,
+        loading: state.Cart.loading
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onfetchcurrentcart: (token) => dispatch(actions.FetchCart(token))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+

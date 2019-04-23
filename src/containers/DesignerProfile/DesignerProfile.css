@@ -94,9 +94,25 @@ float: left;
 cursor: pointer;
 }
 
-
+.Workbutton:hover{
+  float: left;
+  cursor: pointer;
+  color: purple;
+  }
 
 .Workbutton i{
+  background-color: transparent;
+  padding: 45px 40px;
+  border-radius: 5px;
+  margin: 20px;
+  font-size: 1.5em;
+  color: black;
+  cursor: pointer;
+
+}
+
+
+.Workbutton i:hover{
     background-color: #742F6E;
     padding: 45px 40px;
     border-radius: 5px;
