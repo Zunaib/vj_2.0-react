@@ -44,10 +44,18 @@ export const FetchCart = (token) => {
 
 
                 dispatch(fetchcartSuccess(myData));
+                dispatch(addcarttoCheckout(myData));
             })
             .catch(err => {
                 console.log(err)
                 dispatch(fetchcartfailed(err.response.data.message));
             });
     }
+}
+
+export const addcarttoCheckout = (cart) => {
+    return {
+        type: actionTypes.Set_CheckoutCart,
+        cart: cart
+    };
 }

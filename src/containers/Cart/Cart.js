@@ -31,7 +31,7 @@ class Cart extends Component {
                     </td>
                 </tr>)
                 ;
-        } else {
+        } else if (this.props.cart) {
             carddata = (cart.map((cart, index = cart._id) => (
                 <CartBody
                     key={cart._id}

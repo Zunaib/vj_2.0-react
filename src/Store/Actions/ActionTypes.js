@@ -77,3 +77,16 @@ export const Add_ProductToCart_Success = 'Add_ProductToCart_Success';
 export const Fetch_Cart_Start = 'Fetch_Cart_Start';
 export const Fetch_Cart_Failed = 'Fetch_Cart_Failed';
 export const Fetch_Cart_Success = 'Fetch_Cart_Success';
+
+/* Fetch Checkout Settings Actions */
+export const Fetch_CheckoutSettings_Start = 'Fetch_CheckoutSettings_Start';
+export const Fetch_CheckoutSettings_Success = 'Fetch_CheckoutSettings_Success';
+export const Fetch_CheckoutSettings_Failed = 'Fetch_CheckoutSettings_Failed';
+
+/* Checkout*/
+export const Checkout_Start = 'Checkout_Start';
+export const Checkout_Success = 'Checkout_Success';
+export const Checkout_Failed = 'Checkout_Failed';
+export const Set_Temporary = 'Set_Temporary';
+export const Set_CheckoutCart = 'Set_CheckoutCart';
+export const Checkout_Refresh = "Checkout_Refresh";

@@ -5,6 +5,7 @@ export { FetchSingleAlbum } from './CurrentAlbum';
 export { FetchSingleProduct } from './CurrentProduct';
 export { AddToCart } from './AddtoCart';
 export { FetchCart } from './Cart';
+export { FetchCheckoutSettings, Checkout, SetTemporary } from './Checkout';
 export { FetchSettings, UpdateSettings, MsgRefresh } from './UserSettings';
 export { AddAlbum, AlbumMsgRefresh } from './Album';
 export { AddProduct, ProductMsgRefresh } from './Product';
