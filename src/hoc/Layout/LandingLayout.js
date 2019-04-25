@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import asyncComponent from '../asyncComponent/asyncComponent';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import NavBackDrop from '../../components/Navigation/Sidedrawer/NavBackDrop/NavBackDrop';
 
-import LandingPage from '../../containers/LandingPage/LandingPage';
-import Login from '../../containers/LogIn/Login';
-import Signup from '../../containers/SignUp/SignUp';
-
-
+const asyncLanding = asyncComponent(() => {
+    return import('../../containers/LandingPage/LandingPage');
+})
+const asyncLogin = asyncComponent(() => {
+    return import('../../containers/LogIn/Login');
+})
+const asyncSignup = asyncComponent(() => {
+    return import('../../containers/SignUp/SignUp');
+})
 
 class LandingLayout extends Component {
 
@@ -34,9 +38,9 @@ class LandingLayout extends Component {
 
         let routes = (
             <Switch>
-                <Route exact path='/' component={LandingPage} />
-                <Route path='/login' component={Login} />
-                <Route path='/signup' component={Signup} />
+                <Route exact path='/' component={asyncLanding} />
+                <Route path='/login' component={asyncLogin} />
+                <Route path='/signup' component={asyncSignup} />
                 <Redirect to="/" />
             </Switch>
         );

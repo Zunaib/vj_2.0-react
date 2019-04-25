@@ -70,18 +70,19 @@ export const Auth = (data, type) => {
             .then(response => {
 
                 console.log(response)
-                let flags = response.data.userflags;
                 let flag = null;
-                if (flags.isCustomer) {
-                    flag = 'Customer'
-                } else if (flags.isDesigner) {
-                    flag = 'Designer'
-                } else if (flags.isVlogger) {
-                    flag = 'Vlogger'
-                } else if (flags.isBlogger) {
-                    flag = 'Blogger'
+                if (type === "Login") {
+                    let flags = response.data.userflags;
+                    if (flags.isCustomer) {
+                        flag = 'Customer'
+                    } else if (flags.isDesigner) {
+                        flag = 'Designer'
+                    } else if (flags.isVlogger) {
+                        flag = 'Vlogger'
+                    } else if (flags.isBlogger) {
+                        flag = 'Blogger'
+                    }
                 }
-
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('userId', response.data.userId);
                 localStorage.setItem('userflag', flag);
@@ -92,7 +93,60 @@ export const Auth = (data, type) => {
             })
             .catch(error => {
                 console.log(error)
-                dispatch(AuthFail(error.response.data.message));
+                dispatch(AuthFail(error.response.data));
+            });
+    };
+};
+
+export const UpdateFlagToDesigner = (token) => {
+    return dispatch => {
+        axios.get('/api/useAsDesigner?access_token=' + token)
+            .then(response => {
+                localStorage.setItem('userflag', 'Designer');
+                dispatch(flagchanged('Designer'));
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    };
+};
+export const UpdateFlagToBlogger = (token) => {
+    return dispatch => {
+        axios.get('/api/useAsBlogger?access_token=' + token)
+            .then(response => {
+                localStorage.setItem('userflag', 'Blogger');
+                dispatch(flagchanged('Blogger'));
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    };
+};
+export const UpdateFlagToVlogger = (token) => {
+    return dispatch => {
+        axios.get('/api/useAsVlogger?access_token=' + token)
+            .then(response => {
+                localStorage.setItem('userflag', 'Vlogger');
+                dispatch(flagchanged('Vlogger'));
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    };
+};
+export const UpdateFlagToCustomer = (token) => {
+    return dispatch => {
+        axios.get('/api/useAsCustomer?access_token=' + token)
+            .then(response => {
+                localStorage.setItem('userflag', 'Customer');
+                console.log('cust flag')
+                dispatch(flagchanged('Customer'));
+            })
+            .catch(error => {
+                console.log(error)
             });
     };
 };
@@ -104,6 +158,13 @@ export const AuthCheckState = (token, userId, userflag) => {
         } else {
             dispatch(AuthSuccess(token, userId, userflag));
         }
+    }
+}
+
+export const flagchanged = (flag) => {
+    return {
+        type: actionTypes.Set_User_Flag,
+        flag: flag
     }
 }
 

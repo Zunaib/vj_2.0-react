@@ -66,7 +66,7 @@ class Album extends Component {
                         </div>
 
                     </div>
-                </Auxilary >
+                </Auxilary>
 
             )
         }

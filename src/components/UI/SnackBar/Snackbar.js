@@ -7,6 +7,7 @@ const Snackbar = (props) => {
     const snack = (msg, type) => {
         enqueueSnackbar(msg, {
             preventDuplicate: true,
+            autoHideDuration: 2000,
             anchorOrigin: {
                 vertical: 'bottom',
                 horizontal: 'right',

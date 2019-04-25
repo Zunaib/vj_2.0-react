@@ -70,12 +70,11 @@ export const UpdateSettings = (token, settingsData) => {
 
     console.log(settingsData)
     return dispatch => {
-        // dispatch(updateStart());
+        dispatch(updateStart());
         axios.post('/api/changeSettings?access_token=' + token, settingsData)
             .then(res => {
                 console.log(res);
-                // console.log(res.data.success);
-                // dispatch(updateSuccess(res.data.success));
+                dispatch(updateSuccess(res.data.message));
             })
             .catch(err => {
                 dispatch(updatefailed(err.data.success));

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classes from './ProductCrud.css';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../../Store/Actions/index';
 import FormData from 'form-data'
 
@@ -11,7 +12,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
 
 class Product extends Component {
 
@@ -20,13 +21,10 @@ class Product extends Component {
         let str = window.location.href;
         let res = str.split("/");
         const albumid = res[4];
-        // console.log(albumid)
         if (albumid === 'handle_product') {
-            // console.log('not sending')
             this.setState({ album: null })
         } else {
             this.setState({ album: albumid })
-            // console.log('sending')
         }
     }
 
@@ -137,6 +135,7 @@ class Product extends Component {
         },
         formIsValid: false,
         selectedFiles: null,
+        selectedsnacks: null,
         selectedFilesURL: null,
         files: false,
         maxselected: false,
@@ -155,8 +154,6 @@ class Product extends Component {
             event.target.value = null // discard selected file
             return false;
         }
-
-
     }
 
     fileSelectedHandler = (event) => {
@@ -172,9 +169,12 @@ class Product extends Component {
                 newfiles.push(event.target.files[i]);
                 newfilesURL.push(URL.createObjectURL(event.target.files[i]));
             }
-
-
-            this.setState({ selectedFiles: newfiles, selectedFilesURL: newfilesURL, files: true })
+            this.setState({
+                selectedFiles: newfiles,
+                selectedFilesURL: newfilesURL,
+                selectedsnacks: true,
+                files: true
+            })
         } else {
             console.log('invalid');
         }
@@ -193,7 +193,7 @@ class Product extends Component {
             updatedproductForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ productForm: updatedproductForm, selectedFiles: null, selectedFilesURL: null, files: false });
+        this.setState({ productForm: updatedproductForm, selectedFiles: null, selectedFilesURL: null, files: false, selectedsnacks: false });
     }
 
     productHandler = (event) => {
@@ -294,11 +294,16 @@ class Product extends Component {
         //     snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
         // }
 
+        let imgsnack = null;
+        if (this.state.selectedFiles && this.state.selectedsnacks) {
+            imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} msgRefresh={this.props.onMsgRefresh} />);
+            this.setState({ selectedsnacks: false })
+        }
+
 
         return (
             <div className={classes.Main}>
-                {/* {imgsnack}
-                {snack} */}
+                {imgsnack}
 
                 <div className={classes.Album}>
                     <div className={classes.Album_Top}>
@@ -334,7 +339,7 @@ const mapStateToProps = state => {
     return {
         loading: state.ProductCrud.loading,
         error: state.ProductCrud.error,
-        message: state.ProductCrud.message,
+        productid: state.ProductCrud.productid,
         token: state.Auth.token,
         flag: state.Auth.flag
     }

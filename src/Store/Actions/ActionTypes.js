@@ -6,6 +6,7 @@ export const Auth_Logout = "Auth_Logout";
 export const Auth_Reset_Redirect = "Auth_Reset_Redirect";
 export const Auth_Error_Refresh = "Auth_Error_Refresh";
 export const Reset = "Reset";
+export const Set_User_Flag = "Set_User_Flag";
 
 /* ContactUS Actions */
 export const ContactUsForm_Start = 'ContactUsForm_Start';
@@ -77,3 +78,34 @@ export const Add_ProductToCart_Success = 'Add_ProductToCart_Success';
 export const Fetch_Cart_Start = 'Fetch_Cart_Start';
 export const Fetch_Cart_Failed = 'Fetch_Cart_Failed';
 export const Fetch_Cart_Success = 'Fetch_Cart_Success';
+
+/* Update Cart */
+export const Update_Cart_Start = 'Update_Cart_Start';
+export const Update_Cart_Failed = 'Update_Cart_Failed';
+export const Update_Cart_Success = 'Update_Cart_Success';
+
+/* Fetch Checkout Settings Actions */
+export const Fetch_CheckoutSettings_Start = 'Fetch_CheckoutSettings_Start';
+export const Fetch_CheckoutSettings_Success = 'Fetch_CheckoutSettings_Success';
+export const Fetch_CheckoutSettings_Failed = 'Fetch_CheckoutSettings_Failed';
+
+/* Checkout*/
+export const Checkout_Start = 'Checkout_Start';
+export const Checkout_Success = 'Checkout_Success';
+export const Checkout_Failed = 'Checkout_Failed';
+export const Fetch_Checkout_Cart_Failed = 'Fetch_Checkout_Cart_Failed';
+export const Fetch_Checkout_Cart_Success = 'Fetch_Checkout_Cart_Success';
+export const Fetch_Checkout_Cart_Start = 'Fetch_Checkout_Cart_Start';
+export const Set_Temporary = 'Set_Temporary';
+export const Checkout_Refresh = "Checkout_Refresh";
+
+
+/* Fetch Customer Orders */
+export const Fetch_Customer_Orders_Start = 'Fetch_Customer_Orders_Start';
+export const Fetch_Customer_Orders_Failed = 'Fetch_Customer_Orders_Failed';
+export const Fetch_Customer_Orders_Success = 'Fetch_Customer_Orders_Success';
+
+/* Fetch User NavSetting Actions */
+export const Fetch_NavSetting_Start = 'Fetch_NavSetting_Start';
+export const Fetch_NavSetting_Success = 'Fetch_NavSetting_Success';
+export const Fetch_NavSetting_Failed = 'Fetch_NavSetting_Failed';

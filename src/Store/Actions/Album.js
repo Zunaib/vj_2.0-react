@@ -2,10 +2,10 @@ import * as actionTypes from './ActionTypes';
 import axios from '../../axios';
 
 
-export const addalbumSuccess = (message) => {
+export const addalbumSuccess = (albumid) => {
     return {
         type: actionTypes.Add_Album_Success,
-        message: message
+        albumid: albumid
     };
 };
 
@@ -30,7 +30,8 @@ export const AddAlbum = (token, data) => {
         // dispatch(addalbumStart());
         axios.post('/api/createAlbum?access_token=' + token, data)
             .then(res => {
-                dispatch(addalbumSuccess(res.data.success));
+                console.log(res)
+                dispatch(addalbumSuccess(res.data.album._id));
             })
             .catch(err => {
                 console.log(err)

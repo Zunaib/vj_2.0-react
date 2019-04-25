@@ -88,6 +88,7 @@ export const FetchDesignerProfileContent = (token, limit) => {
                 let myData = Object.keys(data).map(key => {
                     return data[key];
                 })
+                console.log(data)
                 dispatch(fetchProductSuccess(myData));
             })
             .catch(err => {

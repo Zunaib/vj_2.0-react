@@ -1,35 +1,33 @@
 import * as actionTypes from '../Actions/ActionTypes';
 
 const initialState = {
-    loading: false,
+    orders: null,
+    message: null,
     error: null,
-    albumid: null
+    loading: true
 }
 
-const AlbumReducer = (state = initialState, action) => {
+const Cart = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Add_Message_Refresh:
-            return {
-                ...state,
-                albumid: null,
-                loading: false
-            };
-        case actionTypes.Add_Album_Start:
+        case actionTypes.Fetch_Customer_Orders_Start:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.Add_Album_Success:
+        case actionTypes.Fetch_Customer_Orders_Failed:
             return {
                 ...state,
                 loading: false,
-                albumid: action.albumid
+                error: action.error
             };
-        case actionTypes.Add_Album_Failed:
+        case actionTypes.Fetch_Customer_Orders_Success:
             return {
                 ...state,
+                orders: action.orders,
+                message: null,
                 loading: false,
-                error: action.error,
+                error: null
+
             };
         case actionTypes.Reset:
             return state = initialState;
@@ -38,4 +36,4 @@ const AlbumReducer = (state = initialState, action) => {
     }
 };
 
-export default AlbumReducer;
+export default Cart;

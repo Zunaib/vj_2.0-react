@@ -22,6 +22,9 @@ import CurrentAlbumReducer from './Store/Reducers/CurrentAlbum';
 import CurrentProductReducer from './Store/Reducers/CurrentProduct';
 import AddtoCartReducer from './Store/Reducers/AddtoCart';
 import CartReducer from './Store/Reducers/Cart';
+import CheckoutReducer from './Store/Reducers/Checkout';
+import CustomerOrdersReducer from './Store/Reducers/CustomerOrder';
+import NavContentReducer from './Store/Reducers/NavContent';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -36,7 +39,10 @@ const rootRecucer = combineReducers({
     CurrentAlbum: CurrentAlbumReducer,
     CurrentProduct: CurrentProductReducer,
     AddtoCart: AddtoCartReducer,
-    Cart: CartReducer
+    Cart: CartReducer,
+    Checkout: CheckoutReducer,
+    CustomerOrders: CustomerOrdersReducer,
+    Nav: NavContentReducer
 });
 
 const store = createStore(rootRecucer, composeEnhancers(
