@@ -20,18 +20,18 @@ class DesignerProfile extends Component {
 
 
     componentWillMount = () => {
-        // if (this.props.token) {
-        //     this.props.onfetchsettings(this.props.token);
-        // }
-        // setTimeout(() => {
-        //     let user = this.props.settings[0];
-        //     this.setState({
-        //         userimage: user.displayPicture,
-        //         userfirst: user.firstName,
-        //         userlast: user.lastName,
-        //         desc: user.description
-        //     })
-        // }, 50)
+        if (this.props.token) {
+            this.props.onfetchsettings(this.props.token);
+        }
+        setTimeout(() => {
+            let user = this.props.settings[0];
+            this.setState({
+                userimage: user.displayPicture,
+                userfirst: user.firstName,
+                userlast: user.lastName,
+                desc: user.description
+            })
+        }, 50)
 
         if (this.props.token) {
             let limit = 8;
@@ -66,14 +66,14 @@ class DesignerProfile extends Component {
     render() {
 
         let img = null;
-        // let firstname = this.state.userfirst;
-        // let lastname = this.state.userlast;
-        // let desc = this.state.desc
-        // if (this.state.userimage) {
-        //     img = 'http://localhost:5000' + this.state.userimage;
-        // } else {
-        //     img = display;
-        // }
+        let firstname = this.state.userfirst;
+        let lastname = this.state.userlast;
+        let desc = this.state.desc
+        if (this.state.userimage) {
+            img = 'http://localhost:5000' + this.state.userimage;
+        } else {
+            img = display;
+        }
 
         // let imgbutton = null;
         // if (this.props.flag === 'Designer') {
@@ -87,14 +87,14 @@ class DesignerProfile extends Component {
                 <div className={classes.TopImage}>
                 </div>
                 <div className={classes.ProfileImageButton} >
-                    <img src={display} alt="Display" />
+                    <img src={img} alt="Display" />
                     <i className="fas fa-plus"></i>
                 </div>
 
                 <div className={classes.Profile}>
 
                     <div className={classes.ProfileInfo} >
-                        <h1>Zunaib</h1>
+                        <h1>{firstname + " " + lastname}</h1>
                         <h5>DESIGNER</h5>
 
                         <div className={classes.ConnectIcons}>

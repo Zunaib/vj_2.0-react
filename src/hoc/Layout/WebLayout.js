@@ -49,35 +49,26 @@ class WebLayout extends Component {
         );
 
         if (this.props.isAuth) {
-
-            if (this.props.flag === 'Customer') {
-                routes = (
-                    <Switch>
-                        <Route path="/dashboard" exact component={Dashboard} />
-                        <Route path="/dashboard/usersettings" component={UserAccountSettings} />
-                        <Route path="/dashboard/cart" component={Cart} />
-                        <Route path="/dashboard/products/:product" component={Product} />
-                        <Route path="/dashboard/checkout" component={Checkout} />
-                        <Route path="/dashboard/customerorders" component={CustomerOrder} />
-                        <Redirect to="/dashboard" />
-                    </Switch>
-                );
-            } else if (this.props.flag === 'Designer') {
-                routes = (
-                    <Switch>
-                        <Route path="/dashboard/designer" exact component={DesignerProfile} />
-                        <Route path="/dashboard/usersettings" component={UserAccountSettings} />
-                        <Route path="/dashboard/albums/:album" component={asyncAlbum} />
-                        <Route path="/dashboard/products/:product" component={Product} />
-                        <Route path="/dashboard/handle_album" component={asyncHandle_Album} />
-                        <Route path="/dashboard/:albumid/handle_product" component={Handle_Product} />
-                        <Route path="/dashboard/handle_product" component={Handle_Product} />
-                        <Route path="/dashboard/designerorders" component={CustomerOrder} />
-                        <Redirect to="/dashboard/designer" />
-                    </Switch>
-                );
-            }
+            routes = (
+                <Switch>
+                    <Route path="/dashboard" exact component={Dashboard} />
+                    <Route path="/dashboard/usersettings" component={UserAccountSettings} />
+                    <Route path="/dashboard/cart" component={Cart} />
+                    <Route path="/dashboard/checkout" component={Checkout} />
+                    <Route path="/dashboard/customerorders" component={CustomerOrder} />
+                    <Route path="/dashboard/designer" exact component={DesignerProfile} />
+                    <Route path="/dashboard/usersettings" component={UserAccountSettings} />
+                    <Route path="/dashboard/albums/:album" component={asyncAlbum} />
+                    <Route path="/dashboard/products/:product" component={Product} />
+                    <Route path="/dashboard/handle_album" component={asyncHandle_Album} />
+                    <Route path="/dashboard/:albumid/handle_product" component={Handle_Product} />
+                    <Route path="/dashboard/handle_product" component={Handle_Product} />
+                    <Route path="/dashboard/designerorders" component={CustomerOrder} />
+                    <Redirect to="/dashboard" />
+                </Switch>
+            );
         }
+
 
         return (
             <div>
@@ -92,7 +83,7 @@ class WebLayout extends Component {
                     {this.props.children}
                 </main>
                 {routes}
-            </div>
+            </div >
         )
     }
 }
