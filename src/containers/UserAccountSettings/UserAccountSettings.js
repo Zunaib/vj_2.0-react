@@ -18,11 +18,13 @@ import { checkValidity } from '../../Shared/Validator';
 
 class UserAccountSettings extends Component {
 
-    componentDidMount = () => {
+    componentWillMount = () => {
         if (this.props.token) {
             this.props.onfetchsettings(this.props.token);
-            this.getData();
         }
+    }
+    componentDidMount() {
+        this.getData();
     }
     getData() {
         setTimeout(() => {
@@ -62,8 +64,9 @@ class UserAccountSettings extends Component {
             this.setState({ settingsForm: updatedsettingsForm, formIsValid: formIsValid });
             this.setState({ userName: this.props.settings[0].userName });
             this.setState({ desc: this.props.settings[0].description });
+            this.setState({ userimage: this.props.settings[0].displayPicture });
 
-        }, 500)
+        }, 50)
 
     }
 
@@ -208,6 +211,7 @@ class UserAccountSettings extends Component {
         formIsValid: false,
         userName: "",
         desc: "",
+        userimage: "",
         selectedFile: null,
         selectedFileURL: null
     }
@@ -236,27 +240,13 @@ class UserAccountSettings extends Component {
             }
         }
 
-
-
         let data = new FormData();
         if (this.state.selectedFile) {
             action = true;
             data.append('file', this.state.selectedFile, this.state.selectedFile.name);
         }
-        // const settingsData = {
-        //     firstName: formData.firstName,
-        //     lastName: formData.lastName,
-        //     dateofbirth: "1/1/1",
-        //     description: formData.description,
-        //     province: formData.province,
-        //     gender: formData.gender,
-        //     streetAddress: formData.streetAddress,
-        //     city: formData.city,
-        //     zipcode: formData.zipcode,
-        //     country: formData.country,
-        //     phone: formData.phone
-        // }
 
+        data.append('displayPicture', this.state.userimage)
         data.append('firstName', formData.firstName);
         data.append('lastName', formData.lastName);
         data.append('dateofbirth', "1/1/1");
@@ -269,7 +259,7 @@ class UserAccountSettings extends Component {
         data.append('country', formData.country);
         data.append('phone', formData.phone);
 
-        if (this.state.formIsValid && this.state.selectedFile && action) {
+        if (this.state.formIsValid && action) {
             this.props.onUpdateSettings(this.props.token, data);
             console.log('valid')
         } else {
@@ -302,8 +292,7 @@ class UserAccountSettings extends Component {
 
         let snack = null;
         if (this.props.message) {
-            console.log('message pass');
-            let msg = "Data Successfully Updated";
+            let msg = "Settings Successfully Updated";
             snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
         }
 
@@ -341,6 +330,7 @@ class UserAccountSettings extends Component {
         let profile = {
             username: this.state.userName,
             desc: this.state.desc,
+            userimage: this.state.userimage,
             logger: this.props.flag
         }
 

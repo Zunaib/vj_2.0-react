@@ -45,6 +45,33 @@ class Cart extends Component {
             )));
         }
 
+        let cartcontrols = null;
+
+        if (this.props.cart) {
+            if (this.props.cart.length > 0) {
+                console.log('cart not empty')
+                cartcontrols = (<tr className={[classes.TbTr, classes.ThTrTh20].join(' ')} >
+                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')} colSpan={3}></td>
+                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh21].join(' ')}>TOTAL</td>
+                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh22].join(' ')}>
+                        <span><small>Rs </small>2,346</span>
+
+                    </td>
+                    <td className={classes.ProceedButton}>
+                        <NavLink to="/dashboard/checkout">
+                            <Button btnType="WebButton" >Proceed To Checkout</Button>
+                        </NavLink>
+                    </td>
+                </tr>)
+            } else {
+                console.log('empty')
+                cartcontrols = (<tr className={[classes.TbTr, classes.ThTrTh20].join(' ')} >
+                    <td> <h3>No Products Added To Cart </h3></td>
+
+                </tr>)
+            }
+        }
+
         return (
             <div className={classes.Main} >
                 <div className={classes.Album}>
@@ -65,19 +92,7 @@ class Cart extends Component {
                             </thead>
                             <tbody className={classes.Tbody}>
                                 {carddata}
-                                <tr className={[classes.TbTr, classes.ThTrTh20].join(' ')} >
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')} colSpan={3}></td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh21].join(' ')}>TOTAL</td>
-                                    <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh22].join(' ')}>
-                                        <span><small>Rs </small>2,346</span>
-
-                                    </td>
-                                    <td className={classes.ProceedButton}>
-                                        <NavLink to="/dashboard/checkout">
-                                            <Button btnType="WebButton" >Proceed To Checkout</Button>
-                                        </NavLink>
-                                    </td>
-                                </tr>
+                                {cartcontrols}
                             </tbody>
                         </table>
                     </div>
@@ -97,7 +112,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchcurrentcart: (token) => dispatch(actions.FetchCart(token))
+        onfetchcurrentcart: (token) => dispatch(actions.FetchCart(token)),
+        onupdatecart: (token, cart) => dispatch(actions.UpdateCart(token, cart))
     }
 }
 

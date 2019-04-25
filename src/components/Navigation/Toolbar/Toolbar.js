@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import classes from './Toolbar.css';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
@@ -21,16 +22,34 @@ const Toolbar = (props) => {
         );
     } else if (props.Type === "Web") {
         navbar = (
-            <nav className={classes.ToolbarWeb}>
-                <DrawerToggle clicked={props.drawerToggleClicked} Color="Gray" />
-                <SearchBar />
-                <div className={classes.LogoBlack}>
-                    <Logo logoType="Black" />
 
+            <nav className={classes.ToolbarWeb}>
+                {/* <DrawerToggle clicked={props.drawerToggleClicked} Color="Gray" /> */}
+                <div className={classes.CustNavItem}>
+                    <NavLink className={classes.NavlinkCart} to="/dashboard/cart">
+                        <div className={classes.Cart}>
+                            <i className="fas fa-shopping-cart">
+                                <span className={classes.Badge}>3</span>
+                            </i>
+                        </div>
+                    </NavLink>
+
+                    <NavLink className={classes.NavlinkCart} to="/dashboard/customerorders">
+                        <div className={classes.Cart}>
+                            <i className="fas fa-sort-amount-down">
+                                <span className={classes.Badge}>3</span>
+                            </i>
+                        </div>
+                    </NavLink>
                 </div>
+                <SearchBar />
+                <NavLink to="/dashboard">
+                    <div className={classes.LogoBlack}>
+                        <Logo logoType="Black" />
+                    </div>
+                </NavLink>
                 <nav className={classes.DesktopOnly}>
                     <NavigationItems Type="Web" />
-
                 </nav>
             </nav>
         );

@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import classes from './Checkout.css';
-import FormData from 'form-data';
 
-import FileUploader from '../../components/FileUploader/FileUpload';
-import Snackbar from '../../components/UI/SnackBar/SuccessSnackbar';
+// import Snackbar from '../../components/UI/SnackBar/SuccessSnackbar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import CheckoutCard from '../../components/UI/Card/Checkout/CheckoutCard';
-import ProfileStatsCard from '../../components/UI/Card/Profile/ProfileStats/ProfileStats';
 import FormCard from '../../components/UI/Card/Form/FormCard';
 import { checkValidity } from '../../Shared/Validator';
-import { stat } from 'fs';
 class Checkout extends Component {
 
     componentDidMount = () => {
         if (this.props.token) {
             this.props.onfetchcheckoutsettings(this.props.token);
+            this.props.onfetchcheckoutcart(this.props.token);
             this.getData();
         }
     }
@@ -190,19 +187,7 @@ class Checkout extends Component {
             formData[formElementIdentifier] = this.state.checkoutForm[formElementIdentifier].value;
         }
 
-        console.log(formData.firstName)
-
-
-        const billingDetails = {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            province: formData.province,
-            streetAddress: formData.streetAddress,
-            city: formData.city,
-            zipcode: formData.zipcode,
-            country: formData.country,
-            phone: formData.phone
-        }
+        console.log(this.props.cart)
 
         let order = {
             orderedProducts: this.props.cart,
@@ -220,6 +205,8 @@ class Checkout extends Component {
             saveDetails: this.props.saveDetails,
             paymentMethod: 'Cash On Delivery'
         }
+
+        console.log(order)
 
         if (this.state.formIsValid) {
             this.props.oncheckout(this.props.token, order);
@@ -315,6 +302,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcheckoutsettings: (token) => dispatch(actions.FetchCheckoutSettings(token)),
+        onfetchcheckoutcart: (token) => dispatch(actions.FetchCheckoutCart(token)),
         oncheckout: (token, order) => dispatch(actions.Checkout(token, order)),
         // onMsgRefresh: () => dispatch(actions.MsgRefresh())
     }

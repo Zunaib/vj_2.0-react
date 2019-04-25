@@ -5,16 +5,12 @@ const initialState = {
     loading: false,
     error: null,
     message: null,
-    saveDetails: false
+    saveDetails: false,
+    cart: null
 }
 
 const checkoutReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Set_CheckoutCart:
-            return {
-                ...state,
-                cart: action.cart
-            };
         case actionTypes.Set_Temporary:
             return {
                 ...state,
@@ -57,6 +53,25 @@ const checkoutReducer = (state = initialState, action) => {
                 error: false
             };
         case actionTypes.Fetch_CheckoutSettings_Failed:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            };
+        case actionTypes.Fetch_Checkout_Cart_Start:
+            return {
+                ...state,
+                loading: true,
+                cart: []
+            };
+        case actionTypes.Fetch_Checkout_Cart_Success:
+            return {
+                ...state,
+                cart: state.cart.concat(action.cart),
+                loading: false,
+                error: false
+            };
+        case actionTypes.Fetch_Checkout_Cart_Failed:
             return {
                 ...state,
                 loading: false,

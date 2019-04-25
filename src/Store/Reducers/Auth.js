@@ -11,6 +11,11 @@ const initialState = {
 
 const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.Set_User_Flag:
+            return {
+                ...state,
+                flag: action.flag
+            };
         case actionTypes.Auth_Error_Refresh:
             return {
                 ...state,

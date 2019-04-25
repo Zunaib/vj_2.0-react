@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classes from './AlbumCrud.css';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../../Store/Actions/index';
 import FormData from 'form-data'
 
@@ -71,6 +72,7 @@ class Album extends Component {
         },
         formIsValid: false,
         selectedFile: null,
+        selectedsnack: false,
         selectedFileURL: null
     }
 
@@ -78,7 +80,8 @@ class Album extends Component {
     fileSelectedHandler = (event) => {
         this.setState({
             selectedFile: event.target.files[0],
-            selectedFileURL: URL.createObjectURL(event.target.files[0])
+            selectedFileURL: URL.createObjectURL(event.target.files[0]),
+            selectedsnack: true
         })
     }
 
@@ -97,7 +100,7 @@ class Album extends Component {
             updatedalbumForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ albumForm: updatedalbumForm, selectedFile: null });
+        this.setState({ albumForm: updatedalbumForm, selectedFile: null, selectedsnack: false });
     }
 
     albumHandler = (event) => {
@@ -171,7 +174,8 @@ class Album extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
                 <FileUploader clicked={this.fileSelectedHandler} text="Thumbnail" />
-                <Button btnType="WebButton" >Add Album</Button>
+                <Button btnType="WebButton">Add Album</Button>
+
             </form>
         );
 
@@ -180,20 +184,20 @@ class Album extends Component {
         }
 
         let imgsnack = null;
-        if (this.state.selectedFile) {
+        if (this.state.selectedFile && this.state.selectedsnack) {
             imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFile.name + ' )'} msgRefresh={this.props.onMsgRefresh} />);
+            this.setState({ selectedsnack: false })
         }
 
-        let snack = null;
-        if (this.props.message) {
-            let msg = "Album Added Successfully";
-            snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
+        let redirect = null;
+        if (this.props.albumid) {
+            redirect = <Redirect to={"/dashboard/albums/" + this.props.albumid} />
         }
 
         return (
             <div className={classes.Main}>
+                {redirect}
                 {imgsnack}
-                {snack}
                 <div className={classes.Album}>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
@@ -220,7 +224,7 @@ const mapStateToProps = state => {
     return {
         loading: state.AlbumCrud.loading,
         error: state.AlbumCrud.error,
-        message: state.AlbumCrud.message,
+        albumid: state.AlbumCrud.albumid,
         token: state.Auth.token,
         flag: state.Auth.flag
     }

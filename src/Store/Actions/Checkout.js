@@ -1,6 +1,64 @@
 import * as actionTypes from './ActionTypes';
 import axios from '../../axios';
 
+
+export const fetchcheckoutcartSuccess = (cart) => {
+    return {
+        type: actionTypes.Fetch_Checkout_Cart_Success,
+        cart: cart
+    };
+};
+
+export const fetchcheckoutcartfailed = (error) => {
+    return {
+        type: actionTypes.Fetch_Checkout_Cart_Failed,
+        error: error
+    };
+};
+
+export const fetchcheckoutcartStart = () => {
+    return {
+        type: actionTypes.Fetch_Checkout_Cart_Start
+    };
+};
+
+export const FetchCheckoutCart = (token) => {
+    return dispatch => {
+        dispatch(fetchcheckoutcartStart());
+        axios.get('/api/fetchCart?access_token=' + token)
+            .then(res => {
+                const fetchedProducts = [];
+                for (let key in res.data) {
+                    fetchedProducts.push({
+                        ...res.data[key]
+                    });
+                }
+                let data = fetchedProducts[0];
+                let myData = Object.keys(data).map(key => {
+                    return data[key];
+                })
+
+                console.log(myData)
+
+
+                dispatch(fetchcheckoutcartSuccess(myData));
+            })
+            .catch(err => {
+                console.log(err)
+                dispatch(fetchcheckoutcartfailed(err.response.data.message));
+            });
+    }
+}
+
+
+
+
+
+
+
+
+
+
 export const fetchSuccess = (UserSettings) => {
     return {
         type: actionTypes.Fetch_CheckoutSettings_Success,
@@ -33,7 +91,6 @@ export const FetchCheckoutSettings = (token) => {
                     });
                 }
                 let data = fetchedUserSettings[1];
-                console.log(data)
                 dispatch(fetchSuccess(data));
             })
             .catch(err => {
@@ -41,6 +98,8 @@ export const FetchCheckoutSettings = (token) => {
             });
     }
 }
+
+
 
 
 

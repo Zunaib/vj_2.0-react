@@ -45,13 +45,41 @@
 }
 
 .LogoBlack{
-    height: 80%;
+    height: 100%;
     display: flex;
-    margin-right: 250px;;
+    margin-right: 360px;
 }
 
+.CustNavItem{
+    margin-left: 50px;
+    display: flex;
+}
 
+.Cart i{
+    margin-left: 10px;
+    font-size: 1.3rem;
+}
+.Cart i span{
+    font-size: 1rem;
+}
 
+.NavlinkCart{
+    color: black;
+}
+
+.Badge {
+    position: relative;
+    top: -10px;
+    padding: 1px 5px;
+    border-radius: 100%;
+    border: 1px solid;
+    border-color:#9830b0;
+    color:#9830b0;
+  }
+
+.NotificationIcon{
+    margin-left: 25px;
+}
 
 
 

@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
-
-import WebLayout from './hoc/Layout/WebLayout';
 import LandingLayout from './hoc/Layout/LandingLayout';
-import Logout from './containers/Logout/Logout';
 
+const asyncWebLayout = asyncComponent(() => {
+  return import('./hoc/Layout/WebLayout');
+})
 
+const asyncLogout = asyncComponent(() => {
+  return import('./containers/Logout/Logout');
+})
 
 class App extends Component {
 
@@ -23,8 +27,8 @@ class App extends Component {
     if (this.props.isAuth) {
       routes = (
         <Switch>
-          <Route path="/dashboard" component={WebLayout} />
-          <Route path='/logout' component={Logout} />
+          <Route path="/dashboard" component={asyncWebLayout} />
+          <Route path='/logout' component={asyncLogout} />
           <Redirect to="/dashboard" />
         </Switch>
       );

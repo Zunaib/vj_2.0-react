@@ -2,10 +2,10 @@ import * as actionTypes from './ActionTypes';
 import axios from '../../axios';
 
 
-export const addproductSuccess = (message) => {
+export const addproductSuccess = (productid) => {
     return {
         type: actionTypes.Add_Product_Success,
-        message: message
+        productid: productid
     };
 };
 
@@ -26,12 +26,12 @@ export const addproductStart = () => {
 export const AddProduct = (token, productData) => {
     return dispatch => {
         console.log('token in product ' + token);
-        // dispatch(addproductStart());
+        dispatch(addproductStart());
         console.log(productData)
         axios.post('/api/addProduct?access_token=' + token, productData)
             .then(res => {
                 console.log(res);
-                // dispatch(addproductSuccess(res.data.success));
+                dispatch(addproductSuccess(res.data.product._id));
             })
             .catch(err => {
                 console.log(err)
