@@ -27,7 +27,7 @@ class NavigationItems extends Component {
                 userfirst: user.firstName,
                 userlast: user.lastName
             })
-        }, 50)
+        }, 70)
     }
 
 
@@ -49,7 +49,7 @@ class NavigationItems extends Component {
                 <ul className={classes.NavigationItemsLanding}>
                     <NavigationItem navitemType="Landing" link="/">About</NavigationItem>
                     <NavigationItem navitemType="Landing" link="/">Mission</NavigationItem>
-                    <NavigationItem navitemType="Landing" Type="NavButton" link="/login">Log In</NavigationItem>
+                    <NavigationItem navitemType="Landing" Type="NavButton" link="/login">Sign In</NavigationItem>
                     <NavigationItem navitemType="Landing" Type="NavButton" link="/signup">Sign Up</NavigationItem>
                 </ul>
             );
@@ -69,7 +69,7 @@ class NavigationItems extends Component {
                     </div>
 
                     <div className={classes.ImageButton} >
-                        <h4>{firstname + " " + lastname}</h4>
+                        <h4>{firstname ? firstname + " " + lastname : 'Name'}</h4>
                         <img className={classes.Image} src={img} alt="NavDisplay" />
                         <div className={classes.Dropdown} >
                             <Dropdown />

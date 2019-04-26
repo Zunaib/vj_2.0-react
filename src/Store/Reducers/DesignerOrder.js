@@ -9,18 +9,18 @@ const initialState = {
 
 const Cart = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Fetch_Customer_Orders_Start:
+        case actionTypes.Fetch_Designer_Orders_Start:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.Fetch_Customer_Orders_Failed:
+        case actionTypes.Fetch_Designer_Orders_Failed:
             return {
                 ...state,
                 loading: false,
                 error: action.error
             };
-        case actionTypes.Fetch_Customer_Orders_Success:
+        case actionTypes.Fetch_Designer_Orders_Success:
             return {
                 ...state,
                 orders: action.orders,

@@ -14,6 +14,7 @@ import Handle_Product from '../../containers/Handle_Product/Product_CRUD/Product
 import Cart from '../../containers/Cart/Cart';
 import Checkout from '../../containers/Checkout/Checkout';
 import CustomerOrder from '../../containers/CustomerOrder/CustomerOrder';
+import DesignerOrder from '../../containers/DesignerOrder/DesignerOrder';
 
 
 const asyncAlbum = asyncComponent(() => {
@@ -56,14 +57,14 @@ class WebLayout extends Component {
                     <Route path="/dashboard/cart" component={Cart} />
                     <Route path="/dashboard/checkout" component={Checkout} />
                     <Route path="/dashboard/customerorders" component={CustomerOrder} />
-                    <Route path="/dashboard/designer" exact component={DesignerProfile} />
+                    <Route path="/dashboard/designer" component={DesignerProfile} />
                     <Route path="/dashboard/usersettings" component={UserAccountSettings} />
                     <Route path="/dashboard/albums/:album" component={asyncAlbum} />
                     <Route path="/dashboard/products/:product" component={Product} />
                     <Route path="/dashboard/handle_album" component={asyncHandle_Album} />
                     <Route path="/dashboard/:albumid/handle_product" component={Handle_Product} />
                     <Route path="/dashboard/handle_product" component={Handle_Product} />
-                    <Route path="/dashboard/designerorders" component={CustomerOrder} />
+                    <Route path="/dashboard/designerorders" component={DesignerOrder} />
                     <Redirect to="/dashboard" />
                 </Switch>
             );

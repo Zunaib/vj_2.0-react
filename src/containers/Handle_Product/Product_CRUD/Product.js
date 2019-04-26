@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classes from './ProductCrud.css';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import * as actions from '../../../Store/Actions/index';
 import FormData from 'form-data'
 
@@ -306,6 +306,11 @@ class Product extends Component {
                 {imgsnack}
 
                 <div className={classes.Album}>
+                    <NavLink to="/dashboard/designer">
+                        <div className={classes.cross}>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
                             <h1>Add Product</h1>

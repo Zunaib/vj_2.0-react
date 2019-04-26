@@ -66,6 +66,29 @@
 .NavlinkCart{
     color: black;
 }
+.NavlinkCart i{
+    padding: 13px 10px;
+    /* margin-left: 10px; */
+    font-size: 1.3rem;
+    color: black;
+}
+.NavlinkCart i span{
+    font-size: 1rem;
+}
+
+.NavlinkCart i:hover{
+    color: purple;
+}
+
+.Outerdiv{
+   margin: 0 auto;
+}
+
+.Outerdiv:hover{
+   
+    border-radius: 5px;
+    background-color: rgb(236, 236, 236);
+}
 
 .Badge {
     position: relative;

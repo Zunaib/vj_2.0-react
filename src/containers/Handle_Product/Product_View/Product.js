@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classes from './Product.css';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../../Store/Actions/index';
 import Auxilary from '../../../hoc/Auxilary/Auxilary'
@@ -26,6 +27,10 @@ class Product extends Component {
     addtocart = () => {
         this.props.onaddtocart(this.props.token, this.state.product);
     }
+    productdelete = () => {
+        console.log('called')
+        this.props.onproductdelete(this.props.token, this.state.product)
+    }
     render() {
 
         // let productid = this.state.product;
@@ -49,25 +54,23 @@ class Product extends Component {
                             <div className={classes.Desc}>
                                 <h4>Description</h4>
                                 <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
-                            </p>
+                                    {product.description}
+                                </p>
                             </div>
 
                             <div className={classes.Desc}>
-                                <h4>Designer Information</h4>
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
+                                <h4>Quantity</h4>
+                                <h4>
+                                    {product.quantity}
+                                </h4>
                             </div>
 
                             <div className={classes.Desc}>
-                                <h4>Product Details</h4>
+                                <h4>Available sizes</h4>
                                 <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </p>
+                                    {product.sizes}
+
+                                </p>
                             </div>
                             <Button btnType="WebButton" clicked={this.addtocart} >Add To Cart</Button>
                         </div>
@@ -80,10 +83,25 @@ class Product extends Component {
         return (
             <div className={classes.Main}>
                 <div className={classes.Album}>
+                    <NavLink to="/dashboard/designer">
+                        <div className={classes.cross}>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
                     {productdata}
+                    <NavLink to="/dashboard/designer" >
+                        <div className={classes.Edit}>
+                            <i className="far fa-edit"></i>
+                        </div>
+                    </NavLink>
+                    <NavLink to="" onClick={this.productdelete}>
+                        <div className={classes.Remove}>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
                 </div>
 
-                <div className={classes.ProfileWork}>
+                {/* <div className={classes.ProfileWork}>
                     <div className={classes.WorkButtons}>
                         <div className={classes.Workbutton} >
                             <i className="fas fa-truck"></i>
@@ -95,13 +113,13 @@ class Product extends Component {
                             <i className="fas fa-copyright"></i>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
                 <div className={classes.Album_Bottom}>
                     <div className={classes.WorkDisplay}>
                         <div className={classes.Work}>
-                            <h2>More Products From This Designer :</h2>
+                            {/* <h2>More Products From This Designer :</h2> */}
                             <div className={classes.Content}>
                                 {/* <div >
                                         <i className="fas fa-plus"></i>
@@ -137,7 +155,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentproduct: (token, productid) => dispatch(actions.FetchSingleProduct(token, productid)),
-        onaddtocart: (token, productid) => dispatch(actions.AddToCart(token, productid))
+        onaddtocart: (token, productid) => dispatch(actions.AddToCart(token, productid)),
+        onproductdelete: (token, productid) => dispatch(actions.DeleteProduct(token, productid))
     }
 }
 

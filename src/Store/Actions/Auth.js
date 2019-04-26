@@ -82,10 +82,12 @@ export const Auth = (data, type) => {
                     } else if (flags.isBlogger) {
                         flag = 'Blogger'
                     }
+
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('userId', response.data.userId);
+                    localStorage.setItem('userflag', flag);
                 }
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('userId', response.data.userId);
-                localStorage.setItem('userflag', flag);
+
                 dispatch(AuthSuccess(response.data.token, response.data.userId, flag));
                 if (type === "Signup") {
                     dispatch(ResetRedirect());

@@ -6,9 +6,12 @@ export { FetchSingleProduct } from './CurrentProduct';
 export { AddToCart } from './AddtoCart';
 export { FetchCart, UpdateCart } from './Cart';
 export { FetchOrders } from './CustomerOrder';
+export { FetchDesignerOrders } from './DesignerOrder';
+export { UpdateAlbumSettings, DeleteAlbum } from './EditAlbum';
+export { DeleteProduct } from './EditProduct';
 export { FetchCheckoutSettings, FetchCheckoutCart, Checkout, SetTemporary } from './Checkout';
 export { FetchSettings, UpdateSettings, MsgRefresh } from './UserSettings';
-export { FetchUserSettings, } from './NavContent';
+export { FetchUserSettings } from './NavContent';
 export { AddAlbum, AlbumMsgRefresh } from './Album';
 export { AddProduct, ProductMsgRefresh } from './Product';
 export {

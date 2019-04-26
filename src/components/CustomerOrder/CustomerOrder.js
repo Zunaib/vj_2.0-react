@@ -8,7 +8,16 @@ const CustomerOrder = (props) => {
     // for (let i = 0; i < products.length; i++) {
     //     productnames[i] = products[i]
     // }
-    console.log(products);
+    let total = 0
+    let productNames = []
+    let designers = []
+    for (let i = 0; i < products.length; i++) {
+        console.log(products[i])
+        total = products[i].price + total;
+        productNames[i] = products[i].product.productName
+        designers[i] = products[i].product.userId.firstName
+    }
+    console.log(productNames);
 
     return (
         <tr className={classes.TbTr}>
@@ -17,20 +26,18 @@ const CustomerOrder = (props) => {
                     <Link to="#order" className={classes.ThTrTh11}>{"Order No " + props.index}</Link>
                 </span>
             </td>
-            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>Red</td>
-            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>{props.sizes}</td>
+            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>{productNames.join('  ,  ')}</td>
+            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>{designers.join('  ,  ')}</td>
             <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
                 <span>
-                    <small>Rs </small>
-                    {props.price}
+                    {products.status}
                 </span>
             </td>
             <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh14].join(' ')}>
 
                 <div className={classes.QuanButtons}>
-                    <div className={classes.ibutton2}>
-                        <i className="fas fa-plus"></i>
-                    </div>
+                    <small>Rs </small>
+                    {total}
                 </div>
 
             </td>

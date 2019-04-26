@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../Store/Actions/index';
 import classes from './Checkout.css';
 
@@ -174,6 +175,7 @@ class Checkout extends Component {
             },
         },
         formIsValid: false,
+        redirect: null
         // userName: "",
         // // desc: "",
         // selectedFile: null,
@@ -215,6 +217,7 @@ class Checkout extends Component {
             console.log('Invalid')
         }
 
+        this.setState({ redirect: <Redirect to="/dashboard/customerorders" /> })
 
     }
 
@@ -263,6 +266,7 @@ class Checkout extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
+
                 <Button btnType="WebButton">Checkout</Button>
             </form>
         );
@@ -274,6 +278,8 @@ class Checkout extends Component {
 
         return (
             <div className={classes.Main}>
+                {this.state.redirect}
+
                 <div className={classes.FormCard}>
                     <FormCard form={form} />
 

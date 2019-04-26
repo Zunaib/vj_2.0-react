@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import { NavLink } from 'react-router-dom';
-import classes from './CustomerOrder.css';
+import classes from './DesignerOrder.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
 // import Button from '../../components/UI/Button/Button';
-import CustomerOrderBody from '../../components/CustomerOrder/CustomerOrder';
+import DesignerOrderBody from '../../components/DesignerOrder/DesignerOrder';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 class CustomerOrder extends Component {
@@ -36,11 +36,12 @@ class CustomerOrder extends Component {
                 </tr>)
                 ;
         } else if (this.props.orders) {
+
             carddata = (orders.map((order, index) => (
-                <CustomerOrderBody
+                <DesignerOrderBody
                     key={order._id}
                     index={index + 1}
-                    products={order.products}
+                    products={order}
                 // name={cart.productId.productName}
                 // price={cart.productId.price}
                 // sizes={cart.productId.sizes}
@@ -59,12 +60,14 @@ class CustomerOrder extends Component {
                         <table className={classes.Table}>
                             <thead className={classes.Thead}>
                                 <tr className={classes.TheadTrow}>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Order Number</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Products</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Designers</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Status</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Total</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}></th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Product Name</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Customer Name</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Address</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Phone No</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Price</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Payment Method</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Discount</th>
+
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Cancel</th>
                                 </tr>
                             </thead>
@@ -82,14 +85,14 @@ class CustomerOrder extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
-        orders: state.CustomerOrders.orders,
-        loading: state.CustomerOrders.loading
+        orders: state.DesignerOrders.orders,
+        loading: state.DesignerOrders.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchorders: (token) => dispatch(actions.FetchOrders(token))
+        onfetchorders: (token) => dispatch(actions.FetchDesignerOrders(token))
     }
 }
 

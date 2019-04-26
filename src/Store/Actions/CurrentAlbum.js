@@ -23,11 +23,32 @@ export const fetchalbumStart = () => {
     };
 };
 
+export const fetchalbumproductsSuccess = (albumproducts) => {
+    return {
+        type: actionTypes.Fetch_Single_AlbumProduct_Success,
+        albumproducts: albumproducts
+    };
+};
+
+export const fetchalbumproductsfailed = (error) => {
+    return {
+        type: actionTypes.Fetch_Single_AlbumProduct_Failed,
+        producterror: error
+    };
+};
+
+export const fetchalbumproductsStart = () => {
+    return {
+        type: actionTypes.Fetch_Single_AlbumProduct_Start,
+    };
+};
+
 export const FetchSingleAlbum = (token, albumid) => {
     const album = {
         albumId: albumid
     }
     return dispatch => {
+
         dispatch(fetchalbumStart());
         axios.post('/api/fetchSingleAlbum?access_token=' + token, album)
             .then(res => {
@@ -37,5 +58,26 @@ export const FetchSingleAlbum = (token, albumid) => {
                 console.log(err)
                 dispatch(fetchalbumfailed(err));
             });
+
+        dispatch(fetchalbumproductsStart());
+        axios.post('/api/fetchProductsByAlbums?access_token=' + token, album)
+            .then(res => {
+
+                const fetchedProducts = [];
+                for (let key in res.data) {
+                    fetchedProducts.push({
+                        ...res.data[key]
+                    });
+                }
+                let data = fetchedProducts[1];
+                let myData = Object.keys(data).map(key => {
+                    return data[key];
+                })
+                dispatch(fetchalbumproductsSuccess(myData));
+            })
+            .catch(err => {
+                dispatch(fetchalbumproductsfailed(err));
+            });
+
     }
 }

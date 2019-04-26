@@ -62,6 +62,9 @@ class SimpleMenu extends Component {
                     <NavLink className={classes.Link} to="/dashboard/usersettings">
                         <MenuItem onClick={this.handleClose}>Settings</MenuItem>
                     </NavLink>
+                    <NavLink className={classes.Link} to="/dashboard/customerorders">
+                        <MenuItem onClick={this.handleClose}>Orders</MenuItem>
+                    </NavLink>
                     <NavLink className={classes.Link} to="/logout">
                         <MenuItem onClick={this.handleClose}>Logout</MenuItem>
                     </NavLink>
@@ -85,6 +88,9 @@ class SimpleMenu extends Component {
                     </NavLink>
                     <NavLink className={classes.Link} to="/dashboard/usersettings">
                         <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+                    </NavLink>
+                    <NavLink className={classes.Link} to="/dashboard/customerorders">
+                        <MenuItem onClick={this.handleClose}>Orders</MenuItem>
                     </NavLink>
                     <NavLink className={classes.Link} to="/logout">
                         <MenuItem onClick={this.handleClose}>Logout</MenuItem>
@@ -110,6 +116,9 @@ class SimpleMenu extends Component {
                     <NavLink className={classes.Link} to="/dashboard/usersettings">
                         <MenuItem onClick={this.handleClose}>Settings</MenuItem>
                     </NavLink>
+                    <NavLink className={classes.Link} to="/dashboard/customerorders">
+                        <MenuItem onClick={this.handleClose}>Orders</MenuItem>
+                    </NavLink>
                     <NavLink className={classes.Link} to="/logout">
                         <MenuItem onClick={this.handleClose}>Logout</MenuItem>
                     </NavLink>
@@ -133,6 +142,9 @@ class SimpleMenu extends Component {
                     </NavLink>
                     <NavLink className={classes.Link} to="/dashboard/usersettings">
                         <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+                    </NavLink>
+                    <NavLink className={classes.Link} to="/dashboard/customerorders">
+                        <MenuItem onClick={this.handleClose}>Orders</MenuItem>
                     </NavLink>
                     <NavLink className={classes.Link} to="/logout">
                         <MenuItem onClick={this.handleClose}>Logout</MenuItem>

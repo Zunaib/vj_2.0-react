@@ -4,12 +4,14 @@ import classes from './Album.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../Store/Actions/index';
 import Auxilary from '../../../hoc/Auxilary/Auxilary'
+import AlbumProducts from '../../../components/AlbumProducts/AlbumProducts';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 
 class Album extends Component {
 
     state = {
-        album: null
+        album: null,
+        delete: null
     }
 
     componentWillMount() {
@@ -18,10 +20,13 @@ class Album extends Component {
         const albumid = res[1];
         this.setState({ album: albumid })
         if (this.props.token) {
-            this.props.onfetchcurrentalbum(this.props.token, albumid)
+            this.props.onfetchcurrentalbum(this.props.token, albumid);
         }
     }
 
+    albumdelete = () => {
+        this.props.onalbumdelete(this.props.token, this.state.album)
+    }
     render() {
         let albumid = this.state.album;
 
@@ -46,6 +51,17 @@ class Album extends Component {
                             <img src={album_thumbnail} alt="Album_Thumbnail" />
                         </div>
                     </div>
+                    <NavLink to="/dashboard/designer">
+                        <div className={classes.Edit}>
+                            <i className="far fa-edit"></i>
+                        </div>
+                    </NavLink>
+                    {/* to="/dashboard/designer" */}
+                    <NavLink to="" onClick={this.albumdelete} >
+                        <div className={classes.Remove} >
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
 
                     <div className={classes.Album_Bottom}>
                         <div className={classes.WorkDisplay}>
@@ -53,12 +69,12 @@ class Album extends Component {
                                 <h2>Album Products</h2>
                                 <div className={classes.Content}>
                                     <div className={classes.Add} >
-                                        <NavLink to={path}>
+                                        <NavLink to={path} >
                                             <i className="fas fa-plus"></i>
                                         </NavLink>
                                     </div>
                                     <div className={classes.AlbumProducts}>
-
+                                        <AlbumProducts products={this.props.currentalbumproducts} loading={this.props.loading} />
                                     </div>
                                 </div>
 
@@ -73,7 +89,13 @@ class Album extends Component {
         return (
             <div className={classes.Main}>
                 <div className={classes.Album}>
+                    <NavLink to="/dashboard/designer">
+                        <div className={classes.cross}>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
                     {albumdata}
+
                 </div>
             </div>
         )
@@ -85,13 +107,15 @@ const mapStateToProps = state => {
     return {
         token: state.Auth.token,
         currentalbum: state.CurrentAlbum.currentalbum,
+        currentalbumproducts: state.CurrentAlbum.currentalbumproducts,
         loading: state.CurrentAlbum.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchcurrentalbum: (token, albumid) => dispatch(actions.FetchSingleAlbum(token, albumid))
+        onfetchcurrentalbum: (token, albumid) => dispatch(actions.FetchSingleAlbum(token, albumid)),
+        onalbumdelete: (token, albumid) => dispatch(actions.DeleteAlbum(token, albumid))
     }
 }
 

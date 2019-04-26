@@ -19,8 +19,9 @@ class LatestProducts extends Component {
                     images={product.images}
                 />
             </NavLink>
-
         )));
+
+        console.log(cards)
 
         return (
             <div className={classes.Work} >

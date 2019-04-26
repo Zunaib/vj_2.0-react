@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import validator from 'validator';
 import * as actions from '../../Store/Actions/index';
 import { checkValidity } from '../../Shared/Validator';
 
@@ -9,6 +10,7 @@ import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import Snackbar from '../../components/UI/SnackBar/Snackbar';
 
 class SignUp extends Component {
 
@@ -46,7 +48,7 @@ class SignUp extends Component {
                 elementType: 'password',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Abc@xyz22'
+                    placeholder: '1(A) 1(a) 1(0) 1(@)'
                 },
                 value: '',
                 validation: {
@@ -91,9 +93,11 @@ class SignUp extends Component {
             email: formData.email,
             password: formData.password
         }
-        this.props.onAuth(signUpData, 'Signup');
-        this.fieldclearHandler();
-        this.setState({ formIsValid: false });
+        if (this.state.formIsValid) {
+            this.props.onAuth(signUpData, 'Signup');
+            this.fieldclearHandler();
+            this.setState({ formIsValid: false });
+        }
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -113,6 +117,10 @@ class SignUp extends Component {
             formIsValid = updatedsignupForm[inputIdentifier].valid && formIsValid;
         }
         this.setState({ signupForm: updatedsignupForm, formIsValid: formIsValid });
+    }
+
+    send() {
+
     }
 
     render() {
@@ -150,10 +158,23 @@ class SignUp extends Component {
             signRedirect = <Redirect to='/login' />;
         }
 
+        let errorsnack = null;
+        if (!this.state.signupForm.email.value && this.props.error) {
+            let msg = "Wrong Input Format Entered";
+            if (this.props.error.userNameExist) {
+                msg = "User Name Exists";
+            }
+            if (this.props.error.emailExist) {
+                msg = "Email Already Exists";
+            }
 
+            errorsnack = (<Snackbar message={msg} snackType="error" errRefresh={this.props.onErrorRefresh} />);
+
+        }
 
         return (
             <div className={classes.Background}>
+                {errorsnack}
                 {signRedirect}
                 <div className={classes.Main}>
                     <div className={classes.ImageSide}>
@@ -180,7 +201,6 @@ class SignUp extends Component {
 
 const mapStateToProps = state => {
     return {
-        token: state.Auth.token,
         loading: state.Auth.loading,
         error: state.Auth.error,
         redirect: state.Auth.redirect
@@ -189,7 +209,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (signUpData, type) => dispatch(actions.Auth(signUpData, type)),
-        onresetRedirect: () => dispatch(actions.ResetRedirect())
+        onresetRedirect: () => dispatch(actions.ResetRedirect()),
+        onErrorRefresh: () => dispatch(actions.ErrRefresh())
     }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classes from './DesignerProfile.css';
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import display from '../../assets/images/defaultuserimage.png'
@@ -22,21 +23,19 @@ class DesignerProfile extends Component {
     componentWillMount = () => {
         if (this.props.token) {
             this.props.onfetchsettings(this.props.token);
-        }
-        setTimeout(() => {
-            let user = this.props.settings[0];
-            this.setState({
-                userimage: user.displayPicture,
-                userfirst: user.firstName,
-                userlast: user.lastName,
-                desc: user.description
-            })
-        }, 50)
-
-        if (this.props.token) {
             let limit = 8;
             this.props.onfetchprofilecontent(this.props.token, limit);
+            setTimeout(() => {
+                let user = this.props.settings[0];
+                this.setState({
+                    userimage: user.displayPicture,
+                    userfirst: user.firstName,
+                    userlast: user.lastName,
+                    desc: user.description
+                })
+            }, 50)
         }
+
     }
 
 
@@ -65,7 +64,7 @@ class DesignerProfile extends Component {
 
     render() {
 
-        let img = null;
+        let img = display;
         let firstname = this.state.userfirst;
         let lastname = this.state.userlast;
         let desc = this.state.desc
@@ -75,26 +74,28 @@ class DesignerProfile extends Component {
             img = display;
         }
 
-        // let imgbutton = null;
-        // if (this.props.flag === 'Designer') {
-        //     imgbutton = ()
-        // }
-
         let content = this.getContent(this.state.profilecontent);
         return (
             <div className={classes.Main}>
 
                 <div className={classes.TopImage}>
                 </div>
+
                 <div className={classes.ProfileImageButton} >
-                    <img src={img} alt="Display" />
+                    <img src={this.state.userimage ? this.state.userimage : img} alt="Display" />
                     <i className="fas fa-plus"></i>
                 </div>
 
                 <div className={classes.Profile}>
+                    <NavLink to="/dashboard/designerorders">
+                        <div className={classes.Orders} >
+                            <i className="fas fa-sort-amount-down"></i>
+                            <h5>Requested Orders</h5>
+                        </div>
+                    </NavLink>
 
                     <div className={classes.ProfileInfo} >
-                        <h1>{firstname + " " + lastname}</h1>
+                        <h1>{firstname ? firstname + " " + lastname : 'Name'}</h1>
                         <h5>DESIGNER</h5>
 
                         <div className={classes.ConnectIcons}>
@@ -103,7 +104,9 @@ class DesignerProfile extends Component {
                             <i className="fas fa-globe" ></i>
                         </div>
 
-                        <div className={classes.Desc}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</div>
+                        <div className={classes.Desc}>
+                            {desc ? desc : 'Designer Description'}
+                        </div>
 
                     </div>
 

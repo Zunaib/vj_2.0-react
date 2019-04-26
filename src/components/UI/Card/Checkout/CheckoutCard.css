@@ -71,5 +71,6 @@ div.ProfileCardText h4{
 .Disc h4{
     color: rgb(255, 198, 93);
     font-style: italic;
+    font-weight: 100;
 }
 

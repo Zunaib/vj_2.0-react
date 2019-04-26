@@ -57,7 +57,7 @@ class ProfileCard extends Component {
                     Cash On Delivery
                 </label>
                 <div className={classes.Disc}>
-                    <h4><b>We Currently Only Support Cash on Delivery. Further Payment Methods Are In Upcoming Updates.</b></h4>
+                    <h4>We Currently Only Support Cash on Delivery. Further Payment Methods Are In Upcoming Updates.</h4>
                 </div>
             </div>
         );

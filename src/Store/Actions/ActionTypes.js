@@ -62,6 +62,9 @@ export const Fetch_DesignerProfile_Album_Start = 'Fetch_DesignerProfile_Album_St
 export const Fetch_Single_Album_Start = 'Fetch_Single_Album_Start';
 export const Fetch_Single_Album_Failed = 'Fetch_Single_Album_Failed';
 export const Fetch_Single_Album_Success = 'Fetch_Single_Album_Success';
+export const Fetch_Single_AlbumProduct_Start = 'Fetch_Single_AlbumProduct_Start';
+export const Fetch_Single_AlbumProduct_Failed = 'Fetch_Single_AlbumProduct_Failed';
+export const Fetch_Single_AlbumProduct_Success = 'Fetch_Single_AlbumProduct_Success';
 
 /* Fetch Current Opened Product */
 export const Fetch_Single_Product_Start = 'Fetch_Single_Product_Start';
@@ -105,7 +108,31 @@ export const Fetch_Customer_Orders_Start = 'Fetch_Customer_Orders_Start';
 export const Fetch_Customer_Orders_Failed = 'Fetch_Customer_Orders_Failed';
 export const Fetch_Customer_Orders_Success = 'Fetch_Customer_Orders_Success';
 
+/* Fetch Designer Orders */
+export const Fetch_Designer_Orders_Start = 'Fetch_Designer_Orders_Start';
+export const Fetch_Designer_Orders_Failed = 'Fetch_Designer_Orders_Failed';
+export const Fetch_Designer_Orders_Success = 'Fetch_Designer_Orders_Success';
+
 /* Fetch User NavSetting Actions */
 export const Fetch_NavSetting_Start = 'Fetch_NavSetting_Start';
 export const Fetch_NavSetting_Success = 'Fetch_NavSetting_Success';
 export const Fetch_NavSetting_Failed = 'Fetch_NavSetting_Failed';
+
+
+
+/* Delete User Settings Actions */
+export const Delete_AlbumSettings_Start = 'Delete_AlbumSettings_Start';
+export const Delete_AlbumSettings_Success = 'Delete_AlbumSettings_Success';
+export const Delete_AlbumSettings_Failed = 'Delete_AlbumSettings_Failed';
+
+/* Update User Settings Actions */
+export const Update_AlbumSettings_Start = 'Update_AlbumSettings_Start';
+export const Update_AlbumSettings_Success = 'Update_AlbumSettings_Success';
+export const Update_AlbumSettings_Failed = 'Update_AlbumSettings_Failed';
+export const Update_AlbumMessage_Refresh = "Update_AlbumMessage_Refresh";
+
+
+/* Delete Product Settings Actions */
+export const Delete_ProductSettings_Start = 'Delete_ProductSettings_Start';
+export const Delete_ProductSettings_Success = 'Delete_ProductSettings_Success';
+export const Delete_ProductSettings_Failed = 'Delete_ProductSettings_Failed';

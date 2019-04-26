@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classes from './AlbumCrud.css';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as actions from '../../../Store/Actions/index';
@@ -199,6 +200,9 @@ class Album extends Component {
                 {redirect}
                 {imgsnack}
                 <div className={classes.Album}>
+                    <NavLink to="/dashboard/designer">
+                        <i className="fas fa-times"></i>
+                    </NavLink>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
                             <h1>Add Album</h1>

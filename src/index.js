@@ -24,6 +24,7 @@ import AddtoCartReducer from './Store/Reducers/AddtoCart';
 import CartReducer from './Store/Reducers/Cart';
 import CheckoutReducer from './Store/Reducers/Checkout';
 import CustomerOrdersReducer from './Store/Reducers/CustomerOrder';
+import DesignerOrdersReducer from './Store/Reducers/DesignerOrder';
 import NavContentReducer from './Store/Reducers/NavContent';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -42,6 +43,7 @@ const rootRecucer = combineReducers({
     Cart: CartReducer,
     Checkout: CheckoutReducer,
     CustomerOrders: CustomerOrdersReducer,
+    DesignerOrders: DesignerOrdersReducer,
     Nav: NavContentReducer
 });
 

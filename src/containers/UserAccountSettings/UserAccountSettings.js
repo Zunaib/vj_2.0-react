@@ -235,10 +235,12 @@ class UserAccountSettings extends Component {
         let action = false;
         for (let i = 0; i < formElements.length; i++) {
             let target = formElements[i];
-            if (formData[target] !== this.props.settings[0][target] && formData[target] !== "") {
+            if (formData[target] !== this.props.settings[0][target] && formData['phone'] !== "") {
                 action = true;
             }
         }
+
+        console.log(action)
 
         let data = new FormData();
         if (this.state.selectedFile) {
@@ -259,7 +261,7 @@ class UserAccountSettings extends Component {
         data.append('country', formData.country);
         data.append('phone', formData.phone);
 
-        if (this.state.formIsValid && action) {
+        if (true) {
             this.props.onUpdateSettings(this.props.token, data);
             console.log('valid')
         } else {

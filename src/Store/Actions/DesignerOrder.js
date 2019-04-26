@@ -5,30 +5,31 @@ import axios from '../../axios';
 
 export const fetchordersSuccess = (orders) => {
     return {
-        type: actionTypes.Fetch_Customer_Orders_Success,
+        type: actionTypes.Fetch_Designer_Orders_Success,
         orders: orders
     };
 };
 
 export const fetchordersfailed = (error) => {
     return {
-        type: actionTypes.Fetch_Customer_Orders_Failed,
+        type: actionTypes.Fetch_Designer_Orders_Failed,
         error: error
     };
 };
 
 export const fetchordersStart = () => {
     return {
-        type: actionTypes.Fetch_Customer_Orders_Start,
+        type: actionTypes.Fetch_Designer_Orders_Start,
     };
 };
 
-export const FetchOrders = (token) => {
+export const FetchDesignerOrders = (token) => {
+
+    console.log('called')
     return dispatch => {
         dispatch(fetchordersStart());
-        axios.get('/api/fetchCustomerOrders?access_token=' + token)
+        axios.get('/api/fetchdesignerOrders?access_token=' + token)
             .then(res => {
-                // console.log(res)
                 const fetchedProducts = [];
                 for (let key in res.data) {
                     fetchedProducts.push({
@@ -39,9 +40,6 @@ export const FetchOrders = (token) => {
                 let myData = Object.keys(data).map(key => {
                     return data[key];
                 })
-
-                console.log(myData)
-
 
                 dispatch(fetchordersSuccess(myData));
             })

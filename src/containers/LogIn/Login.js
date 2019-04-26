@@ -99,7 +99,9 @@ class Login extends Component {
         this.setState({ loginForm: updatedloginForm, formIsValid: formIsValid });
     }
 
+    send() {
 
+    }
     render() {
 
         // let forgetpassword = <a className={classes.Forgot} href="/login">Forgot Password ?</a>;
@@ -107,7 +109,7 @@ class Login extends Component {
         let errorsnack = null;
         if (this.props.error) {
             let msg = null;
-            if (this.props.error === 'Email_NotFound') {
+            if (this.props.error.message === 'Email_NotFound') {
                 msg = 'Email Not Found';
             } else {
                 msg = 'Incorrect Password';
@@ -142,7 +144,7 @@ class Login extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <Button btnType="LoginButton" >LOGIN</Button>
+                <Button btnType="LoginButton" >Sign In</Button>
             </form>
         );
 
