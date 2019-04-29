@@ -33,7 +33,7 @@ class DesignerProfile extends Component {
                     userlast: user.lastName,
                     desc: user.description
                 })
-            }, 50)
+            }, 100)
         }
 
     }
@@ -64,7 +64,7 @@ class DesignerProfile extends Component {
 
     render() {
 
-        let img = display;
+        let img = null;
         let firstname = this.state.userfirst;
         let lastname = this.state.userlast;
         let desc = this.state.desc
@@ -82,7 +82,7 @@ class DesignerProfile extends Component {
                 </div>
 
                 <div className={classes.ProfileImageButton} >
-                    <img src={this.state.userimage ? this.state.userimage : img} alt="Display" />
+                    <img src={this.state.userimage ? img : display} alt="Display" />
                     <i className="fas fa-plus"></i>
                 </div>
 

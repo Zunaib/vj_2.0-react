@@ -41,7 +41,7 @@ class Product extends Component {
         if (this.props.loading) {
             productdata = <Spinner />
         } else {
-            let product = this.props.currentproduct
+            let product = this.props.currentproduct;
             let product_thumbnail = 'http://localhost:5000' + product.images[0];
             productdata = (
                 <Auxilary>
