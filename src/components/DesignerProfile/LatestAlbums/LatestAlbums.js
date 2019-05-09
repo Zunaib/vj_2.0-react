@@ -23,7 +23,7 @@ class LatestAlbums extends Component {
             <div className={classes.Work}>
                 <div className={classes.Content}>
                     <h3>Latest Collections</h3>
-                    <NavLink to="/dashboard/handle_album">
+                    <NavLink to="/dashboard/handle_album/add_album">
                         <div >
                             <i className="fas fa-plus"></i>
                         </div>

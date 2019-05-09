@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from './Store/Actions/index';
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 import LandingLayout from './hoc/Layout/LandingLayout';
@@ -14,6 +15,22 @@ const asyncLogout = asyncComponent(() => {
 })
 
 class App extends Component {
+
+
+  componentDidMount = () => {
+    console.log('mounted')
+    if (this.props.isAuth) {
+      this.props.onfetchsettings(this.props.isAuth);
+    }
+  }
+
+  componentDidUpdate() {
+    console.log('did upd')
+    if (this.props.isAuth) {
+      window.location.reload();
+    }
+  }
+
 
   render() {
 
@@ -49,4 +66,10 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    onfetchsettings: (token) => dispatch(actions.FetchSettings(token))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

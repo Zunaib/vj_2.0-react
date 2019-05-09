@@ -1,0 +1,15 @@
+.Main i,h4{
+    cursor: pointer;
+}
+
+
+.Menu a {
+    color: red;
+    text-decoration: none;
+}
+
+.Menu a:hover,
+.Menu a:active,
+.Menu a.active {
+    color:red;
+}

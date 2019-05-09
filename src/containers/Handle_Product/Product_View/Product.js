@@ -6,6 +6,7 @@ import * as actions from '../../../Store/Actions/index';
 import Auxilary from '../../../hoc/Auxilary/Auxilary'
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
+import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
 // import display from '../../../assets/images/testimg.jpg';
 // import ProductCard from '../../../components/UI/Card/Product/ProductCard';
 class Product extends Component {
@@ -85,20 +86,15 @@ class Product extends Component {
                 <div className={classes.Album}>
                     <NavLink to="/dashboard/designer">
                         <div className={classes.cross}>
+                            <h4>Close</h4>
                             <i className="fas fa-times"></i>
                         </div>
                     </NavLink>
+                    <div className={classes.SettingButton}>
+                        <Settings />
+                    </div>
+
                     {productdata}
-                    <NavLink to="/dashboard/designer" >
-                        <div className={classes.Edit}>
-                            <i className="far fa-edit"></i>
-                        </div>
-                    </NavLink>
-                    <NavLink to="" onClick={this.productdelete}>
-                        <div className={classes.Remove}>
-                            <i className="fas fa-times"></i>
-                        </div>
-                    </NavLink>
                 </div>
 
                 {/* <div className={classes.ProfileWork}>

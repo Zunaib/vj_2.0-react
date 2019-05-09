@@ -18,12 +18,10 @@ import { checkValidity } from '../../Shared/Validator';
 
 class UserAccountSettings extends Component {
 
-    componentWillMount = () => {
-        if (this.props.token) {
-            this.props.onfetchsettings(this.props.token);
-        }
-    }
-    componentDidMount() {
+    componentDidMount = () => {
+        // if (this.props.token) {
+        //     this.props.onfetchsettings(this.props.token);
+        // }
         this.getData();
     }
     getData() {
@@ -66,7 +64,7 @@ class UserAccountSettings extends Component {
             this.setState({ desc: this.props.settings[0].description });
             this.setState({ userimage: this.props.settings[0].displayPicture });
 
-        }, 50)
+        }, 60)
 
     }
 
@@ -263,12 +261,11 @@ class UserAccountSettings extends Component {
 
         if (true) {
             this.props.onUpdateSettings(this.props.token, data);
+            window.location.reload();
             console.log('valid')
         } else {
             console.log('Invalid')
         }
-
-
     }
 
     inputChangedHandler = (event, inputIdentifier) => {

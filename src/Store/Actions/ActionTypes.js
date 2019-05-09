@@ -136,3 +136,24 @@ export const Update_AlbumMessage_Refresh = "Update_AlbumMessage_Refresh";
 export const Delete_ProductSettings_Start = 'Delete_ProductSettings_Start';
 export const Delete_ProductSettings_Success = 'Delete_ProductSettings_Success';
 export const Delete_ProductSettings_Failed = 'Delete_ProductSettings_Failed';
+
+/* Add Vlog Actions */
+export const Add_Vlog_Start = 'Add_Vlog_Start';
+export const Add_Vlog_Success = 'Add_Vlog_Success';
+export const Add_Vlog_Failed = 'Add_Vlog_Failed';
+export const Add_Vlog_Refresh = "Add_Vlog_Refresh";
+
+/* Fetch Current Opened Album */
+export const Fetch_Single_Vlog_Start = 'Fetch_Single_Vlog_Start';
+export const Fetch_Single_Vlog_Failed = 'Fetch_Single_Vlog_Failed';
+export const Fetch_Single_Vlog_Success = 'Fetch_Single_Vlog_Success';
+
+export const Update_Single_Vlog_Start = 'Update_Single_Vlog_Start';
+export const Update_Single_Vlog_Failed = 'Update_Single_Vlog_Failed';
+export const Update_Single_Vlog_Success = 'Update_Single_Vlog_Success';
+
+/* Add Blog Actions */
+export const Add_Blog_Start = 'Add_Blog_Start';
+export const Add_Blog_Success = 'Add_Blog_Success';
+export const Add_Blog_Failed = 'Add_Blog_Failed';
+export const Add_Blog_Refresh = "Add_Blog_Refresh";

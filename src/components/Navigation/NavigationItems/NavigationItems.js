@@ -16,30 +16,25 @@ class NavigationItems extends Component {
     }
 
 
-    componentWillMount = () => {
-        if (this.props.token) {
-            this.props.onfetchsettings(this.props.token);
-        }
-        setTimeout(() => {
-            let user = this.props.settings[0];
+    componentDidMount = () => {
+        let user = this.props.settings[0];
+        if (user) {
             this.setState({
                 userimage: user.displayPicture,
                 userfirst: user.firstName,
                 userlast: user.lastName
             })
-        }, 70)
+        }
     }
 
 
     render() {
 
-        let img = null;
+        let img = display;
         let firstname = this.state.userfirst;
         let lastname = this.state.userlast;
         if (this.state.userimage) {
             img = 'http://localhost:5000' + this.state.userimage;
-        } else {
-            img = display;
         }
 
 
@@ -92,7 +87,7 @@ class NavigationItems extends Component {
 
 const mapStateToProps = state => {
     return {
-        settings: state.Nav.settings,
+        settings: state.UserSettings.settings,
         token: state.Auth.token,
         flag: state.Auth.flag
     }

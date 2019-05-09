@@ -26,6 +26,9 @@ import CheckoutReducer from './Store/Reducers/Checkout';
 import CustomerOrdersReducer from './Store/Reducers/CustomerOrder';
 import DesignerOrdersReducer from './Store/Reducers/DesignerOrder';
 import NavContentReducer from './Store/Reducers/NavContent';
+import VlogReducer from './Store/Reducers/Vlog';
+import CurrentVlogReducer from './Store/Reducers/CurrentVlog';
+import EditVlogReducer from './Store/Reducers/Editvlog';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -44,7 +47,10 @@ const rootRecucer = combineReducers({
     Checkout: CheckoutReducer,
     CustomerOrders: CustomerOrdersReducer,
     DesignerOrders: DesignerOrdersReducer,
-    Nav: NavContentReducer
+    Nav: NavContentReducer,
+    VlogCrud: VlogReducer,
+    CurrentVlog: CurrentVlogReducer,
+    EditVlog: EditVlogReducer
 });
 
 const store = createStore(rootRecucer, composeEnhancers(

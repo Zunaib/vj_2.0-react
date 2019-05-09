@@ -28,6 +28,7 @@ export const FetchDash = (token) => {
         dispatch(fetchStart());
         axios.get('/api/fetchAllProducts?access_token=' + token)
             .then(res => {
+                console.log(res)
                 const fetchedProducts = [];
                 for (let key in res.data) {
                     fetchedProducts.push({

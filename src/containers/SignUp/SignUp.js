@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import validator from 'validator';
 import * as actions from '../../Store/Actions/index';
 import { checkValidity } from '../../Shared/Validator';
 

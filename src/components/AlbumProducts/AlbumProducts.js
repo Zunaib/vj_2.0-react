@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import classes from './AlbumProducts.css';
 import Auxilary from '../../hoc/Auxilary/Auxilary';
-import Spinner from '../UI/Spinner/Spinner';
+// import Spinner from '../UI/Spinner/Spinner';
 import ProductCard from '../UI/Card/Product/ProductCard';
 
 class ALbumProducts extends Component {

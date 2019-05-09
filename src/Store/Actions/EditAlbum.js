@@ -24,9 +24,6 @@ export const deletealbumStart = () => {
 };
 
 export const DeleteAlbum = (token, albumid) => {
-    let albumId = {
-        albumId: albumid
-    }
     return dispatch => {
         dispatch(deletealbumStart())
         axios.delete('/api/deleteAlbum?access_token=' + token, {

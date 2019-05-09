@@ -20,22 +20,19 @@ class DesignerProfile extends Component {
 
 
 
-    componentWillMount = () => {
-        if (this.props.token) {
-            this.props.onfetchsettings(this.props.token);
-            let limit = 8;
-            this.props.onfetchprofilecontent(this.props.token, limit);
-            setTimeout(() => {
-                let user = this.props.settings[0];
-                this.setState({
-                    userimage: user.displayPicture,
-                    userfirst: user.firstName,
-                    userlast: user.lastName,
-                    desc: user.description
-                })
-            }, 100)
-        }
+    componentDidMount = () => {
+        let limit = 8;
+        this.props.onfetchprofilecontent(this.props.token, limit);
 
+        let user = this.props.settings[0];
+        if (user) {
+            this.setState({
+                userimage: user.displayPicture,
+                userfirst: user.firstName,
+                userlast: user.lastName,
+                desc: user.description
+            })
+        }
     }
 
 
@@ -139,7 +136,7 @@ class DesignerProfile extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
-        settings: state.Nav.settings,
+        settings: state.UserSettings.settings,
         flag: state.Auth.flag,
         profileproducts: state.DesignerProfile.profileproducts,
         productloading: state.DesignerProfile.productloading,

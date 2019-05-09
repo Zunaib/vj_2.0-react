@@ -27,7 +27,7 @@ class LatestProducts extends Component {
             <div className={classes.Work} >
                 <div className={classes.Content}>
                     <h3>Latest Products</h3>
-                    <NavLink to="/dashboard/handle_product">
+                    <NavLink to="/dashboard/handle_product/add_product">
                         <div >
                             <i className="fas fa-plus"></i>
                         </div>
