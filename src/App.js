@@ -18,14 +18,12 @@ class App extends Component {
 
 
   componentDidMount = () => {
-    console.log('mounted')
     if (this.props.isAuth) {
       this.props.onfetchsettings(this.props.isAuth);
     }
   }
 
   componentDidUpdate() {
-    console.log('did upd')
     if (this.props.isAuth) {
       window.location.reload();
     }

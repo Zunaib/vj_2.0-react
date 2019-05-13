@@ -125,7 +125,7 @@ export const Delete_AlbumSettings_Start = 'Delete_AlbumSettings_Start';
 export const Delete_AlbumSettings_Success = 'Delete_AlbumSettings_Success';
 export const Delete_AlbumSettings_Failed = 'Delete_AlbumSettings_Failed';
 
-/* Update User Settings Actions */
+/* Update Album Settings Actions */
 export const Update_AlbumSettings_Start = 'Update_AlbumSettings_Start';
 export const Update_AlbumSettings_Success = 'Update_AlbumSettings_Success';
 export const Update_AlbumSettings_Failed = 'Update_AlbumSettings_Failed';

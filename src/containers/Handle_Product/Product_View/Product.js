@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from './Product.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../../Store/Actions/index';
 import Auxilary from '../../../hoc/Auxilary/Auxilary'
@@ -12,31 +12,26 @@ import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings'
 class Product extends Component {
 
     state = {
-        product: null
+        productid: null
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let str = window.location.href;
         let res = str.split("http://localhost:3000/dashboard/products/");
         const productid = res[1];
-        this.setState({ product: productid })
-        if (this.props.token) {
-            this.props.onfetchcurrentproduct(this.props.token, productid)
-        }
+        this.setState({ productid: productid })
+        this.props.onfetchcurrentproduct(this.props.token, productid)
+
     }
 
     addtocart = () => {
-        this.props.onaddtocart(this.props.token, this.state.product);
+        this.props.onaddtocart(this.props.token, this.state.productid);
     }
+
     productdelete = () => {
-        console.log('called')
-        this.props.onproductdelete(this.props.token, this.state.product)
+        this.props.onproductdelete(this.props.token, this.state.productid)
     }
     render() {
-
-        // let productid = this.state.product;
-
-        // let path = "/dashboard/" + productid + "/handle_product";
 
         let productdata = null;
         if (this.props.loading) {
@@ -81,17 +76,21 @@ class Product extends Component {
 
             )
         }
+
+
+        let editpath = '/dashboard/handle_product/update_product/' + this.state.productid;
         return (
             <div className={classes.Main}>
+                {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
+                    <NavLink to="/dashboard">
                         <div className={classes.cross}>
                             <h4>Close</h4>
                             <i className="fas fa-times"></i>
                         </div>
                     </NavLink>
                     <div className={classes.SettingButton}>
-                        <Settings />
+                        <Settings editpath={editpath} delete={this.productdelete} />
                     </div>
 
                     {productdata}
@@ -144,13 +143,14 @@ const mapStateToProps = state => {
     return {
         token: state.Auth.token,
         currentproduct: state.CurrentProduct.currentproduct,
-        loading: state.CurrentProduct.loading
+        loading: state.CurrentProduct.loading,
+        deleted: state.DeleteProduct.deleted
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchcurrentproduct: (token, productid) => dispatch(actions.FetchSingleProduct(token, productid)),
+        onfetchcurrentproduct: (token, productid) => dispatch(actions.FetchProduct(token, productid)),
         onaddtocart: (token, productid) => dispatch(actions.AddToCart(token, productid)),
         onproductdelete: (token, productid) => dispatch(actions.DeleteProduct(token, productid))
     }

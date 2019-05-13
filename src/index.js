@@ -8,64 +8,17 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import * as actions from './Store/Actions/index';
 
+import Store from './Store/Store';
 
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
-import ContactUsReducer from './Store/Reducers/ContactUs';
-import DashboardReducer from './Store/Reducers/Dashboard';
-import UserSettingsReducer from './Store/Reducers/UserSettings';
-import AuthReducer from './Store/Reducers/Auth';
-import AlbumCrudReducer from './Store/Reducers/Album';
-import ProductCrudReducer from './Store/Reducers/Product';
-import DesignerProfileReducer from './Store/Reducers/DesignerProfile';
-import CurrentAlbumReducer from './Store/Reducers/CurrentAlbum';
-import CurrentProductReducer from './Store/Reducers/CurrentProduct';
-import AddtoCartReducer from './Store/Reducers/AddtoCart';
-import CartReducer from './Store/Reducers/Cart';
-import CheckoutReducer from './Store/Reducers/Checkout';
-import CustomerOrdersReducer from './Store/Reducers/CustomerOrder';
-import DesignerOrdersReducer from './Store/Reducers/DesignerOrder';
-import NavContentReducer from './Store/Reducers/NavContent';
-import VlogReducer from './Store/Reducers/Vlog';
-import CurrentVlogReducer from './Store/Reducers/CurrentVlog';
-import EditVlogReducer from './Store/Reducers/Editvlog';
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const rootRecucer = combineReducers({
-    contactUs: ContactUsReducer,
-    Dashboard: DashboardReducer,
-    UserSettings: UserSettingsReducer,
-    AlbumCrud: AlbumCrudReducer,
-    ProductCrud: ProductCrudReducer,
-    Auth: AuthReducer,
-    DesignerProfile: DesignerProfileReducer,
-    CurrentAlbum: CurrentAlbumReducer,
-    CurrentProduct: CurrentProductReducer,
-    AddtoCart: AddtoCartReducer,
-    Cart: CartReducer,
-    Checkout: CheckoutReducer,
-    CustomerOrders: CustomerOrdersReducer,
-    DesignerOrders: DesignerOrdersReducer,
-    Nav: NavContentReducer,
-    VlogCrud: VlogReducer,
-    CurrentVlog: CurrentVlogReducer,
-    EditVlog: EditVlogReducer
-});
-
-const store = createStore(rootRecucer, composeEnhancers(
-    applyMiddleware(thunk)
-));
 
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('userId');
-const userflag = localStorage.getItem('userflag');
 if (token) {
-    store.dispatch(actions.AuthCheckState(token, userId, userflag));
+    Store.dispatch(actions.AuthCheckState(token, userId));
 }
 
 const app = (
-    <Provider store={store} >
+    <Provider store={Store} >
         <BrowserRouter>
             <SnackbarProvider maxSnack={3}>
                 <App />

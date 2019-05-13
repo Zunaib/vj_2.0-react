@@ -19,52 +19,46 @@ import { checkValidity } from '../../Shared/Validator';
 class UserAccountSettings extends Component {
 
     componentDidMount = () => {
-        // if (this.props.token) {
-        //     this.props.onfetchsettings(this.props.token);
-        // }
-        this.getData();
+        this.setData();
     }
-    getData() {
-        setTimeout(() => {
+    setData() {
 
-            const updatedsettingsForm = {
-                ...this.state.settingsForm
+        const updatedsettingsForm = {
+            ...this.state.settingsForm
+        };
+
+        const formElements = ['firstName', 'lastName', 'description', 'streetAddress', 'city',
+            'zipcode', 'province', 'country', 'gender', 'phone'];
+
+
+        for (let i = 0; i < formElements.length; i++) {
+            const updatedFormElement = {
+                ...updatedsettingsForm[formElements[i]]
             };
 
-            const formElements = ['firstName', 'lastName', 'description', 'streetAddress', 'city',
-                'zipcode', 'province', 'country', 'gender', 'phone'];
+            let target = formElements[i];
 
-
-            for (let i = 0; i < formElements.length; i++) {
-                const updatedFormElement = {
-                    ...updatedsettingsForm[formElements[i]]
-                };
-
-                let target = formElements[i];
-
-                if (this.props.settings[0][target] === null) {
-                    updatedFormElement.value = "";
-                    updatedFormElement.valid = false;
-                    updatedFormElement.touched = false;
-                } else {
-                    updatedFormElement.value = this.props.settings[0][target];
-                    updatedFormElement.valid = true;
-                    updatedFormElement.touched = true;
-                }
-
-                updatedsettingsForm[formElements[i]] = updatedFormElement;
+            if (this.props.settings[0][target] === null) {
+                updatedFormElement.value = "";
+                updatedFormElement.valid = false;
+                updatedFormElement.touched = false;
+            } else {
+                updatedFormElement.value = this.props.settings[0][target];
+                updatedFormElement.valid = true;
+                updatedFormElement.touched = true;
             }
 
-            let formIsValid = true;
-            for (let inputIdentifier in updatedsettingsForm) {
-                formIsValid = updatedsettingsForm[inputIdentifier].valid && formIsValid;
-            }
-            this.setState({ settingsForm: updatedsettingsForm, formIsValid: formIsValid });
-            this.setState({ userName: this.props.settings[0].userName });
-            this.setState({ desc: this.props.settings[0].description });
-            this.setState({ userimage: this.props.settings[0].displayPicture });
+            updatedsettingsForm[formElements[i]] = updatedFormElement;
+        }
 
-        }, 60)
+        let formIsValid = true;
+        for (let inputIdentifier in updatedsettingsForm) {
+            formIsValid = updatedsettingsForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({ settingsForm: updatedsettingsForm, formIsValid: formIsValid });
+        this.setState({ userName: this.props.settings[0].userName });
+        this.setState({ desc: this.props.settings[0].description });
+        this.setState({ userimage: this.props.settings[0].displayPicture });
 
     }
 
@@ -318,7 +312,7 @@ class UserAccountSettings extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
                 <FileUploader clicked={this.fileSelectedHandler} text="Profile Image" />
-                <Button btnType="WebButton">Update</Button>
+                <Button btnType="SetButton">Update</Button>
             </form>
         );
 

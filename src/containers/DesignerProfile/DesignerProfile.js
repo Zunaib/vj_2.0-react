@@ -87,7 +87,7 @@ class DesignerProfile extends Component {
                     <NavLink to="/dashboard/designerorders">
                         <div className={classes.Orders} >
                             <i className="fas fa-sort-amount-down"></i>
-                            <h5>Requested Orders</h5>
+                            <h4>Requested Orders</h4>
                         </div>
                     </NavLink>
 
@@ -149,8 +149,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchprofilecontent: (token, limit) => dispatch(actions.FetchDesignerProfileContent(token, limit)),
-        onfetchsettings: (token) => dispatch(actions.FetchUserSettings(token))
+        onfetchprofilecontent: (token, limit) => dispatch(actions.FetchDesignerProfileContent(token, limit))
     }
 }
 

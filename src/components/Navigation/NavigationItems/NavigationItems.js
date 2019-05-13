@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../../Store/Actions/index';
+// import * as actions from '../../../Store/Actions/index';
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 import display from '../../../assets/images/defaultuserimage.png';
@@ -92,10 +92,5 @@ const mapStateToProps = state => {
         flag: state.Auth.flag
     }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        onfetchsettings: (token) => dispatch(actions.FetchUserSettings(token))
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationItems);
+export default connect(mapStateToProps, null)(NavigationItems);

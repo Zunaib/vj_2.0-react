@@ -6,6 +6,7 @@ import ReactPlayer from 'react-player'
 import { NavLink } from 'react-router-dom';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
+import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
 
 // import video from '../../../assets/images/Vid.mp4'
 
@@ -73,11 +74,15 @@ class Vlog extends Component {
         return (
             <div className={classes.Main}>
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
+                    <NavLink to="/dashboard">
                         <div className={classes.cross}>
+                            <h4>Close</h4>
                             <i className="fas fa-times"></i>
                         </div>
                     </NavLink>
+                    <div className={classes.SettingButton}>
+                        <Settings />
+                    </div>
                     {vlogdata}
                     {/* <NavLink to="/dashboard/designer">
                         <div className={classes.Edit}>

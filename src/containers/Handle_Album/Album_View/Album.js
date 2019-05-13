@@ -1,48 +1,46 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import classes from './Album.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../Store/Actions/index';
 import Auxilary from '../../../hoc/Auxilary/Auxilary'
 import AlbumProducts from '../../../components/AlbumProducts/AlbumProducts';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
 
 class Album extends Component {
 
     state = {
-        album: null,
+        albumid: null,
         delete: null
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let str = window.location.href;
         let res = str.split("http://localhost:3000/dashboard/albums/");
         const albumid = res[1];
-        this.setState({ album: albumid })
-        if (this.props.token) {
-            this.props.onfetchcurrentalbum(this.props.token, albumid);
-        }
+        this.setState({ albumid: albumid })
+        this.props.onfetchcurrentalbum(this.props.token, albumid);
+
     }
 
     albumdelete = () => {
-        this.props.onalbumdelete(this.props.token, this.state.album)
+        this.props.onalbumdelete(this.props.token, this.state.albumid)
     }
     render() {
-        let albumid = this.state.album;
+        let albumid = this.state.albumid;
 
         let path = "/dashboard/" + albumid + "/handle_product";
 
-        let albumdata = null;
-        if (this.props.loading) {
-            albumdata = <Spinner />
-        } else {
+        let albumdata = <Spinner />;
+        if (!this.props.loading) {
             let album = this.props.currentalbum
             let album_thumbnail = 'http://localhost:5000' + album.thumbnail;
             albumdata = (
                 <Auxilary>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
-                            <h1>{album.albumName}</h1> <h2>{album.season + ' ' + album.year}</h2>
+                            <h1>{album.title}</h1> <h2>{album.season + ' ' + album.year}</h2>
                             <div className={classes.Desc}>
                                 {album.description}
                             </div>
@@ -51,17 +49,6 @@ class Album extends Component {
                             <img src={album_thumbnail} alt="Album_Thumbnail" />
                         </div>
                     </div>
-                    <NavLink to="/dashboard/designer">
-                        <div className={classes.Edit}>
-                            <i className="far fa-edit"></i>
-                        </div>
-                    </NavLink>
-                    {/* to="/dashboard/designer" */}
-                    <NavLink to="" onClick={this.albumdelete} >
-                        <div className={classes.Remove} >
-                            <i className="fas fa-times"></i>
-                        </div>
-                    </NavLink>
 
                     <div className={classes.Album_Bottom}>
                         <div className={classes.WorkDisplay}>
@@ -69,8 +56,15 @@ class Album extends Component {
                                 <h2>Album Products</h2>
                                 <div className={classes.Content}>
                                     <div className={classes.Add} >
-                                        <NavLink to={path} >
-                                            <i className="fas fa-plus"></i>
+                                        {/* <NavLink to={path} >
+                                            
+                                        </NavLink> */}
+
+                                        <NavLink to={path}>
+                                            <div className={classes.AddProductButton}>
+                                                <h4>Add Product</h4>
+                                                <i className="fas fa-plus"></i>
+                                            </div>
                                         </NavLink>
                                     </div>
                                     <div className={classes.AlbumProducts}>
@@ -83,17 +77,24 @@ class Album extends Component {
 
                     </div>
                 </Auxilary>
-
-            )
+            );
         }
+
+
+        let editpath = '/dashboard/handle_album/update_album/' + this.state.albumid;
         return (
             <div className={classes.Main}>
+                {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
+                    <NavLink to='/dashboard'>
                         <div className={classes.cross}>
+                            <h4>Close</h4>
                             <i className="fas fa-times"></i>
                         </div>
                     </NavLink>
+                    <div className={classes.SettingButton}>
+                        <Settings editpath={editpath} delete={this.albumdelete} />
+                    </div>
                     {albumdata}
 
                 </div>
@@ -108,13 +109,14 @@ const mapStateToProps = state => {
         token: state.Auth.token,
         currentalbum: state.CurrentAlbum.currentalbum,
         currentalbumproducts: state.CurrentAlbum.currentalbumproducts,
-        loading: state.CurrentAlbum.loading
+        loading: state.CurrentAlbum.loading,
+        deleted: state.DeleteAlbum.deleted
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchcurrentalbum: (token, albumid) => dispatch(actions.FetchSingleAlbum(token, albumid)),
+        onfetchcurrentalbum: (token, albumid) => dispatch(actions.FetchAlbum(token, albumid)),
         onalbumdelete: (token, albumid) => dispatch(actions.DeleteAlbum(token, albumid))
     }
 }

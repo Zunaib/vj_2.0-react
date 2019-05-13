@@ -15,7 +15,7 @@ background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
       background-color: white;
       position: relative;
       height: 100%;
-      width: 90%;
+      width: 80%;
       margin: 42px auto;
       border-radius: 10px;
       overflow: hidden;
@@ -30,46 +30,124 @@ background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
     padding: 10px 20px;
 }
 
-.Album div.cross i{
+.Album div.cross{
+    background-color: rgb(160, 0, 160);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
     margin-top: 20px;
     margin-right: 20px;
     float: right;
-    width: 5%;
-    font-size: 1.2rem;
+    width: 10%;
+    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+    -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
 }
-
-
-.Album div.Remove i{
-    text-align: center;
-    border-radius: 10%;
-    padding: 10px;
+.Album div.cross:hover{
+    background-color: purple;
+    
+}
+.Album div.cross h4{
+    padding: 5px;
     color: white;
-    background-color: rgb(255, 59, 59);
-margin-right: 20px;
-margin-bottom: 30px;   
-    float: right;
-    width: 5%;
-    font-size: 1.5rem;
+    display: inline;
+    font-size: 1rem;
+}
+.Album div.cross i{
+    margin: 0 auto;
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 1rem;
 }
 
-.Album div.Edit i{
-    text-align: center;
-    border-radius: 10%;
+
+
+
+.Album div.SettingButton{
+    background-color: rgb(160, 0, 160);
     padding: 10px;
+    border-radius: 10px;
+    text-align: center;
     color: white;
-    background-color: rgb(59, 95, 255);
-margin-right: 20px;
-margin-bottom: 30px;   
-    float: right;
-    width: 5%;
-    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+    width: 10%;
+    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+    -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
 }
+.Album div.SettingButton:hover{
+    background-color: purple;
+    
+}
+.Album div.SettingButton h4{
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 1rem;
+}
+.Album div.SettingButton i{
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 1rem;
+}
+
+
+
+.Album div.AddProductButton{
+    background-color: rgb(160, 0, 160);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+    width: 10%;
+    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+    -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+}
+.Album div.AddProductButton:hover{
+    background-color: purple;
+    
+}
+.Album div.AddProductButton h4{
+    text-align: center;
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 1rem;
+}
+.Album div.AddProductButton i{
+    text-align: center;
+    margin: 0 auto;
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 1rem;
+}
+
+
+
+
+
+
+
+
+
 
 .AlbumInfo{
     float:left;
     width:50%;
     text-align: center;
     margin: 55px 25px;
+}
+
+.AlbumInfo h1{
+    font-size: 3rem;
 }
 
   .AlbumImage{
@@ -137,31 +215,9 @@ padding-left: 100px;
 }
 
 .Content{
+    text-align: center;
 width: 100%
 }
-
-.Content div i{
-    color: white;
-    background-color: rgb(138, 70, 132);
-    border-radius: 23px;
-    padding: 15px;
-    cursor: pointer;
-    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.504);
-  -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.504);
-  box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.504);
-}
-
-.Content div i:hover{
-    color: white;
-    background-color: rgb(116, 47, 110);
-    border-radius: 23px;
-    padding: 15px;
-    cursor: pointer;
-    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.904);
-  -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.904);
-  box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.904);
-}
-
 
 
 

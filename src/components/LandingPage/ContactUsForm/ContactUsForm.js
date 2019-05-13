@@ -180,8 +180,8 @@ class ContactUsForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    loading: state.contactUs.loading,
-    error: state.contactUs.error
+    loading: state.ContactUs.loading,
+    error: state.ContactUs.error
   }
 };
 

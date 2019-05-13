@@ -13,3 +13,28 @@
 .Menu a.active {
     color:red;
 }
+
+
+.EditMenuItem h4{
+    color: rgb(39, 39, 39);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+}
+
+.EditMenuItem i{
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+
+
+.RemoveMenuItem h4{
+    color: rgb(39, 39, 39);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+}
+
+.RemoveMenuItem i{
+    margin-left: 10px;
+    font-size: 1rem;
+}

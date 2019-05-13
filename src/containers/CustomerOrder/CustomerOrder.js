@@ -12,7 +12,7 @@ class CustomerOrder extends Component {
         cart: null
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         if (this.props.token) {
             setTimeout(() => {

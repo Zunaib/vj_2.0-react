@@ -11,7 +11,7 @@ import Dashboard from '../../containers/Dashboard/Dashboard';
 import DesignerProfile from '../../containers/DesignerProfile/DesignerProfile'
 import UserAccountSettings from '../../containers/UserAccountSettings/UserAccountSettings'
 import Product from '../../containers/Handle_Product/Product_View/Product';
-import Handle_Product from '../../containers/Handle_Product/Product_CRUD/Product';
+import Handle_Product from '../../containers/Handle_Product/Product_Add/Product';
 import Vlog from '../../containers/Handle_Vlog/Vlog_View/Vlog';
 import Handle_Vlog from '../../containers/Handle_Vlog/Vlog_CRUD/Vlog';
 import Handle_Blog from '../../containers/Handle_Blog/Blog_CRUD/Blog';
@@ -21,11 +21,15 @@ import CustomerOrder from '../../containers/CustomerOrder/CustomerOrder';
 import DesignerOrder from '../../containers/DesignerOrder/DesignerOrder';
 
 
+
+import UpdateAlbum from '../../containers/Handle_Album/Album_Update/AlbumUpdate';
+
+
 const asyncAlbum = asyncComponent(() => {
     return import('../../containers/Handle_Album/Album_View/Album');
 })
 const asyncHandle_Album = asyncComponent(() => {
-    return import('../../containers/Handle_Album/Album_CRUD/Album');
+    return import('../../containers/Handle_Album/Album_Add/Album');
 })
 
 
@@ -74,6 +78,22 @@ class WebLayout extends Component {
                     <Route path="/dashboard/blogs/:blog" component={Vlog} />
                     <Route path="/dashboard/handle_blog/add_blog" component={Handle_Blog} />
                     <Route path="/dashboard/designerorders" component={DesignerOrder} />
+
+
+
+
+                    <Route path="/dashboard/handle_album/update_album/:id" component={UpdateAlbum} />
+
+
+
+
+
+
+
+
+
+
+
                     <Redirect to="/dashboard" />
                 </Switch>
             );
