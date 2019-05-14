@@ -3,7 +3,7 @@ import classes from './Vlog.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../Store/Actions/index';
 import ReactPlayer from 'react-player'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
@@ -12,27 +12,28 @@ import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings'
 
 class Vlog extends Component {
     state = {
-        vlog: null,
+        vlogid: null,
         delete: null
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let str = window.location.href;
         let res = str.split("http://localhost:3000/dashboard/vlogs/");
         const vlogid = res[1];
-        console.log(vlogid)
-        this.setState({ vlog: vlogid })
-        if (this.props.token) {
-            this.props.onfetchcurrentvlog(this.props.token, vlogid);
-        }
+        this.setState({ vlogid: vlogid })
+        this.props.onfetchcurrentvlog(this.props.token, vlogid);
+    }
+
+    vlogdelete = () => {
+        this.props.onvlogdelete(this.props.token, this.state.vlogid)
     }
     render() {
         const videostyles = {
-            playing: false,
+            playing: true,
             controls: true,
-            pip: true,
+            volume: 0,
             width: "100%",
-            height: "500px"
+            height: "auto"
         }
 
 
@@ -70,9 +71,10 @@ class Vlog extends Component {
         }
 
 
-
+        let editpath = '/dashboard/handle_vlog/update_vlog/' + this.state.vlogid;
         return (
             <div className={classes.Main}>
+                {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
                     <NavLink to="/dashboard">
                         <div className={classes.cross}>
@@ -81,7 +83,7 @@ class Vlog extends Component {
                         </div>
                     </NavLink>
                     <div className={classes.SettingButton}>
-                        <Settings />
+                        <Settings editpath={editpath} delete={this.vlogdelete} />
                     </div>
                     {vlogdata}
                     {/* <NavLink to="/dashboard/designer">
@@ -106,15 +108,16 @@ class Vlog extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
-        currentvlog: state.CurrentVlog.currentvlog,
-        loading: state.CurrentVlog.loading
+        currentvlog: state.ViewVlog.currentvlog,
+        loading: state.ViewVlog.loading,
+        deleted: state.DeleteVlog.deleted
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentvlog: (token, vlogid) => dispatch(actions.FetchSingleVlog(token, vlogid)),
-        // onalbumdelete: (token, albumid) => dispatch(actions.DeleteAlbum(token, albumid))
+        onvlogdelete: (token, vlogid) => dispatch(actions.DeleteVlog(token, vlogid))
     }
 }
 

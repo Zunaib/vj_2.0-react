@@ -3,29 +3,29 @@ import axios from '../../../axios';
 
 
 
-export const fetchSuccess = (products) => {
+export const fetchdashproductSuccess = (products) => {
     return {
-        type: actionTypes.Fetch_Products_Success,
+        type: actionTypes.Fetch_Dash_Products_Success,
         products: products
     };
 };
 
-export const fetchFailed = (error) => {
+export const fetchdashproductFailed = (error) => {
     return {
-        type: actionTypes.Fetch_Products_Failed,
+        type: actionTypes.Fetch_Dash_Products_Failed,
         error: error
     };
 };
 
-export const fetchStart = () => {
+export const fetchdashproductStart = () => {
     return {
-        type: actionTypes.Fetch_Products_Start
+        type: actionTypes.Fetch_Dash_Products_Start
     };
 };
 
-export const FetchDash = (token) => {
+export const FetchDashProducts = (token) => {
     return dispatch => {
-        dispatch(fetchStart());
+        dispatch(fetchdashproductStart());
         axios.get('/api/fetchAllProducts?access_token=' + token)
             .then(res => {
                 console.log(res)
@@ -39,10 +39,10 @@ export const FetchDash = (token) => {
                 let myData = Object.keys(data).map(key => {
                     return data[key];
                 })
-                dispatch(fetchSuccess(myData));
+                dispatch(fetchdashproductSuccess(myData));
             })
             .catch(err => {
-                dispatch(fetchFailed(err));
+                dispatch(fetchdashproductFailed(err));
             });
     }
 }

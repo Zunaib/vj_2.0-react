@@ -3,17 +3,16 @@
     width: 100%
     }
     
-    .Products{
+    .Collections{
         margin: 0 5px;
         width: 100%;
-        z-index: 3;
     }
-
-
+    
     .Link{
       color: black;
     }
-
+    
+    
     
     
     .Content div.AddAlbumButton{

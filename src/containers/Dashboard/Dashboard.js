@@ -11,10 +11,7 @@ import Blogs from '../../components/Dashboard/Blogs/Blogs';
 class Dashboard extends Component {
 
     componentDidMount = () => {
-        // console.log('token in dash' + this.props.token);
-        if (this.props.token) {
-            this.props.onfetchproducts(this.props.token);
-        }
+        this.props.onfetchproducts(this.props.token);
     }
 
     state = {
@@ -81,15 +78,15 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.Dashboard.products,
-        loading: state.Dashboard.loading,
-        error: state.Dashboard.error,
+        products: state.DashboardProducts.products,
+        loading: state.DashboardProducts.loading,
+        error: state.DashboardProducts.error,
         token: state.Auth.token
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchproducts: (token) => dispatch(actions.FetchDash(token))
+        onfetchproducts: (token) => dispatch(actions.FetchDashProducts(token))
     }
 }
 

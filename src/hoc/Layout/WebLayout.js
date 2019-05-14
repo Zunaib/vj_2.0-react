@@ -10,11 +10,11 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import Dashboard from '../../containers/Dashboard/Dashboard';
 import DesignerProfile from '../../containers/DesignerProfile/DesignerProfile'
 import UserAccountSettings from '../../containers/UserAccountSettings/UserAccountSettings'
-import Product from '../../containers/Handle_Product/Product_View/Product';
-import Handle_Product from '../../containers/Handle_Product/Product_Add/Product';
+import ViewProduct from '../../containers/Handle_Product/Product_View/Product';
+import Add_Product from '../../containers/Handle_Product/Product_Add/Product';
 import Vlog from '../../containers/Handle_Vlog/Vlog_View/Vlog';
-import Handle_Vlog from '../../containers/Handle_Vlog/Vlog_CRUD/Vlog';
-import Handle_Blog from '../../containers/Handle_Blog/Blog_CRUD/Blog';
+import Handle_Vlog from '../../containers/Handle_Vlog/Vlog_Add/Vlog';
+import Add_Blog from '../../containers/Handle_Blog/Blog_Add/Blog';
 import Cart from '../../containers/Cart/Cart';
 import Checkout from '../../containers/Checkout/Checkout';
 import CustomerOrder from '../../containers/CustomerOrder/CustomerOrder';
@@ -69,14 +69,14 @@ class WebLayout extends Component {
                     <Route path="/dashboard/designer" component={DesignerProfile} />
                     <Route path="/dashboard/usersettings" component={UserAccountSettings} />
                     <Route path="/dashboard/albums/:album" component={asyncAlbum} />
-                    <Route path="/dashboard/products/:product" component={Product} />
+                    <Route path="/dashboard/products/:product" component={ViewProduct} />
                     <Route path="/dashboard/handle_album/add_album" component={asyncHandle_Album} />
-                    <Route path="/dashboard/:albumid/handle_product" component={Handle_Product} />
-                    <Route path="/dashboard/handle_product" component={Handle_Product} />
+                    <Route path="/dashboard/:albumid/handle_product" component={Add_Product} />
+                    <Route path="/dashboard/handle_product" component={Add_Product} />
                     <Route path="/dashboard/vlogs/:vlog" component={Vlog} />
                     <Route path="/dashboard/handle_vlog/add_vlog" component={Handle_Vlog} />
                     <Route path="/dashboard/blogs/:blog" component={Vlog} />
-                    <Route path="/dashboard/handle_blog/add_blog" component={Handle_Blog} />
+                    <Route path="/dashboard/handle_blog/add_blog" component={Add_Blog} />
                     <Route path="/dashboard/designerorders" component={DesignerOrder} />
 
 

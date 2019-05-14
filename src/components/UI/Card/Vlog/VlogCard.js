@@ -1,15 +1,29 @@
 import React from 'react';
 import classes from './VlogCard.css';
-import testimg from '../../../../assets/images/testimg.jpg'
+import ReactPlayer from 'react-player'
 const VlogCard = (props) => {
+
+    const videostyles = {
+        playing: true,
+        controls: true,
+        volume: 0,
+        width: "100%",
+        height: "100%"
+    }
+
+    let video = 'http://localhost:5000' + props.videoLink;
 
     return (
         <div className={classes.VlogCard}>
-            <img src={testimg} alt="" />
+            <ReactPlayer url={video} {...videostyles} />
+
+
             <div className={classes.CardText}>
-                <h4><b>Title</b></h4>
+                <h4><b>{props.title}</b></h4>
                 <div className={classes.Desc}>
-                    Dolce & Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.</div>
+                    {props.description}
+
+                </div>
             </div>
             <div className={classes.CardInfo}>
                 <div className={classes.CardButton}>

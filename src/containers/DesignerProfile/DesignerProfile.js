@@ -6,6 +6,8 @@ import * as actions from '../../Store/Actions/index';
 import display from '../../assets/images/defaultuserimage.png'
 import LatestAlbums from '../../components/DesignerProfile/LatestAlbums/LatestAlbums';
 import LatestProducts from '../../components/DesignerProfile/LatestProducts/LatestProducts';
+import LatestVlogs from '../../components/DesignerProfile/LatestVlogs/LatestVlogs';
+import LatestBlogs from '../../components/DesignerProfile/LatestBlogs/LatestBlogs';
 import Statistics from '../../components/DesignerProfile/Statistics/Statistics';
 
 class DesignerProfile extends Component {
@@ -22,7 +24,10 @@ class DesignerProfile extends Component {
 
     componentDidMount = () => {
         let limit = 8;
-        this.props.onfetchprofilecontent(this.props.token, limit);
+        this.props.onfetchprofilealbums(this.props.token, limit);
+        this.props.onfetchprofileproducts(this.props.token, limit);
+        this.props.onfetchprofilevlogs(this.props.token, limit);
+        this.props.onfetchprofileblogs(this.props.token, limit);
 
         let user = this.props.settings[0];
         if (user) {
@@ -42,6 +47,8 @@ class DesignerProfile extends Component {
         const Content = {
             LatestProducts: <LatestProducts products={this.props.profileproducts} />,
             LatestAlbums: <LatestAlbums albums={this.props.profilealbums} />,
+            LatestVlogs: <LatestVlogs vlogs={this.props.profilevlogs} />,
+            LatestBlogs: <LatestBlogs blogs={this.props.profileblogs} />,
             Statistics: <Statistics />
         };
         return Content[currentContent];
@@ -54,9 +61,11 @@ class DesignerProfile extends Component {
     toggleLatestAlbums = () => {
         this.setState({ profilecontent: 'LatestAlbums' })
     }
-
-    toggleStatistics = () => {
-        this.setState({ profilecontent: 'Statistics' })
+    toggleLatestVlogs = () => {
+        this.setState({ profilecontent: 'LatestVlogs' })
+    }
+    toggleLatestBlogs = () => {
+        this.setState({ profilecontent: 'LatestBlogs' })
     }
 
     render() {
@@ -80,11 +89,15 @@ class DesignerProfile extends Component {
 
                 <div className={classes.ProfileImageButton} >
                     <img src={this.state.userimage ? img : display} alt="Display" />
-                    <i className="fas fa-plus"></i>
+                    <div className={classes.Button}>
+                        <div className={classes.FollowButton}>
+                            <h4>Follow</h4>
+                        </div>
+                    </div>
                 </div>
 
                 <div className={classes.Profile}>
-                    <NavLink to="/dashboard/designerorders">
+                    <NavLink to="/dashboard/designerorders" >
                         <div className={classes.Orders} >
                             <i className="fas fa-sort-amount-down"></i>
                             <h4>Requested Orders</h4>
@@ -93,7 +106,7 @@ class DesignerProfile extends Component {
 
                     <div className={classes.ProfileInfo} >
                         <h1>{firstname ? firstname + " " + lastname : 'Name'}</h1>
-                        <h5>DESIGNER</h5>
+                        <h5>CREATOR</h5>
 
                         <div className={classes.ConnectIcons}>
                             <i className="fab fa-pinterest-p" ></i>
@@ -104,6 +117,7 @@ class DesignerProfile extends Component {
                         <div className={classes.Desc}>
                             {desc ? desc : 'Designer Description'}
                         </div>
+                        <Statistics />
 
                     </div>
 
@@ -117,9 +131,13 @@ class DesignerProfile extends Component {
                                 <i className="far fa-images"></i>
                                 <h5>Products</h5>
                             </div>
-                            <div className={classes.Workbutton} onClick={this.toggleStatistics}>
-                                <i className="fas fa-user-friends" ></i>
-                                <h5>Statistics</h5>
+                            <div className={classes.Workbutton} onClick={this.toggleLatestVlogs}>
+                                <i className="fas fa-video"></i>
+                                <h5>Vlogs</h5>
+                            </div>
+                            <div className={classes.Workbutton} onClick={this.toggleLatestBlogs}>
+                                <i className="fas fa-newspaper"></i>
+                                <h5>Blogs</h5>
                             </div>
                         </div>
 
@@ -138,18 +156,33 @@ const mapStateToProps = state => {
         token: state.Auth.token,
         settings: state.UserSettings.settings,
         flag: state.Auth.flag,
-        profileproducts: state.DesignerProfile.profileproducts,
-        productloading: state.DesignerProfile.productloading,
-        producterror: state.DesignerProfile.producterror,
-        profilealbums: state.DesignerProfile.profilealbums,
-        albumloading: state.DesignerProfile.albumloading,
-        albumerror: state.DesignerProfile.albumerror
+
+        profileproducts: state.DesignerProducts.profileproducts,
+        productloading: state.DesignerProducts.loading,
+        producterror: state.DesignerProducts.error,
+
+        profilealbums: state.DesignerAlbums.profilealbums,
+        albumloading: state.DesignerAlbums.loading,
+        albumerror: state.DesignerAlbums.error,
+
+        profilevlogs: state.DesignerVlogs.profilevlogs,
+        vlogloading: state.DesignerVlogs.loading,
+        vlogerror: state.DesignerVlogs.error,
+
+        profileblogs: state.DesignerBlogs.profileblogs,
+        blogloading: state.DesignerBlogs.loading,
+        blogerror: state.DesignerBlogs.error
+
 
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchprofilecontent: (token, limit) => dispatch(actions.FetchDesignerProfileContent(token, limit))
+        onfetchprofileproducts: (token, limit) => dispatch(actions.FetchDesignerProducts(token, limit)),
+        onfetchprofilealbums: (token, limit) => dispatch(actions.FetchDesignerAlbums(token, limit)),
+        onfetchprofilevlogs: (token, limit) => dispatch(actions.FetchDesignerVlogs(token, limit)),
+        onfetchprofileblogs: (token, limit) => dispatch(actions.FetchDesignerBlogs(token, limit)),
+
     }
 }
 

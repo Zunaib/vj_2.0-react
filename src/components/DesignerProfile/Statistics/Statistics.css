@@ -6,23 +6,23 @@
 
 .StatsWork{
     margin: 0 auto;
-    width: 60%;
+    width: 90%;
 }
 
+/* .StatsWork h3{
+    color: purple;
+    font-size: 1.3rem;
+} */
 .StatsWork hr{
     color: gray;
-    width: 70%;
+    width: 80%;
 }
 .Numbers{
-    margin-top: 30px;
-}
-
-.Numbers p{
-margin-left: 20px;
+    margin-top: 20px;
 }
 
 .AboutWork{
-    margin-top: 45px;
+    margin-top: 25px;
 }
 
 .AboutWork h4{
@@ -31,5 +31,5 @@ margin-left: 20px;
 }
 
 .Tags{
-    margin-top: 45px;
+    margin-top: 25px;
 }

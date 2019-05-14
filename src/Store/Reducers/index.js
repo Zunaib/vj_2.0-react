@@ -10,10 +10,13 @@ import ContactUsReducer from './ContactUSReducers/ContactUs';
 import AuthReducer from './AuthReducers/Auth';
 
 /* Dashboard Reducers */
-import DashboardReducer from './DashboardReducers/Dashboard';
+import DashboardProductsReducer from './DashboardReducers/Products';
 
 /* Creator Profile Reducers */
-import DesignerProfileReducer from './UserReducers/DesignerProfile';
+import DesignerProductsReducer from './UserReducers/DesignerProducts';
+import DesignerAlbumsReducer from './UserReducers/DesignerAlbums';
+import DesignerVlogsReducer from './UserReducers/DesignerVlogs';
+import DesignerBlogsReducer from './UserReducers/DesignerBlogs';
 
 /* User Settings Reducers */
 import UserSettingsReducer from './UserReducers/UserSettings';
@@ -32,6 +35,7 @@ import DeleteProductReducer from './ProductReducers/DeleteProduct';
 import AddVlogReducer from './VlogReducers/AddVlog';
 import ViewVlogReducer from './VlogReducers/ViewVlog';
 import UpdateVlogReducer from './VlogReducers/UpdateVlog';
+import DeleteVlogReducer from './VlogReducers/DeleteVlog';
 
 /* Cart Reducers */
 import AddtoCartReducer from './CartReducers/AddtoCart';
@@ -49,11 +53,14 @@ export default combineReducers({
 
     Auth: AuthReducer,
 
-    Dashboard: DashboardReducer,
+    DashboardProducts: DashboardProductsReducer,
 
     UserSettings: UserSettingsReducer,
 
-    DesignerProfile: DesignerProfileReducer,
+    DesignerProducts: DesignerProductsReducer,
+    DesignerAlbums: DesignerAlbumsReducer,
+    DesignerVlogs: DesignerVlogsReducer,
+    DesignerBlogs: DesignerBlogsReducer,
 
     AddAlbum: AddAlbumReducer,
     DeleteAlbum: DeleteAlbumReducer,
@@ -66,6 +73,7 @@ export default combineReducers({
     AddVlog: AddVlogReducer,
     ViewVlog: ViewVlogReducer,
     UpdateVlog: UpdateVlogReducer,
+    DeleteVlog: DeleteVlogReducer,
 
     AddtoCart: AddtoCartReducer,
     Cart: CartReducer,

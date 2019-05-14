@@ -2,35 +2,30 @@ import * as actionTypes from '../../Actions/ActionTypes';
 
 
 const initialState = {
-    loading: false,
+    loading: true,
     error: null,
-    message: null
+    deleted: null
 }
 
-const VlogReducer = (state = initialState, action) => {
+const DeleteAlbumReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Add_Vlog_Refresh:
-            return {
-                ...state,
-                message: null,
-                loading: false
-            };
-        case actionTypes.Add_Vlog_Start:
+        case actionTypes.Delete_Vlog_Start:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.Add_Vlog_Success:
+        case actionTypes.Delete_Vlog_Success:
             return {
                 ...state,
+                deleted: action.message,
                 loading: false,
-                message: action.message
+                error: false
             };
-        case actionTypes.Add_Vlog_Failed:
+        case actionTypes.Delete_Vlog_Failed:
             return {
                 ...state,
                 loading: false,
-                error: action.error,
+                error: action.error
             };
         case actionTypes.Reset:
             return state = initialState;
@@ -39,4 +34,4 @@ const VlogReducer = (state = initialState, action) => {
     }
 };
 
-export default VlogReducer;
+export default DeleteAlbumReducer;

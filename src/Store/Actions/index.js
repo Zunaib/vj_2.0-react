@@ -10,13 +10,23 @@ export {
 
 /*Dashboard Actions Export */
 export {
-    FetchDash
-} from './DashboardActions/Dashboard';
+    FetchDashProducts
+} from './DashboardActions/Products';
 
 /* Creator Profile Actions Export */
 export {
-    FetchDesignerProfileContent
-} from './UserActions/DesignerProfile';
+    FetchDesignerProducts
+} from './UserActions/DesignerProducts';
+export {
+    FetchDesignerAlbums
+} from './UserActions/DesignerAlbums';
+export {
+    FetchDesignerVlogs
+} from './UserActions/DesignerVlogs';
+export {
+    FetchDesignerBlogs
+} from './UserActions/DesignerBlogs';
+
 
 /* User Settings Actions Export */
 export {
@@ -65,6 +75,9 @@ export {
     FetchVlogToUpdate,
     UpdateVlog
 } from './VlogActions/UpdateVlog';
+export {
+    DeleteVlog
+} from './VlogActions/DeleteVlog';
 
 /* Blog Actions Export */
 export {

@@ -85,7 +85,7 @@ class Blog extends Component {
             updatedblogForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ blogForm: updatedblogForm, selectedFile: null, selectedsnack: false });
+        this.setState({ blogForm: updatedblogForm, formIsValid: false, editorHtml: '', selectedFile: null, selectedsnack: false });
     }
 
     blogHandler = (event) => {
@@ -94,8 +94,6 @@ class Blog extends Component {
         for (let formElementIdentifier in this.state.blogForm) {
             formData[formElementIdentifier] = this.state.blogForm[formElementIdentifier].value;
         }
-
-
 
         let data = new FormData();
         if (this.state.selectedFile) {
@@ -180,7 +178,7 @@ class Blog extends Component {
                     </NavLink> */}
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
-                            <h1>{this.state.update ? 'Update Vlog' : 'Add Blog'}</h1>
+                            <h1>Add Blog</h1>
                             <div className={classes.FormCardInfo}>
                                 <div className={classes.FormSide}>
                                     <div className={classes.Form} >
@@ -251,9 +249,8 @@ Blog.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        loading: state.AlbumCrud.loading,
-        error: state.AlbumCrud.error,
-        albumid: state.AlbumCrud.albumid,
+        // loading: state.AddBlog.loading,
+        // error: state.AddBlog.error,
         token: state.Auth.token,
         flag: state.Auth.flag
     }

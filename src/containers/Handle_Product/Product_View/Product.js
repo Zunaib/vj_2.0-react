@@ -142,8 +142,8 @@ class Product extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
-        currentproduct: state.CurrentProduct.currentproduct,
-        loading: state.CurrentProduct.loading,
+        currentproduct: state.ViewProduct.currentproduct,
+        loading: state.ViewProduct.loading,
         deleted: state.DeleteProduct.deleted
     }
 }

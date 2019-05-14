@@ -1,7 +1,8 @@
 
 .ProductCard{
+    text-align: center;
     background-color: white;
-    width: 15%;
+    width: 20%;
     height: 100%;
     float: left;
     margin-top: 13px;
@@ -21,10 +22,7 @@ background-repeat: no-repeat;
     width: 95%;
     border-radius: 10px;
     margin-top: 10px;
-    margin-left: 7px;
-    margin-right: 10px;
     height: 30vh;
-
 }
 
 

@@ -1,28 +1,27 @@
 import * as actionTypes from '../../Actions/ActionTypes';
 
-
 const initialState = {
-    products: [],
+    profileproducts: [],
     loading: false,
-    error: false
+    error: false,
 }
 
-const DashboardReducer = (state = initialState, action) => {
+const DesignerProfileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Fetch_Products_Start:
+        case actionTypes.Fetch_DesignerProfile_Product_Start:
             return {
                 ...state,
                 loading: true,
-                products: []
+                profileproducts: []
             };
-        case actionTypes.Fetch_Products_Success:
+        case actionTypes.Fetch_DesignerProfile_Product_Success:
             return {
                 ...state,
-                products: state.products.concat(action.products),
+                profileproducts: state.profileproducts.concat(action.profileproducts),
                 loading: false,
                 error: false
             };
-        case actionTypes.Fetch_Products_Failed:
+        case actionTypes.Fetch_DesignerProfile_Product_Failed:
             return {
                 ...state,
                 loading: false,
@@ -35,4 +34,4 @@ const DashboardReducer = (state = initialState, action) => {
     }
 };
 
-export default DashboardReducer;
+export default DesignerProfileReducer;

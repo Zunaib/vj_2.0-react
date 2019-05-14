@@ -14,9 +14,9 @@ export const ContactUsForm_Success = 'ContactUsForm_Success';
 export const ContactUsForm_Failed = 'ContactUsForm_Failed';
 
 /* Fetch Dashboard Actions */
-export const Fetch_Products_Start = 'Fetch_Products_Start';
-export const Fetch_Products_Success = 'Fetch_Products_Success';
-export const Fetch_Products_Failed = 'Fetch_Products_Failed';
+export const Fetch_Dash_Products_Start = 'Fetch_Products_Start';
+export const Fetch_Dash_Products_Success = 'Fetch_Products_Success';
+export const Fetch_Dash_Products_Failed = 'Fetch_Products_Failed';
 
 /* Fetch User Settings Actions */
 export const Fetch_UserSettings_Start = 'Fetch_UserSettings_Start';
@@ -52,11 +52,18 @@ export const Set_Single_Blog = 'Set_Single_Blog';
 export const Fetch_DesignerProfile_Product_Success = 'Fetch_DesignerProfile_Product_Success';
 export const Fetch_DesignerProfile_Product_Failed = 'Fetch_DesignerProfile_Product_Failed';
 export const Fetch_DesignerProfile_Product_Start = 'Fetch_DesignerProfile_Product_Start';
-
 /* Fetch Designer Profile Content Actions For Album*/
 export const Fetch_DesignerProfile_Album_Success = 'Fetch_DesignerProfile_Album_Success';
 export const Fetch_DesignerProfile_Album_Failed = 'Fetch_DesignerProfile_Album_Failed';
 export const Fetch_DesignerProfile_Album_Start = 'Fetch_DesignerProfile_Album_Start';
+/* Fetch Designer Profile Content Actions For Vlogs*/
+export const Fetch_DesignerProfile_Vlog_Success = 'Fetch_DesignerProfile_Vlog_Success';
+export const Fetch_DesignerProfile_Vlog_Failed = 'Fetch_DesignerProfile_Vlog_Failed';
+export const Fetch_DesignerProfile_Vlog_Start = 'Fetch_DesignerProfile_Vlog_Start';
+/* Fetch Designer Profile Content Actions For Vlogs*/
+export const Fetch_DesignerProfile_Blog_Success = 'Fetch_DesignerProfile_Blog_Success';
+export const Fetch_DesignerProfile_Blog_Failed = 'Fetch_DesignerProfile_Blog_Failed';
+export const Fetch_DesignerProfile_Blog_Start = 'Fetch_DesignerProfile_Blog_Start';
 
 /* Fetch Current Opened Album */
 export const Fetch_Single_Album_Start = 'Fetch_Single_Album_Start';
@@ -148,6 +155,7 @@ export const Fetch_Single_Vlog_Start = 'Fetch_Single_Vlog_Start';
 export const Fetch_Single_Vlog_Failed = 'Fetch_Single_Vlog_Failed';
 export const Fetch_Single_Vlog_Success = 'Fetch_Single_Vlog_Success';
 
+/*Update Vlog Actions */
 export const Update_Single_Vlog_Start = 'Update_Single_Vlog_Start';
 export const Update_Single_Vlog_Failed = 'Update_Single_Vlog_Failed';
 export const Update_Single_Vlog_Success = 'Update_Single_Vlog_Success';
@@ -157,3 +165,8 @@ export const Add_Blog_Start = 'Add_Blog_Start';
 export const Add_Blog_Success = 'Add_Blog_Success';
 export const Add_Blog_Failed = 'Add_Blog_Failed';
 export const Add_Blog_Refresh = "Add_Blog_Refresh";
+
+/* Delete Product Settings Actions */
+export const Delete_Vlog_Start = 'Delete_Vlog_Start';
+export const Delete_Vlog_Success = 'Delete_Vlog_Success';
+export const Delete_Vlog_Failed = 'Delete_Vlog_Failed';

@@ -2,10 +2,10 @@ import * as actionTypes from '../ActionTypes';
 import axios from '../../../axios';
 
 
-export const addvlogSuccess = (vlogid) => {
+export const addvlogSuccess = (message) => {
     return {
         type: actionTypes.Add_Vlog_Success,
-        vlogid: vlogid
+        message: message
     };
 };
 
@@ -27,11 +27,11 @@ export const AddVlog = (token, data) => {
     return dispatch => {
         console.log('token in vlog ' + token);
         console.log(data);
-        // dispatch(addalbumStart());
+        // dispatch(addvlogStart());
         axios.post('/api/addVlog?access_token=' + token, data)
             .then(res => {
                 console.log(res)
-                // dispatch(addvlogSuccess(res.data.album._id));
+                dispatch(addvlogSuccess(res.data.message));
             })
             .catch(err => {
                 console.log(err)

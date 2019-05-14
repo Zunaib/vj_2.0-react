@@ -1,6 +1,6 @@
 
 .BlogCard{
-    background-image: url('../../../../assets/images/blogimage.jpg');
+    /* background-image: url('../../../../assets/images/blogimage.jpg'); */
     object-fit: cover;
     background-size: cover;
 background-repeat: no-repeat;
@@ -37,7 +37,7 @@ div.BlogCardText h4{
 }
 
 .BlogCardText div{
-    margin-top: 90px;
+    margin-top: 60px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 22px;
@@ -52,7 +52,8 @@ div.BlogCardText h4{
 }
 
 .BlogCardButton{
-    margin-top: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     width: 100%;
     color: white;
     display: inline-block;

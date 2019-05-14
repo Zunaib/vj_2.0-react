@@ -216,18 +216,14 @@ class Vlog extends Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.VlogCrud.loading,
-        error: state.VlogCrud.error,
-        vlogid: state.VlogCrud.vlogid,
-        vlog: state.EditVlog.vlog,
+        loading: state.AddVlog.loading,
+        error: state.AddVlog.error,
+        vlogid: state.AddVlog.vlogid,
         token: state.Auth.token,
-        flag: state.Auth.flag
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchcurrentvlog: (token, vlogid) => dispatch(actions.FetchVlogToUpdate(token, vlogid)),
-        onupdateVlog: (token, vlogid) => dispatch(actions.UpdateVlog(token, vlogid)),
         onaddVlog: (token, vlogData) => dispatch(actions.AddVlog(token, vlogData)),
         onMsgRefresh: () => dispatch(actions.VlogMsgRefresh())
     }

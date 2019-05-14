@@ -107,9 +107,9 @@ class Album extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
-        currentalbum: state.CurrentAlbum.currentalbum,
-        currentalbumproducts: state.CurrentAlbum.currentalbumproducts,
-        loading: state.CurrentAlbum.loading,
+        currentalbum: state.ViewAlbum.currentalbum,
+        currentalbumproducts: state.ViewAlbum.currentalbumproducts,
+        loading: state.ViewAlbum.loading,
         deleted: state.DeleteAlbum.deleted
     }
 }
