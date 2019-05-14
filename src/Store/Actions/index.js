@@ -83,6 +83,12 @@ export {
 export {
     AddBlog
 } from './BlogActions/AddBlog';
+export {
+    DeleteBlog
+} from './BlogActions/DeleteBlog';
+export {
+    FetchSingleBlog
+} from './BlogActions/ViewBlog';
 
 /* Cart Actions Export */
 export {

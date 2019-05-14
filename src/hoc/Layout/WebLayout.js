@@ -15,6 +15,7 @@ import Add_Product from '../../containers/Handle_Product/Product_Add/Product';
 import Vlog from '../../containers/Handle_Vlog/Vlog_View/Vlog';
 import Handle_Vlog from '../../containers/Handle_Vlog/Vlog_Add/Vlog';
 import Add_Blog from '../../containers/Handle_Blog/Blog_Add/Blog';
+import View_Blog from '../../containers/Handle_Blog/Blog_View/Blog_View';
 import Cart from '../../containers/Cart/Cart';
 import Checkout from '../../containers/Checkout/Checkout';
 import CustomerOrder from '../../containers/CustomerOrder/CustomerOrder';
@@ -75,7 +76,7 @@ class WebLayout extends Component {
                     <Route path="/dashboard/handle_product" component={Add_Product} />
                     <Route path="/dashboard/vlogs/:vlog" component={Vlog} />
                     <Route path="/dashboard/handle_vlog/add_vlog" component={Handle_Vlog} />
-                    <Route path="/dashboard/blogs/:blog" component={Vlog} />
+                    <Route path="/dashboard/blogs/:blog" component={View_Blog} />
                     <Route path="/dashboard/handle_blog/add_blog" component={Add_Blog} />
                     <Route path="/dashboard/designerorders" component={DesignerOrder} />
 

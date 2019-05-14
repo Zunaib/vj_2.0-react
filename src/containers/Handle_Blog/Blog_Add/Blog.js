@@ -220,7 +220,7 @@ Blog.modules = {
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
         [{ 'list': 'ordered' }, { 'list': 'bullet' },
         { 'indent': '-1' }, { 'indent': '+1' }],
-        ['link', 'image', 'video'],
+        ['link'],
         ['clean']
     ],
     clipboard: {
@@ -236,7 +236,7 @@ Blog.formats = [
     'header', 'font', 'size',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
     'list', 'bullet', 'indent',
-    'link', 'image', 'video'
+    'link'
 ]
 
 /* 
@@ -249,8 +249,8 @@ Blog.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        // loading: state.AddBlog.loading,
-        // error: state.AddBlog.error,
+        loading: state.AddBlog.loading,
+        error: state.AddBlog.error,
         token: state.Auth.token,
         flag: state.Auth.flag
     }

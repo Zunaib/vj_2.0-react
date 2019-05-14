@@ -166,7 +166,17 @@ export const Add_Blog_Success = 'Add_Blog_Success';
 export const Add_Blog_Failed = 'Add_Blog_Failed';
 export const Add_Blog_Refresh = "Add_Blog_Refresh";
 
-/* Delete Product Settings Actions */
+/* Delete Vlog Settings Actions */
 export const Delete_Vlog_Start = 'Delete_Vlog_Start';
 export const Delete_Vlog_Success = 'Delete_Vlog_Success';
 export const Delete_Vlog_Failed = 'Delete_Vlog_Failed';
+
+/* Delete Blog Settings Actions */
+export const Delete_Blog_Start = 'Delete_Blog_Start';
+export const Delete_Blog_Success = 'Delete_Blog_Success';
+export const Delete_Blog_Failed = 'Delete_Blog_Failed';
+
+/* Fetch Current Opened Blog */
+export const Fetch_Single_Blog_Start = 'Fetch_Single_Blog_Start';
+export const Fetch_Single_Blog_Failed = 'Fetch_Single_Blog_Failed';
+export const Fetch_Single_Blog_Success = 'Fetch_Single_Blog_Success';
