@@ -11,17 +11,13 @@ import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings'
 class Album extends Component {
 
     state = {
-        albumid: null,
+        albumid: window.location.href.split("http://localhost:3000/dashboard/albums/")[1],
         delete: null
     }
 
     componentDidMount() {
-        let str = window.location.href;
-        let res = str.split("http://localhost:3000/dashboard/albums/");
-        const albumid = res[1];
-        this.setState({ albumid: albumid })
-        this.props.onfetchcurrentalbum(this.props.token, albumid);
-
+        let str = window.location.href.split("http://localhost:3000/dashboard/albums/");
+        this.props.onfetchcurrentalbum(this.props.token, str[1]);
     }
 
     albumdelete = () => {
@@ -29,12 +25,12 @@ class Album extends Component {
     }
     render() {
         let albumid = this.state.albumid;
+        let album = this.props.currentalbum
 
         let path = "/dashboard/" + albumid + "/handle_product";
 
         let albumdata = <Spinner />;
         if (!this.props.loading) {
-            let album = this.props.currentalbum
             let album_thumbnail = 'http://localhost:5000' + album.thumbnail;
             albumdata = (
                 <Auxilary>
@@ -82,6 +78,17 @@ class Album extends Component {
 
 
         let editpath = '/dashboard/handle_album/update_album/' + this.state.albumid;
+        let settingbutton = null;
+        if (album) {
+            if (this.props.userId === album.userId) {
+                console.log('can edit');
+                settingbutton = (
+                    <div className={classes.SettingButton}>
+                        <Settings editpath={editpath} delete={this.albumdelete} />
+                    </div>
+                );
+            }
+        }
         return (
             <div className={classes.Main}>
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
@@ -92,9 +99,7 @@ class Album extends Component {
                             <i className="fas fa-times"></i>
                         </div>
                     </NavLink>
-                    <div className={classes.SettingButton}>
-                        <Settings editpath={editpath} delete={this.albumdelete} />
-                    </div>
+                    {settingbutton}
                     {albumdata}
 
                 </div>
@@ -107,6 +112,7 @@ class Album extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
+        userId: state.Auth.userId,
         currentalbum: state.ViewAlbum.currentalbum,
         currentalbumproducts: state.ViewAlbum.currentalbumproducts,
         loading: state.ViewAlbum.loading,

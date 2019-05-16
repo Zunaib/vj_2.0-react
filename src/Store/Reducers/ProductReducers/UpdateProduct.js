@@ -1,54 +1,37 @@
 import * as actionTypes from '../../Actions/ActionTypes';
 
+
 const initialState = {
-    productsettings: [],
     loading: true,
     error: null,
-    message: null
+    updated: null
 }
 
-const AlbumSettingsReducer = (state = initialState, action) => {
+const ProductUpdateReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Update_ProductMessage_Refresh:
+        case actionTypes.Update_AlbumMessage_Refresh:
             return {
                 ...state,
-                message: null,
+                updated: null,
                 loading: false
             };
-        case actionTypes.Update_ProductSettings_Start:
+        case actionTypes.Update_Single_Product_Start:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.Update_ProductSettings_Success:
+        case actionTypes.Update_Single_Product_Success:
             return {
                 ...state,
                 loading: false,
-                message: action.message
+                updated: action.message,
+                error: null
             };
-        case actionTypes.Update_ProductSettings_Failed:
+        case actionTypes.Update_Single_Product_Failed:
             return {
                 ...state,
                 loading: false,
-                message: action.error,
-            };
-        case actionTypes.Delete_ProductSettings_Start:
-            return {
-                ...state,
-                loading: true,
-            };
-        case actionTypes.Delete_ProductSettings_Success:
-            return {
-                ...state,
-                message: action.message,
-                loading: false,
-                error: false
-            };
-        case actionTypes.Delete_ProductSettings_Failed:
-            return {
-                ...state,
-                loading: false,
-                error: action.error
+                error: action.error,
             };
         case actionTypes.Reset:
             return state = initialState;
@@ -57,4 +40,4 @@ const AlbumSettingsReducer = (state = initialState, action) => {
     }
 };
 
-export default AlbumSettingsReducer;
+export default ProductUpdateReducer;

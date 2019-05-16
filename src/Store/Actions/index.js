@@ -61,6 +61,9 @@ export {
 export {
     DeleteProduct
 } from './ProductActions/DeleteProduct';
+export {
+    UpdateProduct
+} from './ProductActions/UpdateProduct';
 
 
 /* Vlog Actions Export */

@@ -17,58 +17,65 @@ import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
 class Album extends Component {
 
 
-
     componentDidMount() {
-        console.log('did  mount')
-        let str = window.location.href;
-        let res = str.split("http://localhost:3000/dashboard/handle_album/update_album/");
-        const albumid = res[1];
-        this.setState({ albumid: albumid })
-        this.props.onfetchcurrentalbum(this.props.token, albumid)
-
-        this.setState({ mounted: true })
-
-
+        let str = window.location.href.split("http://localhost:3000/dashboard/handle_album/update_album/");
+        this.props.onfetchcurrentalbum(this.props.token, str[1])
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.currentalbum !== prevState.album) {
+            return { album: nextProps.currentalbum };
+        }
+        else return null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.currentalbum !== this.props.currentalbum) {
+            //Perform some operation here
+            this.setState({ album: this.props.currentalbum });
+            this.setData();
+        }
+    }
 
     setData() {
-        console.log(this.props.currentalbum)
-        console.log(this.state.album)
+        let prevAlbum = this.state.album;
+        const updatedalbumForm = {
+            ...this.state.albumForm
+        };
 
-        // const updatedalbumForm = {
-        //     ...this.state.albumForm
-        // };
-
-        // const formElements = ['title', 'season', 'year', 'description'];
+        const formElements = ['title', 'season', 'year', 'description'];
 
 
-        // for (let i = 0; i < formElements.length; i++) {
-        //     const updatedFormElement = {
-        //         ...updatedalbumForm[formElements[i]]
-        //     };
+        for (let i = 0; i < formElements.length; i++) {
+            const updatedFormElement = {
+                ...updatedalbumForm[formElements[i]]
+            };
 
-        //     let target = formElements[i];
+            let target = formElements[i];
 
-        //     if (this.props.currentalbum[target] === null) {
-        //         updatedFormElement.value = "";
-        //         updatedFormElement.valid = false;
-        //         updatedFormElement.touched = false;
-        //     } else {
-        //         updatedFormElement.value = this.props.currentalbum[target];
-        //         updatedFormElement.valid = true;
-        //         updatedFormElement.touched = true;
-        //     }
+            if (prevAlbum[target] === null) {
+                updatedFormElement.value = "";
+                updatedFormElement.valid = false;
+                updatedFormElement.touched = false;
+            } else {
+                updatedFormElement.value = prevAlbum[target];
+                updatedFormElement.valid = true;
+                updatedFormElement.touched = true;
+            }
 
-        //     updatedalbumForm[formElements[i]] = updatedFormElement;
-        // }
+            updatedalbumForm[formElements[i]] = updatedFormElement;
+        }
 
-        // let formIsValid = true;
-        // for (let inputIdentifier in updatedalbumForm) {
-        //     formIsValid = updatedalbumForm[inputIdentifier].valid && formIsValid;
-        // }
+        let formIsValid = true;
+        for (let inputIdentifier in updatedalbumForm) {
+            formIsValid = updatedalbumForm[inputIdentifier].valid && formIsValid;
+        }
+        let album_thumbnail = null;
+        if (prevAlbum.thumbnail) {
+            album_thumbnail = 'http://localhost:5000' + prevAlbum.thumbnail;
+        }
         // console.log(updatedalbumForm)
-        // this.setState({ albumForm: updatedalbumForm, formIsValid: formIsValid, filled: true });
+        this.setState({ albumForm: updatedalbumForm, formIsValid: formIsValid, albumthumbnail: album_thumbnail });
 
     }
 
@@ -131,10 +138,8 @@ class Album extends Component {
         selectedFile: null,
         selectedsnack: false,
         selectedFileURL: null,
-        album: null,
-        albumid: null,
-        mounted: false,
-        filled: false
+        albumthumbnail: null,
+        albumid: window.location.href.split("http://localhost:3000/dashboard/handle_album/update_album/")[1]
     }
 
     fileSelectedHandler = (event) => {
@@ -170,25 +175,37 @@ class Album extends Component {
             formData[formElementIdentifier] = this.state.albumForm[formElementIdentifier].value;
         }
 
-
+        const formElements = ['title', 'season', 'year', 'description'];
+        let prevAlbum = this.state.album;
+        let action = false;
+        for (let i = 0; i < formElements.length; i++) {
+            let target = formElements[i];
+            if (formData[target] !== prevAlbum[target]) {
+                action = true;
+            }
+        }
 
         let data = new FormData();
         if (this.state.selectedFile) {
+            action = true;
             data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+        } else {
+            data.append('thumbnail', prevAlbum.thumbnail)
         }
-        data.append('albumName', formData.title);
+
+        data.append('albumId', this.state.album._id);
+        data.append('title', formData.title);
         data.append('description', formData.description);
         data.append('season', formData.season);
         data.append('year', formData.year);
 
-        if (this.state.formIsValid && this.state.selectedFile) {
-            this.props.onaddAlbum(this.props.token, data);
+        if (this.state.formIsValid && action) {
+            this.props.onupdatealbum(this.props.token, data);
             this.fieldclearHandler();
             this.setState({ formIsValid: false });
         } else {
-            console.log('Invalid')
+            console.log('invalid')
         }
-
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
@@ -212,17 +229,19 @@ class Album extends Component {
 
 
     render() {
-
         let body = <Spinner />;
         if (!this.props.loading) {
-            // console.log(this.props.currentalbum)
-
             const formElementsArray = [];
             for (let key in this.state.albumForm) {
                 formElementsArray.push({
                     id: key,
                     config: this.state.albumForm[key]
                 });
+            }
+
+            let album_img = this.state.albumthumbnail;
+            if (this.state.selectedFile) {
+                album_img = this.state.selectedFileURL
             }
 
             body = (
@@ -255,24 +274,22 @@ class Album extends Component {
                         </div>
                     </div>
                     <div className={classes.AlbumImage} >
-                        <img src={this.state.selectedFile ? this.state.selectedFileURL : albumcvr} alt="Album_Thumbnail" />
+                        <img src={album_img ? album_img : albumcvr} alt="Album_Thumbnail" />
                     </div>
                 </div>
             );
         }
 
 
-
-
-        let redirect = null;
-        if (this.props.albumid) {
-            redirect = <Redirect to={"/dashboard/albums/" + this.props.albumid} />
-        }
-
         let imgsnack = null;
         if (this.state.selectedFile && this.state.selectedsnack) {
             imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFile.name + ' )'} msgRefresh={this.props.onMsgRefresh} />);
             this.setState({ selectedsnack: false })
+        }
+
+        let redirect = null;
+        if (this.props.updated) {
+            redirect = <Redirect to={"/dashboard/albums/" + this.state.album._id} />
         }
 
         return (
@@ -295,12 +312,16 @@ const mapStateToProps = state => {
         currentalbum: state.ViewAlbum.currentalbum,
         currentalbumproducts: state.ViewAlbum.currentalbumproducts,
         loading: state.ViewAlbum.loading,
-        token: state.Auth.token
+        token: state.Auth.token,
+        updated: state.UpdateAlbum.updated
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentalbum: (token, albumid) => dispatch(actions.FetchAlbum(token, albumid)),
+        onupdatealbum: (token, updatedalbum) => dispatch(actions.UpdateAlbum(token, updatedalbum)),
+        onMsgRefresh: () => dispatch(actions.AlbumMsgRefresh())
+
 
     }
 }

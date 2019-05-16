@@ -2,18 +2,17 @@ import * as actionTypes from '../../Actions/ActionTypes';
 
 
 const initialState = {
-    albumsettings: [],
     loading: true,
     error: null,
-    message: null
+    updated: null
 }
 
-const AlbumSettingsReducer = (state = initialState, action) => {
+const AlbumUpdateReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.Update_AlbumMessage_Refresh:
             return {
                 ...state,
-                message: null,
+                updated: null,
                 loading: false
             };
         case actionTypes.Update_AlbumSettings_Start:
@@ -25,30 +24,14 @@ const AlbumSettingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                message: action.message
+                updated: action.message,
+                error: null
             };
         case actionTypes.Update_AlbumSettings_Failed:
             return {
                 ...state,
                 loading: false,
-                message: action.error,
-            };
-        case actionTypes.Delete_AlbumSettings_Start:
-            return {
-                ...state,
-            };
-        case actionTypes.Delete_AlbumSettings_Success:
-            return {
-                ...state,
-                message: action.message,
-                loading: false,
-                error: false
-            };
-        case actionTypes.Delete_AlbumSettings_Failed:
-            return {
-                ...state,
-                loading: false,
-                error: action.error
+                error: action.error,
             };
         case actionTypes.Reset:
             return state = initialState;
@@ -57,4 +40,4 @@ const AlbumSettingsReducer = (state = initialState, action) => {
     }
 };
 
-export default AlbumSettingsReducer;
+export default AlbumUpdateReducer;

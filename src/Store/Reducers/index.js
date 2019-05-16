@@ -25,11 +25,13 @@ import UserSettingsReducer from './UserReducers/UserSettings';
 import AddAlbumReducer from './AlbumReducers/AddAlbum';
 import ViewAlbumReducer from './AlbumReducers/ViewAlbum';
 import DeleteAlbumReducer from './AlbumReducers/DeleteAlbum';
+import UpdateAlbumReducer from './AlbumReducers/UpdateAlbum';
 
 /* Product Reducers */
 import AddProductReducer from './ProductReducers/AddProduct';
 import ViewProductReducer from './ProductReducers/ViewProduct';
 import DeleteProductReducer from './ProductReducers/DeleteProduct';
+import UpdateProductReducer from './ProductReducers/UpdateProduct';
 
 /* Vlog Reducers */
 import AddVlogReducer from './VlogReducers/AddVlog';
@@ -70,10 +72,12 @@ export default combineReducers({
     AddAlbum: AddAlbumReducer,
     DeleteAlbum: DeleteAlbumReducer,
     ViewAlbum: ViewAlbumReducer,
+    UpdateAlbum:UpdateAlbumReducer,
 
     AddProduct: AddProductReducer,
     DeleteProduct: DeleteProductReducer,
     ViewProduct: ViewProductReducer,
+    UpdateProduct:UpdateProductReducer,
 
     AddVlog: AddVlogReducer,
     ViewVlog: ViewVlogReducer,

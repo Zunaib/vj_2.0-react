@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import classes from './Blog_View.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../Store/Actions/index';
@@ -7,9 +7,6 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
 
-
-import ReactQuill from 'react-quill'; // ES6
-import 'react-quill/dist/quill.snow.css'; // ES6
 
 // import video from '../../../assets/images/Vid.mp4'
 

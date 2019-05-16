@@ -22,12 +22,12 @@ export const updatealbumStart = () => {
 };
 
 
-export const UpdateAlbum = (token, albumSettingsData) => {
+export const UpdateAlbum = (token, updatedalbum) => {
 
-    console.log(albumSettingsData)
+    console.log(updatedalbum)
     return dispatch => {
         dispatch(updatealbumStart());
-        axios.post('/api/updateAlbum?access_token=' + token, albumSettingsData)
+        axios.put('/api/updateAlbum?access_token=' + token, updatedalbum)
             .then(res => {
                 console.log(res);
                 dispatch(updatealbumSuccess(res.data.message));

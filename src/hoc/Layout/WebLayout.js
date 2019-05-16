@@ -12,6 +12,7 @@ import DesignerProfile from '../../containers/DesignerProfile/DesignerProfile'
 import UserAccountSettings from '../../containers/UserAccountSettings/UserAccountSettings'
 import ViewProduct from '../../containers/Handle_Product/Product_View/Product';
 import Add_Product from '../../containers/Handle_Product/Product_Add/Product';
+import Update_Product from '../../containers/Handle_Product/Product_Update/Product_Update';
 import Vlog from '../../containers/Handle_Vlog/Vlog_View/Vlog';
 import Handle_Vlog from '../../containers/Handle_Vlog/Vlog_Add/Vlog';
 import Add_Blog from '../../containers/Handle_Blog/Blog_Add/Blog';
@@ -73,7 +74,7 @@ class WebLayout extends Component {
                     <Route path="/dashboard/products/:product" component={ViewProduct} />
                     <Route path="/dashboard/handle_album/add_album" component={asyncHandle_Album} />
                     <Route path="/dashboard/:albumid/handle_product" component={Add_Product} />
-                    <Route path="/dashboard/handle_product" component={Add_Product} />
+                    <Route path="/dashboard/handle_product/add_product" component={Add_Product} />
                     <Route path="/dashboard/vlogs/:vlog" component={Vlog} />
                     <Route path="/dashboard/handle_vlog/add_vlog" component={Handle_Vlog} />
                     <Route path="/dashboard/blogs/:blog" component={View_Blog} />
@@ -84,6 +85,7 @@ class WebLayout extends Component {
 
 
                     <Route path="/dashboard/handle_album/update_album/:id" component={UpdateAlbum} />
+                    <Route path="/dashboard/handle_product/update_product/:id" component={Update_Product} />
 
 
 

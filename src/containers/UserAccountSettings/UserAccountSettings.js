@@ -232,15 +232,14 @@ class UserAccountSettings extends Component {
             }
         }
 
-        console.log(action)
-
         let data = new FormData();
         if (this.state.selectedFile) {
             action = true;
             data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+        } else {
+            data.append('displayPicture', this.state.userimage)
         }
 
-        data.append('displayPicture', this.state.userimage)
         data.append('firstName', formData.firstName);
         data.append('lastName', formData.lastName);
         data.append('dateofbirth', "1/1/1");
@@ -253,7 +252,7 @@ class UserAccountSettings extends Component {
         data.append('country', formData.country);
         data.append('phone', formData.phone);
 
-        if (true) {
+        if (this.state.formIsValid && action) {
             this.props.onUpdateSettings(this.props.token, data);
             window.location.reload();
             console.log('valid')

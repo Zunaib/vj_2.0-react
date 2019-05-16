@@ -12,12 +12,12 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
 
 class Product extends Component {
 
 
-    componentWillMount() {
+    componentDidMount() {
         let str = window.location.href;
         let res = str.split("/");
         const albumid = res[4];
@@ -218,6 +218,8 @@ class Product extends Component {
             data.append('albumId', this.state.album);
         }
         data.append('productName', formData.name);
+        data.append('description', formData.description);
+        data.append('color', formData.color);
         data.append('quantity', formData.quantity);
         data.append('sizes', formData.sizes);
         data.append('price', formData.price);
@@ -263,7 +265,6 @@ class Product extends Component {
             <form onSubmit={this.productHandler}>
                 {formElementsArray.map(formElement => (
                     <Input
-                        class={classes.Wrapper}
                         label={formElement.id}
                         key={formElement.id}
                         elementType={formElement.config.elementType}
@@ -294,16 +295,42 @@ class Product extends Component {
         //     snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
         // }
 
-        let imgsnack = null;
-        if (this.state.selectedFiles && this.state.selectedsnacks) {
-            imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} msgRefresh={this.props.onMsgRefresh} />);
-            this.setState({ selectedsnacks: false })
+        // let imgsnack = null;
+        // if (this.state.selectedFiles && this.state.selectedsnacks) {
+        //     imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} msgRefresh={this.props.onMsgRefresh} />);
+        //     this.setState({ selectedsnacks: false })
+        // }
+
+        let productimages = null;
+        if (this.state.selectedFiles) {
+            productimages = (<div className={classes.Images}>
+                <div className={classes.AlbumImage} >
+                    <img src={this.state.selectedFiles[0] ? this.state.selectedFilesURL[0] : productimg} alt="Product_Thumbnail" />
+                </div>
+                <div className={classes.AlbumImageSmall} >
+                    <img src={this.state.selectedFiles[1] ? this.state.selectedFilesURL[1] : productimg} alt="Product_Thumbnail1" />
+                    <img src={this.state.selectedFiles[2] ? this.state.selectedFilesURL[2] : productimg} alt="Product_Thumbnail2" />
+                    <img src={this.state.selectedFiles[3] ? this.state.selectedFilesURL[3] : productimg} alt="Product_Thumbnail3" />
+                    <img src={this.state.selectedFiles[4] ? this.state.selectedFilesURL[4] : productimg} alt="Product_Thumbnail4" />
+                </div>
+            </div>);
+        } else {
+            productimages = (<div className={classes.Images}>
+                <div className={classes.AlbumImage} >
+                    <img src={productimg} alt="Product_Thumbnail" />
+                </div>
+                <div className={classes.AlbumImageSmall} >
+                    <img src={productimg} alt="Product_Thumbnail1" />
+                    <img src={productimg} alt="Product_Thumbnail2" />
+                    <img src={productimg} alt="Product_Thumbnail3" />
+                    <img src={productimg} alt="Product_Thumbnail4" />
+                </div>
+            </div>);
         }
 
 
         return (
             <div className={classes.Main}>
-                {imgsnack}
 
                 <div className={classes.Album}>
                     <NavLink to="/dashboard/designer">
@@ -322,17 +349,7 @@ class Product extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className={classes.Images}>
-                            <div className={classes.AlbumImage} >
-                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[0] : productimg} alt="Product_Thumbnail" />
-                            </div>
-                            <div className={classes.AlbumImageSmall} >
-                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[1] : productimg} alt="Product_Thumbnail1" />
-                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[2] : productimg} alt="Product_Thumbnail2" />
-                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[3] : productimg} alt="Product_Thumbnail3" />
-                                <img src={this.state.selectedFiles ? this.state.selectedFilesURL[4] : productimg} alt="Product_Thumbnail4" />
-                            </div>
-                        </div>
+                        {productimages}
                     </div>
                 </div>
             </div>

@@ -180,3 +180,8 @@ export const Delete_Blog_Failed = 'Delete_Blog_Failed';
 export const Fetch_Single_Blog_Start = 'Fetch_Single_Blog_Start';
 export const Fetch_Single_Blog_Failed = 'Fetch_Single_Blog_Failed';
 export const Fetch_Single_Blog_Success = 'Fetch_Single_Blog_Success';
+
+/*Update Product Actions */
+export const Update_Single_Product_Start = 'Update_Single_Product_Start';
+export const Update_Single_Product_Failed = 'Update_Single_Product_Failed';
+export const Update_Single_Product_Success = 'Update_Single_Product_Success';
