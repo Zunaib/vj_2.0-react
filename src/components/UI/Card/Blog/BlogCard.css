@@ -4,7 +4,7 @@
     object-fit: cover;
     background-size: cover;
 background-repeat: no-repeat;
-    width: 20%;
+    width: 300px;
     height: 100%;
     float: left;
     margin-top: 13px;
@@ -26,6 +26,7 @@ background-color: rgba(0, 0, 0, 0.288);
 }
 
 .BlogCardText{
+    padding: 5px;
     text-align:center;
 }
 

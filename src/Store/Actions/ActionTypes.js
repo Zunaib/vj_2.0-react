@@ -17,6 +17,14 @@ export const ContactUsForm_Failed = 'ContactUsForm_Failed';
 export const Fetch_Dash_Products_Start = 'Fetch_Products_Start';
 export const Fetch_Dash_Products_Success = 'Fetch_Products_Success';
 export const Fetch_Dash_Products_Failed = 'Fetch_Products_Failed';
+/* Fetch Dashboard Actions */
+export const Fetch_Dash_Vlogs_Start = 'Fetch_Vlogs_Start';
+export const Fetch_Dash_Vlogs_Success = 'Fetch_Vlogs_Success';
+export const Fetch_Dash_Vlogs_Failed = 'Fetch_Vlogs_Failed';
+/* Fetch Dashboard Actions */
+export const Fetch_Dash_Blogs_Start = 'Fetch_Blogs_Start';
+export const Fetch_Dash_Blogs_Success = 'Fetch_Blogs_Success';
+export const Fetch_Dash_Blogs_Failed = 'Fetch_Blogs_Failed';
 
 /* Fetch User Settings Actions */
 export const Fetch_UserSettings_Start = 'Fetch_UserSettings_Start';

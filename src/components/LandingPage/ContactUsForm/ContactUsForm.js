@@ -132,7 +132,7 @@ class ContactUsForm extends Component {
     let button = null;
     let error = null;
     if (this.state.formIsValid) {
-      button = <Button btnType="SendButton" disabled={!this.state.formIsValid}>Send</Button>;
+      button = "";
     }
     if (!this.state.formIsValid) {
       error = <p className={classes.error}>Fill In All Fields With Valid Input To Send.</p>
@@ -159,7 +159,8 @@ class ContactUsForm extends Component {
             touched={formElement.config.touched}
             changed={(event) => this.inputChangedHandler(event, formElement.id)} />
         ))}
-        {button}
+        {/* {button} */}
+        <Button btnType="SendButton">Send</Button>
         {error}
       </form>
     );

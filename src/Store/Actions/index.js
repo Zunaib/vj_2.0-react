@@ -12,6 +12,12 @@ export {
 export {
     FetchDashProducts
 } from './DashboardActions/Products';
+export {
+    FetchDashVlogs
+} from './DashboardActions/Vlogs';
+export {
+    FetchDashBlogs
+} from './DashboardActions/Blogs';
 
 /* Creator Profile Actions Export */
 export {

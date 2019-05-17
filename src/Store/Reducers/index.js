@@ -11,6 +11,8 @@ import AuthReducer from './AuthReducers/Auth';
 
 /* Dashboard Reducers */
 import DashboardProductsReducer from './DashboardReducers/Products';
+import DashboardVlogsReducer from './DashboardReducers/Vlogs';
+import DashboardBlogsReducer from './DashboardReducers/Blogs';
 
 /* Creator Profile Reducers */
 import DesignerProductsReducer from './UserReducers/DesignerProducts';
@@ -61,6 +63,9 @@ export default combineReducers({
     Auth: AuthReducer,
 
     DashboardProducts: DashboardProductsReducer,
+    DashboardVlogs: DashboardVlogsReducer,
+    DashboardBlogs: DashboardBlogsReducer,
+
 
     UserSettings: UserSettingsReducer,
 
@@ -72,12 +77,12 @@ export default combineReducers({
     AddAlbum: AddAlbumReducer,
     DeleteAlbum: DeleteAlbumReducer,
     ViewAlbum: ViewAlbumReducer,
-    UpdateAlbum:UpdateAlbumReducer,
+    UpdateAlbum: UpdateAlbumReducer,
 
     AddProduct: AddProductReducer,
     DeleteProduct: DeleteProductReducer,
     ViewProduct: ViewProductReducer,
-    UpdateProduct:UpdateProductReducer,
+    UpdateProduct: UpdateProductReducer,
 
     AddVlog: AddVlogReducer,
     ViewVlog: ViewVlogReducer,

@@ -12,7 +12,7 @@ class Products extends Component {
     render() {
         const products = this.props.products;
         const cards = (products.map((product, index = product._id) => (
-            <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={product._id} onClick={() => this.send(product)}>
+            <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={index}>
                 <ProductCard
                     key={product._id}
                     name={product.productName}

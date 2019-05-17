@@ -12,6 +12,8 @@ class Dashboard extends Component {
 
     componentDidMount = () => {
         this.props.onfetchproducts(this.props.token);
+        this.props.onfetchvlogs(this.props.token);
+        this.props.onfetchblogs(this.props.token);
     }
 
     state = {
@@ -21,8 +23,8 @@ class Dashboard extends Component {
     getContent = (currentContent) => {
         const Content = {
             Products: <Products products={this.props.products} />,
-            Blogs: <Blogs />,
-            Vlogs: <Vlogs />
+            Blogs: <Blogs blogs={this.props.blogs} />,
+            Vlogs: <Vlogs vlogs={this.props.vlogs} />
         };
         return Content[currentContent];
     }
@@ -79,6 +81,8 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         products: state.DashboardProducts.products,
+        vlogs: state.DashboardVlogs.Vlogs,
+        blogs: state.DashboardBlogs.Blogs,
         loading: state.DashboardProducts.loading,
         error: state.DashboardProducts.error,
         token: state.Auth.token
@@ -86,7 +90,9 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchproducts: (token) => dispatch(actions.FetchDashProducts(token))
+        onfetchproducts: (token) => dispatch(actions.FetchDashProducts(token)),
+        onfetchvlogs: (token) => dispatch(actions.FetchDashVlogs(token)),
+        onfetchblogs: (token) => dispatch(actions.FetchDashBlogs(token)),
     }
 }
 
