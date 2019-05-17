@@ -193,3 +193,8 @@ export const Fetch_Single_Blog_Success = 'Fetch_Single_Blog_Success';
 export const Update_Single_Product_Start = 'Update_Single_Product_Start';
 export const Update_Single_Product_Failed = 'Update_Single_Product_Failed';
 export const Update_Single_Product_Success = 'Update_Single_Product_Success';
+
+/*Update Blog Actions */
+export const Update_Single_Blog_Start = 'Update_Single_Blog_Start';
+export const Update_Single_Blog_Failed = 'Update_Single_Blog_Failed';
+export const Update_Single_Blog_Success = 'Update_Single_Blog_Success';

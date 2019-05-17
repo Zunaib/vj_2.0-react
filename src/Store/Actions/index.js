@@ -81,7 +81,6 @@ export {
     FetchSingleVlog
 } from './VlogActions/ViewVlog';
 export {
-    FetchVlogToUpdate,
     UpdateVlog
 } from './VlogActions/UpdateVlog';
 export {
@@ -98,6 +97,9 @@ export {
 export {
     FetchSingleBlog
 } from './BlogActions/ViewBlog';
+export {
+    UpdateBlog
+} from './BlogActions/UpdateBlog';
 
 /* Cart Actions Export */
 export {

@@ -7,7 +7,7 @@ const initialState = {
     updated: null
 }
 
-const UserSettingsReducer = (state = initialState, action) => {
+const UpdateBlogReducer = (state = initialState, action) => {
     switch (action.type) {
         // case actionTypes.Update_Message_Refresh:
         //     return {
@@ -15,23 +15,23 @@ const UserSettingsReducer = (state = initialState, action) => {
         //         message: null,
         //         loading: false
         //     };
-        case actionTypes.Update_Single_Vlog_Start:
+        case actionTypes.Update_Single_Blog_Start:
             return {
                 ...state,
                 loading: true,
-                updated:null,
+                updated:null
             };
-        case actionTypes.Update_Single_Vlog_Success:
+        case actionTypes.Update_Single_Blog_Success:
             return {
                 ...state,
                 loading: false,
                 updated: action.message
             };
-        case actionTypes.Update_Single_Vlog_Failed:
+        case actionTypes.Update_Single_Blog_Failed:
             return {
                 ...state,
                 loading: false,
-                error: action.error,
+                updated: action.error,
             };
         case actionTypes.Reset:
             return state = initialState;
@@ -40,4 +40,4 @@ const UserSettingsReducer = (state = initialState, action) => {
     }
 };
 
-export default UserSettingsReducer;
+export default UpdateBlogReducer;

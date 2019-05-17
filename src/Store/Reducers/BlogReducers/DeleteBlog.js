@@ -12,7 +12,8 @@ const DeleteBlogReducer = (state = initialState, action) => {
         case actionTypes.Delete_Blog_Start:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                deleted: null
             };
         case actionTypes.Delete_Blog_Success:
             return {

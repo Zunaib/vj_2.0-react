@@ -45,6 +45,7 @@ import DeleteVlogReducer from './VlogReducers/DeleteVlog';
 import AddBlogReducer from './BlogReducers/AddBlog';
 import ViewBlogReducer from './BlogReducers/ViewBlog';
 import DeleteBlogReducer from './BlogReducers/DeleteBlog';
+import UpdateBlogReducer from './BlogReducers/UpdateBlog';
 
 /* Cart Reducers */
 import AddtoCartReducer from './CartReducers/AddtoCart';
@@ -92,6 +93,7 @@ export default combineReducers({
     AddBlog: AddBlogReducer,
     ViewBlog: ViewBlogReducer,
     DeleteBlog: DeleteBlogReducer,
+    UpdateBlog: UpdateBlogReducer,
 
     AddtoCart: AddtoCartReducer,
     Cart: CartReducer,

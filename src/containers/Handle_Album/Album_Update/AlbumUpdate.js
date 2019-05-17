@@ -38,6 +38,7 @@ class Album extends Component {
     }
 
     setData() {
+
         let prevAlbum = this.state.album;
         const updatedalbumForm = {
             ...this.state.albumForm
@@ -297,8 +298,11 @@ class Album extends Component {
                 {redirect}
                 {imgsnack}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
-                        <i className="fas fa-times"></i>
+                    <NavLink to='/dashboard'>
+                        <div className={classes.cross}>
+                            <h4>Close</h4>
+                            <i className="fas fa-times"></i>
+                        </div>
                     </NavLink>
                     {body}
                 </div>

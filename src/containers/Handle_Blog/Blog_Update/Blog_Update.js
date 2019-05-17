@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classes from './BlogCrud.css'
+import classes from './Blog_Update.css'
 import ReactQuill from 'react-quill'; // ES6
 import 'react-quill/dist/quill.snow.css'; // ES6
 
-// import { NavLink } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 // import ReactPlayer from 'react-player';
@@ -51,6 +51,8 @@ class Blog extends Component {
                     touched: false
                 },
             },
+            blog: null,
+            blogthumbnail: null,
             formIsValid: false,
             selectedFile: null,
             selectedsnack: false,
@@ -60,6 +62,65 @@ class Blog extends Component {
 
         }
         this.handleChange = this.handleChange.bind(this)
+    }
+
+    componentDidMount() {
+        let str = window.location.href.split("http://localhost:3000/dashboard/handle_blog/update_blog/");
+        this.props.onfetchcurrentblog(this.props.token, str[1])
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.currentblog !== prevState.blog) {
+            return { blog: nextProps.currentblog };
+        }
+        else return null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.currentblog !== this.props.currentblog) {
+            //Perform some operation here
+            this.setState({ blog: this.props.currentblog });
+            this.setData();
+        }
+    }
+
+    setData() {
+        let prevBlog = this.state.blog[0];
+        const updatedblogForm = {
+            ...this.state.blogForm
+        };
+
+        const formElements = ['title', 'description'];
+
+        for (let i = 0; i < formElements.length; i++) {
+            const updatedFormElement = {
+                ...updatedblogForm[formElements[i]]
+            };
+
+            let target = formElements[i];
+
+            if (prevBlog[target] === null) {
+                updatedFormElement.value = "";
+                updatedFormElement.valid = false;
+                updatedFormElement.touched = false;
+            } else {
+                updatedFormElement.value = prevBlog[target];
+                updatedFormElement.valid = true;
+                updatedFormElement.touched = true;
+            }
+
+            updatedblogForm[formElements[i]] = updatedFormElement;
+        }
+
+        let formIsValid = true;
+        for (let inputIdentifier in updatedblogForm) {
+            formIsValid = updatedblogForm[inputIdentifier].valid && formIsValid;
+        }
+        let blog_thumbnail = null;
+        if (prevBlog.thumbnail) {
+            blog_thumbnail = 'http://localhost:5000' + prevBlog.thumbnail;
+        }
+        this.setState({ blogForm: updatedblogForm, formIsValid: formIsValid, blogthumbnail: blog_thumbnail, editorHtml: prevBlog.content });
     }
 
     fileSelectedHandler = (event) => {
@@ -95,18 +156,40 @@ class Blog extends Component {
             formData[formElementIdentifier] = this.state.blogForm[formElementIdentifier].value;
         }
 
+        const formElements = ['title', 'description'];
+        let prevBlog = this.state.blog[0];
+        let action = false;
+        for (let i = 0; i < formElements.length; i++) {
+            let target = formElements[i];
+            if (formData[target] !== prevBlog[target]) {
+                action = true;
+            }
+        }
+
+        if (this.state.editorHtml !== prevBlog.content) {
+            action = true;
+        }
+
         let data = new FormData();
         if (this.state.selectedFile) {
             data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+            action = true;
+        } else {
+            data.append('thumbnail', prevBlog.thumbnail);
         }
+
+        console.log(action)
+
+        data.append('blogId', prevBlog._id);
         data.append('title', formData.title);
         data.append('description', formData.description);
         data.append('content', this.state.editorHtml);
 
-        if (this.state.formIsValid && this.state.selectedFile && this.state.editorHtml) {
-            this.props.onaddBlog(this.props.token, data);
+        if (this.state.formIsValid && action) {
+            this.props.onupdatecurrentBlog(this.props.token, data);
             this.fieldclearHandler();
             this.setState({ formIsValid: false });
+            console.log('valid')
         } else {
             console.log('Invalid')
         }
@@ -162,23 +245,35 @@ class Blog extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
                 <FileUploader clicked={this.fileSelectedHandler} text="Blog Thumbail" />
-                <Button btnType="WebButton">Add Blog</Button>
+                <Button btnType="WebButton">Update Blog</Button>
 
             </form>
         );
 
+        let blog_img = this.state.blogthumbnail;
+        if (this.state.selectedFile) {
+            blog_img = this.state.selectedFileURL
+        }
+
+        let redirect = null;
+        if (this.props.updated) {
+            redirect = <Redirect to={"/dashboard/blogs/" + this.state.blog[0]._id} />
+        }
+
         return (
 
             <div className={classes.Main}>
-                {/* {redirect}
-            {imgsnack} */}
+                {redirect}
                 <div className={classes.Album}>
-                    {/* <NavLink to="/dashboard/designer">
-                        <i className="fas fa-times"></i>
-                    </NavLink> */}
+                    <NavLink to='/dashboard'>
+                        <div className={classes.cross}>
+                            <h4>Close</h4>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
-                            <h1>Add Blog</h1>
+                            <h1>Update Blog</h1>
                             <div className={classes.FormCardInfo}>
                                 <div className={classes.FormSide}>
                                     <div className={classes.Form} >
@@ -189,7 +284,7 @@ class Blog extends Component {
                             </div>
                         </div>
                         <div className={classes.AlbumImage} >
-                            <img src={this.state.selectedFile ? this.state.selectedFileURL : blogcvr} alt="Album_Thumbnail" />
+                            <img src={blog_img ? blog_img : blogcvr} alt="Album_Thumbnail" />
                         </div>
                     </div>
 
@@ -249,15 +344,18 @@ Blog.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        loading: state.AddBlog.loading,
-        error: state.AddBlog.error,
+        currentblog: state.ViewBlog.currentblog,
+        loading: state.ViewBlog.loading,
+        error: state.ViewBlog.error,
+        updated: state.UpdateBlog.updated,
         token: state.Auth.token,
         flag: state.Auth.flag
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onaddBlog: (token, blogData) => dispatch(actions.AddBlog(token, blogData))
+        onfetchcurrentblog: (token, blogid) => dispatch(actions.FetchSingleBlog(token, blogid)),
+        onupdatecurrentBlog: (token, blogData) => dispatch(actions.UpdateBlog(token, blogData))
     }
 }
 

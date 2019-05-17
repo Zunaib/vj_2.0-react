@@ -129,11 +129,7 @@ class ContactUsForm extends Component {
   }
 
   render() {
-    let button = null;
     let error = null;
-    if (this.state.formIsValid) {
-      button = "";
-    }
     if (!this.state.formIsValid) {
       error = <p className={classes.error}>Fill In All Fields With Valid Input To Send.</p>
     }

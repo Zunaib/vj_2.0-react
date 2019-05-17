@@ -56,6 +56,7 @@ class Vlog extends Component {
                         <div className={classes.AlbumImage} >
                             <ReactPlayer url={video} {...videostyles} />
                             <h2>{vlog.title}</h2>
+                            <h4>{vlog.description}</h4>
                             <h5>Views</h5>
                         </div>
                         {/* <div className={classes.AlbumImageSide} >

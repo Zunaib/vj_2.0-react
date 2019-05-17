@@ -410,8 +410,9 @@ class Product extends Component {
             <div className={classes.Main}>
                 {redirect}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
+                    <NavLink to='/dashboard'>
                         <div className={classes.cross}>
+                            <h4>Close</h4>
                             <i className="fas fa-times"></i>
                         </div>
                     </NavLink>

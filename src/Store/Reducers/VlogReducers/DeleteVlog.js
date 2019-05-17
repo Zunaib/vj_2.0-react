@@ -12,7 +12,8 @@ const DeleteAlbumReducer = (state = initialState, action) => {
         case actionTypes.Delete_Vlog_Start:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                deleted:null
             };
         case actionTypes.Delete_Vlog_Success:
             return {

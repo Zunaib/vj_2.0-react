@@ -25,6 +25,8 @@ import DesignerOrder from '../../containers/DesignerOrder/DesignerOrder';
 
 
 import UpdateAlbum from '../../containers/Handle_Album/Album_Update/AlbumUpdate';
+import UpdateBlog from '../../containers/Handle_Blog/Blog_Update/Blog_Update';
+import UpdateVlog from '../../containers/Handle_Vlog/Vlog_Update/Vlog_Update';
 
 
 const asyncAlbum = asyncComponent(() => {
@@ -86,6 +88,8 @@ class WebLayout extends Component {
 
                     <Route path="/dashboard/handle_album/update_album/:id" component={UpdateAlbum} />
                     <Route path="/dashboard/handle_product/update_product/:id" component={Update_Product} />
+                    <Route path="/dashboard/handle_blog/update_blog/:id" component={UpdateBlog} />
+                    <Route path="/dashboard/handle_vlog/update_vlog/:id" component={UpdateVlog} />
 
 
 

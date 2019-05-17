@@ -11,7 +11,8 @@ const DeleteProductReducer = (state = initialState, action) => {
         case actionTypes.Delete_ProductSettings_Start:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                deleted:null
             };
         case actionTypes.Delete_ProductSettings_Success:
             return {
