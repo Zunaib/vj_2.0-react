@@ -25,12 +25,12 @@
     width: 100px;
     border-radius: 55px;
     color: rgb(247, 247, 247);
-    background-color: rgb(116, 47, 110);
+    background-color: rgb(153, 1, 153);    
     font-weight: bold;
 }
 
 .NavigationItem a.NavButton:hover{
-    background-color: #73236B;
+    background-color: purple;
 }
 
 
@@ -100,11 +100,12 @@
         height: 5px;
         border-radius: 55px;
         color: rgb(247, 247, 247);
-        background-color: rgb(116, 47, 110);
+    background-color: rgb(153, 1, 153);
+        
     }
     
     .NavigationItem a.NavButton:hover{
-        background-color: #73236B;
+        background-color: purple;
     }
 
 

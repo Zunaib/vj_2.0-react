@@ -84,9 +84,11 @@ class ContactUsForm extends Component {
       email: formData.email,
       message: formData.message
     }
-
-    this.props.onSubmitContactUsForm(contactUs);
-
+    if (this.state.formIsValid) {
+      this.props.onSubmitContactUsForm(contactUs);
+    } else {
+      console.log('invalid')
+    }
     this.fieldclearHandler();
 
   }
@@ -165,7 +167,7 @@ class ContactUsForm extends Component {
     }
 
     return (
-      <section className={classes.Misc}>
+      <section className={classes.Misc} ref={this.props.contactUsRef}>
         <h2>Contact Us</h2>
         {form}
 

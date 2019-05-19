@@ -12,11 +12,13 @@ const Toolbar = (props) => {
         navbar = (
             <nav className={classes.ToolbarLanding}>
                 <DrawerToggle clicked={props.drawerToggleClicked} Color="White" />
-                <div className={classes.Logo}>
-                    <Logo logoType="White" />
-                </div>
+                <NavLink to="/" className={classes.Logo}>
+                    <div >
+                        <Logo logoType="White" />
+                    </div>
+                </NavLink>
                 <nav className={classes.DesktopOnly}>
-                    <NavigationItems Type="Landing" />
+                    <NavigationItems Type="Landing" scrollAbout={props.scrollToAbout} scrollMission={props.scrollToMission} />
                 </nav>
             </nav>
         );

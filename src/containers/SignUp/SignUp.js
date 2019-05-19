@@ -144,7 +144,7 @@ class SignUp extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <Button btnType="LoginButton">REGISTER</Button>
+                <Button btnType="LoginButton">Sign Up</Button>
             </form>
         );
 

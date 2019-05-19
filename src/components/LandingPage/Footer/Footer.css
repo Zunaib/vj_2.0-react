@@ -1,5 +1,5 @@
 .Footer {
-    background: rgb(116, 47, 110);
+  background-color: rgb(153, 1, 153);    
     color: #fff;
     padding: 20px;
     margin-top: 80px;
@@ -8,6 +8,10 @@
     align-items: center;
     text-align: center;
    
+  }
+
+  .Footer a{
+    color: #eee;
   }
   
 .Footer ul {
@@ -22,6 +26,7 @@
   
 .Footer ul li a {
     color: #eee;
+    text-decoration: none;
   }
   
   

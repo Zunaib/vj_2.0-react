@@ -1,21 +1,39 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import asyncComponent from '../asyncComponent/asyncComponent';
+// import asyncComponent from '../asyncComponent/asyncComponent';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import NavBackDrop from '../../components/Navigation/Sidedrawer/NavBackDrop/NavBackDrop';
-
-const asyncLanding = asyncComponent(() => {
-    return import('../../containers/LandingPage/LandingPage');
-})
-const asyncLogin = asyncComponent(() => {
-    return import('../../containers/LogIn/Login');
-})
-const asyncSignup = asyncComponent(() => {
-    return import('../../containers/SignUp/SignUp');
-})
+import LandingPage from '../../containers/LandingPage/LandingPage';
+import LoginPage from '../../containers/LogIn/Login';
+import SignUpPage from '../../containers/SignUp/SignUp';
 
 class LandingLayout extends Component {
+
+    constructor(props) {
+        super(props)
+        this.aboutRef = React.createRef()
+        this.scrollToAbout = this.scrollToAbout.bind(this)
+
+        this.missionRef = React.createRef()
+        this.scrollToMission = this.scrollToMission.bind(this)
+
+        this.contactUsRef = React.createRef()
+        this.scrollTocontactUs = this.scrollTocontactUs.bind(this)
+
+    }
+
+    scrollToAbout() {
+        window.scrollTo(0, this.aboutRef.current.offsetTop)
+    }
+
+    scrollToMission() {
+        window.scrollTo(0, this.missionRef.current.offsetTop)
+    }
+
+    scrollTocontactUs() {
+        window.scrollTo(0, this.contactUsRef.current.offsetTop)
+    }
 
 
     state = {
@@ -36,31 +54,31 @@ class LandingLayout extends Component {
 
     render() {
 
-        let routes = (
-            <Switch>
-                <Route exact path='/' component={asyncLanding} />
-                <Route path='/login' component={asyncLogin} />
-                <Route path='/signup' component={asyncSignup} />
-                <Redirect to="/" />
-            </Switch>
-        );
-
-        if (this.props.isAuth) {
-            routes = (
-                <Switch>
-                    {/* <Redirect to="/" /> */}
-                </Switch>
-            );
-        }
-
         return (
             <div>
-                <Toolbar Type="Landing" drawerToggleClicked={this.sideDrawerToggleHandler} />
+                <Toolbar Type="Landing" drawerToggleClicked={this.sideDrawerToggleHandler}
+                    scrollToAbout={this.scrollToAbout}
+                    scrollToMission={this.scrollToMission} />
                 <NavBackDrop show={this.state.showSideDrawer} clicked={this.sideDrawerClosedHandler} />
                 <main>
                     {this.props.children}
                 </main>
-                {routes}
+                <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        render={(routeProps) => (
+                            <LandingPage {...routeProps}
+                                aboutRefProp={this.aboutRef}
+                                missionRefProp={this.missionRef}
+                                contactUsRefProp={this.contactUsRef}
+                                scrollToContactUs={this.scrollTocontactUs} />
+                        )}
+                    />
+                    <Route path='/login' component={LoginPage} />
+                    <Route path='/signup' component={SignUpPage} />
+                    <Redirect to="/" />
+                </Switch>
             </div>
         )
     }

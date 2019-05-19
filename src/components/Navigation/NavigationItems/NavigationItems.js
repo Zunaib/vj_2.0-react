@@ -42,8 +42,8 @@ class NavigationItems extends Component {
         if (this.props.Type === "Landing") {
             navitems = (
                 <ul className={classes.NavigationItemsLanding}>
-                    <NavigationItem navitemType="Landing" link="/">About</NavigationItem>
-                    <NavigationItem navitemType="Landing" link="/">Mission</NavigationItem>
+                    <NavigationItem navitemType="Landing" link="#about" clicked={this.props.scrollAbout}>About</NavigationItem>
+                    <NavigationItem navitemType="Landing" link="#mission" clicked={this.props.scrollMission}>Mission</NavigationItem>
                     <NavigationItem navitemType="Landing" Type="NavButton" link="/login">Sign In</NavigationItem>
                     <NavigationItem navitemType="Landing" Type="NavButton" link="/signup">Sign Up</NavigationItem>
                 </ul>

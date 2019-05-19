@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './Mission.css';
 
-const Mission = () => (
-    <section className={classes.Misc}>
+const Mission = (props) => (
+    <section className={classes.Misc} ref={props.missionRef}>
         <h2>Our Mission</h2>
         <div>
             <p>Integer sit amet venenatis erat. Cras elementum tortor odio, sit amet euismod nunc cursus ut. Donec sollicitudin orci sed enim volutpat, volutpat rutrum magna semper. Fusce leo lacus, pulvinar sit amet dignissim in, consectetur eget nulla. Etiam ac turpis augue. Sed tincidunt pulvinar tincidunt. Integer ac blandit magna. Nulla dapibus convallis luctus. </p>

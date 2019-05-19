@@ -15,12 +15,12 @@ export class LandingPage extends Component {
     render() {
         return (
             <div className={classes.Container}>
-                <Header />
-                <AboutUs />
+                <Header scrollToContactUs={this.props.scrollToContactUs} />
+                <AboutUs aboutRef={this.props.aboutRefProp} />
                 <Services />
                 <Gallery />
-                <Mission />
-                <ContactUsForm />
+                <Mission missionRef={this.props.missionRefProp} />
+                <ContactUsForm contactUsRef={this.props.contactUsRefProp} />
                 <Footer />
             </div>
 
