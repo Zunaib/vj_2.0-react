@@ -7,6 +7,7 @@ import Auxilary from '../../../hoc/Auxilary/Auxilary'
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
+import Snack from '../../../components/UI/SnackBar/Snackbar'
 // import display from '../../../assets/images/testimg.jpg';
 // import ProductCard from '../../../components/UI/Card/Product/ProductCard';
 class Product extends Component {
@@ -79,8 +80,25 @@ class Product extends Component {
 
 
         let editpath = '/dashboard/handle_product/update_product/' + this.state.productid;
+        let added = null;
+        if (this.props.addedtocart) {
+            added = (<Snack message={"Item Successfully Added To Cart"} snackType="success" refresh={this.props.onaddtocartmsg} />);
+
+        }
+        let addederror = null;
+        if (this.props.addedtocarterror) {
+            addederror = (<Snack message={"Item Already Added"} snackType="error" refresh={this.props.onaddtocartmsg} />);
+        }
+
+        let delprod = null;
+        if (this.props.deleted) {
+            delprod = (<Snack message={"Product Successfully Deleted"} snackType="success" refresh={this.props.ondelmsg} />);
+        }
         return (
             <div className={classes.Main}>
+                {added}
+                {addederror}
+                {delprod}
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
                     <NavLink to="/dashboard">
@@ -144,7 +162,9 @@ const mapStateToProps = state => {
         token: state.Auth.token,
         currentproduct: state.ViewProduct.currentproduct,
         loading: state.ViewProduct.loading,
-        deleted: state.DeleteProduct.deleted
+        deleted: state.DeleteProduct.deleted,
+        addedtocart: state.AddtoCart.added,
+        addedtocarterror: state.AddtoCart.error
     }
 }
 
@@ -152,7 +172,9 @@ const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentproduct: (token, productid) => dispatch(actions.FetchProduct(token, productid)),
         onaddtocart: (token, productid) => dispatch(actions.AddToCart(token, productid)),
-        onproductdelete: (token, productid) => dispatch(actions.DeleteProduct(token, productid))
+        onaddtocartmsg: () => dispatch(actions.AddToCartMsg()),
+        onproductdelete: (token, productid) => dispatch(actions.DeleteProduct(token, productid)),
+        ondelmsg: () => dispatch(actions.DeleteProductMsg())
     }
 }
 

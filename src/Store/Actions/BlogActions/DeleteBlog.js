@@ -46,8 +46,8 @@ export const DeleteBlog = (token, blogid) => {
 }
 
 
-export const MsgRefresh = () => {
+export const DeleteBlogMsg = () => {
     return {
-        type: actionTypes.Update_AlbumMessage_Refresh
+        type: actionTypes.Delete_Blog_Msg
     }
 }

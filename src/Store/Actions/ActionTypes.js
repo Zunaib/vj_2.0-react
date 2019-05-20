@@ -41,7 +41,7 @@ export const Update_Message_Refresh = "Update_Message_Refresh";
 export const Add_Album_Start = 'Add_Album_Start';
 export const Add_Album_Success = 'Add_Album_Success';
 export const Add_Album_Failed = 'Add_Album_Failed';
-export const Add_Message_Refresh = "Add_Message_Refresh";
+export const Add_AlbumMessage_Refresh = "Add_AlbumMessage_Refresh";
 
 /* Add Product Actions */
 export const Add_Product_Start = 'Add_Product_Start';
@@ -91,6 +91,7 @@ export const Fetch_Single_Product_Success = 'Fetch_Single_Product_Success';
 export const Add_ProductToCart_Start = 'Add_ProductToCart_Start';
 export const Add_ProductToCart_Failed = 'Add_ProductToCart_Failed';
 export const Add_ProductToCart_Success = 'Add_ProductToCart_Success';
+export const Add_ProductToCart_Msg = 'Add_ProductToCart_Msg';
 
 /* Fetch Cart */
 export const Fetch_Cart_Start = 'Fetch_Cart_Start';
@@ -139,6 +140,7 @@ export const Fetch_NavSetting_Failed = 'Fetch_NavSetting_Failed';
 export const Delete_AlbumSettings_Start = 'Delete_AlbumSettings_Start';
 export const Delete_AlbumSettings_Success = 'Delete_AlbumSettings_Success';
 export const Delete_AlbumSettings_Failed = 'Delete_AlbumSettings_Failed';
+export const Delete_AlbumSettings_Msg = 'Delete_AlbumSettings_Msg';
 
 /* Update Album Settings Actions */
 export const Update_AlbumSettings_Start = 'Update_AlbumSettings_Start';
@@ -151,6 +153,7 @@ export const Update_AlbumMessage_Refresh = "Update_AlbumMessage_Refresh";
 export const Delete_ProductSettings_Start = 'Delete_ProductSettings_Start';
 export const Delete_ProductSettings_Success = 'Delete_ProductSettings_Success';
 export const Delete_ProductSettings_Failed = 'Delete_ProductSettings_Failed';
+export const Delete_ProductSettings_Msg = 'Delete_ProductSettings_Failed';
 
 /* Add Vlog Actions */
 export const Add_Vlog_Start = 'Add_Vlog_Start';
@@ -167,6 +170,7 @@ export const Fetch_Single_Vlog_Success = 'Fetch_Single_Vlog_Success';
 export const Update_Single_Vlog_Start = 'Update_Single_Vlog_Start';
 export const Update_Single_Vlog_Failed = 'Update_Single_Vlog_Failed';
 export const Update_Single_Vlog_Success = 'Update_Single_Vlog_Success';
+export const Update_Single_Vlog_Msg = 'Update_Single_Vlog_Msg';
 
 /* Add Blog Actions */
 export const Add_Blog_Start = 'Add_Blog_Start';
@@ -178,11 +182,13 @@ export const Add_Blog_Refresh = "Add_Blog_Refresh";
 export const Delete_Vlog_Start = 'Delete_Vlog_Start';
 export const Delete_Vlog_Success = 'Delete_Vlog_Success';
 export const Delete_Vlog_Failed = 'Delete_Vlog_Failed';
+export const Delete_Vlog_Msg = 'Delete_Vlog_Msg';
 
 /* Delete Blog Settings Actions */
 export const Delete_Blog_Start = 'Delete_Blog_Start';
 export const Delete_Blog_Success = 'Delete_Blog_Success';
 export const Delete_Blog_Failed = 'Delete_Blog_Failed';
+export const Delete_Blog_Msg = 'Delete_Blog_Msg';
 
 /* Fetch Current Opened Blog */
 export const Fetch_Single_Blog_Start = 'Fetch_Single_Blog_Start';
@@ -193,8 +199,10 @@ export const Fetch_Single_Blog_Success = 'Fetch_Single_Blog_Success';
 export const Update_Single_Product_Start = 'Update_Single_Product_Start';
 export const Update_Single_Product_Failed = 'Update_Single_Product_Failed';
 export const Update_Single_Product_Success = 'Update_Single_Product_Success';
+export const Update_Single_Product_Msg = 'Update_Single_Product_Msg';
 
 /*Update Blog Actions */
 export const Update_Single_Blog_Start = 'Update_Single_Blog_Start';
 export const Update_Single_Blog_Failed = 'Update_Single_Blog_Failed';
 export const Update_Single_Blog_Success = 'Update_Single_Blog_Success';
+export const Update_BlogMessage_Refresh = 'Update_BlogMessage_Refresh';

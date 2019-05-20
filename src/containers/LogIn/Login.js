@@ -114,7 +114,7 @@ class Login extends Component {
             } else {
                 msg = 'Incorrect Password';
             }
-            errorsnack = (<Snackbar message={msg} snackType="error" errRefresh={this.props.onErrorRefresh} />);
+            errorsnack = (<Snackbar message={msg} snackType="error" refresh={this.props.onErrorRefresh} />);
 
         }
 
@@ -139,8 +139,8 @@ class Login extends Component {
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
+                        invalid={false}
+                        shouldValidate={false}
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}

@@ -14,27 +14,8 @@ const Snackbar = (props) => {
             },
             variant: type,
         });
-        props.errRefresh();
+        props.refresh();
     }
-
-
-
-    // const onSuccess = (msg) => {
-    //     enqueueSnackbar(msg, {
-    //         anchorOrigin: {
-    //             vertical: 'top',
-    //             horizontal: 'right',
-    //         },
-    //         variant: 'success',
-    //     });
-    // }
-
-    // let errorSnack = null;
-    // if (props.snackType === 'Error') {
-    //     errorSnack = onError(props.message);
-    // } else if (props.snackType === 'Success') {
-    //     errorSnack = onSuccess(props.message);
-    // }
     return (
         <div>
             {snack(props.message, props.snackType)}

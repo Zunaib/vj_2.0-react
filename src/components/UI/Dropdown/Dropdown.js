@@ -38,19 +38,19 @@ class SimpleMenu extends Component {
                 >
 
                     <NavLink className={classes.Link} to="/dashboard">
-                        <MenuItem onClick={this.handleClose}>Dashboard</MenuItem>
+                        <MenuItem onClick={this.handleClose}><i className="fas fa-home"></i>Dashboard</MenuItem>
                     </NavLink>
                     <NavLink className={classes.Link} to="/dashboard/designer">
-                        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                        <MenuItem onClick={this.handleClose}><i className="fas fa-user"></i>Profile</MenuItem>
                     </NavLink>
                     <NavLink className={classes.Link} to="/dashboard/usersettings">
-                        <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+                        <MenuItem onClick={this.handleClose}><i className="fas fa-user-cog"></i>Settings</MenuItem>
                     </NavLink>
                     <NavLink className={classes.Link} to="/dashboard/customerorders">
-                        <MenuItem onClick={this.handleClose}>Orders</MenuItem>
+                        <MenuItem onClick={this.handleClose}><i className="fab fa-first-order-alt"></i>My Placed Orders</MenuItem>
                     </NavLink>
-                    <NavLink className={classes.Link} to="/logout">
-                        <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                    <NavLink className={classes.LinkLogout} to="/logout">
+                        <MenuItem onClick={this.handleClose}><i className={["fas fa-sign-out-alt", classes.back].join(' ')}></i>Logout</MenuItem>
                     </NavLink>
 
                 </Menu>

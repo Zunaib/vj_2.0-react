@@ -17,7 +17,11 @@ class DesignerProfile extends Component {
         userimage: '',
         userfirst: '',
         userlast: '',
-        desc: ''
+        desc: '',
+        albumactive: true,
+        prodactive: false,
+        vlogactive: false,
+        blogactive: false
     }
 
 
@@ -55,17 +59,17 @@ class DesignerProfile extends Component {
     }
 
     toggleLatestProducts = () => {
-        this.setState({ profilecontent: 'LatestProducts' })
+        this.setState({ albumactive: false, prodactive: true, vlogactive: false, blogactive: false, profilecontent: 'LatestProducts' })
     }
 
     toggleLatestAlbums = () => {
-        this.setState({ profilecontent: 'LatestAlbums' })
+        this.setState({ albumactive: true, prodactive: false, vlogactive: false, blogactive: false, profilecontent: 'LatestAlbums' })
     }
     toggleLatestVlogs = () => {
-        this.setState({ profilecontent: 'LatestVlogs' })
+        this.setState({ albumactive: false, prodactive: false, vlogactive: true, blogactive: false, profilecontent: 'LatestVlogs' })
     }
     toggleLatestBlogs = () => {
-        this.setState({ profilecontent: 'LatestBlogs' })
+        this.setState({ albumactive: false, prodactive: false, vlogactive: false, blogactive: true, profilecontent: 'LatestBlogs' })
     }
 
     render() {
@@ -79,6 +83,18 @@ class DesignerProfile extends Component {
         } else {
             img = display;
         }
+
+        let albumactive = this.state.albumactive ? classes.WorkbuttonActive : null;
+        let albumh4active = this.state.albumactive ? classes.h4Active : null;
+
+        let prodactive = this.state.prodactive ? classes.WorkbuttonActive : null;
+        let prodh4active = this.state.prodactive ? classes.h4Active : null;
+
+        let vlogactive = this.state.vlogactive ? classes.WorkbuttonActive : null;
+        let vlogh4active = this.state.vlogactive ? classes.h4Active : null;
+
+        let blogactive = this.state.blogactive ? classes.WorkbuttonActive : null;
+        let blogh4active = this.state.blogactive ? classes.h4Active : null;
 
         let content = this.getContent(this.state.profilecontent);
         return (
@@ -123,20 +139,20 @@ class DesignerProfile extends Component {
 
                     <div className={classes.ProfileWork}>
                         <div className={classes.WorkButtons}>
-                            <div className={classes.Workbutton} onClick={this.toggleLatestAlbums}>
-                                <i className="fas fa-palette" ></i>
+                            <div className={[classes.Workbutton, albumh4active].join(' ')} onClick={this.toggleLatestAlbums}>
+                                <i className={["fas fa-palette", albumactive].join(' ')} ></i>
                                 <h5>Albums</h5>
                             </div>
-                            <div className={classes.Workbutton} onClick={this.toggleLatestProducts}>
-                                <i className="far fa-images"></i>
+                            <div className={[classes.Workbutton, prodh4active].join(' ')} onClick={this.toggleLatestProducts}>
+                                <i className={["far fa-images", prodactive].join(' ')}></i>
                                 <h5>Products</h5>
                             </div>
-                            <div className={classes.Workbutton} onClick={this.toggleLatestVlogs}>
-                                <i className="fas fa-video"></i>
+                            <div className={[classes.Workbutton, vlogh4active].join(' ')} onClick={this.toggleLatestVlogs}>
+                                <i className={["fas fa-video", vlogactive].join(' ')}></i>
                                 <h5>Vlogs</h5>
                             </div>
-                            <div className={classes.Workbutton} onClick={this.toggleLatestBlogs}>
-                                <i className="fas fa-newspaper"></i>
+                            <div className={[classes.Workbutton, blogh4active].join(' ')} onClick={this.toggleLatestBlogs}>
+                                <i className={["fas fa-newspaper", blogactive].join(' ')}></i>
                                 <h5>Blogs</h5>
                             </div>
                         </div>

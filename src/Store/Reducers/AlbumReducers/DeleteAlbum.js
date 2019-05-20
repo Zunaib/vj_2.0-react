@@ -9,11 +9,17 @@ const initialState = {
 
 const DeleteAlbumReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.Delete_AlbumSettings_Msg:
+            return {
+                ...state,
+                loading: false,
+                deleted: null
+            };
         case actionTypes.Delete_AlbumSettings_Start:
             return {
                 ...state,
                 loading: true,
-                deleted:null
+                deleted: null
             };
         case actionTypes.Delete_AlbumSettings_Success:
             return {

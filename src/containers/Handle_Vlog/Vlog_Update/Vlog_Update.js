@@ -14,7 +14,7 @@ import vlogcvr from '../../../assets/images/AlbumCover.jpg';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
 class Vlog extends Component {
 
     state = {
@@ -263,14 +263,23 @@ class Vlog extends Component {
             vlog_video = this.state.selectedFileURL
         }
 
-        let redirect = null;
+        let updatevlog = null;
         if (this.props.updated) {
-            redirect = <Redirect to={"/dashboard/vlogs/" + this.state.vlog._id} />
+            updatevlog = (<Snack message={"Vlog Successfully Updated"} snackType="success" refresh={this.props.onUpdateMsgRefresh} />);
+
         }
+
+        let imgsnack = null;
+        if (this.state.selectedFile) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onUpdateMsgRefresh} />);
+        }
+
 
         return (
             <div className={classes.Main}>
-                {redirect}
+                {imgsnack}
+                {updatevlog}
+                {this.props.updated ? <Redirect to={"/dashboard/vlogs/" + this.state.vlog._id} /> : null}
                 <div className={classes.Album}>
                     <NavLink to='/dashboard'>
                         <div className={classes.cross}>
@@ -317,7 +326,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentvlog: (token, vlogid) => dispatch(actions.FetchSingleVlog(token, vlogid)),
         onupdatecurrentvlog: (token, vlogData) => dispatch(actions.UpdateVlog(token, vlogData)),
-        onMsgRefresh: () => dispatch(actions.VlogMsgRefresh())
+        onUpdateMsgRefresh: () => dispatch(actions.UpdateVlogMsg())
     }
 }
 

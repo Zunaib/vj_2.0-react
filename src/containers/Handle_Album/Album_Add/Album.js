@@ -13,7 +13,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
 class Album extends Component {
 
     state = {
@@ -185,19 +185,19 @@ class Album extends Component {
         }
 
         let imgsnack = null;
-        if (this.state.selectedFile && this.state.selectedsnack) {
-            imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFile.name + ' )'} msgRefresh={this.props.onMsgRefresh} />);
-            this.setState({ selectedsnack: false })
+        if (this.state.selectedFile) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onaddAlbumMsg} />);
         }
 
-        let redirect = null;
-        if (this.props.albumid) {
-            redirect = <Redirect to={"/dashboard/albums/" + this.props.albumid} />
+        let addedalbum = null;
+        if (this.props.added) {
+            addedalbum = (<Snack message={"Album Successfully Added"} snackType="success" refresh={this.props.onaddAlbumMsg} />);
         }
 
         return (
             <div className={classes.Main}>
-                {redirect}
+                {addedalbum}
+                {this.props.added ? <Redirect to={"/dashboard/albums/" + this.props.albumid} /> : null}
                 {imgsnack}
                 <div className={classes.Album}>
                     <NavLink to="/dashboard/designer">
@@ -229,14 +229,14 @@ const mapStateToProps = state => {
         loading: state.AddAlbum.loading,
         error: state.AddAlbum.error,
         albumid: state.AddAlbum.albumid,
-        token: state.Auth.token,
-        flag: state.Auth.flag
+        added: state.AddAlbum.added,
+        token: state.Auth.token
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         onaddAlbum: (token, albumData) => dispatch(actions.AddAlbum(token, albumData)),
-        onMsgRefresh: () => dispatch(actions.AlbumMsgRefresh())
+        onaddAlbumMsg: () => dispatch(actions.AlbumMsgRefresh())
     }
 }
 

@@ -43,8 +43,8 @@ export const DeleteVlog = (token, vlogid) => {
 }
 
 
-export const MsgRefresh = () => {
+export const DeleteVlogMsg = () => {
     return {
-        type: actionTypes.Update_AlbumMessage_Refresh
+        type: actionTypes.Delete_Vlog_Msg
     }
 }

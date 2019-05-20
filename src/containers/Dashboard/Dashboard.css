@@ -69,12 +69,20 @@
     display: inline;
     margin: auto 20px;
   cursor: pointer;
-  color: rgb(78, 78, 78);
 }
 .Shifters h4:hover{
   cursor: pointer;
-  color: black;
-  font-size: 1.1rem;
+  color: white;
+  background-color: purple;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.h4active{
+    color: white;
+    background-color: purple;
+    padding: 7px;
+    border-radius: 5px;
 }
 
 

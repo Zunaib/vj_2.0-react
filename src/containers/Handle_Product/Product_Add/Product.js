@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classes from './ProductCrud.css';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import * as actions from '../../../Store/Actions/index';
 import FormData from 'form-data'
 
@@ -12,7 +12,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
 
 class Product extends Component {
 
@@ -284,23 +284,6 @@ class Product extends Component {
             form = <Spinner />;
         }
 
-        // let imgsnack = null;
-        // if (this.state.selectedFile1) {
-        //     imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFile.name + ' )'} msgRefresh={this.props.onMsgRefresh} />);
-        // }
-
-        // let snack = null;
-        // if (this.props.message) {
-        //     let msg = "Product Added Successfully";
-        //     snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
-        // }
-
-        // let imgsnack = null;
-        // if (this.state.selectedFiles && this.state.selectedsnacks) {
-        //     imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} msgRefresh={this.props.onMsgRefresh} />);
-        //     this.setState({ selectedsnacks: false })
-        // }
-
         let productimages = null;
         if (this.state.selectedFiles) {
             productimages = (<div className={classes.Images}>
@@ -328,10 +311,20 @@ class Product extends Component {
             </div>);
         }
 
-
+        let addedprod = null;
+        if (this.props.prodadded) {
+            addedprod = (<Snack message={"Product Successfully Added"} snackType="success" refresh={this.props.onaddProductMsg} />);
+        }
+        
+        let imgsnack = null;
+        if (this.state.selectedFiles) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} snackType="success" refresh={this.props.onaddProductMsg} />);
+        }
         return (
             <div className={classes.Main}>
-
+                {imgsnack}
+                {addedprod}
+                {this.props.prodadded ? <Redirect to={"/dashboard/products/" + this.props.productid} /> : null}
                 <div className={classes.Album}>
                     <NavLink to="/dashboard/designer">
                         <div className={classes.cross}>
@@ -362,14 +355,14 @@ const mapStateToProps = state => {
         loading: state.AddProduct.loading,
         error: state.AddProduct.error,
         productid: state.AddProduct.productid,
-        token: state.Auth.token,
-        flag: state.Auth.flag
+        prodadded: state.AddProduct.added,
+        token: state.Auth.token
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         onaddProduct: (token, productData) => dispatch(actions.AddProduct(token, productData)),
-        onMsgRefresh: () => dispatch(actions.ProductMsgRefresh())
+        onaddProductMsg: () => dispatch(actions.AddProductMsg())
     }
 }
 

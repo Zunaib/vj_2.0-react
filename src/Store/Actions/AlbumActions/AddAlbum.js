@@ -43,6 +43,6 @@ export const AddAlbum = (token, data) => {
 
 export const AlbumMsgRefresh = () => {
     return {
-        type: actionTypes.Add_Message_Refresh
+        type: actionTypes.Add_AlbumMessage_Refresh
     }
 }

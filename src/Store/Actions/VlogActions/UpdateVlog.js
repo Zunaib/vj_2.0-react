@@ -41,8 +41,8 @@ export const UpdateVlog = (token, vlog) => {
 
 }
 
-export const MsgRefresh = () => {
+export const UpdateVlogMsg = () => {
     return {
-        type: actionTypes.Update_Message_Refresh
+        type: actionTypes.Update_Single_Vlog_Msg
     }
 }

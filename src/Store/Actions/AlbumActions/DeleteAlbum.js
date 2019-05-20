@@ -43,8 +43,8 @@ export const DeleteAlbum = (token, albumid) => {
 }
 
 
-export const MsgRefresh = () => {
+export const DeleteAlbumMsg = () => {
     return {
-        type: actionTypes.Update_AlbumMessage_Refresh
+        type: actionTypes.Delete_AlbumSettings_Msg
     }
 }

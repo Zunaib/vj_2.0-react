@@ -28,17 +28,17 @@ const Toolbar = (props) => {
             <nav className={classes.ToolbarWeb}>
                 {/* <DrawerToggle clicked={props.drawerToggleClicked} Color="Gray" /> */}
                 <div className={classes.CustNavItem}>
+
+                    <NavLink className={classes.NavlinkCart} to="/dashboard">
+                        <div className={classes.Outerdiv}>
+                            <i className="fas fa-home"></i>
+                        </div>
+                    </NavLink>
                     <NavLink className={classes.NavlinkCart} to="/dashboard/cart">
                         <div className={classes.Outerdiv}>
                             <i className="fas fa-shopping-cart">
                                 {/* <span className={classes.Badge}>3</span> */}
                             </i>
-                        </div>
-                    </NavLink>
-
-                    <NavLink className={classes.NavlinkCart} to="/dashboard">
-                        <div className={classes.Outerdiv}>
-                            <i className="fas fa-home"></i>
                         </div>
                     </NavLink>
                 </div>

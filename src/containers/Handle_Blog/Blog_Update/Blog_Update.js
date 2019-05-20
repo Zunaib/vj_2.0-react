@@ -18,7 +18,7 @@ import blogcvr from '../../../assets/images/blogimage.jpg';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
 class Blog extends Component {
     constructor(props) {
         super(props)
@@ -255,15 +255,22 @@ class Blog extends Component {
             blog_img = this.state.selectedFileURL
         }
 
-        let redirect = null;
+        let imgsnack = null;
+        if (this.state.selectedFile) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onupdatecurrentBlogMsg} />);
+        }
+
+        let updateblog = null;
         if (this.props.updated) {
-            redirect = <Redirect to={"/dashboard/blogs/" + this.state.blog[0]._id} />
+            updateblog = (<Snack message={"Blog Successfully Updated"} snackType="success" refresh={this.props.onupdatecurrentBlogMsg} />);
+
         }
 
         return (
-
             <div className={classes.Main}>
-                {redirect}
+                {imgsnack}
+                {updateblog}
+                {this.props.updated ? <Redirect to={"/dashboard/blogs/" + this.state.blog[0]._id} /> : null}
                 <div className={classes.Album}>
                     <NavLink to='/dashboard'>
                         <div className={classes.cross}>
@@ -348,14 +355,14 @@ const mapStateToProps = state => {
         loading: state.ViewBlog.loading,
         error: state.ViewBlog.error,
         updated: state.UpdateBlog.updated,
-        token: state.Auth.token,
-        flag: state.Auth.flag
+        token: state.Auth.token
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentblog: (token, blogid) => dispatch(actions.FetchSingleBlog(token, blogid)),
-        onupdatecurrentBlog: (token, blogData) => dispatch(actions.UpdateBlog(token, blogData))
+        onupdatecurrentBlog: (token, blogData) => dispatch(actions.UpdateBlog(token, blogData)),
+        onupdatecurrentBlogMsg: () => dispatch(actions.UpdateBlogMsg())
     }
 }
 

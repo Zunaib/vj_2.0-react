@@ -4,7 +4,8 @@ import * as actionTypes from '../../Actions/ActionTypes';
 const initialState = {
     loading: false,
     error: null,
-    message: null
+    vlogid: null,
+    added: false,
 }
 
 const VlogReducer = (state = initialState, action) => {
@@ -12,25 +13,34 @@ const VlogReducer = (state = initialState, action) => {
         case actionTypes.Add_Vlog_Refresh:
             return {
                 ...state,
-                message: null,
-                loading: false
+                vlogid: null,
+                loading: false,
+                added: false,
+
             };
         case actionTypes.Add_Vlog_Start:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                added: false,
+                vlogid: null
+
             };
         case actionTypes.Add_Vlog_Success:
             return {
                 ...state,
                 loading: false,
-                message: action.message
+                vlogid: action.vlogid,
+                added: true
             };
         case actionTypes.Add_Vlog_Failed:
             return {
                 ...state,
                 loading: false,
                 error: action.error,
+                added: false,
+                vlogid: null
+
             };
         case actionTypes.Reset:
             return state = initialState;

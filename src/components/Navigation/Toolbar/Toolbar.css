@@ -19,15 +19,17 @@
 }
 
 .ToolbarWeb{
-    height: 80px;
+    height: 60px;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     background-color:#FFFFFF;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    margin: 0 auto;
     z-index: 90;
     -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.204);
     -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.204);
@@ -47,11 +49,11 @@
 .LogoBlack{
     height: 100%;
     display: flex;
-    margin-right: 360px;
+    margin-right: 400px;
 }
 
 .CustNavItem{
-    margin-left: 50px;
+    margin-left: 40px;
     display: flex;
 }
 

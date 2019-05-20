@@ -31,17 +31,17 @@ export const AddBlog = (token, data) => {
         axios.post('/api/createBlog?access_token=' + token, data)
             .then(res => {
                 console.log(res)
-                // dispatch(addblogSuccess(res.data.album._id));
+                dispatch(addblogSuccess(res.data.blog._id));
             })
             .catch(err => {
                 console.log(err)
-                // dispatch(addblogFailed(err.data.success));
+                dispatch(addblogFailed(err.data));
             });
     }
 
 }
 
-export const BlogMsgRefresh = () => {
+export const AddBlogMsgRefresh = () => {
     return {
         type: actionTypes.Add_Blog_Refresh
     }

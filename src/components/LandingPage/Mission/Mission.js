@@ -5,8 +5,9 @@ const Mission = (props) => (
     <section className={classes.Misc} ref={props.missionRef}>
         <h2>Our Mission</h2>
         <div>
-            <p>Integer sit amet venenatis erat. Cras elementum tortor odio, sit amet euismod nunc cursus ut. Donec sollicitudin orci sed enim volutpat, volutpat rutrum magna semper. Fusce leo lacus, pulvinar sit amet dignissim in, consectetur eget nulla. Etiam ac turpis augue. Sed tincidunt pulvinar tincidunt. Integer ac blandit magna. Nulla dapibus convallis luctus. </p>
-            <p>Ut elementum urna sit amet elit egestas hendrerit. Vivamus quis sem fringilla, tincidunt nisi non, congue libero. Etiam cursus nulla quis sapien varius, eget accumsan augue mattis. Cras accumsan sapien nulla, eu eleifend odio tempus sit amet. Suspendisse gravida hendrerit sapien, ut molestie mi pellentesque eget. Aliquam eleifend velit vel libero elementum, vitae consectetur nisl sollicitudin. Suspendisse volutpat fringilla vehicula.</p>
+            <p>
+                We provide a platform to the best designers in town to create masterpieces using art and imaginative concepts to develop and deliver ideas to a client that would inform, inspire, or motivate a consumer. It’s our job to provide cutting edge ideas, latest trends of the emerging fashions globally and to hook you up with our best collaborators so that you can choose the best for yourself through their eloquently showcased designs.
+        </p>
         </div>
     </section>
 );

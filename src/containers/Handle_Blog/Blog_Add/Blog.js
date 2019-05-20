@@ -6,7 +6,7 @@ import 'react-quill/dist/quill.snow.css'; // ES6
 
 // import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 // import ReactPlayer from 'react-player';
 import * as actions from '../../../Store/Actions/index';
 import FormData from 'form-data'
@@ -18,7 +18,8 @@ import blogcvr from '../../../assets/images/blogimage.jpg';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
+
 class Blog extends Component {
     constructor(props) {
         super(props)
@@ -167,11 +168,23 @@ class Blog extends Component {
             </form>
         );
 
+        let imgsnack = null;
+        if (this.state.selectedFile) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onaddBlogMsg} />);
+        }
+
+        let addblog = null;
+        if (this.props.added) {
+            addblog = (<Snack message={"Blog Successfully Added"} snackType="success" refresh={this.props.onaddBlogMsg} />);
+
+        }
+
         return (
 
             <div className={classes.Main}>
-                {/* {redirect}
-            {imgsnack} */}
+                {imgsnack}
+                {addblog}
+                {this.props.added ? <Redirect to={"/dashboard/blogs/" + this.props.blogid} /> : null}
                 <div className={classes.Album}>
                     {/* <NavLink to="/dashboard/designer">
                         <i className="fas fa-times"></i>
@@ -250,14 +263,16 @@ Blog.propTypes = {
 const mapStateToProps = state => {
     return {
         loading: state.AddBlog.loading,
+        added: state.AddBlog.added,
+        blogid: state.AddBlog.blogid,
         error: state.AddBlog.error,
-        token: state.Auth.token,
-        flag: state.Auth.flag
+        token: state.Auth.token
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onaddBlog: (token, blogData) => dispatch(actions.AddBlog(token, blogData))
+        onaddBlog: (token, blogData) => dispatch(actions.AddBlog(token, blogData)),
+        onaddBlogMsg: () => dispatch(actions.AddBlogMsgRefresh())
     }
 }
 

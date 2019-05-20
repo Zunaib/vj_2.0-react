@@ -12,7 +12,7 @@ class Cart extends Component {
         cart: null
     }
 
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.token) {
             this.props.onfetchcurrentcart(this.props.token)
         }

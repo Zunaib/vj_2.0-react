@@ -12,7 +12,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
 
 class Product extends Component {
 
@@ -356,23 +356,6 @@ class Product extends Component {
             form = <Spinner />;
         }
 
-        // let imgsnack = null;
-        // if (this.state.selectedFile1) {
-        //     imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFile.name + ' )'} msgRefresh={this.props.onMsgRefresh} />);
-        // }
-
-        // let snack = null;
-        // if (this.props.message) {
-        //     let msg = "Product Added Successfully";
-        //     snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
-        // }
-
-        // let imgsnack = null;
-        // if (this.state.selectedFiles && this.state.selectedsnacks) {
-        //     imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} msgRefresh={this.props.onMsgRefresh} />);
-        //     this.setState({ selectedsnacks: false })
-        // }
-
         let productimages = null;
         if (this.state.selectedFiles) {
             productimages = (<div className={classes.Images}>
@@ -400,15 +383,23 @@ class Product extends Component {
             </div>);
         }
 
-        let redirect = null;
+
+        let imgsnack = null;
+        if (this.state.selectedFiles) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} snackType="success" refresh={this.props.onupdateMsg} />);
+        }
+
+        let updateprod = null;
         if (this.props.updated) {
-            redirect = <Redirect to={"/dashboard/products/" + this.state.productid} />
+            updateprod = (<Snack message={"Product Successfully Updated"} snackType="success" refresh={this.props.onupdateMsg} />);
         }
 
 
         return (
             <div className={classes.Main}>
-                {redirect}
+                {updateprod}
+                {imgsnack}
+                {this.props.updated ? <Redirect to={"/dashboard/products/" + this.state.productid} /> : null}
                 <div className={classes.Album}>
                     <NavLink to='/dashboard'>
                         <div className={classes.cross}>
@@ -447,7 +438,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentproduct: (token, productid) => dispatch(actions.FetchProduct(token, productid)),
         onupdatecurrentproduct: (token, productid) => dispatch(actions.UpdateProduct(token, productid)),
-        onMsgRefresh: () => dispatch(actions.ProductMsgRefresh())
+        onupdateMsg: () => dispatch(actions.UpdateProductMsg())
     }
 }
 

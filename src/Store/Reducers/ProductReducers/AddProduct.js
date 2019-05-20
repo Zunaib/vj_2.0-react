@@ -3,7 +3,8 @@ import * as actionTypes from '../../Actions/ActionTypes';
 const initialState = {
     loading: false,
     error: null,
-    productid: null
+    productid: null,
+    added:null
 }
 
 const ProductReducer = (state = initialState, action) => {
@@ -12,24 +13,28 @@ const ProductReducer = (state = initialState, action) => {
             return {
                 ...state,
                 productid: null,
-                loading: false
+                loading: false,
+                added:false
             };
         case actionTypes.Add_Product_Start:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                added:false
             };
         case actionTypes.Add_Product_Success:
             return {
                 ...state,
                 loading: false,
-                productid: action.productid
+                productid: action.productid,
+                added:true
             };
         case actionTypes.Add_Product_Failed:
             return {
                 ...state,
                 loading: false,
                 error: action.error,
+                added:false
             };
         case actionTypes.Reset:
             return state = initialState;

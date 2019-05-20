@@ -9,12 +9,13 @@ const initialState = {
 
 const UpdateBlogReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case actionTypes.Update_Message_Refresh:
-        //     return {
-        //         ...state,
-        //         message: null,
-        //         loading: false
-        //     };
+        case actionTypes.Update_BlogMessage_Refresh:
+            return {
+                ...state,
+                message: null,
+                loading: false,
+                updated:null
+            };
         case actionTypes.Update_Single_Blog_Start:
             return {
                 ...state,

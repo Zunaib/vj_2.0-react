@@ -13,7 +13,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
 class Album extends Component {
 
 
@@ -283,19 +283,19 @@ class Album extends Component {
 
 
         let imgsnack = null;
-        if (this.state.selectedFile && this.state.selectedsnack) {
-            imgsnack = (<Snackbar message={'File Added: ( ' + this.state.selectedFile.name + ' )'} msgRefresh={this.props.onMsgRefresh} />);
-            this.setState({ selectedsnack: false })
+        if (this.state.selectedFile) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onalbumUpdateMsg} />);
         }
 
-        let redirect = null;
+        let albumupdate = null;
         if (this.props.updated) {
-            redirect = <Redirect to={"/dashboard/albums/" + this.state.album._id} />
+            albumupdate = (<Snack message={"Album Successfully Updated"} snackType="success" refresh={this.props.onalbumUpdateMsg} />);
         }
 
         return (
             <div className={classes.Main}>
-                {redirect}
+                {albumupdate}
+                {this.props.updated ? <Redirect to={"/dashboard/albums/" + this.state.album._id} /> : null}
                 {imgsnack}
                 <div className={classes.Album}>
                     <NavLink to='/dashboard'>
@@ -324,7 +324,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentalbum: (token, albumid) => dispatch(actions.FetchAlbum(token, albumid)),
         onupdatealbum: (token, updatedalbum) => dispatch(actions.UpdateAlbum(token, updatedalbum)),
-        onMsgRefresh: () => dispatch(actions.AlbumMsgRefresh())
+        onalbumUpdateMsg: () => dispatch(actions.UpdateAlbumMsg())
 
 
     }

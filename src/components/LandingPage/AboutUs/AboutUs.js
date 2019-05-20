@@ -6,7 +6,8 @@ const AboutUs = (props) => (
     <section className={classes.Misc} ref={props.aboutRef}>
         <h2>About Us</h2>
         <div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel gravida nisi. Vestibulum ac consequat lorem. In in mi massa. Donec ut tellus sit amet sem ornare fermentum at et nunc. Pellentesque ac elementum metus. Praesent non venenatis lacus. In sagittis urna in nulla sagittis mattis.</p>
+            <p>	An incredible eye for what’s next in fashion. A passionate drive to exceed expectations. We work to deliver the best possible shopping experience, helping our customers express their style, rather than just buying fashion
+</p>
         </div>
     </section>
 );

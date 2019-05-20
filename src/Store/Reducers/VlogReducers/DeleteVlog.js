@@ -9,6 +9,12 @@ const initialState = {
 
 const DeleteAlbumReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.Delete_Vlog_Msg:
+            return {
+                ...state,
+                loading: true,
+                deleted:null
+            };
         case actionTypes.Delete_Vlog_Start:
             return {
                 ...state,

@@ -38,8 +38,8 @@ export const UpdateProduct = (token, updatedProduct) => {
     }
 }
 
-export const MsgRefresh = () => {
+export const UpdateProductMsg = () => {
     return {
-        type: actionTypes.Update_AlbumMessage_Refresh
+        type: actionTypes.Update_Single_Product_Msg
     }
 }

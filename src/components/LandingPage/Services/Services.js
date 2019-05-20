@@ -6,19 +6,19 @@ const Services = () => (
         <div >
             <p className={classes.ServiceIcon}><i className="fas fa-hourglass"></i></p>
             <p className={classes.ServiceTitle}>Think</p>
-            <p>Mauris vitae turpis ut sem blandit consequat et at ligula. Suspendisse quam lectus, tristique dapibus sapien et, tempus suscipit nisl.</p>
+            <p>Creators are society’s bastions of empathy and instigators of new perspectives. Imagine, hone your senses and absorb the moment and then come to us for a flawless execution. Let us help you write your imagination into reality.
+</p>
         </div>
         <div >
             <p className={classes.ServiceIcon}><i className="fas fa-pencil-alt"></i></p>
             <p className={classes.ServiceTitle}>Design</p>
-            <p>Nulla eu metus faucibus, vehicula tortor quis, venenatis odio. Nullam purus mauris, feugiat in odio vitae, posuere volutpat libero. Sed et convallis libero.</p>
-
+            <p>	A simple word, enfolding limitless possibilities, a process of creating purposeful and innovative solutions that embody functional and aesthetic demands based on the needs of the intended user.</p>
         </div>
         <div >
             <p className={classes.ServiceIcon}><i className="fas fa-share"></i></p>
             <p className={classes.ServiceTitle}>Provide</p>
-            <p>Ut ornare vitae enim a rhoncus. Nullam aliquet tristique scelerisque. Sed volutpat dictum risus ac laoreet. Suspendisse id lorem in enim sollicitudin varius.</p>
-
+            <p>	We make sure that your interests and your voice resonate perfectly with the collaborators we provide to you. In our fashion portal register you can search among Pakistan’s emerging designers to find the one that best suits your requirements and needs.
+</p>
         </div>
     </section>
 );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import classes from './Input.css';
 
@@ -59,11 +59,25 @@ const input = (props) => {
         label = <label>{props.label}</label>;
     }
 
+    let errorGlobal = null;
+    let error = null;
+    if (props.invalid && props.touched && props.shouldValidate) {
+        if (props.elementType === "password") {
+            error = <p className={classes.ErrorInput}>Alphabets And Numbers Only</p>;
+        }
+        errorGlobal = <p className={classes.ErrorInput}>Empty Fields Invalid</p>;
+
+    }
+
     return (
-        <div className={classes.Input}>
-            {label}
-            {inputElement}
-        </div>
+        <Fragment>
+            <div className={classes.Input}>
+                {label}
+                {inputElement}
+            </div>
+            {errorGlobal}
+            {error}
+        </Fragment>
     );
 
 };

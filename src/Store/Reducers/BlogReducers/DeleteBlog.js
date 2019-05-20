@@ -9,6 +9,12 @@ const initialState = {
 
 const DeleteBlogReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.Delete_Blog_Msg:
+            return {
+                ...state,
+                loading: true,
+                deleted: null
+            };
         case actionTypes.Delete_Blog_Start:
             return {
                 ...state,

@@ -7,6 +7,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
 
 // import video from '../../../assets/images/Vid.mp4'
 
@@ -70,11 +71,16 @@ class Vlog extends Component {
 
             )
         }
+        let delvlog = null;
+        if (this.props.deleted) {
+            delvlog = (<Snack message={"Vlog Successfully Deleted"} snackType="success" refresh={this.props.onvlogdeleteMsg} />);
 
+        }
 
         let editpath = '/dashboard/handle_vlog/update_vlog/' + this.state.vlogid;
         return (
             <div className={classes.Main}>
+                {delvlog}
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
                     <NavLink to="/dashboard">
@@ -118,7 +124,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentvlog: (token, vlogid) => dispatch(actions.FetchSingleVlog(token, vlogid)),
-        onvlogdelete: (token, vlogid) => dispatch(actions.DeleteVlog(token, vlogid))
+        onvlogdelete: (token, vlogid) => dispatch(actions.DeleteVlog(token, vlogid)),
+        onvlogdeleteMsg: () => dispatch(actions.DeleteVlogMsg()),
     }
 }
 

@@ -40,3 +40,9 @@ export const AddToCart = (token, productId) => {
             });
     }
 }
+
+export const AddToCartMsg = () => {
+    return {
+        type: actionTypes.Add_ProductToCart_Msg,
+    };
+};

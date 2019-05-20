@@ -41,7 +41,7 @@ export const AddProduct = (token, productData) => {
 
 }
 
-export const ProductMsgRefresh = () => {
+export const AddProductMsg = () => {
     return {
         type: actionTypes.Add_ProductMessage_Refresh
     }

@@ -23,6 +23,12 @@ export const deleteproductStart = () => {
     };
 };
 
+export const DeleteProductMsg = () => {
+    return {
+        type: actionTypes.Delete_ProductSettings_Msg
+    };
+};
+
 export const DeleteProduct = (token, productId) => {
     return dispatch => {
         dispatch(deleteproductStart())

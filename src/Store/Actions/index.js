@@ -50,60 +50,70 @@ export {
     FetchAlbum
 } from './AlbumActions/ViewAlbum';
 export {
-    DeleteAlbum
+    DeleteAlbum,
+    DeleteAlbumMsg
 } from './AlbumActions/DeleteAlbum';
 export {
-    UpdateAlbum
+    UpdateAlbum,
+    UpdateAlbumMsg
 } from './AlbumActions/UpdateAlbum';
 
 /* Product Actions Export */
 export {
     AddProduct,
-    ProductMsgRefresh
+    AddProductMsg
 } from './ProductActions/AddProduct';
 export {
     FetchProduct
 } from './ProductActions/ViewProduct';
 export {
-    DeleteProduct
+    DeleteProduct,
+    DeleteProductMsg
 } from './ProductActions/DeleteProduct';
 export {
-    UpdateProduct
+    UpdateProduct,
+    UpdateProductMsg
 } from './ProductActions/UpdateProduct';
 
 
 /* Vlog Actions Export */
 export {
     AddVlog,
-    VlogMsgRefresh
+    AddVlogMsgRefresh
 } from './VlogActions/AddVlog';
 export {
     FetchSingleVlog
 } from './VlogActions/ViewVlog';
 export {
-    UpdateVlog
+    UpdateVlog,
+    UpdateVlogMsg
 } from './VlogActions/UpdateVlog';
 export {
-    DeleteVlog
+    DeleteVlog,
+    DeleteVlogMsg
 } from './VlogActions/DeleteVlog';
 
 /* Blog Actions Export */
 export {
-    AddBlog
+    AddBlog,
+    AddBlogMsgRefresh
 } from './BlogActions/AddBlog';
 export {
-    DeleteBlog
+    DeleteBlog,
+    DeleteBlogMsg
 } from './BlogActions/DeleteBlog';
 export {
     FetchSingleBlog
 } from './BlogActions/ViewBlog';
 export {
-    UpdateBlog
+    UpdateBlog,
+    UpdateBlogMsg
 } from './BlogActions/UpdateBlog';
 
 /* Cart Actions Export */
 export {
-    AddToCart
+    AddToCart,
+    AddToCartMsg
 } from './CartActions/AddtoCart';
 export {
     FetchCart,

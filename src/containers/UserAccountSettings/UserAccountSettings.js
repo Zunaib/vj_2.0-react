@@ -6,7 +6,7 @@ import FormData from 'form-data'
 
 
 import FileUploader from '../../components/FileUploader/FileUpload';
-import Snackbar from '../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../components/UI/SnackBar/Snackbar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
@@ -285,7 +285,7 @@ class UserAccountSettings extends Component {
         let snack = null;
         if (this.props.message) {
             let msg = "Settings Successfully Updated";
-            snack = (<Snackbar message={msg} msgRefresh={this.props.onMsgRefresh} />);
+            snack = (<Snack message={msg} snackType="success" refresh={this.props.onMsgRefresh} />);
         }
 
         const formElementsArray = [];

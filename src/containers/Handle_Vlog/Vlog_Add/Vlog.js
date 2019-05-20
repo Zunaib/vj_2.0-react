@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from './VlogCrud.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import ReactPlayer from 'react-player';
@@ -14,7 +14,7 @@ import vlogcvr from '../../../assets/images/AlbumCover.jpg';
 import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
-// import Snackbar from '../../../components/UI/SnackBar/SuccessSnackbar';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
 class Vlog extends Component {
 
     state = {
@@ -177,12 +177,23 @@ class Vlog extends Component {
             height: "200px"
         }
 
+        let imgsnack = null;
+        if (this.state.selectedFile) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onaddVlogMsg} />);
+        }
+
+        let addvlog = null;
+        if (this.props.added) {
+            addvlog = (<Snack message={"Vlog Successfully Added"} snackType="success" refresh={this.props.onaddVlogMsg} />);
+
+        }
 
 
         return (
             <div className={classes.Main}>
-                {/* {redirect}
-                {imgsnack} */}
+                {imgsnack}
+                {addvlog}
+                {this.props.added ? <Redirect to={"/dashboard/vlogs/" + this.props.vlogid} /> : null}
                 <div className={classes.Album}>
                     <NavLink to="/dashboard/designer">
                         <i className="fas fa-times"></i>
@@ -219,13 +230,14 @@ const mapStateToProps = state => {
         loading: state.AddVlog.loading,
         error: state.AddVlog.error,
         vlogid: state.AddVlog.vlogid,
+        added: state.AddVlog.added,
         token: state.Auth.token,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         onaddVlog: (token, vlogData) => dispatch(actions.AddVlog(token, vlogData)),
-        onMsgRefresh: () => dispatch(actions.VlogMsgRefresh())
+        onaddVlogMsg: () => dispatch(actions.AddVlogMsgRefresh())
     }
 }
 

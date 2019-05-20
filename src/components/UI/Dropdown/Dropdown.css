@@ -3,9 +3,28 @@
 }
 
 
-.Menu a {
-    color: red;
+.Link {
     text-decoration: none;
+}
+
+.Link i{
+    margin-right: 10px;
+}
+
+.LinkLogout{
+    text-decoration: none;
+}
+
+.LinkLogout i{
+    margin-right: 10px;
+}
+
+
+.back{
+    color: white;
+    background-color: red;
+    padding: 6px;
+    border-radius: 100%;
 }
 
 .Menu a:hover,

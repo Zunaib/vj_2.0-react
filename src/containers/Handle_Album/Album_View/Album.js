@@ -7,6 +7,7 @@ import Auxilary from '../../../hoc/Auxilary/Auxilary'
 import AlbumProducts from '../../../components/AlbumProducts/AlbumProducts';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
+import Snack from '../../../components/UI/SnackBar/Snackbar'
 
 class Album extends Component {
 
@@ -89,8 +90,16 @@ class Album extends Component {
                 );
             }
         }
+
+        let albumdel = null;
+        if (this.props.deleted) {
+            albumdel = (<Snack message={"Album Successfully Deleted"} snackType="success" refresh={this.props.onalbumdeleteMsg} />);
+
+        }
+
         return (
             <div className={classes.Main}>
+                {albumdel}
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
                     <NavLink to='/dashboard'>
@@ -123,7 +132,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentalbum: (token, albumid) => dispatch(actions.FetchAlbum(token, albumid)),
-        onalbumdelete: (token, albumid) => dispatch(actions.DeleteAlbum(token, albumid))
+        onalbumdelete: (token, albumid) => dispatch(actions.DeleteAlbum(token, albumid)),
+        onalbumdeleteMsg: (token, albumid) => dispatch(actions.DeleteAlbumMsg(token, albumid)),
     }
 }
 

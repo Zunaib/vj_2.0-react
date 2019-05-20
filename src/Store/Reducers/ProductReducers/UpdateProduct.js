@@ -9,7 +9,7 @@ const initialState = {
 
 const ProductUpdateReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Update_AlbumMessage_Refresh:
+        case actionTypes.Update_Single_Product_Msg:
             return {
                 ...state,
                 updated: null,

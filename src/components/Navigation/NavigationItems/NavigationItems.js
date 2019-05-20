@@ -64,7 +64,7 @@ class NavigationItems extends Component {
                     </div>
 
                     <div className={classes.ImageButton} >
-                        <h4>{firstname ? firstname + " " + lastname : 'Name'}</h4>
+                        <h5>{firstname ? firstname + " " + lastname : 'Name'}</h5>
                         <img className={classes.Image} src={img} alt="NavDisplay" />
                         <div className={classes.Dropdown} >
                             <Dropdown />

@@ -42,8 +42,8 @@ export const UpdateBlog = (token, blog) => {
 
 }
 
-export const MsgRefresh = () => {
+export const UpdateBlogMsg = () => {
     return {
-        type: actionTypes.Update_Message_Refresh
+        type: actionTypes.Update_BlogMessage_Refresh
     }
 }

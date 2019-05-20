@@ -27,7 +27,7 @@ export const checkValidity = (value, rules) => {
     }
 
     if (rules.isPassword) {
-        const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{8,20}$/;
+        const pattern = /^[a-zA-Z0-9]+$/;
         isValid = pattern.test(value) && isValid
     }
 

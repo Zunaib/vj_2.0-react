@@ -6,6 +6,8 @@ import { NavLink, Redirect } from 'react-router-dom';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
+import Snack from '../../../components/UI/SnackBar/Snackbar';
+
 
 
 // import video from '../../../assets/images/Vid.mp4'
@@ -59,10 +61,15 @@ class ViewBlog extends Component {
             )
         }
 
+        let blogdel = null;
+        if (this.props.deleted) {
+            blogdel = (<Snack message={"Blog Successfully Deleted"} snackType="success" refresh={this.props.onblogdeleteMsg} />);
 
+        }
         let editpath = '/dashboard/handle_blog/update_blog/' + this.state.blogid;
         return (
             <div className={classes.Main}>
+                {blogdel}
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
                     <NavLink to="/dashboard">
@@ -106,7 +113,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentblog: (token, blogid) => dispatch(actions.FetchSingleBlog(token, blogid)),
-        onblogdelete: (token, blogid) => dispatch(actions.DeleteBlog(token, blogid))
+        onblogdelete: (token, blogid) => dispatch(actions.DeleteBlog(token, blogid)),
+        onblogdeleteMsg: () => dispatch(actions.DeleteBlogMsg()),
     }
 }
 

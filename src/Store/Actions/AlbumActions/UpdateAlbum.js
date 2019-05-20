@@ -21,6 +21,12 @@ export const updatealbumStart = () => {
     };
 };
 
+export const UpdateAlbumMsg = () => {
+    return {
+        type: actionTypes.Update_AlbumMessage_Refresh
+    };
+};
+
 
 export const UpdateAlbum = (token, updatedalbum) => {
 

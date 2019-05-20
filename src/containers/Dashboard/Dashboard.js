@@ -9,6 +9,13 @@ import Blogs from '../../components/Dashboard/Blogs/Blogs';
 
 
 class Dashboard extends Component {
+    state = {
+        dashcontent: 'Products',
+        prodactive: true,
+        vlogactive: false,
+        blogactive: false
+    }
+
 
     componentDidMount = () => {
         this.props.onfetchproducts(this.props.token);
@@ -16,9 +23,6 @@ class Dashboard extends Component {
         this.props.onfetchblogs(this.props.token);
     }
 
-    state = {
-        dashcontent: 'Products'
-    }
 
     getContent = (currentContent) => {
         const Content = {
@@ -30,19 +34,39 @@ class Dashboard extends Component {
     }
 
     toggleVlogs = () => {
-        this.setState({ dashcontent: 'Vlogs' })
+        const vlogState = this.state.prodactive;
+        this.setState(
+            {
+                vlogactive: !vlogState,
+                prodactive: false,
+                blogactive: false,
+                dashcontent: 'Vlogs'
+            })
     }
 
     toggleProducts = () => {
-        this.setState({ dashcontent: 'Products' })
+        const prodState = this.state.prodactive;
+        this.setState(
+            {
+                prodactive: !prodState,
+                vlogactive: false,
+                blogactive: false,
+                dashcontent: 'Products'
+            })
     }
 
     toggleBlogs = () => {
-        this.setState({ dashcontent: 'Blogs' })
+        const blogState = this.state.blogactive;
+        this.setState(
+            {
+                blogactive: !blogState,
+                vlogactive: false,
+                prodactive: false,
+                dashcontent: 'Blogs'
+            })
     }
 
     render() {
-
         let content = this.getContent(this.state.dashcontent);
         if (this.props.loading) {
             content = <Spinner />
@@ -56,9 +80,9 @@ class Dashboard extends Component {
                 <div className={classes.ProductsPanel}>
                     <div className={classes.Filters}>
                         <div className={classes.Shifters}>
-                            <h4 onClick={this.toggleVlogs}>Vlogs</h4>
-                            <h4 onClick={this.toggleProducts}>Products</h4>
-                            <h4 onClick={this.toggleBlogs}>Blogs</h4>
+                            <h4 onClick={this.toggleVlogs} className={this.state.vlogactive ? classes.h4active : null} >Vlogs</h4>
+                            <h4 onClick={this.toggleProducts} className={this.state.prodactive ? classes.h4active : null}>Products</h4>
+                            <h4 onClick={this.toggleBlogs} className={this.state.blogactive ? classes.h4active : null}>Blogs</h4>
                         </div>
                     </div>
                     <div className={classes.Products}>

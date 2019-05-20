@@ -9,17 +9,17 @@ const initialState = {
 
 const UserSettingsReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case actionTypes.Update_Message_Refresh:
-        //     return {
-        //         ...state,
-        //         message: null,
-        //         loading: false
-        //     };
+        case actionTypes.Update_Single_Vlog_Msg:
+            return {
+                ...state,
+                updated: null,
+                loading: false
+            };
         case actionTypes.Update_Single_Vlog_Start:
             return {
                 ...state,
                 loading: true,
-                updated:null,
+                updated: null,
             };
         case actionTypes.Update_Single_Vlog_Success:
             return {

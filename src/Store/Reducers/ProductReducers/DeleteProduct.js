@@ -12,7 +12,7 @@ const DeleteProductReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
-                deleted:null
+                deleted: null
             };
         case actionTypes.Delete_ProductSettings_Success:
             return {
@@ -26,6 +26,13 @@ const DeleteProductReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.error
+            };
+        case actionTypes.Delete_ProductSettings_Msg:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                deleted: null
             };
         case actionTypes.Reset:
             return state = initialState;

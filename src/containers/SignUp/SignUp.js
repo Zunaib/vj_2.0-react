@@ -9,7 +9,7 @@ import Logo from '../../components/Logo/Logo';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import Snackbar from '../../components/UI/SnackBar/Snackbar';
+import Snack from '../../components/UI/SnackBar/Snackbar';
 
 class SignUp extends Component {
 
@@ -47,7 +47,7 @@ class SignUp extends Component {
                 elementType: 'password',
                 elementConfig: {
                     type: 'text',
-                    placeholder: '1(A) 1(a) 1(0) 1(@)'
+                    placeholder: 'Aplha Numeric Only'
                 },
                 value: '',
                 validation: {
@@ -60,7 +60,7 @@ class SignUp extends Component {
                 touched: false
             },
         },
-        formIsValid: false
+        formIsValid: false,
     }
 
 
@@ -153,12 +153,14 @@ class SignUp extends Component {
         }
 
         let signRedirect = null;
+        let signedUp = null;
         if (this.props.redirect) {
             signRedirect = <Redirect to='/login' />;
+            signedUp = (<Snack message={"Successfully Signed Up"} snackType="success" refresh={this.props.onErrorRefresh} />);
         }
 
         let errorsnack = null;
-        if (!this.state.signupForm.email.value && this.props.error) {
+        if (this.props.error) {
             let msg = "Wrong Input Format Entered";
             if (this.props.error.userNameExist) {
                 msg = "User Name Exists";
@@ -167,12 +169,13 @@ class SignUp extends Component {
                 msg = "Email Already Exists";
             }
 
-            errorsnack = (<Snackbar message={msg} snackType="error" errRefresh={this.props.onErrorRefresh} />);
+            errorsnack = (<Snack message={msg} snackType="error" refresh={this.props.onErrorRefresh} />);
 
         }
 
         return (
             <div className={classes.Background}>
+                {signedUp}
                 {errorsnack}
                 {signRedirect}
                 <div className={classes.Main}>
