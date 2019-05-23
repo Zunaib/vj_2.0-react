@@ -9,6 +9,9 @@ import ContactUsReducer from './ContactUSReducers/ContactUs';
 /* Auth Reducers */
 import AuthReducer from './AuthReducers/Auth';
 
+/* UseAs Reducers */
+import UseAsReducer from './UseAsReducers/UseAs';
+
 /* Dashboard Reducers */
 import DashboardProductsReducer from './DashboardReducers/Products';
 import DashboardVlogsReducer from './DashboardReducers/Vlogs';
@@ -62,6 +65,7 @@ export default combineReducers({
     ContactUs: ContactUsReducer,
 
     Auth: AuthReducer,
+    UseAs: UseAsReducer,
 
     DashboardProducts: DashboardProductsReducer,
     DashboardVlogs: DashboardVlogsReducer,

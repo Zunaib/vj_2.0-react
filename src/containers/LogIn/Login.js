@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import classes from './Login.css';
@@ -106,22 +106,6 @@ class Login extends Component {
 
         // let forgetpassword = <a className={classes.Forgot} href="/login">Forgot Password ?</a>;
 
-        let errorsnack = null;
-        if (this.props.error) {
-            let msg = null;
-            if (this.props.error.message === 'Email_NotFound') {
-                msg = 'Email Not Found';
-            } else {
-                msg = 'Incorrect Password';
-            }
-            errorsnack = (<Snackbar message={msg} snackType="error" refresh={this.props.onErrorRefresh} />);
-
-        }
-
-        let authRedirect = null;
-        if (this.props.isAuth) {
-            authRedirect = <Redirect to='/dashboard' />;
-        }
 
         const formElementsArray = [];
         for (let key in this.state.loginForm) {
@@ -145,11 +129,38 @@ class Login extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
                 <Button btnType="LoginButton" >Sign In</Button>
+                <NavLink to="/signup" className={classes.ShiftToSignUp}>
+                    <p>New User? Click here to Sign Up</p>
+                    <i className="fas fa-user-plus"></i>
+                </NavLink>
             </form>
         );
 
         if (this.props.loading) {
             form = <Spinner />;
+        }
+
+        let errorsnack = null;
+        if (this.props.error) {
+            let msg = null;
+            if (this.props.error.message === 'Email_NotFound') {
+                msg = 'Email Not Found';
+            } else {
+                msg = 'Incorrect Password';
+            }
+            errorsnack = (<Snackbar message={msg} snackType="error" refresh={this.props.onErrorRefresh} />);
+
+        }
+
+        let authRedirect = null;
+        // if (this.props.isAuth) {
+        //     if (this.props.isCreator === "true") {
+        //         authRedirect = <Redirect to='/dashboard/designer' />;
+        //     } else if (this.props.isCreator === "false") {
+        //         authRedirect = <Redirect to='/dashboard' />;
+        //     } else 
+        if (this.props.firstTimeLogin === "true") {
+            authRedirect = <Redirect to='/welcome' />;
         }
 
         return (
@@ -167,7 +178,7 @@ class Login extends Component {
                             <Logo logoType="Black" />
                         </div>
                         <div className={classes.Form} >
-                            <h3>Login</h3>
+                            <h3>SignIn</h3>
                             {form}
                         </div>
                     </div>
@@ -181,6 +192,8 @@ class Login extends Component {
 const mapStateToProps = state => {
     return {
         isAuth: state.Auth.token,
+        isCreator: state.Auth.creator,
+        firstTimeLogin: state.Auth.firstTimeLogin,
         loading: state.Auth.loading,
         error: state.Auth.error
     };

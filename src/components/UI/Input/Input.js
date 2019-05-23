@@ -59,15 +59,35 @@ const input = (props) => {
         label = <label>{props.label}</label>;
     }
 
-    let errorGlobal = null;
     let error = null;
-    if (props.invalid && props.touched && props.shouldValidate) {
-        if (props.elementType === "password") {
-            error = <p className={classes.ErrorInput}>Alphabets And Numbers Only</p>;
+
+    if (props.invalid && props.label === "Username" && props.touched && props.shouldValidate) {
+        error = <p className={classes.ErrorInput}>Inavlid : 5-15 Length and AlphaNumeric</p>;
+
+        if (props.value === "" && props.touched && props.shouldValidate) {
+            error = <p className={classes.ErrorInput}>Empty Fields Invalid</p>;
         }
-        errorGlobal = <p className={classes.ErrorInput}>Empty Fields Invalid</p>;
 
     }
+
+    if (props.invalid && props.label === "email" && props.touched && props.shouldValidate) {
+        error = <p className={classes.ErrorInput}>Inavlid Email: Follow abc@xyz.com</p>;
+
+        if (props.value === "" && props.touched && props.shouldValidate) {
+            error = <p className={classes.ErrorInput}>Empty Fields Invalid</p>;
+        }
+
+    }
+
+    if (props.invalid && props.label === "password" && props.touched && props.shouldValidate) {
+        error = <p className={classes.ErrorInput}>Inavlid Password: 7-20 Length and AlphaNumeric </p>;
+
+        if (props.value === "" && props.touched && props.shouldValidate) {
+            error = <p className={classes.ErrorInput}>Empty Fields Invalid</p>;
+        }
+
+    }
+
 
     return (
         <Fragment>
@@ -75,7 +95,6 @@ const input = (props) => {
                 {label}
                 {inputElement}
             </div>
-            {errorGlobal}
             {error}
         </Fragment>
     );

@@ -63,47 +63,44 @@ class WebLayout extends Component {
         );
 
         if (this.props.isAuth) {
-            routes = (
-                <Switch>
-                    <Route path="/dashboard" exact component={Dashboard} />
-                    <Route path="/dashboard/usersettings" component={UserAccountSettings} />
-                    <Route path="/dashboard/cart" component={Cart} />
-                    <Route path="/dashboard/checkout" component={Checkout} />
-                    <Route path="/dashboard/customerorders" component={CustomerOrder} />
-                    <Route path="/dashboard/designer" component={DesignerProfile} />
-                    <Route path="/dashboard/usersettings" component={UserAccountSettings} />
-                    <Route path="/dashboard/albums/:album" component={asyncAlbum} />
-                    <Route path="/dashboard/products/:product" component={ViewProduct} />
-                    <Route path="/dashboard/handle_album/add_album" component={asyncHandle_Album} />
-                    <Route path="/dashboard/:albumid/handle_product" component={Add_Product} />
-                    <Route path="/dashboard/handle_product/add_product" component={Add_Product} />
-                    <Route path="/dashboard/vlogs/:vlog" component={Vlog} />
-                    <Route path="/dashboard/handle_vlog/add_vlog" component={Handle_Vlog} />
-                    <Route path="/dashboard/blogs/:blog" component={View_Blog} />
-                    <Route path="/dashboard/handle_blog/add_blog" component={Add_Blog} />
-                    <Route path="/dashboard/designerorders" component={DesignerOrder} />
-
-
-
-
-                    <Route path="/dashboard/handle_album/update_album/:id" component={UpdateAlbum} />
-                    <Route path="/dashboard/handle_product/update_product/:id" component={Update_Product} />
-                    <Route path="/dashboard/handle_blog/update_blog/:id" component={UpdateBlog} />
-                    <Route path="/dashboard/handle_vlog/update_vlog/:id" component={UpdateVlog} />
-
-
-
-
-
-
-
-
-
-
-
-                    <Redirect to="/dashboard" />
-                </Switch>
-            );
+            if (this.props.isCreator === "true") {
+                routes = (
+                    <Switch>
+                        <Route path="/dashboard/usersettings" component={UserAccountSettings} />
+                        <Route path="/dashboard/designer" component={DesignerProfile} />
+                        <Route path="/dashboard/albums/:album" component={asyncAlbum} />
+                        <Route path="/dashboard/products/:product" component={ViewProduct} />
+                        <Route path="/dashboard/handle_album/add_album" component={asyncHandle_Album} />
+                        <Route path="/dashboard/:albumid/handle_product" component={Add_Product} />
+                        <Route path="/dashboard/handle_product/add_product" component={Add_Product} />
+                        <Route path="/dashboard/vlogs/:vlog" component={Vlog} />
+                        <Route path="/dashboard/handle_vlog/add_vlog" component={Handle_Vlog} />
+                        <Route path="/dashboard/blogs/:blog" component={View_Blog} />
+                        <Route path="/dashboard/handle_blog/add_blog" component={Add_Blog} />
+                        <Route path="/dashboard/designerorders" component={DesignerOrder} />
+                        <Route path="/dashboard/handle_album/update_album/:id" component={UpdateAlbum} />
+                        <Route path="/dashboard/handle_product/update_product/:id" component={Update_Product} />
+                        <Route path="/dashboard/handle_blog/update_blog/:id" component={UpdateBlog} />
+                        <Route path="/dashboard/handle_vlog/update_vlog/:id" component={UpdateVlog} />
+                        <Redirect to="/dashboard/designer" />
+                    </Switch>
+                );
+            } else {
+                routes = (
+                    <Switch>
+                        <Route path="/dashboard" exact component={Dashboard} />
+                        <Route path="/dashboard/usersettings" component={UserAccountSettings} />
+                        <Route path="/dashboard/cart" component={Cart} />
+                        <Route path="/dashboard/checkout" component={Checkout} />
+                        <Route path="/dashboard/customerorders" component={CustomerOrder} />
+                        <Route path="/dashboard/products/:product" component={ViewProduct} />
+                        <Route path="/dashboard/albums/:album" component={asyncAlbum} />
+                        <Route path="/dashboard/vlogs/:vlog" component={Vlog} />
+                        <Route path="/dashboard/blogs/:blog" component={View_Blog} />
+                        <Redirect to="/dashboard" />
+                    </Switch>
+                );
+            }
         }
 
 
@@ -127,7 +124,8 @@ class WebLayout extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuth: state.Auth.token
+        isAuth: state.Auth.token,
+        isCreator: state.Auth.creator,
     }
 }
 

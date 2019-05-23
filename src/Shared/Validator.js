@@ -21,13 +21,18 @@ export const checkValidity = (value, rules) => {
         isValid = pattern.test(value) && isValid
     }
 
+    if (rules.isUsername) {
+        const pattern = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+        isValid = pattern.test(value) && isValid
+    }
+
     if (rules.isNumeric) {
         const pattern = /^\d+$/;
         isValid = pattern.test(value) && isValid
     }
 
     if (rules.isPassword) {
-        const pattern = /^[a-zA-Z0-9]+$/;
+        const pattern = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
         isValid = pattern.test(value) && isValid
     }
 

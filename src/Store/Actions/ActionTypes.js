@@ -7,6 +7,8 @@ export const Auth_Reset_Redirect = "Auth_Reset_Redirect";
 export const Auth_Error_Refresh = "Auth_Error_Refresh";
 export const Reset = "Reset";
 export const Set_User_Flag = "Set_User_Flag";
+export const Change_User_Flag_Customer = "Change_User_Flag_Customer";
+export const Change_User_Flag_Creator = "Change_User_Flag_Creator";
 
 /* ContactUS Actions */
 export const ContactUsForm_Start = 'ContactUsForm_Start';

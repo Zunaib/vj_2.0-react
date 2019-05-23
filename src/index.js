@@ -13,8 +13,10 @@ import Store from './Store/Store';
 
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('userId');
+const creator = localStorage.getItem('creator');
+const firstTime = localStorage.getItem('firstTime');
 if (token) {
-    Store.dispatch(actions.AuthCheckState(token, userId));
+    Store.dispatch(actions.AuthCheckState(token, userId, creator, firstTime));
 }
 
 const app = (

@@ -7,12 +7,13 @@ export const AuthStart = () => {
     };
 };
 
-export const AuthSuccess = (token, userId, flag) => {
+export const AuthSuccess = (token, userId, creator, firsttime) => {
     return {
         type: actionTypes.Auth_Success,
         token: token,
         userId: userId,
-        flag: flag
+        creator: creator,
+        firsttime: firsttime
     };
 };
 
@@ -27,6 +28,9 @@ export const AuthFail = (error) => {
 export const AuthLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('creator');
+    localStorage.removeItem('firstTime');
+
     return {
         type: actionTypes.Auth_Logout
     };
@@ -72,11 +76,14 @@ export const Auth = (data, type) => {
 
                     localStorage.setItem('token', response.data.token);
                     localStorage.setItem('userId', response.data.userId);
+                    localStorage.setItem('creator', response.data.userflags.isCreator);
+                    localStorage.setItem('firstTime', response.data.userflags.firstTimeLogin);
+                    dispatch(AuthSuccess(response.data.token, response.data.userId, response.data.userflags.isCreator, response.data.userflags.firstTimeLogin));
+
                 }
 
-                dispatch(AuthSuccess(response.data.token, response.data.userId));
-
                 if (type === "Signup") {
+                    dispatch(AuthSuccess(response.data.token, response.data.userId));
                     dispatch(ResetRedirect());
                 }
             })
@@ -87,12 +94,12 @@ export const Auth = (data, type) => {
 };
 
 
-export const AuthCheckState = (token, userId) => {
+export const AuthCheckState = (token, userId, creator, firstTime) => {
     return dispatch => {
         if (!token) {
             dispatch(AuthLogout());
         } else {
-            dispatch(AuthSuccess(token, userId));
+            dispatch(AuthSuccess(token, userId, creator, firstTime));
         }
     }
 }

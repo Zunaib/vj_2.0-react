@@ -5,6 +5,7 @@ import * as actions from './Store/Actions/index';
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 import LandingLayout from './hoc/Layout/LandingLayout';
+import Welcome from './containers/WelcomePage/Welcome';
 
 const asyncWebLayout = asyncComponent(() => {
   return import('./hoc/Layout/WebLayout');
@@ -25,7 +26,7 @@ class App extends Component {
 
   componentDidUpdate() {
     if (this.props.isAuth) {
-      window.location.reload();
+      window.location.reload()
     }
   }
 
@@ -40,13 +41,22 @@ class App extends Component {
     );
 
     if (this.props.isAuth) {
-      routes = (
-        <Switch>
-          <Route path="/dashboard" component={asyncWebLayout} />
-          <Route path='/logout' component={asyncLogout} />
-          <Redirect to="/dashboard" />
-        </Switch>
-      );
+      if (this.props.firstTimeLogin === "true") {
+        routes = (
+          <Switch>
+            <Route path='/welcome' component={Welcome} />
+            <Redirect to="/welcome" />
+          </Switch>
+        );
+      } else {
+        routes = (
+          <Switch>
+            <Route path="/dashboard" component={asyncWebLayout} />
+            <Route path='/logout' component={asyncLogout} />
+            <Redirect to="/dashboard" />
+          </Switch>
+        );
+      }
     }
 
     return (
@@ -59,7 +69,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuth: state.Auth.token
+    isAuth: state.Auth.token,
+    firstTimeLogin: state.Auth.firstTimeLogin,
   }
 }
 

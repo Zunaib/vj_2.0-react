@@ -41,6 +41,25 @@ background-repeat: no-repeat;
 height: 100%;
 }
 
+.ShiftToSignIn{
+  text-decoration: none;
+  color: black;
+}
+.ShiftToSignIn:hover{
+  text-decoration: none;
+  color: purple;
+}
+
+.ShiftToSignIn p{
+  display:inline-block;
+  text-decoration: none;
+font-size: 0.8rem;
+padding: 2px 8px;
+}
+.ShiftToSignIn {
+  display:inline-block;
+}
+
 .FormSide{
     background-color: #FFFFFF;
     height: 100%;
@@ -54,6 +73,7 @@ height: 100%;
     
 }
 
+/* 
 .Form h3{
     color: #303030;
 }
@@ -102,7 +122,88 @@ height: 100%;
       width: 100%;
       box-sizing: border-box;
     font-size: 1rem;
+  } */
+
+
+
+
+
+.Form div{
+    position: relative;
+  
+}
+
+  .Form form div {
+    border:2px solid #eee;
+    padding: 5px;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: grid;
+  width: 100%;
+  margin: 10px auto;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
   }
+  
+.Form form div label {
+    color: #444;
+    text-transform: capitalize;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 6px;
+    text-align: center;
+    margin-right: 10px;
+    border-radius:5px;
+  }
+
+  .Form form div label[for="file"] {
+    color: #444;
+    width: 100%;
+  }
+  
+  .Form form div label[for="file"]:hover {
+    color: white;
+  }
+
+
+  .Form form div input {
+    border: 1px solid #ccc;
+    outline: none;
+    background: none;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .Form form div textarea {
+
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+    background: none;
+    clear: both;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .Logo{

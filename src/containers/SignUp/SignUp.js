@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import { checkValidity } from '../../Shared/Validator';
@@ -24,7 +24,11 @@ class SignUp extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    isUsername: true,
+                    minLength: 5,
+                    maxLength: 15
+
                 },
                 valid: false,
                 touched: false
@@ -145,6 +149,10 @@ class SignUp extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
                 <Button btnType="LoginButton">Sign Up</Button>
+                <NavLink to="/login" className={classes.ShiftToSignIn}>
+                    <p>Already a User? Click here to Sign In</p>
+                    <i className="fas fa-sign-in-alt"></i>
+                </NavLink>
             </form>
         );
 
@@ -189,7 +197,7 @@ class SignUp extends Component {
                             <Logo logoType="Black" />
                         </div>
                         <div className={classes.Form} >
-                            <h3>Register</h3>
+                            <h3>SignUp</h3>
                             {form}
 
                         </div>

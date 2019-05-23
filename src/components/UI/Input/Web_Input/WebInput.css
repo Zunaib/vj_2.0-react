@@ -30,8 +30,3 @@
 .Invalid {
     border: 2px solid red;
 }
-
-
-input[type="file"] + label {
-   
-  }

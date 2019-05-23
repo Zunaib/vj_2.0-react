@@ -8,6 +8,11 @@ export {
     Auth, deAuth, ResetRedirect, AuthCheckState, ErrRefresh
 } from './AuthActions/Auth';
 
+/*UseAs Actions Export */
+export {
+    UseAsCustomer, UseAsCreator
+} from './UseAsActions/UseAs';
+
 /*Dashboard Actions Export */
 export {
     FetchDashProducts

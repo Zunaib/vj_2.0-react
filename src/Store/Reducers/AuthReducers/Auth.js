@@ -7,15 +7,23 @@ const initialState = {
     error: null,
     loading: false,
     redirect: false,
-    flag: null
+    firstTimeLogin: false,
+    creator: false
 }
 
 const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Set_User_Flag:
+        case actionTypes.Change_User_Flag_Customer:
             return {
                 ...state,
-                flag: action.flag
+                creator: "false",
+                firstTimeLogin: "false"
+            };
+        case actionTypes.Change_User_Flag_Creator:
+            return {
+                ...state,
+                creator: "true",
+                firstTimeLogin: "false"
             };
         case actionTypes.Auth_Error_Refresh:
             return {
@@ -44,7 +52,8 @@ const AuthReducer = (state = initialState, action) => {
                 userId: null,
                 loading: false,
                 redirect: false,
-                flag: null
+                creator: null,
+                firstTimeLogin: null
             };
         case actionTypes.Auth_Success:
             return {
@@ -54,7 +63,8 @@ const AuthReducer = (state = initialState, action) => {
                 error: null,
                 loading: false,
                 redirect: true,
-                flag: action.flag
+                creator: action.creator,
+                firstTimeLogin: action.firsttime
             };
         case actionTypes.Auth_Reset_Redirect:
             return {
