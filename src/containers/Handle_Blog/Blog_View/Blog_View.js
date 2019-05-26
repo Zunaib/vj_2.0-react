@@ -28,7 +28,7 @@ class ViewBlog extends Component {
 
     }
 
-    vlogdelete = () => {
+    blogdelete = () => {
         this.props.onblogdelete(this.props.token, this.state.blogid)
     }
     render() {
@@ -79,7 +79,7 @@ class ViewBlog extends Component {
                         </div>
                     </NavLink>
                     <div className={classes.SettingButton}>
-                        <Settings editpath={editpath} delete={this.vlogdelete} />
+                        <Settings editpath={editpath} delete={this.blogdelete} />
                     </div>
                     {blogdata}
                     {/* <NavLink to="/dashboard/designer">

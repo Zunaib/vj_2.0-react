@@ -195,8 +195,11 @@ class Vlog extends Component {
                 {addvlog}
                 {this.props.added ? <Redirect to={"/dashboard/vlogs/" + this.props.vlogid} /> : null}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
-                        <i className="fas fa-times"></i>
+                    <NavLink to='/dashboard'>
+                        <div className={classes.cross}>
+                            <h4>Close</h4>
+                            <i className="fas fa-times"></i>
+                        </div>
                     </NavLink>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>

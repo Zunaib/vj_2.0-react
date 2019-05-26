@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './Snackbar.css';
 import { useSnackbar } from 'notistack';
 const Snackbar = (props) => {
 
@@ -13,6 +14,7 @@ const Snackbar = (props) => {
                 horizontal: 'right',
             },
             variant: type,
+            className: classes.Snackbar
         });
         props.refresh();
     }

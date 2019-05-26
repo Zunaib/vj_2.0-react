@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 import display from '../../../assets/images/defaultuserimage.png';
-// import Button from '../../UI/Button/Button';
+import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Dropdown from '../../UI/Dropdown/Dropdown';
+import NotificDropdown from '../../UI/Dropdown/NotificationsDropdown/NotificationsDropdown';
+import MsgDropdown from '../../UI/Dropdown/MessagesDropdown/MessagesDropdown';
 
 class NavigationItems extends Component {
 
@@ -41,46 +43,54 @@ class NavigationItems extends Component {
         let navitems = null;
         if (this.props.Type === "Landing") {
             navitems = (
-                <ul className={classes.NavigationItemsLanding}>
-                    <NavigationItem navitemType="Landing" link="#about" clicked={this.props.scrollAbout}>About</NavigationItem>
-                    <NavigationItem navitemType="Landing" link="#mission" clicked={this.props.scrollMission}>Mission</NavigationItem>
-                    <NavigationItem navitemType="Landing" Type="NavButton" link="/login">Sign In</NavigationItem>
-                    <NavigationItem navitemType="Landing" Type="NavButton" link="/signup">Sign Up</NavigationItem>
-                </ul>
+                <div className={classes.Container}>
+
+                    <ul className={classes.NavigationItemsLanding}>
+                        <NavigationItem navitemType="Landing" link="#about" clicked={this.props.scrollAbout}>About</NavigationItem>
+                        <NavigationItem navitemType="Landing" link="#mission" clicked={this.props.scrollMission}>Mission</NavigationItem>
+                        <NavigationItem navitemType="Landing" Type="NavButton" link="/login">Sign In</NavigationItem>
+                        <NavigationItem navitemType="Landing" Type="NavButton" link="/signup">Sign Up</NavigationItem>
+                        <div className={classes.Fb}>
+                            <i className="fab fa-facebook-f"></i>
+                        </div>
+                        <div className={classes.Google}>
+                            <i className="fab fa-google"></i>
+                        </div>
+                    </ul>
+                </div>
             );
         } else if (this.props.Type === "Web") {
             navitems = (
-                <ul className={classes.NavigationItemsWeb}>
+                <div className={classes.ContainerWeb}>
 
-                    <div className={classes.MessageIcon} >
-                        <i className="fas fa-inbox">
-                            <span className={classes.Badge}>3</span>
-                        </i>
-                    </div>
-                    <div className={classes.NotificationIcon} >
-                        <i className="fas fa-bell">
-                            <span className={classes.Badge}>3</span>
-                        </i>
-                    </div>
+                    <ul className={classes.NavigationItemsWeb}>
 
-                    <div className={classes.ImageButton} >
-                        <h5>{firstname ? firstname + " " + lastname : 'Name'}</h5>
-                        <img className={classes.Image} src={img} alt="NavDisplay" />
-                        <div className={classes.Dropdown} >
-                            <Dropdown />
+                        <div className={classes.MessageIcon} >
+                            <MsgDropdown />
+                        </div>
+                        <div className={classes.NotificationIcon} >
+                            <NotificDropdown />
                         </div>
 
-                    </div>
+                        <div className={classes.ImageButton} >
+                            <h5>{firstname ? firstname + " " + lastname : 'Name'}</h5>
+                            <img className={classes.Image} src={img} alt="NavDisplay" />
+                            <div className={classes.Dropdown} >
+                                <Dropdown />
+                            </div>
+
+                        </div>
 
 
-                </ul>
+                    </ul>
+                </div>
             );
         }
 
         return (
-            <div className={classes.Container}>
+            <Auxilary>
                 {navitems}
-            </div>
+            </Auxilary>
         );
     }
 };

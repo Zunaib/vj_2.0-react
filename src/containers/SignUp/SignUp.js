@@ -199,8 +199,19 @@ class SignUp extends Component {
                         <div className={classes.Form} >
                             <h3>SignUp</h3>
                             {form}
+                            {/* <div className={classes.FbGoogle}>
+                                <div className={classes.Google}>
+                                    <p>Continue With Google</p>
+                                    <i className="fab fa-google"></i>
 
+                                </div>
+                                <div className={classes.Fb}>
+                                    <p>Continue With Facebook</p>
+                                    <i className="fab fa-facebook-f"></i>
+                                </div>
+                            </div> */}
                         </div>
+
                     </div>
                 </div>
             </div>

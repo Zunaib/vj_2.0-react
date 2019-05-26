@@ -43,7 +43,7 @@ const Toolbar = (props) => {
                     </NavLink>
                 </div>
                 <SearchBar />
-                <NavLink to="/dashboard">
+                <NavLink to="/dashboard" className={classes.WebLogo}>
                     <div className={classes.LogoBlack}>
                         <Logo logoType="Black" />
                     </div>

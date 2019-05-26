@@ -75,8 +75,9 @@ class Cart extends Component {
         return (
             <div className={classes.Main} >
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
+                    <NavLink to='/dashboard'>
                         <div className={classes.cross}>
+                            <h4>Close</h4>
                             <i className="fas fa-times"></i>
                         </div>
                     </NavLink>

@@ -1,0 +1,60 @@
+.Main i{
+    cursor: pointer;
+}
+
+.Menu{
+  width: 100%;
+}
+
+.NotHead h2{
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  margin: 0 auto;
+
+}
+
+
+.Link {
+    text-decoration: none;
+}
+
+hr.Line{
+    border-top: 1px solid #8c8b8b;
+    width: 90%;
+}
+
+.Badge {
+    position: relative;
+    top: -10px;
+    background-color: rgb(224, 0, 0);
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 100%;
+    border: 1px solid;
+    border-color:rgb(224, 0, 0);
+    color:white;
+    font-size: 0.6rem;
+  }
+
+  .Image p{
+    margin-left: 10px;
+    color: black;
+    white-space: nowrap;
+    display: inline-block;
+    flex: 1;
+}
+
+
+ .Image img{
+    flex: 1;
+    height: 35px;
+    width: 35px;
+    margin-left: -5px;
+    object-position: top;
+    object-fit: cover;
+  border-radius: 100%;
+}

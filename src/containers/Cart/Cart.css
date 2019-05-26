@@ -25,6 +25,42 @@ background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
   box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
   }
 
+  
+.Album div.cross{
+    background-color: rgb(160, 0, 160);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+    margin-right: 20px;
+    float: right;
+    width: 10%;
+    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+    -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+}
+.Album div.cross:hover{
+    background-color: purple;
+    
+}
+.Album div.cross h4{
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 1rem;
+}
+.Album div.cross i{
+    margin: 0 auto;
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 1rem;
+}
+
+
+
+
   .AlbumImage{
     text-align: center;
     margin: 0 auto;
@@ -47,18 +83,10 @@ border-radius: 10%;
   box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
 }
 
-.Album div.cross i{
-    margin-top: 20px;
-    margin-right: 20px;
-    float: right;
-    width: 5%;
-    font-size: 1.2rem;
-}
-
 .Album h1{
     margin: 20px 20px;
     float: right;
-    width: 60%;
+    width: 70%;
 }
 
 .Cart{
