@@ -26,7 +26,7 @@ class Album extends Component {
     }
     render() {
         let albumid = this.state.albumid;
-        let album = this.props.currentalbum
+        let album = this.props.currentalbum;
 
         let path = "/dashboard/" + albumid + "/handle_product";
 
@@ -53,9 +53,6 @@ class Album extends Component {
                                 <h2>Album Products</h2>
                                 <div className={classes.Content}>
                                     <div className={classes.Add} >
-                                        {/* <NavLink to={path} >
-                                            
-                                        </NavLink> */}
 
                                         <NavLink to={path}>
                                             <div className={classes.AddProductButton}>

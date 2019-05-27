@@ -13,16 +13,13 @@ import Snack from '../../../components/UI/SnackBar/Snackbar';
 
 class Vlog extends Component {
     state = {
-        vlogid: null,
+        vlogid: window.location.href.split("http://localhost:3000/dashboard/vlogs/")[1],
         delete: null
     }
 
     componentDidMount() {
-        let str = window.location.href;
-        let res = str.split("http://localhost:3000/dashboard/vlogs/");
-        const vlogid = res[1];
-        this.setState({ vlogid: vlogid })
-        this.props.onfetchcurrentvlog(this.props.token, vlogid);
+        let str = window.location.href.split("http://localhost:3000/dashboard/vlogs/")[1];
+        this.props.onfetchcurrentvlog(this.props.token, str);
     }
 
     vlogdelete = () => {
@@ -45,8 +42,28 @@ class Vlog extends Component {
         } else {
             let vlog = this.props.currentvlog
             let video = 'http://localhost:5000' + vlog.videoLink;
+            let editpath = '/dashboard/handle_vlog/update_vlog/' + this.state.vlogid;
+
+            let settingbutton = null;
+            if (vlog) {
+                if (this.props.userId === vlog.userId) {
+                    console.log('can edit');
+                    settingbutton = (
+                        <div className={classes.SettingButton}>
+                            <Settings editpath={editpath} delete={this.vlogdelete} />
+                        </div>
+                    );
+                }
+            }
             vlogdata = (
                 <Auxilary>
+                    <NavLink to="/dashboard">
+                        <div className={classes.cross}>
+                            <h4>Close</h4>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
+                    {settingbutton}
                     <div className={classes.Album_Top}>
                         {/* <div className={classes.AlbumInfo}>
                             <h1>Test1</h1> <h2>Test2</h2>
@@ -77,34 +94,13 @@ class Vlog extends Component {
 
         }
 
-        let editpath = '/dashboard/handle_vlog/update_vlog/' + this.state.vlogid;
         return (
             <div className={classes.Main}>
                 {delvlog}
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard">
-                        <div className={classes.cross}>
-                            <h4>Close</h4>
-                            <i className="fas fa-times"></i>
-                        </div>
-                    </NavLink>
-                    <div className={classes.SettingButton}>
-                        <Settings editpath={editpath} delete={this.vlogdelete} />
-                    </div>
-                    {vlogdata}
-                    {/* <NavLink to="/dashboard/designer">
-                        <div className={classes.Edit}>
-                            <i className="far fa-edit"></i>
-                        </div>
-                    </NavLink>
-              
-                    <NavLink to="" onClick={this.albumdelete} >
-                        <div className={classes.Remove} >
-                            <i className="fas fa-times"></i>
-                        </div>
-                    </NavLink> */}
 
+                    {vlogdata}
                 </div>
             </div>
         )
@@ -115,6 +111,7 @@ class Vlog extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
+        userId: state.Auth.userId,
         currentvlog: state.ViewVlog.currentvlog,
         loading: state.ViewVlog.loading,
         deleted: state.DeleteVlog.deleted

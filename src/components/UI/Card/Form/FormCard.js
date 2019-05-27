@@ -5,7 +5,7 @@ const FormCard = (props) => {
     return (
         <div className={classes.FormCard}>
             <div className={classes.FormOverlapDiv} >
-                <div></div>
+                <div><h1>{props.title}</h1></div>
             </div>
             <div className={classes.FormCardInfo}>
                 <div className={classes.FormSide}>

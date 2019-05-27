@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Cart = (props) => {
 
     let imgpath = 'http://localhost:5000' + props.images[0];
+
     return (
         <tr className={classes.TbTr}>
             <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
@@ -18,7 +19,13 @@ const Cart = (props) => {
                     <small>by Dolce&Gabbana</small>
                 </span>
             </td>
-            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>Red</td>
+            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>
+
+
+
+
+            </td>
+
             <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>{props.sizes}</td>
             <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
                 <span>
@@ -28,23 +35,27 @@ const Cart = (props) => {
             </td>
             <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh14].join(' ')}>
 
-                <div className={classes.QuanButtons}>
-                    <div className={classes.ibutton2}>
+                <div className={classes.QuanButtons} onClick={props.add}>
+                    <div className={classes.cross}>
+                        <h4>Add</h4>
                         <i className="fas fa-plus"></i>
                     </div>
+
                 </div>
 
-            </td>
-            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh15].join(' ')}>
-                <span>
-
-                </span>
             </td>
             <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
-                <div className={classes.ibutton}>
-                    <i className="fas fa-times-circle"></i>
+                <div className={classes.QuanButtons}>
+                    <div className={classes.cross}>
+                        <h4>Remove</h4>
+                        <i className="fas fa-times"></i>
+                    </div>
+
                 </div>
+
             </td>
+
+
         </tr>
     );
 };

@@ -281,7 +281,7 @@ class Checkout extends Component {
                 {this.state.redirect}
 
                 <div className={classes.FormCard}>
-                    <FormCard form={form} />
+                    <FormCard form={form} title="Checkout" />
 
                 </div>
                 <div className={classes.ProfileCard}>

@@ -219,32 +219,42 @@ thead > tr {
 }
 
 
-
-.ibutton i{
-    margin-right: 50px;
-    font-size: 2rem;
-    color: purple;
-}
-
 .QuanButtons{
-    text-align: right;
+    cursor: pointer;
     width: 100%;
-
 }
 
-.ibutton2{
-padding-left: 100px;
-padding-bottom: 3px;
-}
-
-.ibutton2 i{
-    color:white;
-    background-color: purple;
-    border-radius: 100%;
-    margin: 0 3px;
-    padding: 6px 7px;
+.QuanButtons div.cross{
+    cursor: pointer;
+    background-color: rgb(160, 0, 160);
+    padding: 7px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
     float: right;
-    font-size: 1.2rem;
+    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+    -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+}
+.QuanButtons div.cross:hover{
+    background-color: purple;
+    cursor: pointer;
+    
+}
+.QuanButtons div.cross h4{
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.QuanButtons div.cross i{
+    margin: 0 auto;
+    padding: 5px;
+    color: white;
+    display: inline;
+    font-size: 0.8rem;
+    cursor: pointer;
 }
 
 
@@ -266,4 +276,7 @@ vertical-align: middle;
 -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
 box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
 }
+
+
+
 

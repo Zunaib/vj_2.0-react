@@ -13,15 +13,12 @@ import Snack from '../../../components/UI/SnackBar/Snackbar'
 class Product extends Component {
 
     state = {
-        productid: null
+        productid: window.location.href.split("http://localhost:3000/dashboard/products/")[1]
     }
 
     componentDidMount() {
-        let str = window.location.href;
-        let res = str.split("http://localhost:3000/dashboard/products/");
-        const productid = res[1];
-        this.setState({ productid: productid })
-        this.props.onfetchcurrentproduct(this.props.token, productid)
+        let str = window.location.href.split("http://localhost:3000/dashboard/products/")[1];
+        this.props.onfetchcurrentproduct(this.props.token, str)
 
     }
 
@@ -40,8 +37,29 @@ class Product extends Component {
         } else {
             let product = this.props.currentproduct;
             let product_thumbnail = 'http://localhost:5000' + product.images[0];
+            let editpath = '/dashboard/handle_product/update_product/' + this.state.productid;
+
+            let settingbutton = null;
+            if (product) {
+                if (this.props.userId === product.userId) {
+                    console.log('can edit');
+                    settingbutton = (
+                        <div className={classes.SettingButton}>
+                            <Settings editpath={editpath} delete={this.productdelete} />
+                        </div>
+                    );
+                }
+            }
+
             productdata = (
                 <Auxilary>
+                    <NavLink to="/dashboard">
+                        <div className={classes.cross}>
+                            <h4>Close</h4>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
+                    {settingbutton}
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumImage} >
                             <img src={product_thumbnail} alt="Product_Thumbnail" />
@@ -79,7 +97,6 @@ class Product extends Component {
         }
 
 
-        let editpath = '/dashboard/handle_product/update_product/' + this.state.productid;
         let added = null;
         if (this.props.addedtocart) {
             added = (<Snack message={"Item Successfully Added To Cart"} snackType="success" refresh={this.props.onaddtocartmsg} />);
@@ -101,16 +118,6 @@ class Product extends Component {
                 {delprod}
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard">
-                        <div className={classes.cross}>
-                            <h4>Close</h4>
-                            <i className="fas fa-times"></i>
-                        </div>
-                    </NavLink>
-                    <div className={classes.SettingButton}>
-                        <Settings editpath={editpath} delete={this.productdelete} />
-                    </div>
-
                     {productdata}
                 </div>
 
@@ -160,6 +167,7 @@ class Product extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
+        userId: state.Auth.userId,
         currentproduct: state.ViewProduct.currentproduct,
         loading: state.ViewProduct.loading,
         deleted: state.DeleteProduct.deleted,

@@ -43,14 +43,6 @@ export const DeleteProduct = (token, productId) => {
             })
             .catch(err => {
                 console.log(err)
-                dispatch(deleteproductFailed(err))
             });
-    }
-}
-
-
-export const MsgRefresh = () => {
-    return {
-        type: actionTypes.Update_AlbumMessage_Refresh
     }
 }

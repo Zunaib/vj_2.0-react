@@ -31,9 +31,11 @@ export const FetchProduct = (token, productid) => {
         dispatch(fetchproductStart());
         axios.post('/api/fetchSingleProductDetails?access_token=' + token, product)
             .then(res => {
-                dispatch(fetchproductSuccess(res.data.products));
+                console.log(res)
+                dispatch(fetchproductSuccess(res.data.product));
             })
             .catch(err => {
+                console.log(err)
                 dispatch(fetchproductFailed(err));
             });
     }

@@ -9,19 +9,42 @@ import * as actions from '../../Store/Actions/index';
 class Cart extends Component {
 
     state = {
-        cart: null
+        cart: []
     }
 
     componentDidMount() {
         if (this.props.token) {
             this.props.onfetchcurrentcart(this.props.token)
         }
-
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.cart !== prevState.cart) {
+            return { cart: nextProps.cart };
+        }
+        else return null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.cart !== this.props.cart) {
+            this.setState({ cart: this.props.cart });
+        }
+    }
+
+
+    add(prod) {
+        let prevcart =
+            [
+                ...this.state.cart
+            ]
+        prevcart.push(prod);
+        console.log(prevcart)
+        this.setState({ cart: prevcart }, () => {
+            console.log(this.state)
+        })
+    }
     render() {
 
-        const cart = this.props.cart;
         let carddata = null;
         if (this.props.loading) {
             carddata = (
@@ -32,6 +55,7 @@ class Cart extends Component {
                 </tr>)
                 ;
         } else if (this.props.cart) {
+            const cart = this.state.cart;
             carddata = (cart.map((cart, index = cart._id) => (
                 <CartBody
                     key={cart._id}
@@ -40,6 +64,7 @@ class Cart extends Component {
                     sizes={cart.productId.sizes}
                     quantity={cart.productId.quantity}
                     images={cart.productId.images}
+                    add={() => this.add(cart.productId)}
                 />
 
             )));
@@ -49,13 +74,18 @@ class Cart extends Component {
 
         if (this.props.cart) {
             if (this.props.cart.length > 0) {
-                console.log('cart not empty')
+                let total = null;
+                for (let i = 0; i < this.props.cart.length; i++) {
+                    total = total + this.props.cart[i].productId.price;
+                }
                 cartcontrols = (<tr className={[classes.TbTr, classes.ThTrTh20].join(' ')} >
                     <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')} colSpan={3}></td>
                     <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh21].join(' ')}>TOTAL</td>
                     <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.ThTrTh22].join(' ')}>
-                        <span><small>Rs </small>2,346</span>
+                        <span><small>Rs </small>{total}</span>
 
+                    </td>
+                    <td className={classes.ProceedButton}>
                     </td>
                     <td className={classes.ProceedButton}>
                         <NavLink to="/dashboard/checkout">
@@ -92,9 +122,9 @@ class Cart extends Component {
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Color</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Size</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Price</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Qty</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}></th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Quantity</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Cancel</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}></th>
                                 </tr>
                             </thead>
                             <tbody className={classes.Tbody}>

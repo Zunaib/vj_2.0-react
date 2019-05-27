@@ -14,17 +14,14 @@ import Snack from '../../../components/UI/SnackBar/Snackbar';
 
 class ViewBlog extends Component {
     state = {
-        blogid: null,
+        blogid: window.location.href.split("http://localhost:3000/dashboard/blogs/")[1],
         delete: null,
 
     }
 
     componentDidMount() {
-        let str = window.location.href;
-        let res = str.split("http://localhost:3000/dashboard/blogs/");
-        const blogid = res[1];
-        this.setState({ blogid: blogid })
-        this.props.onfetchcurrentblog(this.props.token, blogid);
+        let str = window.location.href.split("http://localhost:3000/dashboard/blogs/")[1];
+        this.props.onfetchcurrentblog(this.props.token, str);
 
     }
 
@@ -33,14 +30,33 @@ class ViewBlog extends Component {
     }
     render() {
         let blogdata = null;
+
         if (this.props.loading) {
             blogdata = <Spinner />
         } else {
-            let blog = this.props.currentblog[0]
-            // let video = 'http://localhost:5000' + vlog.videoLink;
+            let blog = this.props.currentblog[0];
+            let editpath = '/dashboard/handle_blog/update_blog/' + this.state.blogid;
 
+            let settingbutton = null;
+            if (blog) {
+                if (this.props.userId === blog.userId) {
+                    console.log('can edit');
+                    settingbutton = (
+                        <div className={classes.SettingButton}>
+                            <Settings editpath={editpath} delete={this.blogdelete} />
+                        </div>
+                    );
+                }
+            }
             blogdata = (
                 <Auxilary>
+                    <NavLink to="/dashboard">
+                        <div className={classes.cross}>
+                            <h4>Close</h4>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
+                    {settingbutton}
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
                             <h1>{blog.title}</h1>
@@ -48,9 +64,6 @@ class ViewBlog extends Component {
                                 {blog.description}
                             </div>
                         </div>
-                        {/* <div className={classes.AlbumImage} >
-                            <img src={album_thumbnail} alt="Album_Thumbnail" />
-                        </div> */}
                     </div>
 
                     <div className={classes.AlbumEditor}>
@@ -64,36 +77,14 @@ class ViewBlog extends Component {
         let blogdel = null;
         if (this.props.deleted) {
             blogdel = (<Snack message={"Blog Successfully Deleted"} snackType="success" refresh={this.props.onblogdeleteMsg} />);
-
         }
-        let editpath = '/dashboard/handle_blog/update_blog/' + this.state.blogid;
+
         return (
             <div className={classes.Main}>
                 {blogdel}
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard">
-                        <div className={classes.cross}>
-                            <h4>Close</h4>
-                            <i className="fas fa-times"></i>
-                        </div>
-                    </NavLink>
-                    <div className={classes.SettingButton}>
-                        <Settings editpath={editpath} delete={this.blogdelete} />
-                    </div>
                     {blogdata}
-                    {/* <NavLink to="/dashboard/designer">
-                        <div className={classes.Edit}>
-                            <i className="far fa-edit"></i>
-                        </div>
-                    </NavLink>
-              
-                    <NavLink to="" onClick={this.albumdelete} >
-                        <div className={classes.Remove} >
-                            <i className="fas fa-times"></i>
-                        </div>
-                    </NavLink> */}
-
                 </div>
             </div>
         )
@@ -104,6 +95,7 @@ class ViewBlog extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
+        userId: state.Auth.userId,
         currentblog: state.ViewBlog.currentblog,
         loading: state.ViewBlog.loading,
         deleted: state.DeleteBlog.deleted

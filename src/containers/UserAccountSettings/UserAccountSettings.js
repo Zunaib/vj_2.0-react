@@ -333,7 +333,7 @@ class UserAccountSettings extends Component {
                     <ProfileStatsCard />
                 </div>
                 <div className={classes.FormCard}>
-                    <FormCard form={form} />
+                    <FormCard form={form} title="User Settings" />
 
                 </div>
                 <div className={classes.ProfileCard}>
