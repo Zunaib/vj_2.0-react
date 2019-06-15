@@ -6,7 +6,7 @@ import 'react-quill/dist/quill.snow.css'; // ES6
 
 // import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 // import ReactPlayer from 'react-player';
 import * as actions from '../../../Store/Actions/index';
 import FormData from 'form-data'
@@ -186,9 +186,12 @@ class Blog extends Component {
                 {addblog}
                 {this.props.added ? <Redirect to={"/dashboard/blogs/" + this.props.blogid} /> : null}
                 <div className={classes.Album}>
-                    {/* <NavLink to="/dashboard/designer">
-                        <i className="fas fa-times"></i>
-                    </NavLink> */}
+                    <NavLink to="/dashboard">
+                        <div className={classes.cross}>
+                            <h4>Close</h4>
+                            <i className="fas fa-times"></i>
+                        </div>
+                    </NavLink>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
                             <h1>Add Blog</h1>

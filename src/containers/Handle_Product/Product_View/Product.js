@@ -121,7 +121,7 @@ class Product extends Component {
                     {productdata}
                 </div>
 
-                {/* <div className={classes.ProfileWork}>
+                <div className={classes.ProfileWork}>
                     <div className={classes.WorkButtons}>
                         <div className={classes.Workbutton} >
                             <i className="fas fa-truck"></i>
@@ -133,7 +133,7 @@ class Product extends Component {
                             <i className="fas fa-copyright"></i>
                         </div>
                     </div>
-                </div> */}
+                </div>
 
 
                 <div className={classes.Album_Bottom}>

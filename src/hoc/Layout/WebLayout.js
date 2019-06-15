@@ -21,7 +21,7 @@ import Cart from '../../containers/Cart/Cart';
 import Checkout from '../../containers/Checkout/Checkout';
 import CustomerOrder from '../../containers/CustomerOrder/CustomerOrder';
 import DesignerOrder from '../../containers/DesignerOrder/DesignerOrder';
-
+import Messenger from '../../containers/Messenger/Messenger'
 
 
 import UpdateAlbum from '../../containers/Handle_Album/Album_Update/AlbumUpdate';
@@ -66,6 +66,7 @@ class WebLayout extends Component {
             if (this.props.isCreator === "true") {
                 routes = (
                     <Switch>
+                        <Route path="/dashboard/messenger" component={Messenger} />
                         <Route path="/dashboard/usersettings" component={UserAccountSettings} />
                         <Route path="/dashboard/designer" component={DesignerProfile} />
                         <Route path="/dashboard/albums/:album" component={asyncAlbum} />
@@ -88,6 +89,7 @@ class WebLayout extends Component {
             } else {
                 routes = (
                     <Switch>
+                        <Route path="/dashboard/messenger" component={Messenger} />
                         <Route path="/dashboard" exact component={Dashboard} />
                         <Route path="/dashboard/usersettings" component={UserAccountSettings} />
                         <Route path="/dashboard/cart" component={Cart} />

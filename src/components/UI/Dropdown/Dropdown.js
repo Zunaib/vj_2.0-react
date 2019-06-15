@@ -74,7 +74,7 @@ class SimpleMenu extends Component {
                         <MenuItem onClick={this.handleClose}><i className="fas fa-retweet"></i>Shift To Creator</MenuItem>
                     </NavLink>
                     <NavLink className={classes.LinkLogout} to="/logout">
-                        <MenuItem onClick={this.handleClose}><i className={["fas fa-sign-out-alt", classes.back].join(' ')}></i>Logout</MenuItem>
+                        <MenuItem onClick={this.handleClose}><i className={["fas fa-sign-out-alt", classes.back].join(' ')}></i>SignOut</MenuItem>
                     </NavLink>
                 </Auxilary>
             );

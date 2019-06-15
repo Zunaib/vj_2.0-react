@@ -72,6 +72,8 @@ export const Auth = (data, type) => {
         axios.post(url, data)
             .then(response => {
 
+                console.log(response)
+
                 if (type === "Login") {
 
                     localStorage.setItem('token', response.data.token);

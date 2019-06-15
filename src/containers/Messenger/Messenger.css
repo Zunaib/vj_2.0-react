@@ -1,0 +1,214 @@
+.Main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    /* background: #1D2B64; 
+background: -webkit-linear-gradient(to bottom, #F8CDDA, rgb(86, 29, 100));  
+background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
+
+ 
+}
+  
+  .Messenger{
+      background-color: white;
+      position: relative;
+      height: 100%;
+      width: 96%;
+      margin: 12px auto 42px auto;
+      padding: 10px 20px;
+      border-radius: 10px;
+      overflow: hidden;
+  -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+  -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+  box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+  }
+
+  .HeaderTabs{
+    width: 100%;
+    }
+
+
+  .ListHeader{
+    float: left;
+    width: 26%;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+  }
+  
+  .ListHeader h2{
+    font-weight: bold;
+  }
+
+  .ConvoHeader{
+    float: right;
+    width:66%;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+
+  }
+  
+  .ConvoHeader h2{
+    font-weight: bold;
+  }
+  
+
+  .MessengerList{
+    float: left;
+    width: 28%;
+    height: 555px;
+    overflow-y: scroll;
+    position: relative;
+    margin: 0 auto;
+    padding: 2px 10px;
+border-right: 1px solid rgb(212, 212, 212);
+  }
+
+
+
+  /* .LisTool{
+      text-align: center;
+      background-color: gray;
+      width: inherit;
+      height: 100%;
+      -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+  -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+  box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+  } */
+
+  .SingleListItem{
+width: 98%;
+height: 70px;
+margin: 0 auto;
+border-radius: 5px;
+align-content: center;
+padding-top: 11px;
+}
+
+.SingleListItem:hover{
+    cursor: pointer;
+    background-color: rgba(236, 236, 236, 0.63);
+}
+
+.ImageButton{
+    float: left;
+    height:inherit;
+    width: 20%;
+}
+
+.Name{
+    float: left;
+    margin-left: 10px;
+    width: 70%;
+    margin-top: -10px;
+}
+
+.Name p{
+    margin-top: -13px;
+}
+
+
+
+.ImageButton h4{
+    margin-left: 5px;
+    color: black;
+}
+
+
+.ImageButton img{
+    height: 60px;
+    width: 60px;
+    margin-left: 10px;
+    object-position: top;
+    object-fit: cover;
+  border-radius: 100%;
+}
+
+
+
+
+.Conversation{
+  float: left;
+  width: 68%;
+  height: 555px;  
+  overflow-y: scroll;
+  margin: 0 auto;
+  padding: 2px 10px;
+}
+
+
+.Messages{
+  width: 90%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.SingleConvo{
+clear: both;
+text-align: center;
+overflow: hidden;
+margin-bottom: 20px;
+}
+
+.SingleConvoHeader{
+  text-align: center;   
+}
+
+
+.SingleConvoHeader hr{
+  margin-top: -15px;   
+  width: 80%;
+}
+
+.Incoming{
+  background-color: #F4F4F8;
+  width: auto;
+  float: left;
+  clear: both;
+  border-radius: 10px;
+  padding: 0 15px;
+  margin: 1px;
+}
+
+.Outgoing{
+  background-color: #007AFF;
+  width: auto;
+  float: right;
+  clear: both;
+  border-radius: 10px;
+  padding: 0 15px;
+  color: white;
+  margin: 1px;
+}
+
+.Send{
+  height: 50px;
+  overflow: hidden;
+  float: right;
+  margin: 0px auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 65%;
+}
+
+.Send input{
+  margin: 0px auto;
+  width: 70%;
+  height: 35px;
+
+  border: 3px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  background: none;
+  display: flex;
+  box-sizing: border-box;
+  font-size: 1rem;
+}

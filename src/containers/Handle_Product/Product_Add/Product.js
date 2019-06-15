@@ -315,7 +315,7 @@ class Product extends Component {
         if (this.props.prodadded) {
             addedprod = (<Snack message={"Product Successfully Added"} snackType="success" refresh={this.props.onaddProductMsg} />);
         }
-        
+
         let imgsnack = null;
         if (this.state.selectedFiles) {
             imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} snackType="success" refresh={this.props.onaddProductMsg} />);
@@ -326,8 +326,9 @@ class Product extends Component {
                 {addedprod}
                 {this.props.prodadded ? <Redirect to={"/dashboard/products/" + this.props.productid} /> : null}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
+                    <NavLink to="/dashboard">
                         <div className={classes.cross}>
+                            <h4>Close</h4>
                             <i className="fas fa-times"></i>
                         </div>
                     </NavLink>

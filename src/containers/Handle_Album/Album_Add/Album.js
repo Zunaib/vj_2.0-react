@@ -200,8 +200,11 @@ class Album extends Component {
                 {this.props.added ? <Redirect to={"/dashboard/albums/" + this.props.albumid} /> : null}
                 {imgsnack}
                 <div className={classes.Album}>
-                    <NavLink to="/dashboard/designer">
-                        <i className="fas fa-times"></i>
+                    <NavLink to="/dashboard">
+                        <div className={classes.cross}>
+                            <h4>Close</h4>
+                            <i className="fas fa-times"></i>
+                        </div>
                     </NavLink>
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumInfo}>
