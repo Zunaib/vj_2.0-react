@@ -1,0 +1,35 @@
+
+.Stats{
+    width: 100%
+}
+
+
+.StatsWork{
+    margin: 0 auto;
+    width: 90%;
+}
+
+/* .StatsWork h3{
+    color: purple;
+    font-size: 1.3rem;
+} */
+.StatsWork hr{
+    color: gray;
+    width: 80%;
+}
+.Numbers{
+    margin-top: 20px;
+}
+
+.AboutWork{
+    margin-top: 25px;
+}
+
+.AboutWork h4{
+    margin: 0 auto;
+   width: 70%;
+}
+
+.Tags{
+    margin-top: 25px;
+}

@@ -1,30 +1,34 @@
 import * as actionTypes from '../../Actions/ActionTypes';
 
 const initialState = {
-    currentproduct: null,
-    similarproducts: null,
+    users: null,
+    vlogs: null,
+    products: null,
+    blogs: null,
     error: null,
     loading: true
 }
 
-const CurrentProduct = (state = initialState, action) => {
+const SearchResults = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.Fetch_Single_Product_Start:
+        case actionTypes.Search_Start:
             return {
                 ...state,
                 loading: true
             };
-        case actionTypes.Fetch_Single_Product_Failed:
+        case actionTypes.Search_Failed:
             return {
                 ...state,
                 loading: false,
                 error: action.error
             };
-        case actionTypes.Fetch_Single_Product_Success:
+        case actionTypes.Search_Success:
             return {
                 ...state,
-                currentproduct: action.product,
-                similarproducts: action.similarproducts,
+                users: action.searchresults.users,
+                blogs: action.searchresults.blogs,
+                vlogs: action.searchresults.vlogs,
+                products: action.searchresults.products,
                 loading: false,
                 error: null
 
@@ -36,4 +40,4 @@ const CurrentProduct = (state = initialState, action) => {
     }
 };
 
-export default CurrentProduct;
+export default SearchResults;

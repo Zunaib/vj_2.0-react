@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './DesignerProfile.css';
+import classes from './UserProfile.css';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
@@ -13,6 +13,7 @@ import Statistics from '../../components/DesignerProfile/Statistics/Statistics';
 class DesignerProfile extends Component {
 
     state = {
+        profileid: window.location.href.split("http://localhost:3000/dashboard/userprofile/")[1],
         profilecontent: 'LatestAlbums',
         userimage: '',
         userfirst: '',
@@ -28,10 +29,11 @@ class DesignerProfile extends Component {
 
     componentDidMount = () => {
         let limit = 8;
-        this.props.onfetchprofilealbums(this.props.token, limit);
-        this.props.onfetchprofileproducts(this.props.token, limit);
-        this.props.onfetchprofilevlogs(this.props.token, limit);
-        this.props.onfetchprofileblogs(this.props.token, limit);
+        const str = window.location.href.split("http://localhost:3000/dashboard/userprofile/")[1];
+        this.props.onfetchprofilealbums(this.props.token, limit, str);
+        this.props.onfetchprofileproducts(this.props.token, limit, str);
+        this.props.onfetchprofilevlogs(this.props.token, limit, str);
+        this.props.onfetchprofileblogs(this.props.token, limit, str);
 
         let user = this.props.settings[0];
         if (user) {
@@ -105,15 +107,14 @@ class DesignerProfile extends Component {
 
                 <div className={classes.ProfileImageButton} >
                     <img src={this.state.userimage ? img : display} alt="Display" />
+                    <div className={classes.Button}>
+                        <div className={classes.FollowButton}>
+                            <h4>Follow</h4>
+                        </div>
+                    </div>
                 </div>
 
                 <div className={classes.Profile}>
-                    <NavLink to="/dashboard/designerorders" >
-                        <div className={classes.Orders} >
-                            <i className="fas fa-sort-amount-down"></i>
-                            <h4>Customer Requested Orders</h4>
-                        </div>
-                    </NavLink>
 
                     <div className={classes.ProfileInfo} >
                         <h1>{firstname ? firstname + " " + lastname : 'Name'}</h1>

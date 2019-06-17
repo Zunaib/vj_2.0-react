@@ -89,6 +89,7 @@ export const Fetch_Single_Product_Failed = 'Fetch_Single_Product_Failed';
 export const Fetch_Single_Product_Success = 'Fetch_Single_Product_Success';
 
 
+
 /* Add Product To Cart*/
 export const Add_ProductToCart_Start = 'Add_ProductToCart_Start';
 export const Add_ProductToCart_Failed = 'Add_ProductToCart_Failed';
@@ -208,3 +209,9 @@ export const Update_Single_Blog_Start = 'Update_Single_Blog_Start';
 export const Update_Single_Blog_Failed = 'Update_Single_Blog_Failed';
 export const Update_Single_Blog_Success = 'Update_Single_Blog_Success';
 export const Update_BlogMessage_Refresh = 'Update_BlogMessage_Refresh';
+
+
+/*Search Actions */
+export const Search_Start = 'Search_Start';
+export const Search_Failed = 'Search_Failed';
+export const Search_Success = 'Search_Success';

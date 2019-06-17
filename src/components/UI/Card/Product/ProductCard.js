@@ -10,7 +10,7 @@ const ProductCard = (props) => {
             <div className={classes.CardText}>
                 <h4><b>{props.name}</b></h4>
                 <div className={classes.Desc}>
-                    Dolce & Gabbana's 'Greta' tote has been crafted in Italy from hard-wearing red textured-leather.</div>
+                  {props.desc}</div>
             </div>
             <div className={classes.CardInfo}>
                 <div className={classes.CardPrice}>

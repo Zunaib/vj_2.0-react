@@ -61,6 +61,10 @@ import CheckoutReducer from './CheckoutReducers/Checkout';
 import CustomerOrdersReducer from './OrderReducers/CustomerOrder';
 import DesignerOrdersReducer from './OrderReducers/DesignerOrder';
 
+/* Search Resducer */
+import SearchReducer from './SearchReducers/Search';
+
+
 export default combineReducers({
     ContactUs: ContactUsReducer,
 
@@ -105,6 +109,8 @@ export default combineReducers({
     Checkout: CheckoutReducer,
 
     CustomerOrders: CustomerOrdersReducer,
-    DesignerOrders: DesignerOrdersReducer
+    DesignerOrders: DesignerOrdersReducer,
+
+    Search: SearchReducer
 
 });

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from "react-router-dom";
 // import * as actions from '../../../Store/Actions/index';
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
@@ -7,7 +8,6 @@ import display from '../../../assets/images/defaultuserimage.png';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Dropdown from '../../UI/Dropdown/Dropdown';
 import NotificDropdown from '../../UI/Dropdown/NotificationsDropdown/NotificationsDropdown';
-import MsgDropdown from '../../UI/Dropdown/MessagesDropdown/MessagesDropdown';
 
 class NavigationItems extends Component {
 
@@ -66,7 +66,13 @@ class NavigationItems extends Component {
                     <ul className={classes.NavigationItemsWeb}>
 
                         <div className={classes.MessageIcon} >
-                            <MsgDropdown />
+                            {/* <MsgDropdown /> */}
+                            <NavLink to="/dashboard/messenger" >
+                                <i className="fas fa-inbox"
+                                >
+                                    <span className={classes.Badge}>3</span>
+                                </i>
+                            </NavLink>
                         </div>
                         <div className={classes.NotificationIcon} >
                             <NotificDropdown />

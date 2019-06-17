@@ -17,6 +17,7 @@ class LatestProducts extends Component {
                     name={product.productName}
                     price={product.price}
                     images={product.images}
+                    desc={product.description}
                 />
             </NavLink>
         )));

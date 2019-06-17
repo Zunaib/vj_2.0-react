@@ -29,6 +29,9 @@ import UpdateBlog from '../../containers/Handle_Blog/Blog_Update/Blog_Update';
 import UpdateVlog from '../../containers/Handle_Vlog/Vlog_Update/Vlog_Update';
 
 
+import SearchPage from '../../containers/Search/Search';
+import UserProfile from '../../containers/UserProfile/UserProfile';
+
 const asyncAlbum = asyncComponent(() => {
     return import('../../containers/Handle_Album/Album_View/Album');
 })
@@ -83,6 +86,9 @@ class WebLayout extends Component {
                         <Route path="/dashboard/handle_product/update_product/:id" component={Update_Product} />
                         <Route path="/dashboard/handle_blog/update_blog/:id" component={UpdateBlog} />
                         <Route path="/dashboard/handle_vlog/update_vlog/:id" component={UpdateVlog} />
+
+                        <Route path="/dashboard/searchresults" component={SearchPage} />
+                        <Route path="/dashboard/userprofile/:userid" component={UserProfile} />
                         <Redirect to="/dashboard/designer" />
                     </Switch>
                 );
@@ -99,6 +105,11 @@ class WebLayout extends Component {
                         <Route path="/dashboard/albums/:album" component={asyncAlbum} />
                         <Route path="/dashboard/vlogs/:vlog" component={Vlog} />
                         <Route path="/dashboard/blogs/:blog" component={View_Blog} />
+
+                        <Route path="/dashboard/searchresults" component={SearchPage} />
+                        <Route path="/dashboard/userprofile/:userid" component={UserProfile} />
+
+
                         <Redirect to="/dashboard" />
                     </Switch>
                 );

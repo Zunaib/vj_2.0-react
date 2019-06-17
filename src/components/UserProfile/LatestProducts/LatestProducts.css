@@ -1,0 +1,50 @@
+
+.Content{
+    width: 100%
+    }
+    
+    .Products{
+        margin: 0 5px;
+        width: 100%;
+        z-index: 3;
+    }
+
+
+    .Link{
+      color: black;
+    }
+
+    
+    
+    .Content div.AddAlbumButton{
+      background-color: rgb(160, 0, 160);
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+      margin: 0 auto;
+      width: 15%;
+      -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+      -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+      box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    }
+    .Content div.AddAlbumButton:hover{
+      background-color: purple;
+      
+    }
+    .Content div.AddAlbumButton h4{
+      text-align: center;
+      padding: 5px;
+      color: white;
+      display: inline;
+      font-size: 1rem;
+    }
+    .Content div.AddAlbumButton i{
+      text-align: center;
+      margin: 0 auto;
+      padding: 5px;
+      color: white;
+      display: inline;
+      font-size: 1rem;
+    }
+    

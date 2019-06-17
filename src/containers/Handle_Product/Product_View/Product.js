@@ -7,9 +7,10 @@ import Auxilary from '../../../hoc/Auxilary/Auxilary'
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
-import Snack from '../../../components/UI/SnackBar/Snackbar'
+import Snack from '../../../components/UI/SnackBar/Snackbar';
+import Input from '../../../components/UI/Input/Web_Input/WebInput';
 // import display from '../../../assets/images/testimg.jpg';
-// import ProductCard from '../../../components/UI/Card/Product/ProductCard';
+import ProductCard from '../../../components/UI/Card/Product/ProductCard';
 class Product extends Component {
 
     state = {
@@ -91,6 +92,37 @@ class Product extends Component {
                         </div>
                     </div>
 
+                    <div className={classes.Feedback}>
+                        <h2>Comments</h2>
+                        <div className={classes.Comments}>
+                            <div className={classes.Comment}>
+                                <h3>Zunaib Imtiaz</h3>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            </div>
+                            <div className={classes.Comment}>
+                                <h3>Zunaib Imtiaz</h3>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            </div>
+                            <div className={classes.Comment}>
+                                <h3>Zunaib Imtiaz</h3>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            </div>
+                            <div className={classes.Comment}>
+                                <h3>Zunaib Imtiaz</h3>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                            </div>
+                        </div>
+                        <div className={classes.EnterComment}>
+                            <h4>Enter Comment :</h4>
+                            <Input />
+
+                        </div>
+                    </div>
+
                 </Auxilary>
 
             )
@@ -111,6 +143,37 @@ class Product extends Component {
         if (this.props.deleted) {
             delprod = (<Snack message={"Product Successfully Deleted"} snackType="success" refresh={this.props.ondelmsg} />);
         }
+
+        let similar = null;
+        let similarproducts = null;
+        if (this.props.similarproducts !== null) {
+            console.log("true")
+
+            similar = (this.props.similarproducts.map((product, index = product._id) => (
+                <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={index}>
+                    <ProductCard
+                        key={product._id}
+                        name={product.productName}
+                        price={product.price}
+                        images={product.images}
+                    />
+                </NavLink>
+
+            )));
+
+
+            similarproducts = (
+                <div className={classes.Work}>
+                    <h2>More Products From This Designer :</h2>
+                    <div className={classes.Content}>
+                        <div className={classes.Collections}>
+                            {similar}
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <div className={classes.Main}>
                 {added}
@@ -121,39 +184,10 @@ class Product extends Component {
                     {productdata}
                 </div>
 
-                <div className={classes.ProfileWork}>
-                    <div className={classes.WorkButtons}>
-                        <div className={classes.Workbutton} >
-                            <i className="fas fa-truck"></i>
-                        </div>
-                        <div className={classes.Workbutton}>
-                            <i className="fas fa-check-circle"></i>
-                        </div>
-                        <div className={classes.Workbutton}>
-                            <i className="fas fa-copyright"></i>
-                        </div>
-                    </div>
-                </div>
-
 
                 <div className={classes.Album_Bottom}>
                     <div className={classes.WorkDisplay}>
-                        <div className={classes.Work}>
-                            {/* <h2>More Products From This Designer :</h2> */}
-                            <div className={classes.Content}>
-                                {/* <div >
-                                        <i className="fas fa-plus"></i>
-                                    </div> */}
-                                <div className={classes.Collections}>
-                                    {/* <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard />
-                                    <ProductCard /> */}
-
-                                </div>
-                            </div>
-
-                        </div>
+                        {similarproducts}
                     </div>
 
                 </div>
@@ -169,6 +203,7 @@ const mapStateToProps = state => {
         token: state.Auth.token,
         userId: state.Auth.userId,
         currentproduct: state.ViewProduct.currentproduct,
+        similarproducts: state.ViewProduct.similarproducts,
         loading: state.ViewProduct.loading,
         deleted: state.DeleteProduct.deleted,
         addedtocart: state.AddtoCart.added,

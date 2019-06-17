@@ -101,6 +101,21 @@ class Product extends Component {
                 valid: false,
                 touched: false
             },
+            type: {
+                elementType: 'select',
+                elementConfig: {
+                    placeholder: "Select Product Type",
+                    options: [
+                        { value: 'shoes', displayValue: 'Shoes' },
+                        { value: 'shirt', displayValue: 'Shirt' },
+                        { value: 'pant', displayValue: 'Pant' },
+                        { value: 'clothe', displayValue: 'Clothe' },
+                    ]
+                },
+                value: 'clothe',
+                validation: {},
+                valid: true
+            },
             colors: {
                 elementType: 'select',
                 elementConfig: {
@@ -117,11 +132,11 @@ class Product extends Component {
                 validation: {},
                 valid: true
             },
-            discount: {
+            "discount Price": {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Product Discount Percentage'
+                    placeholder: 'Product Discounted Price'
                 },
                 value: '',
                 validation: {

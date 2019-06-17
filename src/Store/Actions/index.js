@@ -141,7 +141,9 @@ export {
     FetchDesignerOrders
 } from './OrderActions/DesignerOrder';
 
-
+export{
+    Search
+} from './SearchActions/Search'
 
 
 

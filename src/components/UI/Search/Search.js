@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import classes from './Search.css';
+import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import * as actions from '../../../Store/Actions/index';
+import FormData from 'form-data'
+
+
 // import axios from '../../../axios';
 import Input from '../../UI/Input/Input';
 
@@ -48,18 +54,15 @@ class SearchBar extends Component {
         for (let formElementIdentifier in this.state.searchBar) {
             formData[formElementIdentifier] = this.state.searchBar[formElementIdentifier].value;
         }
-        // const search = {
-        // }
-        // axios.post('/api/search', search)
-        //     .then(response => {
-        //         this.setState({ loading: false });
-        //         this.props.history.push('/');
-        //     })
-        //     .catch(error => {
-        //         this.setState({ loading: false });
-        //     });
-        console.log(formData.searchtext);
-        this.fieldclearHandler();
+
+        let data = new FormData();
+        data.append('queryString', formData.searchtext);
+
+        if (formData.searchtext !== '') {
+            this.props.history.push('/dashboard/searchresults');
+            this.props.onSearch(this.props.token, data);
+            this.fieldclearHandler();
+        }
     }
 
     checkValidity(value, rules) {
@@ -84,7 +87,7 @@ class SearchBar extends Component {
         };
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true;
+        updatedFormElement.touchethisd = true;
         updatedsearchBar[inputIdentifier] = updatedFormElement;
 
         let formIsValid = true;
@@ -131,4 +134,16 @@ class SearchBar extends Component {
     }
 }
 
-export default SearchBar;
+const mapStateToProps = state => {
+    return {
+        token: state.Auth.token
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        onSearch: (token, queryString) => dispatch(actions.Search(token, queryString)),
+    }
+}
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));

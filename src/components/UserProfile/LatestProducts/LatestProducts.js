@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
-import classes from './Products.css';
-import Auxilary from '../../../hoc/Auxilary/Auxilary';
+import classes from './LatestProducts.css';
+import { NavLink } from 'react-router-dom';
 import ProductCard from '../../UI/Card/Product/ProductCard';
 
-class Products extends Component {
+class LatestProducts extends Component {
 
     send = (product) => {
         console.log(product)
@@ -12,7 +11,7 @@ class Products extends Component {
     render() {
         const products = this.props.products;
         const cards = (products.map((product, index = product._id) => (
-            <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={index}>
+            <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={product._id} onClick={() => this.send(product)}>
                 <ProductCard
                     key={product._id}
                     name={product.productName}
@@ -21,15 +20,22 @@ class Products extends Component {
                     desc={product.description}
                 />
             </NavLink>
-
         )));
 
+        console.log(cards)
+
         return (
-            < Auxilary >
-                {cards}
-            </Auxilary >
+            <div className={classes.Work} >
+                <div className={classes.Content}>
+                    <h3>Latest Products</h3>
+                    <div className={classes.Products}>
+                        {cards}
+                    </div>
+                </div>
+            </div>
         );
     }
-}
 
-export default Products
+};
+
+export default LatestProducts;
