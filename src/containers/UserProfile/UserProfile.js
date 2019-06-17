@@ -4,11 +4,11 @@ import classes from './UserProfile.css';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import display from '../../assets/images/defaultuserimage.png'
-import LatestAlbums from '../../components/DesignerProfile/LatestAlbums/LatestAlbums';
-import LatestProducts from '../../components/DesignerProfile/LatestProducts/LatestProducts';
-import LatestVlogs from '../../components/DesignerProfile/LatestVlogs/LatestVlogs';
-import LatestBlogs from '../../components/DesignerProfile/LatestBlogs/LatestBlogs';
-import Statistics from '../../components/DesignerProfile/Statistics/Statistics';
+import LatestAlbums from '../../components/UserProfile/LatestAlbums/LatestAlbums';
+import LatestProducts from '../../components/UserProfile/LatestProducts/LatestProducts';
+import LatestVlogs from '../../components/UserProfile/LatestVlogs/LatestVlogs';
+import LatestBlogs from '../../components/UserProfile/LatestBlogs/LatestBlogs';
+import Statistics from '../../components/UserProfile/Statistics/Statistics';
 
 class UserProfile extends Component {
 
@@ -19,6 +19,7 @@ class UserProfile extends Component {
         userfirst: '',
         userlast: '',
         desc: '',
+        settings: null,
         albumactive: true,
         prodactive: false,
         vlogactive: false,
@@ -35,8 +36,11 @@ class UserProfile extends Component {
         this.props.onfetchprofileproducts(this.props.token, str, limit);
         this.props.onfetchprofilevlogs(this.props.token, str, limit);
         this.props.onfetchprofileblogs(this.props.token, str, limit);
+    }
 
-        let user = this.props.settings[0];
+    setData() {
+
+        let user = this.state.settings[0];
         if (user) {
             this.setState({
                 userimage: user.displayPicture,
@@ -44,6 +48,22 @@ class UserProfile extends Component {
                 userlast: user.lastName,
                 desc: user.description
             })
+        }
+    }
+
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.settings !== prevState.settings) {
+            return { settings: nextProps.settings };
+        }
+        else return null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.settings !== this.props.settings) {
+            //Perform some operation here
+            this.setState({ settings: this.props.settings });
+            this.setData();
         }
     }
 
@@ -110,7 +130,7 @@ class UserProfile extends Component {
                     <img src={this.state.userimage ? img : display} alt="Display" />
                     <div className={classes.Button}>
                         <div className={classes.FollowButton}>
-                            <h4>Follow</h4>
+                            <h4>Messege</h4>
                         </div>
                     </div>
                 </div>

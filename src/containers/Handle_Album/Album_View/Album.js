@@ -27,12 +27,27 @@ class Album extends Component {
     render() {
         let albumid = this.state.albumid;
         let album = this.props.currentalbum;
-
-        let path = "/dashboard/" + albumid + "/handle_product";
-
         let albumdata = <Spinner />;
         if (!this.props.loading) {
             let album_thumbnail = 'http://localhost:5000' + album.thumbnail;
+
+            let addalbumproduct = null;
+            let path = "/dashboard/" + albumid + "/handle_product";
+
+            if (album) {
+                if (this.props.userId === album.userId) {
+                    addalbumproduct = (
+                        <NavLink to={path}>
+                            <div className={classes.AddProductButton}>
+                                <h4>Add Product</h4>
+                                <i className="fas fa-plus"></i>
+                            </div>
+                        </NavLink>
+                    );
+                }
+            }
+
+
             albumdata = (
                 <Auxilary>
                     <div className={classes.Album_Top}>
@@ -53,13 +68,7 @@ class Album extends Component {
                                 <h2>Album Products</h2>
                                 <div className={classes.Content}>
                                     <div className={classes.Add} >
-
-                                        <NavLink to={path}>
-                                            <div className={classes.AddProductButton}>
-                                                <h4>Add Product</h4>
-                                                <i className="fas fa-plus"></i>
-                                            </div>
-                                        </NavLink>
+                                        {addalbumproduct}
                                     </div>
                                     <div className={classes.AlbumProducts}>
                                         <AlbumProducts products={this.props.currentalbumproducts} loading={this.props.loading} />
