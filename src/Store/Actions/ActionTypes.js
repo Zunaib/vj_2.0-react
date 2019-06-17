@@ -215,3 +215,28 @@ export const Update_BlogMessage_Refresh = 'Update_BlogMessage_Refresh';
 export const Search_Start = 'Search_Start';
 export const Search_Failed = 'Search_Failed';
 export const Search_Success = 'Search_Success';
+
+
+/*Fetch User Profile Settings */
+export const Fetch_SearcedUserSettings_Success = 'Fetch_SearcedUserSettings_Success';
+export const Fetch_SearcedUserSettings_Start = 'Fetch_SearcedUserSettings_Start';
+export const Fetch_SearcedUserSettings_Failed = 'Fetch_SearcedUserSettings_Failed';
+
+
+/* Fetch User Profile Content Actions */
+/* Fetch User Profile Content Actions For Product*/
+export const Fetch_UserProfile_Product_Success = 'Fetch_UserProfile_Product_Success';
+export const Fetch_UserProfile_Product_Failed = 'Fetch_UserProfile_Product_Failed';
+export const Fetch_UserProfile_Product_Start = 'Fetch_UserProfile_Product_Start';
+/* Fetch User Profile Content Actions For Album*/
+export const Fetch_UserProfile_Album_Success = 'Fetch_UserProfile_Album_Success';
+export const Fetch_UserProfile_Album_Failed = 'Fetch_UserProfile_Album_Failed';
+export const Fetch_UserProfile_Album_Start = 'Fetch_UserProfile_Album_Start';
+/* Fetch User Profile Content Actions For Vlogs*/
+export const Fetch_UserProfile_Vlog_Success = 'Fetch_UserProfile_Vlog_Success';
+export const Fetch_UserProfile_Vlog_Failed = 'Fetch_UserProfile_Vlog_Failed';
+export const Fetch_UserProfile_Vlog_Start = 'Fetch_UserProfile_Vlog_Start';
+/* Fetch User Profile Content Actions For Vlogs*/
+export const Fetch_UserProfile_Blog_Success = 'Fetch_UserProfile_Blog_Success';
+export const Fetch_UserProfile_Blog_Failed = 'Fetch_UserProfile_Blog_Failed';
+export const Fetch_UserProfile_Blog_Start = 'Fetch_UserProfile_Blog_Start';

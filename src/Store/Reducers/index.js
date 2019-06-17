@@ -64,6 +64,13 @@ import DesignerOrdersReducer from './OrderReducers/DesignerOrder';
 /* Search Resducer */
 import SearchReducer from './SearchReducers/Search';
 
+/*Searched User Reducers */
+import UserProfileSettingsReducer from './UserProfile/UserProfileSettings';
+import UserProfileProductsReducer from './UserProfile/UserProducts';
+import UserProfileAlbumsReducer from './UserProfile/UserAlbums';
+import UserProfileVlogsReducer from './UserProfile/UserVlogs';
+import UserProfilesBlogsReducer from './UserProfile/UserBlogs';
+
 
 export default combineReducers({
     ContactUs: ContactUsReducer,
@@ -111,6 +118,16 @@ export default combineReducers({
     CustomerOrders: CustomerOrdersReducer,
     DesignerOrders: DesignerOrdersReducer,
 
-    Search: SearchReducer
+    Search: SearchReducer,
+
+    UserProfileSettings:UserProfileSettingsReducer,
+    UserProfileProducts:UserProfileProductsReducer,
+    UserProfileAlbums:UserProfileAlbumsReducer,
+    UserProfileVlogs:UserProfileVlogsReducer,
+    UserProfilesBlogs:UserProfilesBlogsReducer
+
+
+
+
 
 });

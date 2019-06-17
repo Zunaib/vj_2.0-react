@@ -27,6 +27,7 @@ export const Search = (token, data) => {
         dispatch(searchStart())
         axios.post('/api/search?access_token=' + token, data)
             .then(res => {
+                console.log(res)
                 dispatch(searchSuccess(res.data));
             })
             .catch(err => {

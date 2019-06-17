@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './UserProfile.css';
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import display from '../../assets/images/defaultuserimage.png'
@@ -10,7 +10,7 @@ import LatestVlogs from '../../components/DesignerProfile/LatestVlogs/LatestVlog
 import LatestBlogs from '../../components/DesignerProfile/LatestBlogs/LatestBlogs';
 import Statistics from '../../components/DesignerProfile/Statistics/Statistics';
 
-class DesignerProfile extends Component {
+class UserProfile extends Component {
 
     state = {
         profileid: window.location.href.split("http://localhost:3000/dashboard/userprofile/")[1],
@@ -30,10 +30,11 @@ class DesignerProfile extends Component {
     componentDidMount = () => {
         let limit = 8;
         const str = window.location.href.split("http://localhost:3000/dashboard/userprofile/")[1];
-        this.props.onfetchprofilealbums(this.props.token, limit, str);
-        this.props.onfetchprofileproducts(this.props.token, limit, str);
-        this.props.onfetchprofilevlogs(this.props.token, limit, str);
-        this.props.onfetchprofileblogs(this.props.token, limit, str);
+        this.props.fetchprofilesettings(this.props.token, str);
+        this.props.onfetchprofilealbums(this.props.token, str, limit);
+        this.props.onfetchprofileproducts(this.props.token, str, limit);
+        this.props.onfetchprofilevlogs(this.props.token, str, limit);
+        this.props.onfetchprofileblogs(this.props.token, str, limit);
 
         let user = this.props.settings[0];
         if (user) {
@@ -166,37 +167,38 @@ class DesignerProfile extends Component {
 const mapStateToProps = state => {
     return {
         token: state.Auth.token,
-        settings: state.UserSettings.settings,
+        settings: state.UserProfileSettings.settings,
         flag: state.Auth.flag,
 
-        profileproducts: state.DesignerProducts.profileproducts,
-        productloading: state.DesignerProducts.loading,
-        producterror: state.DesignerProducts.error,
+        profileproducts: state.UserProfileProducts.profileproducts,
+        productloading: state.UserProfileProducts.loading,
+        producterror: state.UserProfileProducts.error,
 
-        profilealbums: state.DesignerAlbums.profilealbums,
-        albumloading: state.DesignerAlbums.loading,
-        albumerror: state.DesignerAlbums.error,
+        profilealbums: state.UserProfileAlbums.profilealbums,
+        albumloading: state.UserProfileAlbums.loading,
+        albumerror: state.UserProfileAlbums.error,
 
-        profilevlogs: state.DesignerVlogs.profilevlogs,
-        vlogloading: state.DesignerVlogs.loading,
-        vlogerror: state.DesignerVlogs.error,
+        profilevlogs: state.UserProfileVlogs.profilevlogs,
+        vlogloading: state.UserProfileVlogs.loading,
+        vlogerror: state.UserProfileVlogs.error,
 
-        profileblogs: state.DesignerBlogs.profileblogs,
-        blogloading: state.DesignerBlogs.loading,
-        blogerror: state.DesignerBlogs.error
+        profileblogs: state.UserProfilesBlogs.profileblogs,
+        blogloading: state.UserProfilesBlogs.loading,
+        blogerror: state.UserProfilesBlogs.error
 
 
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchprofileproducts: (token, limit) => dispatch(actions.FetchDesignerProducts(token, limit)),
-        onfetchprofilealbums: (token, limit) => dispatch(actions.FetchDesignerAlbums(token, limit)),
-        onfetchprofilevlogs: (token, limit) => dispatch(actions.FetchDesignerVlogs(token, limit)),
-        onfetchprofileblogs: (token, limit) => dispatch(actions.FetchDesignerBlogs(token, limit)),
+        fetchprofilesettings: (token, userid) => dispatch(actions.FetchSearchedUserSettings(token, userid)),
+        onfetchprofileproducts: (token, limit) => dispatch(actions.FetchUserProducts(token, limit)),
+        onfetchprofilealbums: (token, limit) => dispatch(actions.FetchUserAlbums(token, limit)),
+        onfetchprofilevlogs: (token, limit) => dispatch(actions.FetchUserVlogs(token, limit)),
+        onfetchprofileblogs: (token, limit) => dispatch(actions.FetchUserBlogs(token, limit)),
 
     }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(DesignerProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

@@ -141,10 +141,25 @@ export {
     FetchDesignerOrders
 } from './OrderActions/DesignerOrder';
 
-export{
+export {
     Search
 } from './SearchActions/Search'
 
+export {
+    FetchSearchedUserSettings
+} from './UserProfile/UserProfileSettings';
+export {
+    FetchUserAlbums
+} from './UserProfile/UserAlbums';
+export {
+    FetchUserProducts
+} from './UserProfile/UserProducts';
+export {
+    FetchUserBlogs
+} from './UserProfile/UserBlogs';
+export {
+    FetchUserVlogs
+} from './UserProfile/UserVlogs';
 
 
 
