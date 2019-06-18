@@ -28,6 +28,13 @@ const CreateConvoReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.error
             };
+        case actionTypes.Create_Conversation_Reset:
+            return {
+                ...state,
+                conversation: false,
+                loading: false,
+                error: null
+            };
         case actionTypes.Reset:
             return state = initialState;
         default:

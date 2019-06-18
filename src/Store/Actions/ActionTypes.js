@@ -246,3 +246,9 @@ export const Fetch_UserProfile_Blog_Start = 'Fetch_UserProfile_Blog_Start';
 export const Create_Conversation_Success = 'Create_Conversation_Success';
 export const Create_Conversation_Failed = 'Create_Conversation_Failed';
 export const Create_Conversation_Start = 'Create_Conversation_Start';
+export const Create_Conversation_Reset = 'Create_Conversation_Reset';
+
+/* Fetch All Conversations*/
+export const Fetch_All_Conversation_Success = 'Fetch_All_Conversation_Success';
+export const Fetch_All_Conversation_Failed = 'Fetch_All_Conversation_Failed';
+export const Fetch_All_Conversation_Start = 'Fetch_All_Conversation_Start';

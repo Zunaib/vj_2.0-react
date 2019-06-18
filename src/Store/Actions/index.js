@@ -166,7 +166,7 @@ export {
 
 /*Messeges Actions Export*/
 export {
-    CreateConversation
+    CreateConversation, ResetConvo
 } from './MessengerActions/CreateConversation';
 
 

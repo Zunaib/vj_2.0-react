@@ -117,6 +117,7 @@ class UserProfile extends Component {
         if (this.props.convo) {
             // console.log(this.props.convo)
             redirect = <Redirect to={"/dashboard/messenger/" + firstname + "_" + lastname + "?" + this.props.convo._id} />;
+            this.props.onresetconvo()
         }
 
         let albumactive = this.state.albumactive ? classes.WorkbuttonActive : null;
@@ -234,6 +235,7 @@ const mapDispatchToProps = dispatch => {
         onfetchprofilevlogs: (token, limit) => dispatch(actions.FetchUserVlogs(token, limit)),
         onfetchprofileblogs: (token, limit) => dispatch(actions.FetchUserBlogs(token, limit)),
         oncreateconvo: (token, userid) => dispatch(actions.CreateConversation(token, userid)),
+        onresetconvo: () => dispatch(actions.ResetConvo())
 
     }
 }

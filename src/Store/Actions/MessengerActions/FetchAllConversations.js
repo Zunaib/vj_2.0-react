@@ -3,28 +3,27 @@ import axios from '../../../axios';
 
 
 
-export const createConvosuccess = (conversation) => {
+export const fetchallConvosuccess = (conversations) => {
     return {
-        type: actionTypes.Create_Conversation_Success,
-        conversation: conversation
+        type: actionTypes.Fetch_All_Conversation_Success,
+        conversations: conversations
     };
 };
 
-export const createConvofailed = (error) => {
+export const fetchallConvofailed = (error) => {
     return {
-        type: actionTypes.Create_Conversation_Failed,
+        type: actionTypes.Fetch_All_Conversation_Failed,
         error: error
     };
 };
 
-export const createConvostart = () => {
+export const fetchallConvostart = () => {
     return {
-        type: actionTypes.Create_Conversation_Start
+        type: actionTypes.Fetch_All_Conversation_Start
     };
 };
 
-export const CreateConversation = (token, userid) => {
-
+export const FetchAllConversations = (token, userid) => {
     return dispatch => {
         dispatch(createConvostart());
         axios.get('/api/createConversation?access_token=' + token, {
@@ -39,10 +38,4 @@ export const CreateConversation = (token, userid) => {
                 dispatch(createConvofailed(err));
             });
     }
-}
-
-export const ResetConvo = () => {
-    return {
-        type: actionTypes.Create_Conversation_Reset
-    };
 }
