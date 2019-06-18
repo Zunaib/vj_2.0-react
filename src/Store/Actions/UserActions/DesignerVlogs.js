@@ -44,7 +44,7 @@ export const FetchDesignerVlogs = (token, limit) => {
                 let myData = Object.keys(data).map(key => {
                     return data[key];
                 })
-                console.log(myData)
+                // console.log(myData)
                 dispatch(fetchVlogSuccess(myData));
             })
             .catch(err => {

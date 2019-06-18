@@ -67,7 +67,7 @@ class NavigationItems extends Component {
 
                         <div className={classes.MessageIcon} >
                             {/* <MsgDropdown /> */}
-                            <NavLink to="/dashboard/messenger" >
+                            <NavLink to="/dashboard/messenger/convos" >
                                 <i className="fas fa-inbox"
                                 >
                                     <span className={classes.Badge}>3</span>

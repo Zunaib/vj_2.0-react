@@ -240,3 +240,9 @@ export const Fetch_UserProfile_Vlog_Start = 'Fetch_UserProfile_Vlog_Start';
 export const Fetch_UserProfile_Blog_Success = 'Fetch_UserProfile_Blog_Success';
 export const Fetch_UserProfile_Blog_Failed = 'Fetch_UserProfile_Blog_Failed';
 export const Fetch_UserProfile_Blog_Start = 'Fetch_UserProfile_Blog_Start';
+
+/* Messeging*/
+/* Create Conversation*/
+export const Create_Conversation_Success = 'Create_Conversation_Success';
+export const Create_Conversation_Failed = 'Create_Conversation_Failed';
+export const Create_Conversation_Start = 'Create_Conversation_Start';

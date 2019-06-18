@@ -41,13 +41,17 @@ class Product extends Component {
             let editpath = '/dashboard/handle_product/update_product/' + this.state.productid;
 
             let settingbutton = null;
+            let addtocartbutton = null;
             if (product) {
                 if (this.props.userId === product.userId) {
-                    console.log('can edit');
                     settingbutton = (
                         <div className={classes.SettingButton}>
                             <Settings editpath={editpath} delete={this.productdelete} />
                         </div>
+                    );
+                } else {
+                    addtocartbutton = (
+                        <Button btnType="WebButton" clicked={this.addtocart} >Add To Cart</Button>
                     );
                 }
             }
@@ -88,7 +92,7 @@ class Product extends Component {
 
                                 </p>
                             </div>
-                            <Button btnType="WebButton" clicked={this.addtocart} >Add To Cart</Button>
+                            {addtocartbutton}
                         </div>
                     </div>
 

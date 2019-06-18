@@ -71,6 +71,9 @@ import UserProfileAlbumsReducer from './UserProfile/UserAlbums';
 import UserProfileVlogsReducer from './UserProfile/UserVlogs';
 import UserProfilesBlogsReducer from './UserProfile/UserBlogs';
 
+/*Messeging Reducers*/
+import CreateConvoReducer from './MessengerReducers/CreateConverstaion';
+
 
 export default combineReducers({
     ContactUs: ContactUsReducer,
@@ -120,13 +123,13 @@ export default combineReducers({
 
     Search: SearchReducer,
 
-    UserProfileSettings:UserProfileSettingsReducer,
-    UserProfileProducts:UserProfileProductsReducer,
-    UserProfileAlbums:UserProfileAlbumsReducer,
-    UserProfileVlogs:UserProfileVlogsReducer,
-    UserProfilesBlogs:UserProfilesBlogsReducer
+    UserProfileSettings: UserProfileSettingsReducer,
+    UserProfileProducts: UserProfileProductsReducer,
+    UserProfileAlbums: UserProfileAlbumsReducer,
+    UserProfileVlogs: UserProfileVlogsReducer,
+    UserProfilesBlogs: UserProfilesBlogsReducer,
 
-
+    CreateConvo: CreateConvoReducer
 
 
 

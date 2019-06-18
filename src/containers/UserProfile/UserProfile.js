@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './UserProfile.css';
-// import { NavLink } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
 import display from '../../assets/images/defaultuserimage.png'
@@ -23,7 +23,8 @@ class UserProfile extends Component {
         albumactive: true,
         prodactive: false,
         vlogactive: false,
-        blogactive: false
+        blogactive: false,
+        convo: null,
     }
 
 
@@ -95,6 +96,11 @@ class UserProfile extends Component {
         this.setState({ albumactive: false, prodactive: false, vlogactive: false, blogactive: true, profilecontent: 'LatestBlogs' })
     }
 
+    createConvoHandler = () => {
+        // alert("Convo Creared")
+        this.props.oncreateconvo(this.props.token, this.state.profileid)
+    }
+
     render() {
 
         let img = null;
@@ -105,6 +111,12 @@ class UserProfile extends Component {
             img = 'http://localhost:5000' + this.state.userimage;
         } else {
             img = display;
+        }
+
+        let redirect = null;
+        if (this.props.convo) {
+            // console.log(this.props.convo)
+            redirect = <Redirect to={"/dashboard/messenger/" + firstname + "_" + lastname + "?" + this.props.convo._id} />;
         }
 
         let albumactive = this.state.albumactive ? classes.WorkbuttonActive : null;
@@ -122,16 +134,18 @@ class UserProfile extends Component {
         let content = this.getContent(this.state.profilecontent);
         return (
             <div className={classes.Main}>
-
+                {redirect}
                 <div className={classes.TopImage}>
                 </div>
 
                 <div className={classes.ProfileImageButton} >
                     <img src={this.state.userimage ? img : display} alt="Display" />
                     <div className={classes.Button}>
-                        <div className={classes.FollowButton}>
+                        {/* <NavLink to={"/dashboard/messenger/" + firstname + "_" + lastname + "?" + convoid} onClick={this.createConvoHandler}> */}
+                        <div className={classes.FollowButton} onClick={this.createConvoHandler}>
                             <h4>Messege</h4>
                         </div>
+                        {/* </NavLink> */}
                     </div>
                 </div>
 
@@ -204,11 +218,14 @@ const mapStateToProps = state => {
 
         profileblogs: state.UserProfilesBlogs.profileblogs,
         blogloading: state.UserProfilesBlogs.loading,
-        blogerror: state.UserProfilesBlogs.error
+        blogerror: state.UserProfilesBlogs.error,
+
+        convo: state.CreateConvo.conversation
 
 
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         fetchprofilesettings: (token, userid) => dispatch(actions.FetchSearchedUserSettings(token, userid)),
@@ -216,6 +233,7 @@ const mapDispatchToProps = dispatch => {
         onfetchprofilealbums: (token, limit) => dispatch(actions.FetchUserAlbums(token, limit)),
         onfetchprofilevlogs: (token, limit) => dispatch(actions.FetchUserVlogs(token, limit)),
         onfetchprofileblogs: (token, limit) => dispatch(actions.FetchUserBlogs(token, limit)),
+        oncreateconvo: (token, userid) => dispatch(actions.CreateConversation(token, userid)),
 
     }
 }

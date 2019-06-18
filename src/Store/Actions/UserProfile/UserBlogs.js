@@ -45,7 +45,7 @@ export const FetchUserBlogs = (token, userid, limit) => {
                 let myData = Object.keys(data).map(key => {
                     return data[key];
                 })
-                console.log(myData)
+                // console.log(myData)
                 dispatch(fetchBlogSuccess(myData));
             })
             .catch(err => {

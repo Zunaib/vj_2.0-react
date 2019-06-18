@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import classes from './Messenger.css';
 import { connect } from 'react-redux';
 import placehold from '../../assets/images/defaultuserimage.png'
-import Input from '../../components/UI/Input/Input';
+// import Input from '../../components/UI/Input/Input';
 // import Button from '../../components/UI/Button/Button';
 
-// import * as actions from '../../../Store/Actions/index';
+import * as actions from '../../Store/Actions/index';
 // import ReactPlayer from 'react-player'
 // import { NavLink, Redirect } from 'react-router-dom';
 // import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -15,28 +15,38 @@ import Input from '../../components/UI/Input/Input';
 
 // import video from '../../../assets/images/Vid.mp4'
 
+import MessegeInput from '../../components/UI/Messege/Messege';
+
+
 class Messenger extends Component {
 
+    state = {
+        convoid: window.location.href.split("http://localhost:3000/dashboard/messenger/")[1].split("?")[1],
+        profilefname: window.location.href.split("http://localhost:3000/dashboard/messenger/")[1].split("?")[0].split("_")[0],
+        profilelname: window.location.href.split("http://localhost:3000/dashboard/messenger/")[1].split("?")[0].split("_")[1],
+    
+}
+
+    componentDidMount() {
+    }
+    
     render() {
+
+        let convoname = "Conversation";
+        if (this.state.profilefname && this.state.profilelname) {
+            convoname = this.state.profilefname + " " + this.state.profilelname;
+        }
 
         return (
             <div className={classes.Main}>
                 <div className={classes.Messenger}>
-                    {/* <div>
-                    <div className={classes.LisTool}>
-                        <h3>Toolbar</h3>
-                    </div>
-                    <div className={classes.LisTool}>
-                        <h3>Toolbar</h3>
-                    </div>
-                    </div> */}
                     <div className={classes.HeaderTabs}>
                         <div className={classes.ListHeader}>
                             <h2>Chats</h2>
                         </div>
 
                         <div className={classes.ConvoHeader}>
-                            <h2>Conversation</h2>
+                            <h2>{convoname}</h2>
                         </div>
                     </div>
 
@@ -294,14 +304,10 @@ class Messenger extends Component {
 
                         </div>
                     </div>
+
                     <div className={classes.Send}>
-                        <Input
-                            key={'sendmessage'}
-                            elementType={"input"}
-                            changed={(event) => this.inputChangedHandler(event)} />
+                        <MessegeInput />
                     </div>
-
-
                 </div>
             </div>
         )
