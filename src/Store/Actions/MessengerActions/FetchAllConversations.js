@@ -25,17 +25,13 @@ export const fetchallConvostart = () => {
 
 export const FetchAllConversations = (token, userid) => {
     return dispatch => {
-        dispatch(createConvostart());
-        axios.get('/api/createConversation?access_token=' + token, {
-            params: {
-                userId: userid
-            }
-        })
+        dispatch(fetchallConvostart());
+        axios.get('/api/fetchAllConversations?access_token=' + token)
             .then(res => {
-                dispatch(createConvosuccess(res.data.conversation));
+                dispatch(fetchallConvosuccess(res.data.conversations));
             })
             .catch(err => {
-                dispatch(createConvofailed(err));
+                dispatch(fetchallConvofailed(err));
             });
     }
 }

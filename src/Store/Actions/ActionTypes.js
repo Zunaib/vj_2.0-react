@@ -252,3 +252,13 @@ export const Create_Conversation_Reset = 'Create_Conversation_Reset';
 export const Fetch_All_Conversation_Success = 'Fetch_All_Conversation_Success';
 export const Fetch_All_Conversation_Failed = 'Fetch_All_Conversation_Failed';
 export const Fetch_All_Conversation_Start = 'Fetch_All_Conversation_Start';
+
+/* Fetch Single Conversations*/
+export const Fetch_Single_Conversation_Failed = 'Fetch_Single_Conversation_Failed';
+export const Fetch_Single_Conversation_Success = 'Fetch_Single_Conversation_Success';
+export const Fetch_Single_Conversation_Start = 'Fetch_Single_Conversation_Start';
+
+/* Send Single Messege*/
+export const Send_Single_Messege_Failed = 'Send_Single_Messege_Failed';
+export const Send_Single_Messege_Success = 'Send_Single_Messege_Success';
+export const Send_Single_Messege_Start = 'Send_Single_Messege_Start';

@@ -91,13 +91,12 @@ width: 98%;
 height: 70px;
 margin: 0 auto;
 border-radius: 5px;
-align-content: center;
 padding-top: 11px;
 }
 
 .SingleListItem:hover{
     cursor: pointer;
-    background-color: rgba(236, 236, 236, 0.63);
+    background-color: rgba(207, 207, 207, 0.63);
 }
 
 .ImageButton{
@@ -110,7 +109,6 @@ padding-top: 11px;
     float: left;
     margin-left: 10px;
     width: 70%;
-    margin-top: -10px;
 }
 
 .Name p{
@@ -198,6 +196,10 @@ margin-bottom: 20px;
   width: 65%;
   float: right;
   
+}
+
+.Link{
+  color: black;
 }
 
 /* 

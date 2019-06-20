@@ -57,14 +57,15 @@ class MessegeInput extends Component {
         }
 
 
-        // let data = new FormData();
-        // data.append('queryString', formData.messegetext);
+        let data = new FormData();
+        data.append('message', formData.messegetext);
+        data.append('conversationId', this.props.singleconvo._id);
 
-        // if (formData.messegetext !== '') {
-        // this.props.history.push('/dashboard/searchresults');
-        // this.props.onSearch(this.props.token, data);
-        // this.fieldclearHandler();
-        // }
+        if (formData.messegetext !== '') {
+            // this.props.history.push('/dashboard/searchresults');
+            this.props.onMessege(this.props.token, data);
+            this.fieldclearHandler();
+        }
     }
 
     checkValidity(value, rules) {
@@ -134,12 +135,14 @@ class MessegeInput extends Component {
 
 const mapStateToProps = state => {
     return {
-        token: state.Auth.token
+        token: state.Auth.token,
+        singleconvo: state.FetchSingleConvo.conversation
+
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onSearch: (token, queryString) => dispatch(actions.Search(token, queryString)),
+        onMessege: (token, messege) => dispatch(actions.Messege(token, messege)),
     }
 }
 

@@ -73,6 +73,8 @@ import UserProfilesBlogsReducer from './UserProfile/UserBlogs';
 
 /*Messeging Reducers*/
 import CreateConvoReducer from './MessengerReducers/CreateConverstaion';
+import FetchSingleConvoReducer from './MessengerReducers/FetchSingleConversation';
+import FetchAllConvoReducer from './MessengerReducers/FetchAllConversations';
 
 
 export default combineReducers({
@@ -129,7 +131,9 @@ export default combineReducers({
     UserProfileVlogs: UserProfileVlogsReducer,
     UserProfilesBlogs: UserProfilesBlogsReducer,
 
-    CreateConvo: CreateConvoReducer
+    CreateConvo: CreateConvoReducer,
+    FetchSingleConvo: FetchSingleConvoReducer,
+    FetchAllConvo:FetchAllConvoReducer
 
 
 
