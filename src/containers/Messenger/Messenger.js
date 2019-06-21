@@ -5,6 +5,7 @@ import placehold from '../../assets/images/defaultuserimage.png'
 import * as actions from '../../Store/Actions/index';
 import { NavLink } from 'react-router-dom';
 import MessegeInput from '../../components/UI/Messege/Messege';
+import Button from '../../components/UI/Button/Button';
 
 
 class Messenger extends Component {
@@ -14,7 +15,8 @@ class Messenger extends Component {
         profilefname: window.location.href.split("http://localhost:3000/dashboard/messenger/")[1].split("?")[0].split("_")[0],
         profilelname: window.location.href.split("http://localhost:3000/dashboard/messenger/")[1].split("?")[0].split("_")[1],
         singleconvo: null,
-        allconvo: null
+        allconvo: null,
+        activeId: null
     }
 
     componentDidMount() {
@@ -49,7 +51,18 @@ class Messenger extends Component {
     singleConvoClicked = (convoid) => {
         this.props.onfetchsingleconvo(this.props.token, convoid);
     }
+
+    handleClick(event, id, fname, lname) {
+        this.setState({ activeId: id, profilefname: fname, profilelname: lname })
+
+        console.log(id)
+    }
     render() {
+
+        let convoname = "Conversation";
+        if (this.state.profilefname && this.state.profilelname) {
+            convoname = this.state.profilefname + " " + this.state.profilelname;
+        }
 
         let convomessages = null;
         // let convoheader = null;
@@ -82,7 +95,10 @@ class Messenger extends Component {
                     key={convo.user._id}
                     className={classes.Link}
                 >
-                    <div className={classes.SingleListItem} >
+                    <div
+                        className={[classes.SingleListItem, this.state.activeId === convo._id ? classes.SingleListItemActive : ''].join(' ')}
+                        onClick={() => this.handleClick(this, convo._id, convo.user.firstName, convo.user.lastName)}
+                    >
                         <div className={classes.ImageButton} >
                             <img className={classes.Image} src={placehold} alt="MsgListDisplay" />
                         </div>
@@ -103,7 +119,9 @@ class Messenger extends Component {
                         </div>
 
                         <div className={classes.ConvoHeader}>
-                            <h2>Conversation</h2>
+                            <Button btnType="DeleteConvo" >Delete</Button>
+                            <Button btnType="RefreshConvo" >Refresh</Button>
+                            <h2>{convoname}</h2>
                         </div>
                     </div>
 
@@ -116,15 +134,8 @@ class Messenger extends Component {
 
                         <div className={classes.Messages}>
                             <div className={classes.SingleConvo}>
-                                {/* {convoheader} */}
                                 {convomessages}
                             </div>
-
-
-
-
-
-
                         </div>
                     </div>
 

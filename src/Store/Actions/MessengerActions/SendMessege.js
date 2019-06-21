@@ -23,6 +23,13 @@ export const sendMessegestart = () => {
     };
 };
 
+export const setSingleConvo = (conversation) => {
+    return {
+        type: actionTypes.Fetch_Single_Conversation_Success,
+        conversation: conversation
+    };
+};
+
 export const Messege = (token, data) => {
 
     return dispatch => {
@@ -30,7 +37,7 @@ export const Messege = (token, data) => {
         axios.post('/api/sendMessage?access_token=' + token, data)
             .then(res => {
                 console.log(res)
-                // dispatch(sendMessegesuccess(res.data.conversation));
+                dispatch(setSingleConvo(res.data.conversation));
             })
             .catch(err => {
                 // dispatch(sendMessegefailed(err));

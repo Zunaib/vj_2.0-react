@@ -54,12 +54,14 @@ background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
     border-radius: 5px;
     margin-right: 30px;
     margin-bottom: 20px;
-    text-decoration: underline;
 
   }
   
   .ConvoHeader h2{
+    width: 600px;
+    float: right;
     font-weight: bold;
+    text-decoration: underline;
   }
   
 
@@ -89,12 +91,17 @@ border-right: 1px solid rgb(212, 212, 212);
   .SingleListItem{
 width: 98%;
 height: 70px;
-margin: 0 auto;
+margin: 2px auto;
 border-radius: 5px;
 padding-top: 11px;
 }
 
 .SingleListItem:hover{
+    cursor: pointer;
+    background-color: rgba(207, 207, 207, 0.63);
+}
+
+.SingleListItemActive{
     cursor: pointer;
     background-color: rgba(207, 207, 207, 0.63);
 }
@@ -177,6 +184,7 @@ margin-bottom: 20px;
   padding: 0 15px;
   margin: 1px;
 }
+
 
 .Outgoing{
   background-color: #007AFF;
