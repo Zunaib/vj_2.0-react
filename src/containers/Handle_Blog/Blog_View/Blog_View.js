@@ -7,10 +7,8 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
 import Snack from '../../../components/UI/SnackBar/Snackbar';
+import Comment from "../../../components/UI/Comment/Comment";
 
-
-
-// import video from '../../../assets/images/Vid.mp4'
 
 class ViewBlog extends Component {
     state = {
@@ -34,7 +32,7 @@ class ViewBlog extends Component {
         if (this.props.loading) {
             blogdata = <Spinner />
         } else {
-            let blog = this.props.currentblog[0];
+            let blog = this.props.currentblog;
             let editpath = '/dashboard/handle_blog/update_blog/' + this.state.blogid;
 
             let settingbutton = null;
@@ -48,6 +46,19 @@ class ViewBlog extends Component {
                     );
                 }
             }
+
+
+            let blogcomments = "No Comments Yet, Be The First One To Add";
+            if (blog) {
+                blogcomments = (blog.comments.map((comment, index) => (
+                    <div className={[classes.Comment]} key={comment._id}>
+                        <h3>{comment.userId.firstName+" "+comment.userId.lastName}</h3>
+                        <p>{comment.comment}</p>
+                    </div>
+                )));
+
+            }
+
             blogdata = (
                 <Auxilary>
                     <NavLink to="/dashboard">
@@ -65,9 +76,20 @@ class ViewBlog extends Component {
                             </div>
                         </div>
                     </div>
-
                     <div className={classes.AlbumEditor}>
                         <div dangerouslySetInnerHTML={{ __html: blog.content }} className={classes.BlogContent} />
+                    </div>
+
+
+                    <div className={classes.Feedback}>
+                        <h2>Comments</h2>
+                        <div className={classes.Comments}>
+                            {blogcomments}
+                        </div>
+                        <div className={classes.EnterComment}>
+                            <h4>Enter Comment :</h4>
+                            <Comment />
+                        </div>
                     </div>
                 </Auxilary>
 

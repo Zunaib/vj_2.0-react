@@ -8,9 +8,9 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
 import Snack from '../../../components/UI/SnackBar/Snackbar';
-import Input from '../../../components/UI/Input/Web_Input/WebInput';
-// import display from '../../../assets/images/testimg.jpg';
+import Comment from "../../../components/UI/Comment/Comment";
 import ProductCard from '../../../components/UI/Card/Product/ProductCard';
+
 class Product extends Component {
 
     state = {
@@ -56,6 +56,17 @@ class Product extends Component {
                 }
             }
 
+            let productcomments = "No Comments Yet, Be The First One To Add";
+            if (product) {
+                productcomments = (product.comments.map((comment, index) => (
+                    <div className={[classes.Comment]} key={comment._id}>
+                        <h3>{comment.userId.firstName + " " + comment.userId.lastName}</h3>
+                        <p>{comment.comment}</p>
+                    </div>
+                )));
+
+            }
+
             productdata = (
                 <Auxilary>
                     <NavLink to="/dashboard">
@@ -99,31 +110,11 @@ class Product extends Component {
                     <div className={classes.Feedback}>
                         <h2>Comments</h2>
                         <div className={classes.Comments}>
-                            <div className={classes.Comment}>
-                                <h3>Zunaib Imtiaz</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                            </div>
-                            <div className={classes.Comment}>
-                                <h3>Zunaib Imtiaz</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                            </div>
-                            <div className={classes.Comment}>
-                                <h3>Zunaib Imtiaz</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                            </div>
-                            <div className={classes.Comment}>
-                                <h3>Zunaib Imtiaz</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                            </div>
+                            {productcomments}
                         </div>
                         <div className={classes.EnterComment}>
                             <h4>Enter Comment :</h4>
-                            <Input />
-
+                            <Comment />
                         </div>
                     </div>
 

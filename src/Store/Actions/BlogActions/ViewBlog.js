@@ -35,8 +35,8 @@ export const FetchSingleBlog = (token, blogid) => {
         dispatch(fetchblogStart());
         axios.post('/api/fetchSingleBlogDetails?access_token=' + token, blog)
             .then(res => {
-                // console.log(res)
-                dispatch(fetchblogSuccess(res.data.blog));
+                console.log(res)
+                dispatch(fetchblogSuccess(res.data.blog[0]));
             })
             .catch(err => {
                 // console.log(err)

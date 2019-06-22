@@ -262,3 +262,18 @@ export const Fetch_Single_Conversation_Start = 'Fetch_Single_Conversation_Start'
 export const Send_Single_Messege_Failed = 'Send_Single_Messege_Failed';
 export const Send_Single_Messege_Success = 'Send_Single_Messege_Success';
 export const Send_Single_Messege_Start = 'Send_Single_Messege_Start';
+
+
+/*Comments */
+/*Product Comment */
+export const Product_Comment_Failed = 'Product_Comment_Failed';
+export const Product_Comment_Start = 'Product_Comment_Start';
+export const Product_Comment_Success = 'Product_Comment_Success';
+/*Product Comment */
+export const Vlog_Comment_Failed = 'Vlog_Comment_Failed';
+export const Vlog_Comment_Start = 'Vlog_Comment_Start';
+export const Vlog_Comment_Success = 'Vlog_Comment_Success';
+/*Product Comment */
+export const Blog_Comment_Failed = 'Blog_Comment_Failed';
+export const Blog_Comment_Start = 'Blog_Comment_Start';
+export const Blog_Comment_Success = 'Blog_Comment_Success';

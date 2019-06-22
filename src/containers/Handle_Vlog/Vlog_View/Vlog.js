@@ -8,6 +8,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings';
 import Snack from '../../../components/UI/SnackBar/Snackbar';
+import Comment from "../../../components/UI/Comment/Comment";
 
 // import video from '../../../assets/images/Vid.mp4'
 
@@ -55,6 +56,18 @@ class Vlog extends Component {
                     );
                 }
             }
+
+            let vlogcomments = "No Comments Yet, Be The First One To Add";
+            if (vlog) {
+                vlogcomments = (vlog.comments.map((comment, index) => (
+                    <div className={[classes.Comment]} key={comment._id}>
+                        <h3>{comment.userId.firstName + " " + comment.userId.lastName}</h3>
+                        <p>{comment.comment}</p>
+                    </div>
+                )));
+
+            }
+
             vlogdata = (
                 <Auxilary>
                     <NavLink to="/dashboard">
@@ -83,6 +96,16 @@ class Vlog extends Component {
                             <h5>Author</h5>
                             <h5>Views</h5>
                         </div> */}
+                    </div>
+                    <div className={classes.Feedback}>
+                        <h2>Comments</h2>
+                        <div className={classes.Comments}>
+                            {vlogcomments}
+                        </div>
+                        <div className={classes.EnterComment}>
+                            <h4>Enter Comment :</h4>
+                            <Comment />
+                        </div>
                     </div>
                 </Auxilary>
 

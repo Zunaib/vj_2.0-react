@@ -179,4 +179,13 @@ export {
 } from './MessengerActions/SendMessege';
 
 
-
+/*Add Comment Export*/
+export {
+    ProductComment
+} from './ProductActions/Comment'
+export {
+    VlogComment
+} from './VlogActions/Comment'
+export {
+    BlogComment
+} from './BlogActions/Comment'
