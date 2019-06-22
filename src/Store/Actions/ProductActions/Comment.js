@@ -50,7 +50,7 @@ export const ProductComment = (token, data) => {
                 if (myData.length === 0) {
                     myData = null;
                 }
-                dispatch(fetchproductSuccess(res.data.products, []));
+                dispatch(fetchproductSuccess(res.data.product, myData));
             })
             .catch(err => {
                 console.log(err)
