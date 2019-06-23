@@ -189,6 +189,8 @@ class Checkout extends Component {
             formData[formElementIdentifier] = this.state.checkoutForm[formElementIdentifier].value;
         }
 
+
+
         console.log(this.props.cart)
 
         let order = {
@@ -210,7 +212,7 @@ class Checkout extends Component {
 
         console.log(order)
 
-        if (this.state.formIsValid) {
+        if (true) {
             this.props.oncheckout(this.props.token, order);
             console.log('valid')
         } else {
@@ -233,10 +235,11 @@ class Checkout extends Component {
         updatedFormElement.touched = true;
         updatedcheckoutForm[inputIdentifier] = updatedFormElement;
 
-        let formIsValid = true;
+        let formIsValid = false;
         for (let inputIdentifier in updatedcheckoutForm) {
             formIsValid = updatedcheckoutForm[inputIdentifier].valid && formIsValid;
         }
+        console.log(formIsValid)
         this.setState({ checkoutForm: updatedcheckoutForm, formIsValid: formIsValid });
     }
 
