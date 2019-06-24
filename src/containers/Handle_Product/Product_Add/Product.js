@@ -294,14 +294,26 @@ class Product extends Component {
             data.append('albumId', this.state.album);
         }
 
+        let sizesArray = [];
+        this.state.selectedSizes.map(size => {
+            sizesArray.push(size.value);
+        })
+        let colorsArray = [];
+        this.state.selectedColors.map(color => {
+            colorsArray.push(color.value);
+        })
+
+        console.log(sizesArray)
+        console.log(colorsArray)
+
         data.append('productName', formData.name);
         data.append('type', formData.productType);
         data.append('description', formData.description);
         // data.append('quantity', formData.quantity);
         data.append('price', formData.price);
         // data.append('discount', formData.discount);
-        data.append('sizes', this.state.selectedSizes);
-        data.append('colors', this.state.selectedColors);
+        data.append('sizes', sizesArray);
+        data.append('colors', colorsArray);
 
 
         if (this.state.formIsValid && this.state.files && this.state.selectedColors && this.state.selectedSizes) {
