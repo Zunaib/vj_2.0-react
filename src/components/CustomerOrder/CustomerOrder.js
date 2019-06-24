@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const CustomerOrder = (props) => {
 
     let products = props.products;
+    let orderdate = props.orderdate;
     // let productnames = [];
     // for (let i = 0; i < products.length; i++) {
     //     productnames[i] = products[i]
@@ -26,13 +27,7 @@ const CustomerOrder = (props) => {
                     <Link to="#order" className={classes.ThTrTh11}>{"Order No " + props.index}</Link>
                 </span>
             </td>
-            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>{productNames.join('  ,  ')}</td>
-            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>{designers.join('  ,  ')}</td>
-            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
-                <span>
-                    {products.status}
-                </span>
-            </td>
+            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh1].join(' ')}>{orderdate.split("T")[0]}</td>
             <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh14].join(' ')}>
 
                 <div className={classes.QuanButtons}>
@@ -48,6 +43,11 @@ const CustomerOrder = (props) => {
             </td>
             <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
                 <div className={classes.ibutton}>
+                    <h3>View Details</h3>
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div className={classes.ibutton2}>
+                    <h3>Cancel</h3>
                     <i className="fas fa-times-circle"></i>
                 </div>
             </td>

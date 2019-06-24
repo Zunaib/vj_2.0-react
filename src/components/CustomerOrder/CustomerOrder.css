@@ -220,31 +220,65 @@ thead > tr {
 
 
 
-.ibutton i{
+.ibutton {
     margin-right: 50px;
-    font-size: 2rem;
-    color: purple;
+padding: 0px 9px;
+background-color: rgb(163, 0, 163);
+color: white;
+border-radius: 10px;
+cursor: pointer;
+display: inline-block;
+
+}
+.ibutton:hover {
+    margin-right: 50px;
+padding: 0px 9px;
+background-color: purple;
+color: white;
+border-radius: 10px;
+cursor: pointer;
+}
+
+.ibutton h3{
+    display: inline-block;
+    margin-right: 5px;
+}
+.ibutton i{
+    font-size: 1.3rem;
+    display: inline-block;
+}
+
+.ibutton2 {
+    margin-right: 50px;
+padding: 0px 9px;
+background-color: rgb(163, 0, 163);
+color: white;
+border-radius: 10px;
+cursor: pointer;
+display: inline-block;
+}
+.ibutton2:hover {
+    margin-right: 50px;
+padding: 0px 9px;
+background-color: purple;
+color: white;
+border-radius: 10px;
+cursor: pointer;
+}
+
+.ibutton2 h3{
+    display: inline-block;
+    margin-right: 5px;
+}
+.ibutton2 i{
+    font-size: 1.3rem;
+    display: inline-block;
 }
 
 .QuanButtons{
     text-align: right;
     width: 100%;
 
-}
-
-.ibutton2{
-padding-left: 100px;
-padding-bottom: 3px;
-}
-
-.ibutton2 i{
-    color:white;
-    background-color: purple;
-    border-radius: 100%;
-    margin: 0 3px;
-    padding: 6px 7px;
-    float: right;
-    font-size: 1.2rem;
 }
 
 

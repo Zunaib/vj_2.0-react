@@ -168,36 +168,36 @@ class Product extends Component {
                 valid: false,
                 touched: false
             },
-            quantity: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Product Quantity'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 1,
-                    isNumeric: true
-                },
-                valid: false,
-                touched: false
-            },
-            discount: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Product Discounted Price'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 1,
-                    isNumeric: true
-                },
-                valid: false,
-                touched: false
-            }
+            // quantity: {
+            //     elementType: 'input',
+            //     elementConfig: {
+            //         type: 'text',
+            //         placeholder: 'Product Quantity'
+            //     },
+            //     value: '',
+            //     validation: {
+            //         required: true,
+            //         minLength: 1,
+            //         isNumeric: true
+            //     },
+            //     valid: false,
+            //     touched: false
+            // },
+            // discount: {
+            //     elementType: 'input',
+            //     elementConfig: {
+            //         type: 'text',
+            //         placeholder: 'Product Discounted Price'
+            //     },
+            //     value: '',
+            //     validation: {
+            //         required: true,
+            //         minLength: 1,
+            //         isNumeric: true
+            //     },
+            //     valid: false,
+            //     touched: false
+            // }
         },
         formIsValid: false,
         selectedFiles: null,
@@ -297,9 +297,9 @@ class Product extends Component {
         data.append('productName', formData.name);
         data.append('type', formData.productType);
         data.append('description', formData.description);
-        data.append('quantity', formData.quantity);
+        // data.append('quantity', formData.quantity);
         data.append('price', formData.price);
-        data.append('discount', formData.discount);
+        // data.append('discount', formData.discount);
         data.append('sizes', this.state.selectedSizes);
         data.append('colors', this.state.selectedColors);
 
@@ -387,9 +387,40 @@ class Product extends Component {
             form = <Spinner />;
         }
 
+        let sizes = this.state.topsizes;
+        if (this.state.sizes === "Tops") {
+            sizes = this.state.topsizes;
+        } else if (this.state.sizes === "Bottoms") {
+            sizes = this.state.bottomsizes;
+        } else if (this.state.sizes === "Footwear") {
+            sizes = this.state.shoesizes;
+        }
+
         let productimages = null;
         if (this.state.selectedFiles) {
             productimages = (<div className={classes.Images}>
+                <div className={classes.Dropdowns}>
+                    <h4>Product Sizes</h4>
+                    <Select
+                        isMulti
+                        isSearchable
+                        className={classes.Select}
+                        value={this.state.selectedSizes}
+                        onChange={this.handleSizesChange}
+                        options={sizes}
+                    />
+                </div>
+                <div className={classes.Dropdowns}>
+                    <h4>Product Colors</h4>
+                    <Select
+                        isMulti
+                        isSearchable
+                        className={classes.Select}
+                        value={this.state.selectedColors}
+                        onChange={this.handleColorsChange}
+                        options={this.state.colors}
+                    />
+                </div>
                 <div className={classes.AlbumImage} >
                     <img src={this.state.selectedFiles[0] ? this.state.selectedFilesURL[0] : productimg} alt="Product_Thumbnail" />
                 </div>
@@ -401,15 +432,6 @@ class Product extends Component {
                 </div>
             </div>);
         } else {
-
-            let sizes = this.state.topsizes;
-            if (this.state.sizes === "Tops") {
-                sizes = this.state.topsizes;
-            } else if (this.state.sizes === "Bottoms") {
-                sizes = this.state.bottomsizes;
-            } else if (this.state.sizes === "Footwear") {
-                sizes = this.state.shoesizes;
-            }
 
             productimages = (<div className={classes.Images}>
                 <div className={classes.Dropdowns}>
