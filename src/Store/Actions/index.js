@@ -141,6 +141,9 @@ export {
     FetchOrders
 } from './OrderActions/CustomerOrder';
 export {
+    CencelOrder
+} from './OrderActions/CancelCustomerOrder';
+export {
     FetchDesignerOrders
 } from './OrderActions/DesignerOrder';
 

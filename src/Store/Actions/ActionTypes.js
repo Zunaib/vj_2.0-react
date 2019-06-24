@@ -130,6 +130,10 @@ export const Checkout_Refresh = "Checkout_Refresh";
 export const Fetch_Customer_Orders_Start = 'Fetch_Customer_Orders_Start';
 export const Fetch_Customer_Orders_Failed = 'Fetch_Customer_Orders_Failed';
 export const Fetch_Customer_Orders_Success = 'Fetch_Customer_Orders_Success';
+/* Cancel Customer Orders */
+export const Cancel_Customer_Order_Start = 'Cancel_Customer_Order_Start';
+export const Cancel_Customer_Order_Failed = 'Cancel_Customer_Order_Failed';
+export const Cancel_Customer_Order_Success = 'Cancel_Customer_Order_Success';
 
 /* Fetch Designer Orders */
 export const Fetch_Designer_Orders_Start = 'Fetch_Designer_Orders_Start';

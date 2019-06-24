@@ -29,18 +29,20 @@ const CustomerOrder = (props) => {
                     {products.paymentMethod}
                 </span>
             </td>
-            <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.ThTrTh15].join(' ')}>
-                <span>
-                    {products.discount}
-                </span>
-                <small>
-                    %
-                </small>
-            </td>
             <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
-                <div className={classes.ibutton}>
-                    <i className="fas fa-times-circle"></i>
+                <div className={classes.ibutton} onClick={props.completeclicked}>
+                    <h3>Completed</h3>
+                    <i className="fas fa-info-circle"></i>
                 </div>
+                {false ?
+                    <div className={classes.ibutton3}>
+                        <h3>Cancelled</h3>
+                        <i className="fas fa-times-circle"></i>
+                    </div>
+                    : <div className={classes.ibutton2} onClick={props.cancelclicked} >
+                        <h3>Cancel</h3>
+                        <i className="fas fa-times-circle"></i>
+                    </div>}
             </td>
         </tr>
     );

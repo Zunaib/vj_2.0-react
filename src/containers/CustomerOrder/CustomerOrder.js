@@ -6,10 +6,17 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import CustomerOrderBody from '../../components/CustomerOrder/CustomerOrder';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
+
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../containers/CustomerOrder/OrderSummary/OrderSummary';
+import Auxilary from '../../hoc/Auxilary/Auxilary';
+
 class CustomerOrder extends Component {
 
     state = {
-        cart: null
+        cart: null,
+        orderopened: false,
+        order: null
     }
 
     componentDidMount() {
@@ -21,6 +28,19 @@ class CustomerOrder extends Component {
 
         }
 
+    }
+
+    cancelOrderHandler = (orderid) => {
+        // console.log(orderid);
+        this.props.oncancelorder(this.props.token, orderid);
+        // this.props.onfetchorders(this.props.token)
+
+    }
+    viewOrderHandler = (order) => {
+        this.setState({ orderopened: true, order: order })
+    }
+    hideOrderHandler = () => {
+        this.setState({ orderopened: false, order: null })
     }
 
     render() {
@@ -42,38 +62,41 @@ class CustomerOrder extends Component {
                     index={index + 1}
                     products={order.products}
                     orderdate={order.createdAt}
-                // name={cart.productId.productName}
-                // price={cart.productId.price}
-                // sizes={cart.productId.sizes}
-                // quantity={cart.productId.quantity}
-                // images={cart.productId.images}
+                    calcelled={order.deletedAt}
+                    viewclicked={() => this.viewOrderHandler(order)}
+                    cancelclicked={() => this.cancelOrderHandler(order._id)}
                 />
 
             )));
         }
 
         return (
-            <div className={classes.Main} >
-                <div className={classes.Album}>
-                    <h1>My Placed Orders</h1>
-                    <div className={classes.Cart}>
-                        <table className={classes.Table}>
-                            <thead className={classes.Thead}>
-                                <tr className={classes.TheadTrow}>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Order Number</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Order Date</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Total</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}></th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody className={classes.Tbody}>
-                                {carddata}
-                            </tbody>
-                        </table>
+            <Auxilary>
+                <Modal show={this.state.orderopened} modalClosed={this.hideOrderHandler}>
+                    <OrderSummary order={this.state.order} />
+                </Modal>
+                <div className={classes.Main} >
+                    <div className={classes.Album}>
+                        <h1>My Placed Orders</h1>
+                        <div className={classes.Cart}>
+                            <table className={classes.Table}>
+                                <thead className={classes.Thead}>
+                                    <tr className={classes.TheadTrow}>
+                                        <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Order Number</th>
+                                        <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Order Date</th>
+                                        <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Total</th>
+                                        <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}></th>
+                                        <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className={classes.Tbody}>
+                                    {carddata}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Auxilary>
         )
     }
 }
@@ -88,7 +111,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchorders: (token) => dispatch(actions.FetchOrders(token))
+        onfetchorders: (token) => dispatch(actions.FetchOrders(token)),
+        oncancelorder: (token, orderid) => dispatch(actions.CencelOrder(token, orderid)),
     }
 }
 

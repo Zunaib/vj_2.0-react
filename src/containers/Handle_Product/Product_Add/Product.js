@@ -296,11 +296,11 @@ class Product extends Component {
 
         let sizesArray = [];
         this.state.selectedSizes.map(size => {
-            sizesArray.push(size.value);
+            return sizesArray.push(size.value);
         })
         let colorsArray = [];
         this.state.selectedColors.map(color => {
-            colorsArray.push(color.value);
+            return colorsArray.push(color.value);
         })
 
         console.log(sizesArray)

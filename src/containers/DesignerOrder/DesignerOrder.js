@@ -13,16 +13,18 @@ class CustomerOrder extends Component {
     }
 
     componentWillMount() {
-
-        if (this.props.token) {
-            setTimeout(() => {
-                this.props.onfetchorders(this.props.token)
-            }, 50)
-
-        }
-
+        this.props.onfetchorders(this.props.token)
     }
 
+    cancelOrderHandler = (orderid) => {
+        console.log(orderid);
+        // this.props.oncancelorder(this.props.token, orderid);
+        // this.props.onfetchorders(this.props.token)
+
+    }
+    completeOrderHandler = (orderid) => {
+        console.log(orderid);
+    }
     render() {
 
         const orders = this.props.orders;
@@ -42,6 +44,10 @@ class CustomerOrder extends Component {
                     key={order._id}
                     index={index + 1}
                     products={order}
+                    cpmpleted={order.status}
+                    calcelled={order.status}
+                    completeclicked={() => this.completeOrderHandler(order._id)}
+                    cancelclicked={() => this.cancelOrderHandler(order._id)}
                 // name={cart.productId.productName}
                 // price={cart.productId.price}
                 // sizes={cart.productId.sizes}
@@ -66,9 +72,8 @@ class CustomerOrder extends Component {
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Phone No</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Price</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Payment Method</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Discount</th>
 
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Cancel</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Action</th>
                                 </tr>
                             </thead>
                             <tbody className={classes.Tbody}>

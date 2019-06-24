@@ -231,12 +231,8 @@ display: inline-block;
 
 }
 .ibutton:hover {
-    margin-right: 50px;
-padding: 0px 9px;
 background-color: purple;
-color: white;
-border-radius: 10px;
-cursor: pointer;
+
 }
 
 .ibutton h3{
@@ -258,12 +254,7 @@ cursor: pointer;
 display: inline-block;
 }
 .ibutton2:hover {
-    margin-right: 50px;
-padding: 0px 9px;
 background-color: purple;
-color: white;
-border-radius: 10px;
-cursor: pointer;
 }
 
 .ibutton2 h3{
@@ -271,6 +262,25 @@ cursor: pointer;
     margin-right: 5px;
 }
 .ibutton2 i{
+    font-size: 1.3rem;
+    display: inline-block;
+}
+
+.ibutton3 {
+    margin-right: 50px;
+padding: 0px 9px;
+background-color: rgb(119, 119, 119);
+color: white;
+border-radius: 10px;
+display: inline-block;
+}
+
+
+.ibutton3 h3{
+    display: inline-block;
+    margin-right: 5px;
+}
+.ibutton3 i{
     font-size: 1.3rem;
     display: inline-block;
 }

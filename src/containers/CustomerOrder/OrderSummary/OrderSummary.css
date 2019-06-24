@@ -1,0 +1,28 @@
+.Main{
+text-align: center;
+width: auto;
+}
+
+.Header{
+text-align: center;
+width: auto;
+
+}
+
+.Header h3{
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+    margin: 0 4px;
+width: auto;
+
+}
+
+.pName{
+    margin: 0 16px;
+display: inline-block;
+width: 10%;
+text-align: center;
+}
