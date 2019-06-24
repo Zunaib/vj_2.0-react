@@ -38,6 +38,21 @@ const input = (props) => {
                 </select>
             );
             break;
+        case ('multi'):
+            inputElement = (
+                <select
+                    multiple
+                    className={inputClasses.join(' ')}
+                    value={props.value}
+                    onChange={props.changed}>
+                    {props.elementConfig.options.map(option => (
+                        <option key={option.value} value={option.value}>
+                            {option.displayValue}
+                        </option>
+                    ))}
+                </select>
+            );
+            break;
         case ('password'):
             inputElement = <input
                 className={inputClasses.join(' ')}

@@ -64,7 +64,6 @@ class UserProfile extends Component {
         if (prevProps.settings !== this.props.settings) {
             //Perform some operation here
             this.setState({ settings: this.props.settings });
-            this.setData();
         }
     }
 
@@ -119,6 +118,17 @@ class UserProfile extends Component {
             redirect = <Redirect to={"/dashboard/messenger/" + firstname + "_" + lastname + "?" + this.props.convo._id} />;
             this.props.onresetconvo()
         }
+        let stats = null;
+        if (this.state.settings[0]) {
+            stats = (
+                <Statistics
+                    products={this.props.profileproducts}
+                    vlogs={this.props.profilevlogs}
+                    blogs={this.props.profileblogs}
+                    followers={this.state.settings[0].followers}
+                />
+            );
+        }
 
         let albumactive = this.state.albumactive ? classes.WorkbuttonActive : null;
         let albumh4active = this.state.albumactive ? classes.h4Active : null;
@@ -143,8 +153,11 @@ class UserProfile extends Component {
                     <img src={this.state.userimage ? img : display} alt="Display" />
                     <div className={classes.Button}>
                         {/* <NavLink to={"/dashboard/messenger/" + firstname + "_" + lastname + "?" + convoid} onClick={this.createConvoHandler}> */}
-                        <div className={classes.FollowButton} onClick={this.createConvoHandler}>
+                        <div className={classes.MessageButton} onClick={this.createConvoHandler}>
                             <h4>Messege</h4>
+                        </div>
+                        <div className={classes.FollowButton} onClick={this.createConvoHandler}>
+                            <h4>Follow</h4>
                         </div>
                         {/* </NavLink> */}
                     </div>
@@ -165,7 +178,7 @@ class UserProfile extends Component {
                         <div className={classes.Desc}>
                             {desc ? desc : 'Designer Description'}
                         </div>
-                        <Statistics />
+                        {stats}
 
                     </div>
 

@@ -37,6 +37,7 @@ import AddProductReducer from './ProductReducers/AddProduct';
 import ViewProductReducer from './ProductReducers/ViewProduct';
 import DeleteProductReducer from './ProductReducers/DeleteProduct';
 import UpdateProductReducer from './ProductReducers/UpdateProduct';
+import FetchProductDropdownsReducer from './ProductReducers/FetchDropdowns';
 
 /* Vlog Reducers */
 import AddVlogReducer from './VlogReducers/AddVlog';
@@ -104,6 +105,7 @@ export default combineReducers({
     DeleteProduct: DeleteProductReducer,
     ViewProduct: ViewProductReducer,
     UpdateProduct: UpdateProductReducer,
+    FetchProductDropdowns: FetchProductDropdownsReducer,
 
     AddVlog: AddVlogReducer,
     ViewVlog: ViewVlogReducer,
@@ -133,7 +135,7 @@ export default combineReducers({
 
     CreateConvo: CreateConvoReducer,
     FetchSingleConvo: FetchSingleConvoReducer,
-    FetchAllConvo:FetchAllConvoReducer
+    FetchAllConvo: FetchAllConvoReducer
 
 
 

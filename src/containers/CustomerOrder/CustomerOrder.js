@@ -54,7 +54,7 @@ class CustomerOrder extends Component {
         return (
             <div className={classes.Main} >
                 <div className={classes.Album}>
-                    <h1>Orders</h1>
+                    <h1>My Placed Orders</h1>
                     <div className={classes.Cart}>
                         <table className={classes.Table}>
                             <thead className={classes.Thead}>

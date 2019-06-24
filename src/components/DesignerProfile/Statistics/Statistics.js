@@ -3,6 +3,11 @@ import classes from './Statistics.css';
 
 const Statistics = (props) => {
 
+    let productstat = props.products.length;
+    let vlogstat = props.vlogs.length;
+    let blogstat = props.blogs.length;
+    let followersstat = props.followers.length;
+
     return (
         <div className={classes.Stats}>
             <div className={classes.StatsWork}>
@@ -10,19 +15,19 @@ const Statistics = (props) => {
                 <div className={classes.Numbers}>
                     <div className={classes.StatNum}>
                         <h3>Products</h3>
-                        <p>650</p>
+                        <p>{productstat}</p>
                     </div>
                     <div className={classes.StatNum}>
-                        <h3>Collections</h3>
-                        <p>340</p>
+                        <h3>Vlogs</h3>
+                        <p>{vlogstat}</p>
                     </div>
                     <div className={classes.StatNum}>
-                        <h3>Likes</h3>
-                        <p>6630</p>
+                        <h3>Blogs</h3>
+                        <p>{blogstat}</p>
                     </div>
                     <div className={classes.StatNum}>
                         <h3>Followers</h3>
-                        <p>9304</p>
+                        <p>{followersstat}</p>
                     </div>
 
                 </div>

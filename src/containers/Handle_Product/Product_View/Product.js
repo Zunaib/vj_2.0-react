@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from './Product.css';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../../Store/Actions/index';
 import Auxilary from '../../../hoc/Auxilary/Auxilary'
@@ -29,6 +29,11 @@ class Product extends Component {
 
     productdelete = () => {
         this.props.onproductdelete(this.props.token, this.state.productid)
+    }
+
+    pushProduct = (id) => {
+        this.props.history.push("/dashboard/products/" + id)
+        this.props.onfetchcurrentproduct(this.props.token, id)
     }
     render() {
 
@@ -64,7 +69,7 @@ class Product extends Component {
             if (product.comments.length > 0) {
                 productcomments = (product.comments.map((comment, index) => (
                     <div className={[classes.Comment]} key={comment._id}>
-                        <h3>{comment.userId.firstName + " " + comment.userId.lastName}</h3>
+                        <h3>{comment.userId.firstName ? comment.userId.firstName + " " + comment.userId.lastName : "Anonymous"}</h3>
                         <p>{comment.comment}</p>
                     </div>
                 )));
@@ -149,14 +154,14 @@ class Product extends Component {
             console.log("true")
 
             similar = (this.props.similarproducts.map((product, index = product._id) => (
-                <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={index}>
+                <div className={classes.Link} key={index} onClick={() => this.pushProduct(product._id)}>
                     <ProductCard
                         key={product._id}
                         name={product.productName}
                         price={product.price}
                         images={product.images}
                     />
-                </NavLink>
+                </div>
 
             )));
 
@@ -220,4 +225,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Product));

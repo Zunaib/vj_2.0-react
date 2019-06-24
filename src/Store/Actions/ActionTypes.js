@@ -50,6 +50,10 @@ export const Add_Product_Start = 'Add_Product_Start';
 export const Add_Product_Success = 'Add_Product_Success';
 export const Add_Product_Failed = 'Add_Product_Failed';
 export const Add_ProductMessage_Refresh = "Add_Message_Refresh";
+/* Add Product Dopdown Fetch Actions */
+export const Add_Product_Fetch_Dropdown_Start = 'Add_Product_Start';
+export const Add_Product_Fetch_Dropdown_Success = 'Add_Product_Fetch_Dropdown_Success';
+export const Add_Product_Fetch_Dropdown_Failed = 'Add_Product_Fetch_Dropdown_Failed';
 
 /* Set Current Object Actions */
 export const Set_Single_Product = 'Set_Single_Product';
@@ -257,6 +261,11 @@ export const Fetch_All_Conversation_Start = 'Fetch_All_Conversation_Start';
 export const Fetch_Single_Conversation_Failed = 'Fetch_Single_Conversation_Failed';
 export const Fetch_Single_Conversation_Success = 'Fetch_Single_Conversation_Success';
 export const Fetch_Single_Conversation_Start = 'Fetch_Single_Conversation_Start';
+
+/* Delete Conversation*/
+export const Delete_Conversation_Success = 'Delete_Conversation_Success';
+export const Delete_Conversation_Failed = 'Delete_Conversation_Failed';
+export const Delete_Conversation_Start = 'Delete_Conversation_Start';
 
 /* Send Single Messege*/
 export const Send_Single_Messege_Failed = 'Send_Single_Messege_Failed';

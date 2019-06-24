@@ -3,7 +3,7 @@ import classes from './Messenger.css';
 import { connect } from 'react-redux';
 import placehold from '../../assets/images/defaultuserimage.png'
 import * as actions from '../../Store/Actions/index';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import MessegeInput from '../../components/UI/Messege/Messege';
 import Button from '../../components/UI/Button/Button';
 
@@ -52,10 +52,20 @@ class Messenger extends Component {
         this.props.onfetchsingleconvo(this.props.token, convoid);
     }
 
+    refreshConvo = () => {
+        this.props.onfetchsingleconvo(this.props.token, this.props.singleconvo._id);
+    }
+
+    deleteConvo = () => {
+        this.props.ondeletesingleconvo(this.props.token, this.props.singleconvo._id);
+        // window.location.reload("");
+        this.props.history.push("/dashboard/messenger/convos");
+        window.location.reload();
+
+    }
+
     handleClick(event, id, fname, lname) {
         this.setState({ activeId: id, profilefname: fname, profilelname: lname })
-
-        console.log(id)
     }
     render() {
 
@@ -119,8 +129,8 @@ class Messenger extends Component {
                         </div>
 
                         <div className={classes.ConvoHeader}>
-                            <Button btnType="DeleteConvo" >Delete</Button>
-                            <Button btnType="RefreshConvo" >Refresh</Button>
+                            <Button btnType="DeleteConvo" clicked={this.deleteConvo} >Delete</Button>
+                            <Button btnType="RefreshConvo" clicked={this.refreshConvo} >Refresh</Button>
                             <h2>{convoname}</h2>
                         </div>
                     </div>
@@ -161,9 +171,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onfetchsingleconvo: (token, convoid) => dispatch(actions.FetchSingleConversations(token, convoid)),
+        ondeletesingleconvo: (token, convoid) => dispatch(actions.DeleteSingleConversations(token, convoid)),
         onfetchallconvo: (token) => dispatch(actions.FetchAllConversations(token))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Messenger);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Messenger));
 

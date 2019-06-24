@@ -65,7 +65,7 @@ class Vlog extends Component {
             if (vlog.comments.length > 0) {
                 vlogcomments = (vlog.comments.map((comment, index) => (
                     <div className={[classes.Comment]} key={comment._id}>
-                        <h3>{comment.userId.firstName + " " + comment.userId.lastName}</h3>
+                        <h3>{comment.userId.firstName ? comment.userId.firstName + " " + comment.userId.lastName : "Anonymous"}</h3>
                         <p>{comment.comment}</p>
                     </div>
                 )));

@@ -86,6 +86,7 @@ class WebLayout extends Component {
                         <Route path="/dashboard/handle_product/update_product/:id" component={Update_Product} />
                         <Route path="/dashboard/handle_blog/update_blog/:id" component={UpdateBlog} />
                         <Route path="/dashboard/handle_vlog/update_vlog/:id" component={UpdateVlog} />
+                        <Route path="/dashboard/cart" component={Cart} />
 
                         <Route path="/dashboard/searchresults" component={SearchPage} />
                         <Route path="/dashboard/userprofile/:userid" component={UserProfile} />

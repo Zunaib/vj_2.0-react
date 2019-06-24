@@ -5,7 +5,6 @@ import { NavLink, Redirect } from 'react-router-dom';
 import * as actions from '../../../Store/Actions/index';
 import FormData from 'form-data'
 
-
 import FileUploader from '../../../components/FileUploader/MultipleFile';
 import productimg from '../../../assets/images/testimg.jpg';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -26,6 +25,98 @@ class Product extends Component {
         } else {
             this.setState({ album: albumid })
         }
+        this.props.fetchdropdowns(this.props.token);
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.dropdowns !== prevState.dropdowns) {
+            return { dropdowns: nextProps.dropdowns };
+        }
+        else return null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.dropdowns !== this.props.dropdowns) {
+            //Perform some operation here
+            this.setState({ dropdowns: this.props.dropdowns });
+            this.setdropdowns();
+        }
+    }
+
+    setdropdowns() {
+        let updatedproductForm = {
+            ...this.state.productForm
+        };
+        let updatedFormElement;
+        var colors = this.state.dropdowns[0].values;
+        var productTypes = this.state.dropdowns[1].values;
+        var shoesizes = this.state.dropdowns[2].values;
+        var topsizes = this.state.dropdowns[3].values;
+        var bottomsizes = this.state.dropdowns[4].values;
+        var res = [];
+        var res1 = [];
+        var res2 = [];
+        var res3 = [];
+        var res4 = [];
+        for (var i = 0; i < colors.length; i++) {
+            var o = {};
+            o["displayValue"] = colors[i];
+            o["value"] = colors[i];
+            res.push(o);
+        }
+
+        for (i = 0; i < productTypes.length; i++) {
+            o = {};
+            o["displayValue"] = productTypes[i];
+            o["value"] = productTypes[i];
+            res1.push(o);
+        }
+
+        for (i = 0; i < topsizes.length; i++) {
+            o = {};
+            o["displayValue"] = topsizes[i];
+            o["value"] = topsizes[i];
+            res2.push(o);
+        }
+        this.setState({ topsizes: res2 })
+
+        for (i = 0; i < bottomsizes.length; i++) {
+            o = {};
+            o["displayValue"] = bottomsizes[i];
+            o["value"] = bottomsizes[i];
+            res3.push(o);
+        }
+        this.setState({ bottomsizes: res3 })
+
+        for (i = 0; i < shoesizes.length; i++) {
+            o = {};
+            o["displayValue"] = shoesizes[i];
+            o["value"] = shoesizes[i];
+            res4.push(o);
+        }
+        this.setState({ shoesizes: res4 })
+
+
+        for (let formElementIdentifier in updatedproductForm) {
+            updatedFormElement = {
+                ...updatedproductForm[formElementIdentifier]
+            };
+            if (formElementIdentifier === "colors") {
+                // updatedFormElement.value = res;
+                updatedFormElement.elementConfig.options = res;
+                updatedproductForm[formElementIdentifier] = updatedFormElement;
+            }
+            if (formElementIdentifier === "productType") {
+                updatedFormElement.elementConfig.options = res1;
+                updatedproductForm[formElementIdentifier] = updatedFormElement;
+            }
+            if (formElementIdentifier === "sizes") {
+                // updatedFormElement.value = res2;
+                updatedFormElement.elementConfig.options = res2;
+                updatedproductForm[formElementIdentifier] = updatedFormElement;
+            }
+        }
+        this.setState({ productForm: updatedproductForm })
     }
 
     state = {
@@ -35,19 +126,6 @@ class Product extends Component {
                 elementConfig: {
                     type: 'text',
                     placeholder: 'Product Name'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            },
-            sizes: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Product Size'
                 },
                 value: '',
                 validation: {
@@ -68,6 +146,36 @@ class Product extends Component {
                 },
                 valid: false,
                 touched: false
+            },
+            productType: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                    ]
+                },
+                value: "",
+                validation: {},
+                valid: true
+            },
+            sizes: {
+                elementType: 'multiselect',
+                elementConfig: {
+                    options: [
+                    ]
+                },
+                value: [],
+                validation: {},
+                valid: true
+            },
+            colors: {
+                elementType: 'multiselect',
+                elementConfig: {
+                    options: [
+                    ]
+                },
+                value: [],
+                validation: {},
+                valid: true
             },
             price: {
                 elementType: 'input',
@@ -100,22 +208,6 @@ class Product extends Component {
                 valid: false,
                 touched: false
             },
-            colors: {
-                elementType: 'select',
-                elementConfig: {
-                    options: [
-                        { value: 'brown', displayValue: 'Brown' },
-                        { value: 'black', displayValue: 'Black' },
-                        { value: 'red', displayValue: 'Red' },
-                        { value: 'blue', displayValue: 'Blue' },
-                        { value: 'yellow', displayValue: 'Yellow' },
-                        { value: 'green', displayValue: 'Green' },
-                    ]
-                },
-                value: 'Black',
-                validation: {},
-                valid: true
-            },
             discount: {
                 elementType: 'input',
                 elementConfig: {
@@ -138,7 +230,12 @@ class Product extends Component {
         selectedFilesURL: null,
         files: false,
         maxselected: false,
-        album: null
+        album: null,
+        dropdowns: null,
+        topsizes: null,
+        bottomsizes: null,
+        shoesizes: null
+
     }
 
     maxSelectFile = (event) => {
@@ -218,9 +315,7 @@ class Product extends Component {
         }
         data.append('productName', formData.name);
         data.append('description', formData.description);
-        data.append('color', formData.color);
         data.append('quantity', formData.quantity);
-        data.append('sizes', formData.sizes);
         data.append('price', formData.price);
         data.append('discount', formData.discount);
 
@@ -234,16 +329,67 @@ class Product extends Component {
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
+
+
+
         const updatedproductForm = {
             ...this.state.productForm
         };
         const updatedFormElement = {
             ...updatedproductForm[inputIdentifier]
         };
+
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedproductForm[inputIdentifier] = updatedFormElement;
+
+        if (inputIdentifier === 'sizes') {
+            console.log('in sizes')
+            console.log(updatedFormElement.value)
+        }
+
+        if (inputIdentifier === 'productType') {
+            console.log(updatedFormElement.value)
+            if (updatedFormElement.value === 'Tops') {
+                console.log("aya ae")
+                const updatedproductForm = {
+                    ...this.state.productForm
+                };
+                const updatedFormElement = {
+                    ...updatedproductForm["sizes"]
+                };
+
+                updatedFormElement.elementConfig.options = this.state.topsizes;
+                updatedproductForm["sizes"] = updatedFormElement;
+            } else if (updatedFormElement.value === 'Bottoms') {
+                console.log("aya ae")
+                const updatedproductForm = {
+                    ...this.state.productForm
+                };
+                const updatedFormElement = {
+                    ...updatedproductForm["sizes"]
+                };
+
+                console.log(this.state.topsizes)
+
+                updatedFormElement.elementConfig.options = this.state.bottomsizes;
+                updatedproductForm["sizes"] = updatedFormElement;
+            } else if (updatedFormElement.value === 'Footwear') {
+                console.log("aya ae")
+                const updatedproductForm = {
+                    ...this.state.productForm
+                };
+                const updatedFormElement = {
+                    ...updatedproductForm["sizes"]
+                };
+
+                console.log(this.state.shoesizes)
+
+                updatedFormElement.elementConfig.options = this.state.shoesizes;
+                updatedproductForm["sizes"] = updatedFormElement;
+            }
+        }
 
         let formIsValid = true;
         for (let inputIdentifier in updatedproductForm) {
@@ -356,11 +502,13 @@ const mapStateToProps = state => {
         error: state.AddProduct.error,
         productid: state.AddProduct.productid,
         prodadded: state.AddProduct.added,
+        dropdowns: state.FetchProductDropdowns.dropdowns,
         token: state.Auth.token
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
+        fetchdropdowns: (token) => dispatch(actions.Fetchproductdropdowns(token)),
         onaddProduct: (token, productData) => dispatch(actions.AddProduct(token, productData)),
         onaddProductMsg: () => dispatch(actions.AddProductMsg())
     }

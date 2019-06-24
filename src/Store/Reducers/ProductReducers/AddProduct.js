@@ -4,7 +4,7 @@ const initialState = {
     loading: false,
     error: null,
     productid: null,
-    added:null
+    added: null
 }
 
 const ProductReducer = (state = initialState, action) => {
@@ -14,27 +14,29 @@ const ProductReducer = (state = initialState, action) => {
                 ...state,
                 productid: null,
                 loading: false,
-                added:false
+                added: false
             };
         case actionTypes.Add_Product_Start:
             return {
                 ...state,
+                productid: null,
                 loading: true,
-                added:false
+                added: false
             };
         case actionTypes.Add_Product_Success:
             return {
                 ...state,
                 loading: false,
                 productid: action.productid,
-                added:true
+                added: true
             };
         case actionTypes.Add_Product_Failed:
             return {
                 ...state,
                 loading: false,
+                productid: null,
                 error: action.error,
-                added:false
+                added: false
             };
         case actionTypes.Reset:
             return state = initialState;

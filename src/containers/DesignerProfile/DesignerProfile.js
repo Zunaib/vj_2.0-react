@@ -128,7 +128,12 @@ class DesignerProfile extends Component {
                         <div className={classes.Desc}>
                             {desc ? desc : 'Designer Description'}
                         </div>
-                        <Statistics />
+                        <Statistics
+                            products={this.props.profileproducts}
+                            vlogs={this.props.profilevlogs}
+                            blogs={this.props.profileblogs}
+                            followers={this.props.settings[0].followers}
+                        />
 
                     </div>
 

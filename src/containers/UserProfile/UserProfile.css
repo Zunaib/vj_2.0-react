@@ -73,8 +73,9 @@ div.FollowButton{
   text-align: center;
   color: white;
   margin: -15px auto;
+  margin-left: 10px;
   width: auto;
-  float: right;
+  float: left;
   -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
   -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
   box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
@@ -92,6 +93,43 @@ div.FollowButton{
   font-size: 1rem;
 }
  div.FollowButton i{
+  text-align: center;
+  margin: 0 auto;
+  padding: 5px;
+  color: white;
+  display: inline;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+div.MessageButton{
+  position: relative;
+  cursor: pointer;
+  background-color: rgb(160, 0, 160);
+  padding: 8px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin: -15px auto;
+  width: auto;
+  float: right;
+  -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+  -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+  box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+}
+ div.MessageButton:hover{
+  background-color: purple;
+  
+}
+ div.MessageButton h4{
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+  color: white;
+  display: inline;
+  font-size: 1rem;
+}
+ div.MessageButton i{
   text-align: center;
   margin: 0 auto;
   padding: 5px;
