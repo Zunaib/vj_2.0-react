@@ -270,7 +270,7 @@ class Checkout extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
 
-                <Button btnType="WebButton">Checkout</Button>
+                <Button btnType="CheckButton">Checkout</Button>
             </form>
         );
 

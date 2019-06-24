@@ -47,50 +47,38 @@
 }
 
 .Form{
-    margin-left:80px;
-  width: 80%;
-    
+  margin-left:55px;
+width: 100%;
+  
 }
 
-.Form h3{
-    color: #303030;
-}
 .Form div{
-    position: relative;
-  
+  position: relative;
+
 }
 
-.Form div p {
-    padding-left: 10px;
-  }
-
-  .Form form div {
-    border:2px solid #eee;
-    padding: 10px;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  display: grid;
-  margin-bottom: 10px;
-  grid-template-columns: 1fr 3fr;
-  align-items: center;
+.Form form div {
+  border:2px solid #eee;
+  padding: 5px;
+border-radius: 5px;
+font-size: 1rem;
+display: grid;
+width: 80%;
+margin: 10px;
+grid-template-columns: 1fr 3fr;
+align-items: center;
+}
   
-  }
-
-  
-.Form form div label {
-    background: #444;
-    color: #fff;
+  .Form form div label {
+    color: #444;
     text-transform: capitalize;
-  
+    vertical-align: top;
     font-weight: bold;
     font-size: 1rem;
     padding: 6px;
     text-align: center;
     margin-right: 10px;
-    border-radius:10px;
-    -webkit-box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
-    box-shadow: 0px 10px 10px -9px rgba(0,0,0,0.75);
+    border-radius:5px;
   }
   
 
@@ -99,8 +87,23 @@
     outline: none;
     background: none;
     display: flex;
-      width: 100%;
-      box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
     border: none;
     font-size: 1rem;
   }
+
+
+  .Form form div textarea {
+
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+    background: none;
+    clear: both;
+    border: none;
+}
+

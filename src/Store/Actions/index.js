@@ -166,6 +166,9 @@ export {
 export {
     FetchUserVlogs
 } from './UserProfile/UserVlogs';
+export {
+    FollowUser
+} from './UserProfile/FollowUser';
 
 /*Messeges Actions Export*/
 export {

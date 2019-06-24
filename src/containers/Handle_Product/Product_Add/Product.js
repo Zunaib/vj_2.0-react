@@ -9,12 +9,12 @@ import FileUploader from '../../../components/FileUploader/MultipleFile';
 import productimg from '../../../assets/images/testimg.jpg';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
-import Input from '../../../components/UI/Input/Web_Input/WebInput';
+import Input from '../../../components/UI/Input/CustomInput/CustomInput';
 import { checkValidity } from '../../../Shared/Validator';
 import Snack from '../../../components/UI/SnackBar/Snackbar';
 
+import Select from 'react-select';
 class Product extends Component {
-
 
     componentDidMount() {
         let str = window.location.href;
@@ -53,66 +53,61 @@ class Product extends Component {
         var shoesizes = this.state.dropdowns[2].values;
         var topsizes = this.state.dropdowns[3].values;
         var bottomsizes = this.state.dropdowns[4].values;
-        var res = [];
-        var res1 = [];
-        var res2 = [];
-        var res3 = [];
-        var res4 = [];
+        var colorsdrop = [];
+        var productTypesdrop = [];
+        var shoesizesdrop = [];
+        var topsizesdrop = [];
+        var bottomsizesdrop = [];
+
         for (var i = 0; i < colors.length; i++) {
             var o = {};
-            o["displayValue"] = colors[i];
             o["value"] = colors[i];
-            res.push(o);
+            o["label"] = colors[i];
+            colorsdrop.push(o);
         }
+        this.setState({ colors: colorsdrop })
+
 
         for (i = 0; i < productTypes.length; i++) {
             o = {};
             o["displayValue"] = productTypes[i];
             o["value"] = productTypes[i];
-            res1.push(o);
+            productTypesdrop.push(o);
         }
-
-        for (i = 0; i < topsizes.length; i++) {
-            o = {};
-            o["displayValue"] = topsizes[i];
-            o["value"] = topsizes[i];
-            res2.push(o);
-        }
-        this.setState({ topsizes: res2 })
-
-        for (i = 0; i < bottomsizes.length; i++) {
-            o = {};
-            o["displayValue"] = bottomsizes[i];
-            o["value"] = bottomsizes[i];
-            res3.push(o);
-        }
-        this.setState({ bottomsizes: res3 })
+        this.setState({ productTypes: productTypesdrop })
 
         for (i = 0; i < shoesizes.length; i++) {
             o = {};
-            o["displayValue"] = shoesizes[i];
             o["value"] = shoesizes[i];
-            res4.push(o);
+            o["label"] = shoesizes[i];
+            shoesizesdrop.push(o);
         }
-        this.setState({ shoesizes: res4 })
+        this.setState({ shoesizes: shoesizesdrop })
+
+        for (i = 0; i < topsizes.length; i++) {
+            o = {};
+            o["value"] = topsizes[i];
+            o["label"] = topsizes[i];
+            topsizesdrop.push(o);
+        }
+        this.setState({ topsizes: topsizesdrop })
+
+        for (i = 0; i < bottomsizes.length; i++) {
+            o = {};
+            o["value"] = bottomsizes[i];
+            o["label"] = bottomsizes[i];
+            bottomsizesdrop.push(o);
+        }
+        this.setState({ bottomsizes: bottomsizesdrop })
+
 
 
         for (let formElementIdentifier in updatedproductForm) {
             updatedFormElement = {
                 ...updatedproductForm[formElementIdentifier]
             };
-            if (formElementIdentifier === "colors") {
-                // updatedFormElement.value = res;
-                updatedFormElement.elementConfig.options = res;
-                updatedproductForm[formElementIdentifier] = updatedFormElement;
-            }
             if (formElementIdentifier === "productType") {
-                updatedFormElement.elementConfig.options = res1;
-                updatedproductForm[formElementIdentifier] = updatedFormElement;
-            }
-            if (formElementIdentifier === "sizes") {
-                // updatedFormElement.value = res2;
-                updatedFormElement.elementConfig.options = res2;
+                updatedFormElement.elementConfig.options = productTypesdrop;
                 updatedproductForm[formElementIdentifier] = updatedFormElement;
             }
         }
@@ -153,27 +148,7 @@ class Product extends Component {
                     options: [
                     ]
                 },
-                value: "",
-                validation: {},
-                valid: true
-            },
-            sizes: {
-                elementType: 'multiselect',
-                elementConfig: {
-                    options: [
-                    ]
-                },
-                value: [],
-                validation: {},
-                valid: true
-            },
-            colors: {
-                elementType: 'multiselect',
-                elementConfig: {
-                    options: [
-                    ]
-                },
-                value: [],
+                value: "Tops",
                 validation: {},
                 valid: true
             },
@@ -232,9 +207,14 @@ class Product extends Component {
         maxselected: false,
         album: null,
         dropdowns: null,
+        productTypes: null,
+        sizes: null,
         topsizes: null,
         bottomsizes: null,
-        shoesizes: null
+        shoesizes: null,
+        selectedSizes: [],
+        selectedColors: [],
+        colors: null
 
     }
 
@@ -298,7 +278,7 @@ class Product extends Component {
         for (let formElementIdentifier in this.state.productForm) {
             formData[formElementIdentifier] = this.state.productForm[formElementIdentifier].value;
         }
-        console.log(this.state.selectedFiles)
+        // console.log(this.state.selectedFiles)
         let data = new FormData();
         if (this.state.files) {
             console.log('selec file true');
@@ -313,13 +293,18 @@ class Product extends Component {
         if (this.state.album) {
             data.append('albumId', this.state.album);
         }
+
         data.append('productName', formData.name);
+        data.append('type', formData.productType);
         data.append('description', formData.description);
         data.append('quantity', formData.quantity);
         data.append('price', formData.price);
         data.append('discount', formData.discount);
+        data.append('sizes', this.state.selectedSizes);
+        data.append('colors', this.state.selectedColors);
 
-        if (this.state.formIsValid && this.state.files) {
+
+        if (this.state.formIsValid && this.state.files && this.state.selectedColors && this.state.selectedSizes) {
             this.props.onaddProduct(this.props.token, data);
             this.fieldclearHandler();
             this.setState({ formIsValid: false });
@@ -329,9 +314,6 @@ class Product extends Component {
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
-
-
-
         const updatedproductForm = {
             ...this.state.productForm
         };
@@ -344,50 +326,14 @@ class Product extends Component {
         updatedFormElement.touched = true;
         updatedproductForm[inputIdentifier] = updatedFormElement;
 
-        if (inputIdentifier === 'sizes') {
-            console.log('in sizes')
-            console.log(updatedFormElement.value)
-        }
-
         if (inputIdentifier === 'productType') {
             console.log(updatedFormElement.value)
             if (updatedFormElement.value === 'Tops') {
-                console.log("aya ae")
-                const updatedproductForm = {
-                    ...this.state.productForm
-                };
-                const updatedFormElement = {
-                    ...updatedproductForm["sizes"]
-                };
-
-                updatedFormElement.elementConfig.options = this.state.topsizes;
-                updatedproductForm["sizes"] = updatedFormElement;
+                this.setState({ sizes: "Tops", selectedSizes: [] });
             } else if (updatedFormElement.value === 'Bottoms') {
-                console.log("aya ae")
-                const updatedproductForm = {
-                    ...this.state.productForm
-                };
-                const updatedFormElement = {
-                    ...updatedproductForm["sizes"]
-                };
-
-                console.log(this.state.topsizes)
-
-                updatedFormElement.elementConfig.options = this.state.bottomsizes;
-                updatedproductForm["sizes"] = updatedFormElement;
+                this.setState({ sizes: "Bottoms", selectedSizes: [] });
             } else if (updatedFormElement.value === 'Footwear') {
-                console.log("aya ae")
-                const updatedproductForm = {
-                    ...this.state.productForm
-                };
-                const updatedFormElement = {
-                    ...updatedproductForm["sizes"]
-                };
-
-                console.log(this.state.shoesizes)
-
-                updatedFormElement.elementConfig.options = this.state.shoesizes;
-                updatedproductForm["sizes"] = updatedFormElement;
+                this.setState({ sizes: "Footwear", selectedSizes: [] });
             }
         }
 
@@ -397,6 +343,15 @@ class Product extends Component {
         }
         this.setState({ productForm: updatedproductForm, formIsValid: formIsValid });
     }
+
+    handleSizesChange = (selectedOptions) => {
+        this.setState({ selectedSizes: selectedOptions });
+        console.log(`Option selected:`, selectedOptions);
+    };
+    handleColorsChange = (selectedOptions) => {
+        this.setState({ selectedColors: selectedOptions });
+        console.log(`Option selected:`, selectedOptions);
+    };
     render() {
 
         const formElementsArray = [];
@@ -420,9 +375,12 @@ class Product extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
+
                 <FileUploader clicked={this.fileSelectedHandler} />
                 <Button btnType="WebButton" >Add Product</Button>
             </form>
+
+
         );
 
         if (this.props.loading) {
@@ -443,7 +401,39 @@ class Product extends Component {
                 </div>
             </div>);
         } else {
+
+            let sizes = this.state.topsizes;
+            if (this.state.sizes === "Tops") {
+                sizes = this.state.topsizes;
+            } else if (this.state.sizes === "Bottoms") {
+                sizes = this.state.bottomsizes;
+            } else if (this.state.sizes === "Footwear") {
+                sizes = this.state.shoesizes;
+            }
+
             productimages = (<div className={classes.Images}>
+                <div className={classes.Dropdowns}>
+                    <h4>Product Sizes</h4>
+                    <Select
+                        isMulti
+                        isSearchable
+                        className={classes.Select}
+                        value={this.state.selectedSizes}
+                        onChange={this.handleSizesChange}
+                        options={sizes}
+                    />
+                </div>
+                <div className={classes.Dropdowns}>
+                    <h4>Product Colors</h4>
+                    <Select
+                        isMulti
+                        isSearchable
+                        className={classes.Select}
+                        value={this.state.selectedColors}
+                        onChange={this.handleColorsChange}
+                        options={this.state.colors}
+                    />
+                </div>
                 <div className={classes.AlbumImage} >
                     <img src={productimg} alt="Product_Thumbnail" />
                 </div>
@@ -452,7 +442,9 @@ class Product extends Component {
                     <img src={productimg} alt="Product_Thumbnail2" />
                     <img src={productimg} alt="Product_Thumbnail3" />
                     <img src={productimg} alt="Product_Thumbnail4" />
+
                 </div>
+
             </div>);
         }
 

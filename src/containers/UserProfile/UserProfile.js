@@ -100,6 +100,10 @@ class UserProfile extends Component {
         this.props.oncreateconvo(this.props.token, this.state.profileid)
     }
 
+    followHandler = () => {
+        this.props.onfollowuser(this.props.token, this.state.profileid)
+    }
+
     render() {
 
         let img = null;
@@ -156,7 +160,7 @@ class UserProfile extends Component {
                         <div className={classes.MessageButton} onClick={this.createConvoHandler}>
                             <h4>Messege</h4>
                         </div>
-                        <div className={classes.FollowButton} onClick={this.createConvoHandler}>
+                        <div className={classes.FollowButton} onClick={this.followHandler}>
                             <h4>Follow</h4>
                         </div>
                         {/* </NavLink> */}
@@ -248,7 +252,8 @@ const mapDispatchToProps = dispatch => {
         onfetchprofilevlogs: (token, limit) => dispatch(actions.FetchUserVlogs(token, limit)),
         onfetchprofileblogs: (token, limit) => dispatch(actions.FetchUserBlogs(token, limit)),
         oncreateconvo: (token, userid) => dispatch(actions.CreateConversation(token, userid)),
-        onresetconvo: () => dispatch(actions.ResetConvo())
+        onresetconvo: () => dispatch(actions.ResetConvo()),
+        onfollowuser: (token, userid) => dispatch(actions.FollowUser(token, userid))
 
     }
 }

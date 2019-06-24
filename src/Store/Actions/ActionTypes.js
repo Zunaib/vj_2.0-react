@@ -244,6 +244,14 @@ export const Fetch_UserProfile_Vlog_Start = 'Fetch_UserProfile_Vlog_Start';
 export const Fetch_UserProfile_Blog_Success = 'Fetch_UserProfile_Blog_Success';
 export const Fetch_UserProfile_Blog_Failed = 'Fetch_UserProfile_Blog_Failed';
 export const Fetch_UserProfile_Blog_Start = 'Fetch_UserProfile_Blog_Start';
+/* Follow User */
+export const Follow_User_Success = 'Follow_User_Success';
+export const Follow_User_Failed = 'Follow_User_Failed';
+export const Follow_User_Start = 'Follow_User_Start';
+/* UnFollow User */
+export const UnFollow_User_Success = 'UnFollow_User_Success';
+export const UnFollow_User_Failed = 'UnFollow_User_Failed';
+export const UnFollow_User_Start = 'UnFollow_User_Start';
 
 /* Messeging*/
 /* Create Conversation*/
