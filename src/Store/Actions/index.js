@@ -127,6 +127,9 @@ export {
     FetchCart,
     UpdateCart
 } from './CartActions/Cart';
+export {
+    RemoveFromCart
+} from './CartActions/RemoveFromCart';
 
 /* Checkout Actions Export */
 export {

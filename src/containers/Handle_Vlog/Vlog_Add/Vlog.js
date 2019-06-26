@@ -149,7 +149,7 @@ class Vlog extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <FileUploader clicked={this.fileSelectedHandler} text="Video file" />
+                <FileUploader clicked={this.fileSelectedHandler} text="Video File" />
                 <Button btnType="WebButton">Add Vlog</Button>
 
             </form>

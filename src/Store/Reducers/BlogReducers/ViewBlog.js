@@ -12,12 +12,14 @@ const CurrentBlog = (state = initialState, action) => {
         case actionTypes.Fetch_Single_Blog_Start:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                currentblog: null
             };
         case actionTypes.Fetch_Single_Blog_Failed:
             return {
                 ...state,
                 loading: false,
+                currentblog: null,
                 error: action.error
             };
         case actionTypes.Fetch_Single_Blog_Success:

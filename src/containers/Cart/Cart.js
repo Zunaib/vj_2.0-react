@@ -9,7 +9,8 @@ import * as actions from '../../Store/Actions/index';
 class Cart extends Component {
 
     state = {
-        cart: []
+        cart: [],
+        products: []
     }
 
     componentDidMount() {
@@ -28,20 +29,25 @@ class Cart extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.cart !== this.props.cart) {
             this.setState({ cart: this.props.cart });
+            this.set()
         }
     }
 
+    set() {
+        this.setState({ products: this.state.cart })
+    }
 
-    add(prod) {
-        let prevcart =
-            [
-                ...this.state.cart
-            ]
-        prevcart.push(prod);
-        console.log(prevcart)
-        this.setState({ cart: prevcart }, () => {
-            console.log(this.state)
-        })
+
+    add(cartid, index, prod) {
+        let updated = [
+            ...this.state.products
+        ]
+        let cart = {
+            _id: cartid,
+            productId: prod
+        }
+        updated.splice(index, 0, cart);
+        this.setState({ products: updated })
     }
     render() {
 
@@ -55,16 +61,18 @@ class Cart extends Component {
                 </tr>)
                 ;
         } else if (this.props.cart) {
-            const cart = this.state.cart;
-            carddata = (cart.map((cart, index = cart._id) => (
+            const cart = this.state.products;
+            carddata = (cart.map((cart, index) => (
                 <CartBody
-                    key={cart._id}
+                    key={cart._id + index}
+                    pid={cart.productId._id}
                     name={cart.productId.productName}
                     price={cart.productId.price}
                     sizes={cart.productId.sizes}
+                    colors={cart.productId.colors}
                     quantity={cart.productId.quantity}
                     images={cart.productId.images}
-                    add={() => this.add(cart.productId)}
+                    add={() => this.add(cart._id, index, cart.productId)}
                 />
 
             )));

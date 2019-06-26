@@ -50,12 +50,12 @@ class NavigationItems extends Component {
                         <NavigationItem navitemType="Landing" link="#mission" clicked={this.props.scrollMission}>Mission</NavigationItem>
                         <NavigationItem navitemType="Landing" Type="NavButton" link="/login">Sign In</NavigationItem>
                         <NavigationItem navitemType="Landing" Type="NavButton" link="/signup">Sign Up</NavigationItem>
-                        <div className={classes.Fb}>
+                        {/* <div className={classes.Fb}>
                             <i className="fab fa-facebook-f"></i>
                         </div>
                         <div className={classes.Google}>
                             <i className="fab fa-google"></i>
-                        </div>
+                        </div> */}
                     </ul>
                 </div>
             );

@@ -100,6 +100,11 @@ export const Add_ProductToCart_Failed = 'Add_ProductToCart_Failed';
 export const Add_ProductToCart_Success = 'Add_ProductToCart_Success';
 export const Add_ProductToCart_Msg = 'Add_ProductToCart_Msg';
 
+/* Remove Product From Cart*/
+export const Remove_ProductFromCart_Start = 'Remove_ProductFromCart_Start';
+export const Remove_ProductFromCart_Failed = 'Remove_ProductFromCart_Failed';
+export const Remove_ProductFromCart_Success = 'Remove_ProductFromCart_Success';
+
 /* Fetch Cart */
 export const Fetch_Cart_Start = 'Fetch_Cart_Start';
 export const Fetch_Cart_Failed = 'Fetch_Cart_Failed';

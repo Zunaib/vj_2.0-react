@@ -85,7 +85,8 @@ class Blog extends Component {
     }
 
     setData() {
-        let prevBlog = this.state.blog[0];
+        let prevBlog = this.state.blog;
+        console.log(this.state.blog)
         const updatedblogForm = {
             ...this.state.blogForm
         };
@@ -157,7 +158,7 @@ class Blog extends Component {
         }
 
         const formElements = ['title', 'description'];
-        let prevBlog = this.state.blog[0];
+        let prevBlog = this.state.blog;
         let action = false;
         for (let i = 0; i < formElements.length; i++) {
             let target = formElements[i];
@@ -270,7 +271,7 @@ class Blog extends Component {
             <div className={classes.Main}>
                 {imgsnack}
                 {updateblog}
-                {this.props.updated ? <Redirect to={"/dashboard/blogs/" + this.state.blog[0]._id} /> : null}
+                {this.props.updated ? <Redirect to={"/dashboard/blogs/" + this.state.blog._id} /> : null}
                 <div className={classes.Album}>
                     <NavLink to='/dashboard'>
                         <div className={classes.cross}>
