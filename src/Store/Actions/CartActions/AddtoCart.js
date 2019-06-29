@@ -23,9 +23,12 @@ export const addtocartStart = () => {
     };
 };
 
-export const AddToCart = (token, productId) => {
+export const AddToCart = (token, productId, color, size) => {
+
     const product = {
-        productId: productId
+        productId: productId,
+        selectedSize: size,
+        selectedColor: color
     }
     return dispatch => {
         dispatch(addtocartStart());

@@ -165,10 +165,12 @@ background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
 .Desc{
     margin-top: 15px;
     padding-right: 30px;
+    
 }
 
 .Desc h4{
     margin-bottom: -10px;
+    margin-bottom: 8px;
 }
 .Desc p{
     width: 100%;
@@ -323,4 +325,32 @@ float: left;
 .Link{
     color: black;
     cursor: pointer;
+}
+
+.Drops{
+    margin-top: 15px;
+    padding-right: 30px;
+    margin-bottom: 15px;
+}
+
+.Drops h4{
+    margin-bottom: 1px;
+}
+.Drops p{
+    width: 100%;
+    color: rgb(87, 87, 87);
+}
+
+.Select{
+    display: inline-block;
+    justify-content:space-around;
+    width: 70%;
+}
+
+.Drop{
+    display: inline-block;
+    padding: 4px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin: 0 5px;
 }

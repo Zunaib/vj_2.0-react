@@ -10,7 +10,6 @@ class Cart extends Component {
 
     state = {
         cart: [],
-        products: []
     }
 
     componentDidMount() {
@@ -29,26 +28,18 @@ class Cart extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.cart !== this.props.cart) {
             this.setState({ cart: this.props.cart });
-            this.set()
         }
     }
 
-    set() {
-        this.setState({ products: this.state.cart })
+
+    remove(index) {
+        this.props.onremoveprroduct(this.props.token, this.state.cart[index].productId._id)
     }
 
-
-    add(cartid, index, prod) {
-        let updated = [
-            ...this.state.products
-        ]
-        let cart = {
-            _id: cartid,
-            productId: prod
-        }
-        updated.splice(index, 0, cart);
-        this.setState({ products: updated })
+    onUpdatedCartSubmit = () => {
+        console.log(this.state.products)
     }
+
     render() {
 
         let carddata = null;
@@ -61,10 +52,10 @@ class Cart extends Component {
                 </tr>)
                 ;
         } else if (this.props.cart) {
-            const cart = this.state.products;
+            const cart = this.state.cart;
             carddata = (cart.map((cart, index) => (
                 <CartBody
-                    key={cart._id + index}
+                    key={cart.productId._id + index}
                     pid={cart.productId._id}
                     name={cart.productId.productName}
                     price={cart.productId.price}
@@ -72,7 +63,6 @@ class Cart extends Component {
                     colors={cart.productId.colors}
                     quantity={cart.productId.quantity}
                     images={cart.productId.images}
-                    add={() => this.add(cart._id, index, cart.productId)}
                 />
 
             )));
@@ -81,10 +71,10 @@ class Cart extends Component {
         let cartcontrols = null;
 
         if (this.props.cart) {
-            if (this.props.cart.length > 0) {
+            if (this.state.cart.length > 0) {
                 let total = null;
-                for (let i = 0; i < this.props.cart.length; i++) {
-                    total = total + this.props.cart[i].productId.price;
+                for (let i = 0; i < this.state.cart.length; i++) {
+                    total = total + this.state.cart[i].productId.price;
                 }
                 cartcontrols = (<tr className={[classes.TbTr, classes.ThTrTh20].join(' ')} >
                     <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')} colSpan={3}></td>
@@ -96,9 +86,9 @@ class Cart extends Component {
                     <td className={classes.ProceedButton}>
                     </td>
                     <td className={classes.ProceedButton}>
-                        <NavLink to="/dashboard/checkout">
-                            <Button btnType="WebButton" >Proceed To Checkout</Button>
-                        </NavLink>
+                        {/* <NavLink to="/dashboard/checkout"> */}
+                        <Button btnType="WebButton" clicked={this.onUpdatedCartSubmit} >Proceed To Checkout</Button>
+                        {/* </NavLink> */}
                     </td>
                 </tr>)
             } else {
@@ -127,10 +117,10 @@ class Cart extends Component {
                                 <tr className={classes.TheadTrow}>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh4, classes.ThTrTh5].join(' ')}></th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Product</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Color</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Size</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Selected Color</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh7].join(' ')}>Selected Size</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Price</th>
-                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}>Quantity</th>
+                                    <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}></th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5].join(' ')}>Action</th>
                                     <th className={[classes.ThTrTh1, classes.ThTrTh6, classes.ThTrTh2, classes.ThTrTh3, classes.ThTrTh5, classes.ThTrTh8].join(' ')}></th>
                                 </tr>
@@ -158,7 +148,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentcart: (token) => dispatch(actions.FetchCart(token)),
-        onupdatecart: (token, cart) => dispatch(actions.UpdateCart(token, cart))
+        onupdatecart: (token, cart) => dispatch(actions.UpdateCart(token, cart)),
+        onremoveprroduct: (token, productid) => dispatch(actions.RemoveFromCart(token, productid))
+
     }
 }
 

@@ -23,6 +23,15 @@ export const removeproductcartStart = () => {
     };
 };
 
+
+export const fetchcartSuccess = (cart) => {
+    return {
+        type: actionTypes.Fetch_Cart_Success,
+        cart: cart
+    };
+};
+
+
 export const RemoveFromCart = (token, productid) => {
 
     const product = {
@@ -30,24 +39,24 @@ export const RemoveFromCart = (token, productid) => {
     }
     return dispatch => {
         // dispatch(removeproductcartStart());
-        axios.delete('/api/removeFromCart?access_token=' + token, product)
+        axios.post('/api/removeFromCart?access_token=' + token, product)
             .then(res => {
 
                 console.log(res)
-                // const fetchedProducts = [];
-                // for (let key in res.data) {
-                //     fetchedProducts.push({
-                //         ...res.data[key]
-                //     });
-                // }
-                // let data = fetchedProducts[0];
-                // let myData = Object.keys(data).map(key => {
-                //     return data[key];
-                // })
+                const fetchedProducts = [];
+                for (let key in res.data) {
+                    fetchedProducts.push({
+                        ...res.data[key]
+                    });
+                }
+                let data = fetchedProducts[0];
+                let myData = Object.keys(data).map(key => {
+                    return data[key];
+                })
 
-                // console.log(myData)
+                console.log(myData)
 
-                // dispatch(removeproductcartSuccess(myData));
+                dispatch(fetchcartSuccess(myData));
             })
             .catch(err => {
                 console.log(err)

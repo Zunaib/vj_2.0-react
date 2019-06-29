@@ -10,11 +10,14 @@ import Settings from '../../../components/UI/Dropdown/SettingsDropdown/Settings'
 import Snack from '../../../components/UI/SnackBar/Snackbar';
 import Comment from "../../../components/UI/Comment/Comment";
 import ProductCard from '../../../components/UI/Card/Product/ProductCard';
+import Select from 'react-select';
 
 class Product extends Component {
 
     state = {
-        productid: window.location.href.split("http://localhost:3000/dashboard/products/")[1]
+        productid: window.location.href.split("http://localhost:3000/dashboard/products/")[1],
+        SelectedColor: null,
+        SelectedSize: null
     }
 
     componentDidMount() {
@@ -23,8 +26,17 @@ class Product extends Component {
 
     }
 
+
+    handleColorChange = SelectedColor => {
+        this.setState({ SelectedColor });
+    };
+    handleSizeChange = SelectedSize => {
+        this.setState({ SelectedSize });
+    };
+
     addtocart = () => {
-        this.props.onaddtocart(this.props.token, this.state.productid);
+        console.log(this.state.SelectedColor)
+        this.props.onaddtocart(this.props.token, this.state.productid, this.state.SelectedColor.value, this.state.SelectedSize.value);
     }
 
     productdelete = () => {
@@ -47,7 +59,29 @@ class Product extends Component {
 
             let settingbutton = null;
             let addtocartbutton = null;
+            let colorsdrop = [];
+            let sizesdrop = [];
+
+
+
             if (product) {
+
+
+                for (var i = 0; i < product.colors.length; i++) {
+                    var o = {};
+                    o["value"] = product.colors[i];
+                    o["label"] = product.colors[i];
+                    colorsdrop.push(o);
+                }
+
+                for (var k = 0; k < product.sizes.length; k++) {
+                    var j = {};
+                    j["value"] = product.sizes[k];
+                    j["label"] = product.sizes[k];
+                    sizesdrop.push(j);
+                }
+
+
                 if (this.props.userId === product.userId) {
                     settingbutton = (
                         <div className={classes.SettingButton}>
@@ -98,20 +132,26 @@ class Product extends Component {
                                 </p>
                             </div>
 
-                            <div className={classes.Desc}>
-                                <h4>Quantity</h4>
-                                <h4>
-                                    {product.quantity}
-                                </h4>
+                            <div className={classes.Drops}>
+                                <h4>Select Size</h4>
+                                <Select
+                                    className={classes.Select}
+                                    value={this.state.SelectedSize}
+                                    onChange={this.handleSizeChange}
+                                    options={sizesdrop}
+                                />
                             </div>
 
-                            <div className={classes.Desc}>
-                                <h4>Available sizes</h4>
-                                <p>
-                                    {product.sizes}
-
-                                </p>
+                            <div className={classes.Drops}>
+                                <h4>Select Color</h4>
+                                <Select
+                                    className={classes.Select}
+                                    value={this.state.SelectedColor}
+                                    onChange={this.handleColorChange}
+                                    options={colorsdrop}
+                                />
                             </div>
+
                             {addtocartbutton}
                         </div>
                     </div>
@@ -218,7 +258,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onfetchcurrentproduct: (token, productid) => dispatch(actions.FetchProduct(token, productid)),
-        onaddtocart: (token, productid) => dispatch(actions.AddToCart(token, productid)),
+        onaddtocart: (token, productid, color, size) => dispatch(actions.AddToCart(token, productid, color, size)),
         onaddtocartmsg: () => dispatch(actions.AddToCartMsg()),
         onproductdelete: (token, productid) => dispatch(actions.DeleteProduct(token, productid)),
         ondelmsg: () => dispatch(actions.DeleteProductMsg())

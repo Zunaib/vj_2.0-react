@@ -86,7 +86,7 @@ export const UpdateCart = (token) => {
                     return data[key];
                 })
 
-                // console.log(myData)
+                console.log(myData)
 
 
                 // dispatch(updatecartSuccess(myData));
