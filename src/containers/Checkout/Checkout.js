@@ -11,6 +11,7 @@ import Input from '../../components/UI/Input/Input';
 import CheckoutCard from '../../components/UI/Card/Checkout/CheckoutCard';
 import FormCard from '../../components/UI/Card/Form/FormCard';
 import { checkValidity } from '../../Shared/Validator';
+import StripeCheckout from 'react-stripe-checkout'
 class Checkout extends Component {
 
     componentDidMount = () => {

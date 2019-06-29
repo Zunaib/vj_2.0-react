@@ -92,9 +92,9 @@ class Cart extends Component {
                     <td className={classes.ProceedButton}>
                     </td>
                     <td className={classes.ProceedButton}>
-                        {/* <NavLink to="/dashboard/checkout"> */}
+                        <NavLink to="/dashboard/checkout">
                         <Button btnType="WebButton" clicked={this.onUpdatedCartSubmit} >Proceed To Checkout</Button>
-                        {/* </NavLink> */}
+                        </NavLink>
                     </td>
                 </tr>)
             } else {

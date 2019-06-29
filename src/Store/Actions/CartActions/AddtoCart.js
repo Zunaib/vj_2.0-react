@@ -34,11 +34,9 @@ export const AddToCart = (token, productId, color, size) => {
         dispatch(addtocartStart());
         axios.post('/api/addToCart?access_token=' + token, product)
             .then(res => {
-                // console.log(res)
                 dispatch(addtocartSuccess(res));
             })
             .catch(err => {
-                // console.log(err)
                 dispatch(addtocartfailed(err.response.data.message));
             });
     }
