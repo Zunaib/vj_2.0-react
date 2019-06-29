@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Cart.css';
 import { Link } from 'react-router-dom';
-import Select from 'react-select';
 
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
@@ -26,11 +25,15 @@ class Cart extends Component {
                         <small>by Dolce&Gabbana</small>
                     </span>
                 </td>
-                <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
-                  
+                <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.Center].join(' ')}>
+                    <span>
+                        {this.props.color}
+                    </span>
                 </td>
-                <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
-                
+                <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13, classes.Center].join(' ')}>
+                    <span>
+                        {this.props.size}
+                    </span>
                 </td>
                 <td className={[classes.ThTrTh12, classes.ThTrTh9, classes.ThTrTh3, classes.ThTrTh13].join(' ')}>
                     <span>

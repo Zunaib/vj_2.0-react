@@ -33,7 +33,12 @@ class Cart extends Component {
 
 
     remove(index) {
-        this.props.onremoveprroduct(this.props.token, this.state.cart[index].productId._id)
+        let removedcart = [
+            ...this.props.cart
+        ]
+        removedcart.splice(index, 1)
+        console.log(removedcart)
+        this.props.onremoveprroduct(this.props.token, removedcart)
     }
 
     onUpdatedCartSubmit = () => {
@@ -59,10 +64,11 @@ class Cart extends Component {
                     pid={cart.productId._id}
                     name={cart.productId.productName}
                     price={cart.productId.price}
-                    sizes={cart.productId.sizes}
-                    colors={cart.productId.colors}
+                    size={cart.selectedSize}
+                    color={cart.selectedColor}
                     quantity={cart.productId.quantity}
                     images={cart.productId.images}
+                    remove={() => this.remove(index)}
                 />
 
             )));

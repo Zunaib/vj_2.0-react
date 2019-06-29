@@ -37,6 +37,7 @@ class Product extends Component {
     addtocart = () => {
         console.log(this.state.SelectedColor)
         this.props.onaddtocart(this.props.token, this.state.productid, this.state.SelectedColor.value, this.state.SelectedSize.value);
+        this.setState({ SelectedColor: null, SelectedSize: null })
     }
 
     productdelete = () => {
@@ -178,10 +179,6 @@ class Product extends Component {
             added = (<Snack message={"Item Successfully Added To Cart"} snackType="success" refresh={this.props.onaddtocartmsg} />);
 
         }
-        let addederror = null;
-        if (this.props.addedtocarterror) {
-            addederror = (<Snack message={"Item Already Added"} snackType="error" refresh={this.props.onaddtocartmsg} />);
-        }
 
         let delprod = null;
         if (this.props.deleted) {
@@ -221,7 +218,6 @@ class Product extends Component {
         return (
             <div className={classes.Main}>
                 {added}
-                {addederror}
                 {delprod}
                 {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
                 <div className={classes.Album}>
