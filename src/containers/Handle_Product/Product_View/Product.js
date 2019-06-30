@@ -13,6 +13,8 @@ import ProductCard from '../../../components/UI/Card/Product/ProductCard';
 import Select from 'react-select';
 import Slider from "react-slick";
 
+import Magnifier from "react-magnifier";
+
 class Product extends Component {
 
     state = {
@@ -133,9 +135,11 @@ class Product extends Component {
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumImage} >
                             <Slider {...settings}>
-                                {product.images.map(img => {
-                                    return <div>
-                                        <img src={'http://localhost:5000' + img} alt="Product_Thumbnail" />
+                                {product.images.map((img, index) => {
+                                    return <div key={index}>
+                                        {/* <img src={'http://localhost:5000' + img} alt="Product_Thumbnail" /> */}
+                                        <Magnifier src={'http://localhost:5000' + img} width={500} mgWidth={300} mgHeight={300}
+                                            zoomFactor={1} />
                                     </div>
                                 })}
                             </Slider>
