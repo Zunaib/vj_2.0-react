@@ -9,7 +9,7 @@ import FileUploader from '../../../components/FileUploader/MultipleFile';
 import productimg from '../../../assets/images/testimg.jpg';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
-import Input from '../../../components/UI/Input/CustomInput/CustomInput';
+import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
 import Snack from '../../../components/UI/SnackBar/Snackbar';
 
@@ -49,9 +49,9 @@ class Product extends Component {
         };
         let updatedFormElement;
         var colors = this.state.dropdowns[0].values;
-        var productTypes = this.state.dropdowns[1].values;
-        var shoesizes = this.state.dropdowns[2].values;
-        var topsizes = this.state.dropdowns[3].values;
+        var productTypes = this.state.dropdowns[3].values;
+        var shoesizes = this.state.dropdowns[1].values;
+        var topsizes = this.state.dropdowns[2].values;
         var bottomsizes = this.state.dropdowns[4].values;
         var colorsdrop = [];
         var productTypesdrop = [];
@@ -124,7 +124,9 @@ class Product extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    minLength: 5,
+                    maxLength: 40
                 },
                 valid: false,
                 touched: false
@@ -137,7 +139,9 @@ class Product extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    minLength: 10,
+                    maxLength: 200
                 },
                 valid: false,
                 touched: false
@@ -160,44 +164,15 @@ class Product extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
-                    minLength: 1,
-                    maxLength: 100,
+                    type: 'text',
+                    placeholder: 'Product Price',
+                    minLength: 2,
+                    maxLength: 6,
                     isNumeric: true
                 },
                 valid: false,
                 touched: false
             },
-            // quantity: {
-            //     elementType: 'input',
-            //     elementConfig: {
-            //         type: 'text',
-            //         placeholder: 'Product Quantity'
-            //     },
-            //     value: '',
-            //     validation: {
-            //         required: true,
-            //         minLength: 1,
-            //         isNumeric: true
-            //     },
-            //     valid: false,
-            //     touched: false
-            // },
-            // discount: {
-            //     elementType: 'input',
-            //     elementConfig: {
-            //         type: 'text',
-            //         placeholder: 'Product Discounted Price'
-            //     },
-            //     value: '',
-            //     validation: {
-            //         required: true,
-            //         minLength: 1,
-            //         isNumeric: true
-            //     },
-            //     valid: false,
-            //     touched: false
-            // }
         },
         formIsValid: false,
         selectedFiles: null,
@@ -364,6 +339,10 @@ class Product extends Component {
         this.setState({ selectedColors: selectedOptions });
         console.log(`Option selected:`, selectedOptions);
     };
+
+    onaddPMsg = () => {
+        this.setState({ maxselected: false })
+    }
     render() {
 
         const formElementsArray = [];
@@ -388,7 +367,10 @@ class Product extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
 
-                <FileUploader clicked={this.fileSelectedHandler} />
+                <FileUploader clicked={this.fileSelectedHandler}
+                    text={
+                        this.state.selectedFiles ? this.state.selectedFiles.length + " Images Selected"
+                            : "Select 5 Images, 2 Atleast"} />
                 <Button btnType="WebButton" >Add Product</Button>
             </form>
 
@@ -447,7 +429,7 @@ class Product extends Component {
 
             productimages = (<div className={classes.Images}>
                 <div className={classes.Dropdowns}>
-                    <h4>Product Sizes</h4>
+                    <h4>Sizes</h4>
                     <Select
                         isMulti
                         isSearchable
@@ -458,7 +440,7 @@ class Product extends Component {
                     />
                 </div>
                 <div className={classes.Dropdowns}>
-                    <h4>Product Colors</h4>
+                    <h4>Colors</h4>
                     <Select
                         isMulti
                         isSearchable
@@ -488,8 +470,8 @@ class Product extends Component {
         }
 
         let imgsnack = null;
-        if (this.state.selectedFiles) {
-            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} snackType="success" refresh={this.props.onaddProductMsg} />);
+        if (this.state.maxselected) {
+            imgsnack = (<Snack message={'Images Added: ( ' + this.state.selectedFiles.length + ' )'} snackType="success" refresh={this.onaddPMsg} />);
         }
         return (
             <div className={classes.Main}>

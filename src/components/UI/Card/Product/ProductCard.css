@@ -5,7 +5,6 @@
     width: 18%;
     height: 100%;
     float: left;
-    margin-top: 13px;
     margin-bottom: 20px;
     margin-left: 13px;
     margin-right: 11px;
@@ -18,16 +17,20 @@
 
 .ProductCard img{
     object-fit: cover;
+    object-position: top;
 background-repeat: no-repeat;
-    width: 95%;
-    border-radius: 10px;
-    margin-top: 10px;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     height: 30vh;
 }
 
 
 .CardText{
     text-align:center;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 div.CardText h4{
@@ -48,7 +51,8 @@ div.CardText h4{
 
 .CardInfo{
     text-align:center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    width: 100%;
 }
 
 .CardPrice{
@@ -61,6 +65,23 @@ div.CardText h4{
 }
 
 .CardButton{
-    float:left;
+    z-index: 300;
+    font-size: 1.2rem;
+    float: right;
     width: 50%;
 }
+
+.CardButton i{
+    color: rgb(219, 0, 0);
+    font-size: 1.2rem;
+    float: right;
+    width: 60%;
+}
+
+.CardButton i:hover{
+    color: rgb(168, 0, 0);
+    font-size: 1.4rem;
+    float: right;
+    width: 60%;
+}
+

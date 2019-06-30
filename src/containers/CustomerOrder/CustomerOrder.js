@@ -56,18 +56,26 @@ class CustomerOrder extends Component {
                 </tr>)
                 ;
         } else if (this.props.orders) {
-            carddata = (orders.map((order, index) => (
-                <CustomerOrderBody
-                    key={order._id}
-                    index={index + 1}
-                    products={order.products}
-                    orderdate={order.createdAt}
-                    calcelled={order.deletedAt}
-                    viewclicked={() => this.viewOrderHandler(order)}
-                    cancelclicked={() => this.cancelOrderHandler(order._id)}
-                />
+            if (this.props.orders.length > 0) {
+                carddata = (orders.map((order, index) => (
+                    <CustomerOrderBody
+                        key={order._id}
+                        index={index + 1}
+                        products={order.products}
+                        orderdate={order.createdAt}
+                        calcelled={order.deletedAt}
+                        viewclicked={() => this.viewOrderHandler(order)}
+                        cancelclicked={() => this.cancelOrderHandler(order._id)}
+                    />
 
-            )));
+                )));
+            } else {
+                carddata = (
+                    <tr className={classes.Empty}>
+                        <td><h3>No Orders Placed By You Yet.</h3></td>
+                    </tr>
+                );
+            }
         }
 
         return (

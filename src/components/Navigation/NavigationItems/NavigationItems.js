@@ -65,24 +65,26 @@ class NavigationItems extends Component {
 
                     <ul className={classes.NavigationItemsWeb}>
 
+                        <div className={classes.NotificationIcon} >
+                            <NotificDropdown />
+                        </div>
+
+
                         <div className={classes.MessageIcon} >
                             {/* <MsgDropdown /> */}
                             <NavLink to="/dashboard/messenger/convos" >
                                 <i className="fas fa-inbox"
                                 >
-                                    <span className={classes.Badge}>3</span>
                                 </i>
                             </NavLink>
                         </div>
-                        <div className={classes.NotificationIcon} >
-                            <NotificDropdown />
-                        </div>
+
 
                         <div className={classes.ImageButton} >
                             <h5>{firstname ? firstname + " " + lastname : 'Name'}</h5>
-                            <img className={classes.Image} src={img} alt="NavDisplay" />
+                            {/* <img className={classes.Image} src={img} alt="NavDisplay" /> */}
                             <div className={classes.Dropdown} >
-                                <Dropdown />
+                                <Dropdown image={img} firstname={firstname} lastName={lastname} />
                             </div>
 
                         </div>

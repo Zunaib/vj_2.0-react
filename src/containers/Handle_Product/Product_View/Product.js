@@ -11,6 +11,7 @@ import Snack from '../../../components/UI/SnackBar/Snackbar';
 import Comment from "../../../components/UI/Comment/Comment";
 import ProductCard from '../../../components/UI/Card/Product/ProductCard';
 import Select from 'react-select';
+import Slider from "react-slick";
 
 class Product extends Component {
 
@@ -50,12 +51,21 @@ class Product extends Component {
     }
     render() {
 
+        var settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: true,
+            arrows: true
+        };
+
         let productdata = null;
         if (this.props.loading) {
             productdata = <Spinner />
         } else {
             let product = this.props.currentproduct;
-            let product_thumbnail = 'http://localhost:5000' + product.images[0];
             let editpath = '/dashboard/handle_product/update_product/' + this.state.productid;
 
             let settingbutton = null;
@@ -122,7 +132,14 @@ class Product extends Component {
                     {settingbutton}
                     <div className={classes.Album_Top}>
                         <div className={classes.AlbumImage} >
-                            <img src={product_thumbnail} alt="Product_Thumbnail" />
+                            <Slider {...settings}>
+                                {product.images.map(img => {
+                                    return <div>
+                                        <img src={'http://localhost:5000' + img} alt="Product_Thumbnail" />
+                                    </div>
+                                })}
+                            </Slider>
+                            {/* <img src={product_thumbnail} alt="Product_Thumbnail" /> */}
                         </div>
                         <div className={classes.AlbumInfo}>
                             <h1>{product.productName}</h1> <h3><small>Rs</small> {product.price}</h3>

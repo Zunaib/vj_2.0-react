@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import classes from './Welcome.css';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
-import Logo from '../../components/Logo/Logo';
+// import Logo from '../../components/Logo/Logo';
 // import Auxilary from '../../../hoc/Auxilary/Auxilary'
 // import AlbumProducts from '../../../components/AlbumProducts/AlbumProducts';
 // import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -39,11 +39,6 @@ class Welcome extends Component {
         }
         return (
             <div className={classes.Main}>
-
-                <div className={classes.Logo} >
-                    <Logo logoType="White" />
-                </div>
-
                 {welcomeredirect}
                 <div className={classes.Album}>
                     <div className={classes.Welcome}>

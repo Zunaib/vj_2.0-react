@@ -303,3 +303,9 @@ export const Vlog_Comment_Success = 'Vlog_Comment_Success';
 export const Blog_Comment_Failed = 'Blog_Comment_Failed';
 export const Blog_Comment_Start = 'Blog_Comment_Start';
 export const Blog_Comment_Success = 'Blog_Comment_Success';
+
+
+/*Fetch Notifications */
+export const Fetch_Notification_Failed = 'Fetch_Notification_Failed';
+export const Fetch_Notification_Start = 'Fetch_Notification_Start';
+export const Fetch_Notification_Success = 'Fetch_Notification_Success';

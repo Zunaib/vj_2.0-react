@@ -42,6 +42,7 @@ class UserProfile extends Component {
     setData() {
 
         let user = this.state.settings[0];
+        console.log(user)
         if (user) {
             this.setState({
                 userimage: user.displayPicture,
@@ -64,6 +65,7 @@ class UserProfile extends Component {
         if (prevProps.settings !== this.props.settings) {
             //Perform some operation here
             this.setState({ settings: this.props.settings });
+            this.setData();
         }
     }
 
@@ -109,9 +111,10 @@ class UserProfile extends Component {
         let img = null;
         let firstname = this.state.userfirst;
         let lastname = this.state.userlast;
-        let desc = this.state.desc
+        let desc = this.state.desc;
         if (this.state.userimage) {
             img = 'http://localhost:5000' + this.state.userimage;
+            console.log(img)
         } else {
             img = display;
         }
@@ -180,7 +183,7 @@ class UserProfile extends Component {
                         </div>
 
                         <div className={classes.Desc}>
-                            {desc ? desc : 'Designer Description'}
+                            {desc ? desc : 'Designer Description Goes Here'}
                         </div>
                         {stats}
 

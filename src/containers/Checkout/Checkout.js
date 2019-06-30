@@ -11,7 +11,6 @@ import Input from '../../components/UI/Input/Input';
 import CheckoutCard from '../../components/UI/Card/Checkout/CheckoutCard';
 import FormCard from '../../components/UI/Card/Form/FormCard';
 import { checkValidity } from '../../Shared/Validator';
-import StripeCheckout from 'react-stripe-checkout'
 class Checkout extends Component {
 
     componentDidMount = () => {
@@ -176,7 +175,8 @@ class Checkout extends Component {
             },
         },
         formIsValid: false,
-        redirect: null
+        redirect: null,
+        type: "cashondelivery"
         // userName: "",
         // // desc: "",
         // selectedFile: null,
@@ -214,7 +214,9 @@ class Checkout extends Component {
         console.log(order)
 
         if (true) {
-            this.props.oncheckout(this.props.token, order);
+            if (this.state.type === "cashondelivery") {
+                this.props.oncheckout(this.props.token, order);
+            }
             console.log('valid')
         } else {
             console.log('Invalid')
@@ -244,7 +246,9 @@ class Checkout extends Component {
         this.setState({ checkoutForm: updatedcheckoutForm, formIsValid: formIsValid });
     }
 
-
+    settype = (type) => {
+        this.setState({ type: type })
+    }
     render() {
 
 
@@ -289,7 +293,7 @@ class Checkout extends Component {
 
                 </div>
                 <div className={classes.ProfileCard}>
-                    <CheckoutCard />
+                    <CheckoutCard setType={(type) => this.settype(type)} />
                 </div>
 
             </div>

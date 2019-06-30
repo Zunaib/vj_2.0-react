@@ -77,6 +77,8 @@ import CreateConvoReducer from './MessengerReducers/CreateConverstaion';
 import FetchSingleConvoReducer from './MessengerReducers/FetchSingleConversation';
 import FetchAllConvoReducer from './MessengerReducers/FetchAllConversations';
 
+/*Notifications Reducers */
+import FetchNotificationsReducer from './UserReducers/FetchNotifications'
 
 export default combineReducers({
     ContactUs: ContactUsReducer,
@@ -135,7 +137,9 @@ export default combineReducers({
 
     CreateConvo: CreateConvoReducer,
     FetchSingleConvo: FetchSingleConvoReducer,
-    FetchAllConvo: FetchAllConvoReducer
+    FetchAllConvo: FetchAllConvoReducer,
+
+    FetchNotifications: FetchNotificationsReducer
 
 
 

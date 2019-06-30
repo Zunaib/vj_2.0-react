@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import classes from './WebInput.css';
 
@@ -6,9 +6,9 @@ const input = (props) => {
     let inputElement = null;
     const inputClasses = [classes.InputElement];
 
-    // if (props.invalid && props.shouldValidate && props.touched) {
-    //     inputClasses.push(classes.Invalid);
-    // }
+    if (props.invalid && props.shouldValidate && props.touched) {
+        inputClasses.push(classes.Invalid);
+    }
 
     switch (props.elementType) {
         case ('input'):
@@ -84,11 +84,34 @@ const input = (props) => {
         label = <label>{props.label}</label>;
     }
 
+    let error = null;
+    if (props.invalid && props.touched && props.shouldValidate) {
+
+        if (props.shouldValidate.isNumeric) {
+            error = <p className={classes.ErrorInput}>Inavlid Type or Length: 2-6 Numeric </p>;
+        } else {
+            if (props.label === "name") {
+                error = <p className={classes.ErrorInput}>Inavlid Length: 5-40 Characters </p>;
+            } else {
+                error = <p className={classes.ErrorInput}>Inavlid Length: 10-200 Characters </p>;
+            }
+        }
+
+
+        if (props.value === "" && props.touched && props.shouldValidate) {
+            error = <p className={classes.ErrorInput}>Empty Fields Invalid</p>;
+        }
+
+    }
+
     return (
-        <div className={classes.Input}>
-            {label}
-            {inputElement}
-        </div>
+        <Fragment>
+            <div className={classes.Input}>
+                {label}
+                {inputElement}
+            </div>
+            {error}
+        </Fragment>
     );
 
 };

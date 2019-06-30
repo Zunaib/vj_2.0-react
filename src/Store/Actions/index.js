@@ -204,3 +204,7 @@ export {
 export {
     BlogComment
 } from './BlogActions/Comment'
+
+export {
+    FetchNotifications
+} from './UserActions/FetchNotifications'

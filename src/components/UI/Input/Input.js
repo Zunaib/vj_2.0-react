@@ -75,7 +75,7 @@ const input = (props) => {
 
     let error = null;
 
-    if (props.invalid && props.label === "Username" && props.touched && props.shouldValidate) {
+    if (props.invalid && props.touched && props.shouldValidate) {
         error = <p className={classes.ErrorInput}>Inavlid : 5-15 Length and AlphaNumeric</p>;
 
         if (props.value === "" && props.touched && props.shouldValidate) {
@@ -93,7 +93,7 @@ const input = (props) => {
 
     }
 
-    if (props.invalid && props.label === "password" && props.touched && props.shouldValidate) {
+    if (props.invalid && props.label === "name" && props.touched && props.shouldValidate) {
         error = <p className={classes.ErrorInput}>Inavlid Password: 7-20 Length and AlphaNumeric </p>;
 
         if (props.value === "" && props.touched && props.shouldValidate) {

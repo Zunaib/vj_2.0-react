@@ -29,10 +29,10 @@ const CustomerOrder = (props) => {
                     {products.paymentMethod}
                 </span>
             </td>
-            <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9].join(' ')}>
+            <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.Action].join(' ')}>
                 <div className={classes.ibutton} onClick={props.completeclicked}>
-                    <h3>Completed</h3>
-                    <i className="fas fa-info-circle"></i>
+                    <h3>Complete</h3>
+                    <i className="far fa-check-square"></i>
                 </div>
                 {false ?
                     <div className={classes.ibutton3}>

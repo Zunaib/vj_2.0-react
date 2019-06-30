@@ -13,6 +13,7 @@ import Button from '../../../components/UI/Button/Button';
 import Input from '../../../components/UI/Input/Web_Input/WebInput';
 import { checkValidity } from '../../../Shared/Validator';
 import Snack from '../../../components/UI/SnackBar/Snackbar';
+import Select from 'react-select';
 
 class Product extends Component {
 
@@ -20,12 +21,15 @@ class Product extends Component {
     componentDidMount() {
         let str = window.location.href.split("/")[6];
         this.props.onfetchcurrentproduct(this.props.token, str)
-
+        this.props.fetchdropdowns(this.props.token);
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.currentproduct !== prevState.product) {
             return { product: nextProps.currentproduct };
+        }
+        if (nextProps.dropdowns !== prevState.dropdowns) {
+            return { dropdowns: nextProps.dropdowns };
         }
         else return null;
     }
@@ -36,17 +40,47 @@ class Product extends Component {
             this.setState({ album: this.props.currentproduct });
             this.setData();
         }
+
+        if (prevProps.dropdowns !== this.props.dropdowns) {
+            //Perform some operation here
+            this.setState({ dropdowns: this.props.dropdowns });
+            this.setdropdowns();
+        }
     }
 
     setData() {
 
         let prevProduct = this.state.product;
+
+        const updatedcolors = [
+            ...this.state.selectedColors
+        ];
+        var colors = prevProduct.colors;
+        for (var i = 0; i < colors.length; i++) {
+            var o = {};
+            o["value"] = colors[i];
+            o["label"] = colors[i];
+            updatedcolors.push(o);
+        }
+        const updatedsizes = [
+            ...this.state.selectedSizes
+        ];
+        var sizes = prevProduct.sizes;
+        for (var k = 0; k < sizes.length; k++) {
+            var j = {};
+            j["value"] = sizes[k];
+            j["label"] = sizes[k];
+            updatedsizes.push(j);
+        }
+        this.setState({ selectedColors: updatedcolors, selectedSizes: updatedsizes })
+
+
         const updatedproductForm = {
             ...this.state.productForm
         };
 
-        const formElements = ['name', 'description', 'quantity', 'price', 'discount', 'sizes', 'colors'];
-        const formElementsIncoming = ['productName', 'description', 'quantity', 'price', 'discount', 'sizes', 'colors'];
+        const formElements = ['name', 'description', 'productType', 'price'];
+        const formElementsIncoming = ['productName', 'description', 'productType', 'price'];
 
 
         for (let i = 0; i < formElements.length; i++) {
@@ -83,6 +117,77 @@ class Product extends Component {
 
     }
 
+    setdropdowns() {
+        let updatedproductForm = {
+            ...this.state.productForm
+        };
+        let updatedFormElement;
+        var colors = this.state.dropdowns[0].values;
+        var productTypes = this.state.dropdowns[3].values;
+        var shoesizes = this.state.dropdowns[1].values;
+        var topsizes = this.state.dropdowns[2].values;
+        var bottomsizes = this.state.dropdowns[4].values;
+        var colorsdrop = [];
+        var productTypesdrop = [];
+        var shoesizesdrop = [];
+        var topsizesdrop = [];
+        var bottomsizesdrop = [];
+
+        for (var i = 0; i < colors.length; i++) {
+            var o = {};
+            o["value"] = colors[i];
+            o["label"] = colors[i];
+            colorsdrop.push(o);
+        }
+        this.setState({ colors: colorsdrop })
+
+
+        for (i = 0; i < productTypes.length; i++) {
+            o = {};
+            o["displayValue"] = productTypes[i];
+            o["value"] = productTypes[i];
+            productTypesdrop.push(o);
+        }
+        this.setState({ productTypes: productTypesdrop })
+
+        for (i = 0; i < shoesizes.length; i++) {
+            o = {};
+            o["value"] = shoesizes[i];
+            o["label"] = shoesizes[i];
+            shoesizesdrop.push(o);
+        }
+        this.setState({ shoesizes: shoesizesdrop })
+
+        for (i = 0; i < topsizes.length; i++) {
+            o = {};
+            o["value"] = topsizes[i];
+            o["label"] = topsizes[i];
+            topsizesdrop.push(o);
+        }
+        this.setState({ topsizes: topsizesdrop })
+
+        for (i = 0; i < bottomsizes.length; i++) {
+            o = {};
+            o["value"] = bottomsizes[i];
+            o["label"] = bottomsizes[i];
+            bottomsizesdrop.push(o);
+        }
+        this.setState({ bottomsizes: bottomsizesdrop })
+
+
+
+        for (let formElementIdentifier in updatedproductForm) {
+            updatedFormElement = {
+                ...updatedproductForm[formElementIdentifier]
+            };
+            if (formElementIdentifier === "productType") {
+                updatedFormElement.elementConfig.options = productTypesdrop;
+                updatedproductForm[formElementIdentifier] = updatedFormElement;
+            }
+        }
+        this.setState({ productForm: updatedproductForm })
+    }
+
 
 
     state = {
@@ -92,19 +197,6 @@ class Product extends Component {
                 elementConfig: {
                     type: 'text',
                     placeholder: 'Product Name'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            },
-            sizes: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Product Size'
                 },
                 value: '',
                 validation: {
@@ -126,6 +218,16 @@ class Product extends Component {
                 valid: false,
                 touched: false
             },
+            productType: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [
+                    ]
+                },
+                value: "Tops",
+                validation: {},
+                valid: true
+            },
             price: {
                 elementType: 'input',
                 elementConfig: {
@@ -142,52 +244,6 @@ class Product extends Component {
                 valid: false,
                 touched: false
             },
-            quantity: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Product Quantity'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 1,
-                    isNumeric: true
-                },
-                valid: false,
-                touched: false
-            },
-            colors: {
-                elementType: 'select',
-                elementConfig: {
-                    options: [
-                        { value: 'brown', displayValue: 'Brown' },
-                        { value: 'black', displayValue: 'Black' },
-                        { value: 'red', displayValue: 'Red' },
-                        { value: 'blue', displayValue: 'Blue' },
-                        { value: 'yellow', displayValue: 'Yellow' },
-                        { value: 'green', displayValue: 'Green' },
-                    ]
-                },
-                value: 'Black',
-                validation: {},
-                valid: true
-            },
-            discount: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Product Discount Percentage'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    minLength: 1,
-                    isNumeric: true
-                },
-                valid: false,
-                touched: false
-            }
         },
         formIsValid: false,
         selectedFiles: null,
@@ -197,7 +253,16 @@ class Product extends Component {
         maxselected: false,
         product: null,
         productimages: null,
-        productid: window.location.href.split("/")[6]
+        productid: window.location.href.split("/")[6],
+        dropdowns: null,
+        productTypes: null,
+        sizes: null,
+        topsizes: null,
+        bottomsizes: null,
+        shoesizes: null,
+        selectedSizes: [],
+        selectedColors: [],
+        colors: null
     }
 
     maxSelectFile = (event) => {
@@ -261,8 +326,8 @@ class Product extends Component {
             formData[formElementIdentifier] = this.state.productForm[formElementIdentifier].value;
         }
         // console.log(this.state.selectedFiles)
-        const formElements = ['name', 'description', 'quantity', 'price', 'discount', 'sizes', 'colors'];
-        const formElementsIncoming = ['productName', 'description', 'quantity', 'price', 'discount', 'sizes', 'colors'];
+        const formElements = ['name', 'description', 'productType', 'price'];
+        const formElementsIncoming = ['productName', 'description', 'productType', 'price'];
         let prevProduct = this.state.product;
         let action = false;
         for (let i = 0; i < formElements.length; i++) {
@@ -286,14 +351,26 @@ class Product extends Component {
         if (prevProduct.albumId) {
             data.append('albumId', prevProduct.albumId);
         }
+
+        let sizesArray = [];
+        this.state.selectedSizes.map(size => {
+            return sizesArray.push(size.value);
+        })
+        let colorsArray = [];
+        this.state.selectedColors.map(color => {
+            return colorsArray.push(color.value);
+        })
+
+        console.log(sizesArray)
+        console.log(colorsArray)
+
         data.append('productId', prevProduct._id);
         data.append('productName', formData.name);
+        data.append('productType', formData.productType)
         data.append('description', formData.description);
-        data.append('color', formData.color);
-        data.append('quantity', formData.quantity);
-        data.append('sizes', formData.sizes);
         data.append('price', formData.price);
-        data.append('discount', formData.discount);
+        data.append('sizes', sizesArray);
+        data.append('colors', colorsArray);
 
         if (this.state.formIsValid && action) {
             console.log('valid')
@@ -318,11 +395,54 @@ class Product extends Component {
         updatedFormElement.touched = true;
         updatedproductForm[inputIdentifier] = updatedFormElement;
 
+
+        if (inputIdentifier === 'productType') {
+            console.log(updatedFormElement.value)
+            if (updatedFormElement.value === 'Tops') {
+                this.setState({ sizes: "Tops", selectedSizes: [] });
+            } else if (updatedFormElement.value === 'Bottoms') {
+                this.setState({ sizes: "Bottoms", selectedSizes: [] });
+            } else if (updatedFormElement.value === 'Footwear') {
+                this.setState({ sizes: "Footwear", selectedSizes: [] });
+            }
+
+
+            let prevProduct = this.state.product;
+            console.log(prevProduct)
+            if (prevProduct.productType === updatedFormElement.value) {
+                const updatedsizes = [
+                    ...this.state.selectedSizes
+                ];
+                var sizes = prevProduct.sizes;
+                for (var k = 0; k < sizes.length; k++) {
+                    var j = {};
+                    j["value"] = sizes[k];
+                    j["label"] = sizes[k];
+                    updatedsizes.push(j);
+                }
+                this.setState({ selectedSizes: updatedsizes })
+            }
+
+        }
+
         let formIsValid = true;
         for (let inputIdentifier in updatedproductForm) {
             formIsValid = updatedproductForm[inputIdentifier].valid && formIsValid;
         }
         this.setState({ productForm: updatedproductForm, formIsValid: formIsValid });
+    }
+
+    handleSizesChange = (selectedOptions) => {
+        this.setState({ selectedSizes: selectedOptions });
+        console.log(`Option selected:`, selectedOptions);
+    };
+    handleColorsChange = (selectedOptions) => {
+        this.setState({ selectedColors: selectedOptions });
+        console.log(`Option selected:`, selectedOptions);
+    };
+
+    onaddPMsg = () => {
+        this.setState({ maxselected: false })
     }
     render() {
 
@@ -347,7 +467,10 @@ class Product extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <FileUploader clicked={this.fileSelectedHandler} />
+                <FileUploader clicked={this.fileSelectedHandler}
+                    text={
+                        this.state.selectedFiles ? this.state.selectedFiles.length + " Images Selected"
+                            : "Click To Change Images"} />
                 <Button btnType="WebButton" >Update Product</Button>
             </form>
         );
@@ -356,9 +479,41 @@ class Product extends Component {
             form = <Spinner />;
         }
 
+        let sizes = this.state.topsizes;
+        if (this.state.sizes === "Tops") {
+            sizes = this.state.topsizes;
+        } else if (this.state.sizes === "Bottoms") {
+            sizes = this.state.bottomsizes;
+        } else if (this.state.sizes === "Footwear") {
+            sizes = this.state.shoesizes;
+        }
+
+
         let productimages = null;
         if (this.state.selectedFiles) {
             productimages = (<div className={classes.Images}>
+                <div className={classes.Dropdowns}>
+                    <h4>Product Sizes</h4>
+                    <Select
+                        isMulti
+                        isSearchable
+                        className={classes.Select}
+                        value={this.state.selectedSizes}
+                        onChange={this.handleSizesChange}
+                        options={sizes}
+                    />
+                </div>
+                <div className={classes.Dropdowns}>
+                    <h4>Product Colors</h4>
+                    <Select
+                        isMulti
+                        isSearchable
+                        className={classes.Select}
+                        value={this.state.selectedColors}
+                        onChange={this.handleColorsChange}
+                        options={this.state.colors}
+                    />
+                </div>
                 <div className={classes.AlbumImage} >
                     <img src={this.state.selectedFiles[0] ? this.state.selectedFilesURL[0] : productimg} alt="Product_Thumbnail" />
                 </div>
@@ -371,6 +526,28 @@ class Product extends Component {
             </div>);
         } else if (this.state.productimages) {
             productimages = (<div className={classes.Images}>
+                <div className={classes.Dropdowns}>
+                    <h4>Product Sizes</h4>
+                    <Select
+                        isMulti
+                        isSearchable
+                        className={classes.Select}
+                        value={this.state.selectedSizes}
+                        onChange={this.handleSizesChange}
+                        options={sizes}
+                    />
+                </div>
+                <div className={classes.Dropdowns}>
+                    <h4>Product Colors</h4>
+                    <Select
+                        isMulti
+                        isSearchable
+                        className={classes.Select}
+                        value={this.state.selectedColors}
+                        onChange={this.handleColorsChange}
+                        options={this.state.colors}
+                    />
+                </div>
                 <div className={classes.AlbumImage} >
                     <img src={this.state.productimages[0] ? this.state.productimages[0] : productimg} alt="Product_Thumbnail" />
                 </div>
@@ -384,9 +561,10 @@ class Product extends Component {
         }
 
 
+        
         let imgsnack = null;
-        if (this.state.selectedFiles) {
-            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFiles.length + ' )'} snackType="success" refresh={this.props.onupdateMsg} />);
+        if (this.state.maxselected) {
+            imgsnack = (<Snack message={'Images Added: ( ' + this.state.selectedFiles.length + ' )'} snackType="success" refresh={this.onaddPMsg} />);
         }
 
         let updateprod = null;
@@ -431,11 +609,13 @@ const mapStateToProps = state => {
         token: state.Auth.token,
         currentproduct: state.ViewProduct.currentproduct,
         updated: state.UpdateProduct.updated,
+        dropdowns: state.FetchProductDropdowns.dropdowns,
         loading: state.ViewProduct.loading
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
+        fetchdropdowns: (token) => dispatch(actions.Fetchproductdropdowns(token)),
         onfetchcurrentproduct: (token, productid) => dispatch(actions.FetchProduct(token, productid)),
         onupdatecurrentproduct: (token, productid) => dispatch(actions.UpdateProduct(token, productid)),
         onupdateMsg: () => dispatch(actions.UpdateProductMsg())

@@ -220,17 +220,17 @@ thead > tr {
 
 
 .ibutton {
-    margin-right: 20px;
 padding: 0px 9px;
-background-color: rgb(163, 0, 163);
+background-color:rgb(0, 202, 10);
 color: white;
 border-radius: 10px;
 cursor: pointer;
-display: inline-block;
+margin: 0 auto;
 
+margin-top: 5px;
 }
 .ibutton:hover {
-background-color: purple;
+background-color: green;
 
 }
 
@@ -246,14 +246,18 @@ background-color: purple;
 .ibutton2 {
     margin-right: 50px;
 padding: 0px 9px;
-background-color: rgb(163, 0, 163);
+background-color:rgb(202, 0, 0);
+
 color: white;
 border-radius: 10px;
 cursor: pointer;
-display: inline-block;
+margin: 0 auto;
+margin-top: 5px;
+
 }
 .ibutton2:hover {
-background-color: purple;
+    background-color: maroon;
+
 }
 
 .ibutton2 h3{
@@ -271,7 +275,9 @@ padding: 0px 9px;
 background-color: rgb(119, 119, 119);
 color: white;
 border-radius: 10px;
-display: inline-block;
+margin: 0 auto;
+
+margin-top: 5px;
 }
 
 
@@ -282,6 +288,10 @@ display: inline-block;
 .ibutton3 i{
     font-size: 1.3rem;
     display: inline-block;
+}
+.Action{
+    display: inline-block;
+    margin: 0 auto;
 }
 
 .Tbody{

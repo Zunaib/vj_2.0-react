@@ -25,6 +25,15 @@ background: linear-gradient(to bottom, #F8CDDA, rgb(80, 29, 100));  */
   box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
   }
 
+  .Empty{
+    border-radius: 10px;
+    padding: 8px 20px;
+    width: 100%;
+    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+    -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+}
+
   .AlbumImage{
     text-align: center;
     margin: 0 auto;

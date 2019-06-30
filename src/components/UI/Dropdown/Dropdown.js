@@ -83,11 +83,20 @@ class SimpleMenu extends Component {
 
         return (
             <div className={classes.Main}>
-                <i className="fas fa-sort-down"
+
+
+
+                <i 
                     aria-owns={anchorEl ? 'simple-menu' : undefined}
                     aria-haspopup="true"
                     onClick={this.handleClick}
-                ></i>
+                >
+                    <img
+                        className={classes.Image}
+                        src={this.props.image}
+                        alt="NavDisplay"
+                    />
+                </i>
 
                 <Menu
                     className={classes.Menu}
