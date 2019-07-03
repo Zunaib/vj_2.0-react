@@ -208,3 +208,7 @@ export {
 export {
     FetchNotifications
 } from './UserActions/FetchNotifications'
+
+export {
+    ChangeOrderStatus
+} from './OrderActions/ChangeOrderStatusDesigner'

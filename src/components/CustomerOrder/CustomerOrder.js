@@ -5,7 +5,7 @@ const CustomerOrder = (props) => {
 
     let products = props.products;
     let orderdate = props.orderdate;
- 
+
     let total = 0
     let productNames = []
     let designers = []
@@ -41,7 +41,7 @@ const CustomerOrder = (props) => {
                     <h3>View Details</h3>
                     <i className="fas fa-info-circle"></i>
                 </div>
-                {props.calcelled ?
+                {products[0].status === "Cancelled" ?
                     <div className={classes.ibutton3}>
                         <h3>Cancelled</h3>
                         <i className="fas fa-times-circle"></i>

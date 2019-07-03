@@ -63,7 +63,6 @@ class CustomerOrder extends Component {
                         index={index + 1}
                         products={order.products}
                         orderdate={order.createdAt}
-                        calcelled={order.deletedAt}
                         viewclicked={() => this.viewOrderHandler(order)}
                         cancelclicked={() => this.cancelOrderHandler(order._id)}
                     />

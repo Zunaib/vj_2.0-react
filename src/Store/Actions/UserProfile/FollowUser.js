@@ -28,9 +28,7 @@ export const FollowUser = (token, userid) => {
         // dispatch(followUserStart());
         axios.get('/api/followUser?access_token=' + token, {
             params: {
-                userId: {
-                    userId: userid
-                }
+                userId: userid
             }
         })
             .then(res => {

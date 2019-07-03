@@ -25,7 +25,6 @@ export const fetchStart = () => {
 
 export const FetchSearchedUserSettings = (token, userid) => {
 
-    console.log(token, userid)
     return dispatch => {
         dispatch(fetchStart());
         axios.get('/api/fetchUserSettings?access_token=' + token, {
@@ -34,9 +33,6 @@ export const FetchSearchedUserSettings = (token, userid) => {
             }
         })
             .then(res => {
-
-                console.log(res)
-
                 const fetchedUserSettings = [];
                 for (let key in res.data) {
                     fetchedUserSettings.push({

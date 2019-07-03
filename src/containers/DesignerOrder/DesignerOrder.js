@@ -18,12 +18,12 @@ class CustomerOrder extends Component {
 
     cancelOrderHandler = (orderid) => {
         console.log(orderid);
-        // this.props.oncancelorder(this.props.token, orderid);
-        // this.props.onfetchorders(this.props.token)
+        this.props.changeorderStatus(this.props.token, orderid, "Cancelled")
 
     }
     completeOrderHandler = (orderid) => {
         console.log(orderid);
+        this.props.changeorderStatus(this.props.token, orderid, "Completed")
     }
     render() {
 
@@ -98,7 +98,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onfetchorders: (token) => dispatch(actions.FetchDesignerOrders(token))
+        onfetchorders: (token) => dispatch(actions.FetchDesignerOrders(token)),
+        changeorderStatus: (token, orderid, status) => dispatch(actions.ChangeOrderStatus(token, orderid, status))
     }
 }
 

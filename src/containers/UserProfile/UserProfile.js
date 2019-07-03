@@ -25,6 +25,7 @@ class UserProfile extends Component {
         vlogactive: false,
         blogactive: false,
         convo: null,
+        followed: false
     }
 
 
@@ -42,13 +43,18 @@ class UserProfile extends Component {
     setData() {
 
         let user = this.state.settings[0];
-        console.log(user)
-        if (user) {
+        let foll = false;
+        if (user && this.props.loggedinsettings) {
+            user.followers.map(follower => {
+                if (this.props.loggedinsettings[0]._id === follower) { foll = true }
+            });
+
             this.setState({
                 userimage: user.displayPicture,
                 userfirst: user.firstName,
                 userlast: user.lastName,
-                desc: user.description
+                desc: user.description,
+                followed: foll
             })
         }
     }
@@ -98,12 +104,15 @@ class UserProfile extends Component {
     }
 
     createConvoHandler = () => {
-        // alert("Convo Creared")
         this.props.oncreateconvo(this.props.token, this.state.profileid)
     }
 
     followHandler = () => {
-        this.props.onfollowuser(this.props.token, this.state.profileid)
+
+        this.setState((prevState) => {
+            return { followed: !prevState.followed };
+        })
+        this.props.onfollowuser(this.props.token, this.state.profileid);
     }
 
     render() {
@@ -114,7 +123,6 @@ class UserProfile extends Component {
         let desc = this.state.desc;
         if (this.state.userimage) {
             img = 'http://localhost:5000' + this.state.userimage;
-            console.log(img)
         } else {
             img = display;
         }
@@ -159,14 +167,15 @@ class UserProfile extends Component {
                 <div className={classes.ProfileImageButton} >
                     <img src={this.state.userimage ? img : display} alt="Display" />
                     <div className={classes.Button}>
-                        {/* <NavLink to={"/dashboard/messenger/" + firstname + "_" + lastname + "?" + convoid} onClick={this.createConvoHandler}> */}
                         <div className={classes.MessageButton} onClick={this.createConvoHandler}>
                             <h4>Messege</h4>
                         </div>
                         <div className={classes.FollowButton} onClick={this.followHandler}>
-                            <h4>Follow</h4>
+                            {this.state.followed ?
+                                <h4>Followed</h4>
+                                : <h4>Follow</h4>
+                            }
                         </div>
-                        {/* </NavLink> */}
                     </div>
                 </div>
 
@@ -223,6 +232,7 @@ const mapStateToProps = state => {
     return {
         token: state.Auth.token,
         settings: state.UserProfileSettings.settings,
+        loggedinsettings: state.UserSettings.settings,
         flag: state.Auth.flag,
 
         profileproducts: state.UserProfileProducts.profileproducts,

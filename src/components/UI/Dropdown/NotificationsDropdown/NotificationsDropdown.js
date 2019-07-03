@@ -53,7 +53,6 @@ class SimpleMenu extends Component {
     }
     render() {
         const { anchorEl } = this.state;
-        console.log(this.state.notifications)
 
         let badge = null;
         let notifications = (

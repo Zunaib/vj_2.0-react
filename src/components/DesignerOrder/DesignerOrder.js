@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classes from './DesignerOrder.css';
 import { Link } from 'react-router-dom';
 const CustomerOrder = (props) => {
@@ -30,21 +30,29 @@ const CustomerOrder = (props) => {
                 </span>
             </td>
             <td className={[classes.ThTrTh1, classes.ThTrTh3, classes.ThTrTh9, classes.Action].join(' ')}>
-                <div className={classes.ibutton} onClick={props.completeclicked}>
-                    <h3>Complete</h3>
-                    <i className="far fa-check-square"></i>
-                </div>
-                {false ?
-                    <div className={classes.ibutton3}>
+                {products.status === "Cancelled" ?
+                    < div className={classes.ibutton3}>
                         <h3>Cancelled</h3>
                         <i className="fas fa-times-circle"></i>
-                    </div>
-                    : <div className={classes.ibutton2} onClick={props.cancelclicked} >
-                        <h3>Cancel</h3>
-                        <i className="fas fa-times-circle"></i>
-                    </div>}
+                    </div> :
+                    products.status === "Completed" ?
+                        < div className={classes.ibutton3}>
+                            <h3>Completed</h3>
+                            <i className="fas fa-times-circle"></i>
+                        </div> :
+                        <Fragment>
+                            <div className={classes.ibutton} onClick={props.completeclicked}>
+                                <h3>Complete</h3>
+                                <i className="far fa-check-square"></i>
+                            </div>
+                            <div className={classes.ibutton2} onClick={props.cancelclicked} >
+                                <h3>Cancel</h3>
+                                <i className="fas fa-times-circle"></i>
+                            </div>
+                        </Fragment>
+                }
             </td>
-        </tr>
+        </tr >
     );
 };
 

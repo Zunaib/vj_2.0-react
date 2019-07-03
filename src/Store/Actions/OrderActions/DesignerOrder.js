@@ -30,6 +30,7 @@ export const FetchDesignerOrders = (token) => {
         dispatch(fetchordersStart());
         axios.get('/api/fetchdesignerOrders?access_token=' + token)
             .then(res => {
+                console.log(res)
                 const fetchedProducts = [];
                 for (let key in res.data) {
                     fetchedProducts.push({
