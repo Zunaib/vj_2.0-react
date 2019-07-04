@@ -328,12 +328,19 @@ class UserAccountSettings extends Component {
             logger: this.props.flag
         }
 
+        let statcard = null;
+        if (this.props.settings) {
+            statcard = (
+                <div className={classes.StatsCard}>
+                    <ProfileStatsCard followers={this.props.settings[0].followers} followings={this.props.settings[0].followings} UserSince={this.props.settings[0].createdAt} />
+                </div>
+            );
+        }
+
         return (
             <div className={classes.Main}>
                 {snack}
-                <div className={classes.StatsCard}>
-                    <ProfileStatsCard />
-                </div>
+                {statcard}
                 <div className={classes.FormCard}>
                     <FormCard form={form} title="User Settings" />
 

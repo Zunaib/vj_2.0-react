@@ -47,6 +47,7 @@ class UserProfile extends Component {
         if (user && this.props.loggedinsettings) {
             user.followers.map(follower => {
                 if (this.props.loggedinsettings[0]._id === follower) { foll = true }
+                return foll;
             });
 
             this.setState({

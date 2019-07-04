@@ -38,9 +38,10 @@ class Product extends Component {
     };
 
     addtocart = () => {
-        console.log(this.state.SelectedColor)
-        this.props.onaddtocart(this.props.token, this.state.productid, this.state.SelectedColor.value, this.state.SelectedSize.value);
-        this.setState({ SelectedColor: null, SelectedSize: null })
+        if (this.state.SelectedColor && this.state.SelectedSize) {
+            this.props.onaddtocart(this.props.token, this.state.productid, this.state.SelectedColor.value, this.state.SelectedSize.value);
+            this.setState({ SelectedColor: null, SelectedSize: null })
+        }
     }
 
     productdelete = () => {
@@ -55,12 +56,12 @@ class Product extends Component {
 
         var settings = {
             dots: true,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 1,
             slidesToScroll: 1,
             centerMode: true,
-            arrows: true
+            arrows: true,
         };
 
         let productdata = null;
@@ -138,7 +139,7 @@ class Product extends Component {
                                 {product.images.map((img, index) => {
                                     return <div key={index}>
                                         {/* <img src={'http://localhost:5000' + img} alt="Product_Thumbnail" /> */}
-                                        <Magnifier src={'http://localhost:5000' + img} width={500} mgWidth={300} mgHeight={300}
+                                        <Magnifier src={'http://localhost:5000' + img} width={"100%"} mgWidth={300} mgHeight={300}
                                             zoomFactor={1} />
                                     </div>
                                 })}

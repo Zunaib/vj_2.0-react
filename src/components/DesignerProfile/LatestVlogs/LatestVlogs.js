@@ -7,15 +7,15 @@ class LatestVlogs extends Component {
     render() {
         const vlogs = this.props.vlogs;
         const cards = (vlogs.map((vlog, index = vlog._id) => (
-            <NavLink className={classes.Link} to={"/dashboard/vlogs/" + vlog._id} key={index}>
-                <VlogCard
-                    key={index}
-                    title={vlog.title}
-                    description={vlog.description}
-                    year={vlog.year}
-                    videoLink={vlog.videoLink}
-                />
-            </NavLink>
+            <VlogCard
+                key={index}
+                vid={vlog._id}
+                likes={vlog.likes}
+                title={vlog.title}
+                description={vlog.description}
+                year={vlog.year}
+                videoLink={vlog.videoLink}
+            />
 
         )));
 
@@ -23,7 +23,7 @@ class LatestVlogs extends Component {
             <div className={classes.Work}>
                 <div className={classes.Content}>
                     <h3>Latest Vlogs</h3>
-                    <NavLink to="/dashboard/handle_vlog/add_vlog">
+                    <NavLink to="/dashboard/handle_vlog/add_vlog" className={classes.Link} >
                         <div className={classes.AddAlbumButton}>
                             <h4>Add Vlog</h4>
                             <i className="fas fa-plus"></i>

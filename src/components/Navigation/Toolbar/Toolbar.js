@@ -59,7 +59,7 @@ class Toolbar extends Component {
                             <Logo logoType="Black" />
                         </div>
                     </NavLink>
-                    <nav className={classes.DesktopOnly}>
+                    <nav >
                         <NavigationItems Type="Web" />
                     </nav>
                 </nav>

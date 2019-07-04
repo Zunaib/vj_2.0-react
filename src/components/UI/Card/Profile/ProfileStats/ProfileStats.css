@@ -19,6 +19,13 @@
 }
 
 div.ProfileStatsText h4{
-    margin-top: -8px;    
     font-size: 1.2rem;
+}
+
+.Head{
+    background-color: purple;
+    color: white;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 5px;   
 }

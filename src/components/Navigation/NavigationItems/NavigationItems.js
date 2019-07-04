@@ -20,6 +20,10 @@ class NavigationItems extends Component {
 
     componentDidMount = () => {
         let user = this.props.settings[0];
+        const str = window.location.href.split("http://localhost:3000/")[1];
+        if (str === '') {
+            console.log("dikha")
+        }
         if (user) {
             this.setState({
                 userimage: user.displayPicture,
@@ -65,19 +69,19 @@ class NavigationItems extends Component {
 
                     <ul className={classes.NavigationItemsWeb}>
 
-                        <div className={classes.NotificationIcon} >
+                        <div className={classes.NavlinkCart} >
                             <NotificDropdown />
                         </div>
 
 
-                        <div className={classes.MessageIcon} >
-                            {/* <MsgDropdown /> */}
-                            <NavLink to="/dashboard/messenger/convos" >
+                        {/* <MsgDropdown /> */}
+                        <NavLink to="/dashboard/messenger/convos" className={classes.NavlinkCart}>
+                            <div className={classes.Outerdiv} >
                                 <i className="fas fa-inbox"
                                 >
                                 </i>
-                            </NavLink>
-                        </div>
+                            </div>
+                        </NavLink>
 
 
                         <div className={classes.ImageButton} >

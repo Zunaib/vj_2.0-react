@@ -1,17 +1,21 @@
 
 .Search {
-    width: 350px;
+    width: auto;
     margin-top: 10px;
     margin-left: 20px;
     align-items: left;
   
+  }
+
+  .Search form{
+    width: 100%;
   }
   
   .Search form div {
       
     padding: 10px;
   border-radius: 60px;
-  width:80%;
+  width:100%;
   margin-bottom: 10px;
   margin-left: 10px;
   align-items: center;

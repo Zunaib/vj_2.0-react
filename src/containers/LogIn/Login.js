@@ -143,8 +143,8 @@ class Login extends Component {
         let errorsnack = null;
         if (this.props.error) {
             let msg = null;
-            if (this.props.error.message === 'Email_NotFound') {
-                msg = 'Email Not Found';
+            if (this.props.error.message === 'Email Not Found') {
+                msg = 'Email Not Registered';
             } else {
                 msg = 'Incorrect Password';
             }
@@ -153,12 +153,6 @@ class Login extends Component {
         }
 
         let authRedirect = null;
-        // if (this.props.isAuth) {
-        //     if (this.props.isCreator === "true") {
-        //         authRedirect = <Redirect to='/dashboard/designer' />;
-        //     } else if (this.props.isCreator === "false") {
-        //         authRedirect = <Redirect to='/dashboard' />;
-        //     } else 
         if (this.props.firstTimeLogin === "true") {
             authRedirect = <Redirect to='/welcome' />;
         }
@@ -181,7 +175,7 @@ class Login extends Component {
                             <h3>SignIn</h3>
                             {form}
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

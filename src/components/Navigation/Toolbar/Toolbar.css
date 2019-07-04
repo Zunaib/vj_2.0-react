@@ -38,7 +38,8 @@
 
 .ToolbarWeb nav{
     height: 100%;
-    margin: 0 auto;
+    margin: 0 50px;
+    width: auto;
 }
 
 .Logo{
@@ -49,13 +50,14 @@
 
 .WebLogo{
     margin: 0 auto;
-    width: 7%;
+    width: auto;
 }
 
 .LogoBlack{
     height: 100%;
     display: flex;
     margin: 0 auto;
+    text-align: center;
     }
 
 .CustNavItem{
@@ -93,7 +95,6 @@
 }
 
 .Outerdiv:hover{
-   
     border-radius: 5px;
     background-color: rgb(236, 236, 236);
 }

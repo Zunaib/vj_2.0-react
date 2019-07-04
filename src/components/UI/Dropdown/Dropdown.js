@@ -86,7 +86,7 @@ class SimpleMenu extends Component {
 
 
 
-                <i 
+                <i
                     aria-owns={anchorEl ? 'simple-menu' : undefined}
                     aria-haspopup="true"
                     onClick={this.handleClick}
@@ -96,12 +96,17 @@ class SimpleMenu extends Component {
                         src={this.props.image}
                         alt="NavDisplay"
                     />
+                    <i className="fas fa-caret-down"></i>
+
                 </i>
 
                 <Menu
                     className={classes.Menu}
                     id="simple-menu"
                     anchorEl={anchorEl}
+                    getContentAnchorEl={null}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    transformOrigin={{ vertical: "top", horizontal: "center" }}
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
                 >

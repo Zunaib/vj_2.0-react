@@ -11,15 +11,15 @@ class LatestProducts extends Component {
     render() {
         const products = this.props.products;
         const cards = (products.map((product, index = product._id) => (
-            <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={product._id} onClick={() => this.send(product)}>
-                <ProductCard
-                    key={product._id}
-                    name={product.productName}
-                    price={product.price}
-                    images={product.images}
-                    desc={product.description}
-                />
-            </NavLink>
+            <ProductCard
+                key={product._id}
+                name={product.productName}
+                pid={product._id}
+                likes={product.likes}
+                price={product.price}
+                images={product.images}
+                desc={product.description}
+            />
         )));
 
         console.log(cards)
@@ -28,7 +28,7 @@ class LatestProducts extends Component {
             <div className={classes.Work} >
                 <div className={classes.Content}>
                     <h3>Latest Products</h3>
-                    <NavLink to="/dashboard/handle_product/add_product">
+                    <NavLink to="/dashboard/handle_product/add_product" className={classes.Link}>
                         <div className={classes.AddAlbumButton}>
                             <h4>Add Product</h4>
                             <i className="fas fa-plus"></i>

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'
-import classes from './Products.css';
 import Auxilary from '../../../hoc/Auxilary/Auxilary';
 import ProductCard from '../../UI/Card/Product/ProductCard';
 
@@ -11,16 +9,17 @@ class Products extends Component {
     }
     render() {
         const products = this.props.products;
+        console.log(products)
         const cards = (products.map((product, index = product._id) => (
-            <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={index}>
-                <ProductCard
-                    key={product._id}
-                    name={product.productName}
-                    price={product.price}
-                    images={product.images}
-                    desc={product.description}
-                />
-            </NavLink>
+            <ProductCard
+                key={product._id}
+                pid={product._id}
+                likes={product.likes}
+                name={product.productName}
+                price={product.price}
+                images={product.images}
+                desc={product.description}
+            />
 
         )));
 

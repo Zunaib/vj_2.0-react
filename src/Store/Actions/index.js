@@ -100,6 +100,10 @@ export {
     DeleteVlog,
     DeleteVlogMsg
 } from './VlogActions/DeleteVlog';
+export {
+    LikeVlog
+} from './VlogActions/LikeVlog';
+
 
 /* Blog Actions Export */
 export {
@@ -117,6 +121,9 @@ export {
     UpdateBlog,
     UpdateBlogMsg
 } from './BlogActions/UpdateBlog';
+export {
+    LikeBlog
+} from './BlogActions/LikeBlog';
 
 /* Cart Actions Export */
 export {
@@ -198,6 +205,9 @@ export {
 export {
     ProductComment
 } from './ProductActions/Comment'
+export {
+    LikeProduct
+} from './ProductActions/LikeProduct'
 export {
     VlogComment
 } from './VlogActions/Comment'

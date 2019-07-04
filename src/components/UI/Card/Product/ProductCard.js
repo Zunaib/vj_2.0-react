@@ -1,29 +1,79 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import classes from './ProductCard.css';
-// import test from '../../../../assets/images/testimg.jpg'
-const ProductCard = (props) => {
+import { connect } from 'react-redux';
+import * as actions from '../../../../Store/Actions/index';
 
+class ProductCard extends Component {
 
-    const [hovered, setHovered] = useState(false);
-    const toggleHover = () => setHovered(!hovered);
+    state = {
+        favorited: false
+    }
 
-    let imgpath = 'http://localhost:5000' + props.images[0];
-    return (
-        <div className={classes.ProductCard}>
-            <img src={imgpath} alt="" />
-            <div className={classes.CardText}>
-                <h4><b>{props.name}</b></h4>
-            </div>
-            <div className={classes.CardInfo}>
-                <div className={classes.CardPrice}>
-                    <h4>Pkr {props.price}</h4>
+    favorited = () => {
+        this.setState((prevState) => {
+            return { favorited: !prevState.favorited }
+        })
+
+        this.props.likeproduct(this.props.token, this.props.pid)
+    }
+
+    componentDidMount() {
+        if (this.props.likes) {
+            let like = false;
+            like = (
+                this.props.likes.map(lk => {
+                    if (lk === this.props.loggedinsettings[0]._id) { like = true }
+                    return like
+                })
+            );
+
+            this.setState({ favorited: like[0] })
+        }
+
+    }
+    render() {
+
+        let imgpath = 'http://localhost:5000' + this.props.images[0];
+        return (
+            < div className={classes.ProductCard} >
+                <NavLink className={classes.Link} to={"/dashboard/products/" + this.props.pid}>
+                    <img src={imgpath} alt="" />
+                    <div className={classes.CardText}>
+                        <h4><b>{this.props.name}</b></h4>
+                    </div>
+                </NavLink>
+
+                <div className={classes.CardInfo}>
+                    <NavLink className={classes.Link} to={"/dashboard/products/" + this.props.pid}>
+                        <div className={classes.CardPrice}>
+                            <h4>Pkr {this.props.price}</h4>
+                        </div>
+                    </NavLink>
+
+                    <div className={classes.CardButton} >
+                        <i className={this.state.favorited ? "fas fa-heart" : "far fa-heart"} onClick={this.favorited}></i>
+                    </div>
                 </div>
-                <div className={classes.CardButton}>
-                    <i className={hovered ? "fas fa-heart" : "far fa-heart"} onMouseOver={toggleHover} onMouseOut={toggleHover}></i>
-                </div>
-            </div>
-        </div>
-    );
+            </div >
+        );
+    }
 };
 
-export default ProductCard;
+
+
+const mapStateToProps = state => {
+    return {
+        token: state.Auth.token,
+        loggedinsettings: state.UserSettings.settings,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        likeproduct: (token, productId) => dispatch(actions.LikeProduct(token, productId)),
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

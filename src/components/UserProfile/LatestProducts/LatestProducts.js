@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classes from './LatestProducts.css';
-import { NavLink } from 'react-router-dom';
 import ProductCard from '../../UI/Card/Product/ProductCard';
 
 class LatestProducts extends Component {
@@ -11,15 +10,15 @@ class LatestProducts extends Component {
     render() {
         const products = this.props.products;
         const cards = (products.map((product, index = product._id) => (
-            <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={product._id} onClick={() => this.send(product)}>
-                <ProductCard
-                    key={product._id}
-                    name={product.productName}
-                    price={product.price}
-                    images={product.images}
-                    desc={product.description}
-                />
-            </NavLink>
+            <ProductCard
+                key={product._id}
+                pid={product._id}
+                likes={product.likes}
+                name={product.productName}
+                price={product.price}
+                images={product.images}
+                desc={product.description}
+            />
         )));
 
         console.log(cards)

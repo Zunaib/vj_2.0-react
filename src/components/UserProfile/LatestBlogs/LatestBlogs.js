@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import classes from './LatestBlogs.css';
-import { NavLink } from 'react-router-dom';
 import BlogCard from '../../UI/Card/Blog/BlogCard';
 
 class LatestVlogs extends Component {
     render() {
         const blogs = this.props.blogs;
         const cards = (blogs.map((blog, index = blog._id) => (
-            <NavLink className={classes.Link} to={"/dashboard/blogs/" + blog._id} key={index}>
-                <BlogCard
-                    key={index}
-                    title={blog.title}
-                    description={blog.description}
-                    thumbnail={blog.thumbnail}
-                />
-            </NavLink>
+            <BlogCard
+                key={index}
+                bid={blog._id}
+                title={blog.title}
+                likes={blog.likes}
+                description={blog.description}
+                thumbnail={blog.thumbnail}
+            />
 
         )));
 

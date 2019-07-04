@@ -314,3 +314,18 @@ export const Fetch_Notification_Success = 'Fetch_Notification_Success';
 export const Change_Order_Status_Failed = 'Change_Order_Status_Failed';
 export const Change_Order_Status_Start = 'Change_Order_Status_Start';
 export const Change_Order_Status_Success = 'Change_Order_Status_Success';
+
+/*Like Product */
+export const Like_Product_Failed = 'Like_Product_Failed';
+export const Like_Product_Start = 'Like_Product_Start';
+export const Like_Product_Success = 'Like_Product_Success';
+
+/*Like Vlog */
+export const Like_Vlog_Failed = 'Like_Vlog_Failed';
+export const Like_Vlog_Start = 'Like_Vlog_Start';
+export const Like_Vlog_Success = 'Like_Vlog_Success';
+
+/*Like Vlog */
+export const Like_Blog_Failed = 'Like_Blog_Failed';
+export const Like_Blog_Start = 'Like_Blog_Start';
+export const Like_Blog_Success = 'Like_Blog_Success';

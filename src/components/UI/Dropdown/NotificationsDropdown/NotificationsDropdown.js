@@ -57,11 +57,11 @@ class SimpleMenu extends Component {
         let badge = null;
         let notifications = (
             <NavLink className={classes.Link} to="/dashboard">
-                <hr className={classes.Line}></hr>
+                {/* <hr className={classes.Line}></hr> */}
                 <MenuItem onClick={this.handleClose} className={classes.Image}>
                     <p>No Notifications Yet</p>
                 </MenuItem>
-                <hr className={classes.Line}></hr>
+                {/* <hr className={classes.Line}></hr> */}
             </NavLink>
         );
         if (this.state.notifications) {
@@ -76,9 +76,9 @@ class SimpleMenu extends Component {
                         icon = <i className="fas fa-comment"></i>
                     } else if (notification.notficationType === "like") {
                         icon = <i className="fas fa-thumbs-up"></i>
-                    } else if (notification.notficationType === "customerOrder") {
+                    } else if (notification.notficationType === "order") {
                         icon = <i className="fas fa-list-ol"></i>
-                    } else if (notification.notficationType === "designerOrder") {
+                    } else if (notification.notficationType === "order") {
                         icon = <i className="fas fa-list-ol"></i>
                     }
 
@@ -101,7 +101,7 @@ class SimpleMenu extends Component {
                             {icon}
                             <p>{notification.text}</p>
                         </MenuItem>
-                        <hr className={classes.Line}></hr>
+                        {/* <hr className={classes.Line}></hr> */}
                     </NavLink>
                 })
                 );
@@ -112,17 +112,26 @@ class SimpleMenu extends Component {
 
         return (
             <div className={classes.Main}>
-                <i className="fas fa-bell"
-                    aria-owns={anchorEl ? 'simple-menu' : undefined}
-                    aria-haspopup="true"
-                    onClick={this.handleClick}
-                >
-                    {badge}
-                </i>
+                <div className={classes.Outerdiv} >
+                    <i className="fas fa-bell"
+                        aria-owns={anchorEl ? 'simple-menu' : undefined}
+                        aria-haspopup="true"
+                        onClick={this.handleClick}
+                    >
+                        {badge}
+                    </i>
+                </div>
 
                 <Menu
                     id="simple-menu"
+                    // anchorEl={anchorEl}
+                    // open={Boolean(anchorEl)}
+                    // onClose={this.handleClose}
+
                     anchorEl={anchorEl}
+                    getContentAnchorEl={null}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    transformOrigin={{ vertical: "top", horizontal: "center" }}
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
                 >

@@ -60,3 +60,28 @@ div.BlogCardText h4{
     display: inline-block;
     color: white;
 }
+
+
+
+.BlogCardButton i{
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 1.2rem;
+    -webkit-box-shadow: 0px 10px 24px -11px rgba(0, 0, 0, 0.704);
+    -moz-box-shadow: 0px 10px 24px -11px rgba(0,0,0,0.704);
+    box-shadow: 0px 10px 24px -11px rgba(255, 255, 255, 0.704);
+}
+
+
+.BlogCardButton i:hover{
+    cursor: pointer;
+    color: rgb(233, 233, 233);
+    font-size: 1.4rem;
+}
+
+.Link{
+    color: black;
+    text-decoration: none;
+    }

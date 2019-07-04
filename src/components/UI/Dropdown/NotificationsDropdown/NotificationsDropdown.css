@@ -58,3 +58,12 @@ hr.Line{
   font-size: 1.5rem;
   color: purple;
 }
+
+.Outerdiv{
+  margin: 0 auto;
+}
+
+.Outerdiv:hover{
+   border-radius: 5px;
+   background-color: rgb(236, 236, 236);
+}

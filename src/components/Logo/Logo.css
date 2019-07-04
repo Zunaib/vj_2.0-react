@@ -2,10 +2,10 @@
     background-color: transparent;
     width: 100%;
     height: 70px;
-    margin-left: 100px;
     box-sizing: border-box;
     border-radius: 5px;
     overflow:hidden;
+    text-align: center;
 }
 
 .Logo img{
