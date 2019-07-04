@@ -27,6 +27,13 @@
     background-color: #ccc;
 }
 
-.Invalid {
-    border: 2px solid red;
+/* .Invalid {
+    border: 2px solid red !important;
+} */
+
+.ErrorInput{
+    width: auto;
+    margin-left: 10px;
+    color: red;
+    font-size: 0.8rem;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import classes from './CustomInput.css';
 
@@ -6,9 +6,9 @@ const input = (props) => {
     let inputElement = null;
     const inputClasses = [classes.InputElement];
 
-    // if (props.invalid && props.shouldValidate && props.touched) {
-    //     inputClasses.push(classes.Invalid);
-    // }
+    if (props.invalid && props.shouldValidate && props.touched) {
+        inputClasses.push(classes.Invalid);
+    }
 
     switch (props.elementType) {
         case ('input'):
@@ -83,12 +83,13 @@ const input = (props) => {
     if (props.label) {
         label = <label>{props.label}</label>;
     }
-
     return (
-        <div className={classes.Input}>
-            {label}
-            {inputElement}
-        </div>
+        <Fragment>
+            <div className={classes.Input}>
+                {label}
+                {inputElement}
+            </div>
+        </Fragment>
     );
 
 };

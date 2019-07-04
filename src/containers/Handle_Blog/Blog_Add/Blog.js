@@ -162,7 +162,9 @@ class Blog extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <FileUploader clicked={this.fileSelectedHandler} text="Blog Thumbail" />
+                <FileUploader clicked={this.fileSelectedHandler}
+                    text={"Select Thumbnail"}
+                    textt={this.state.selectedFile ? "Thumbnail Selected" : "Select Blog Thumbnail"} />
                 <Button btnType="WebButton">Add Blog</Button>
 
             </form>

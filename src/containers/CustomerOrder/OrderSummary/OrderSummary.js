@@ -17,12 +17,6 @@ export class OrderSummary extends Component {
                     <div className={classes.pName}>
                         <h4>{product.product.userId.firstName + " " + product.product.userId.lastName}</h4>
                     </div>
-                    {/* <div className={classes.pName}>
-                        <h4>{product.product.sizes[0]}</h4>
-                    </div>
-                    <div className={classes.pName}>
-                        <h4>{product.product.colors[0]}</h4>
-                    </div> */}
                     <div className={classes.pName}>
                         <h4>{product.status}</h4>
                     </div>

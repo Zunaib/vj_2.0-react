@@ -6,7 +6,7 @@ const FileUpload = (props) => {
         <div className={classes.file}>
             <input type="file" name="file" id="file" className={classes.inputfile} onChange={props.clicked} />
             <label htmlFor="file" className={classes.FileLabel}>{props.text}</label>
-            <p>Select {props.text}</p>
+            <p>{props.textt}</p>
         </div>
     )
 }

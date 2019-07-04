@@ -312,7 +312,8 @@ class UserAccountSettings extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <FileUploader clicked={this.fileSelectedHandler} text="Profile Image" />
+                <FileUploader clicked={this.fileSelectedHandler} text={"Select Image"}
+                    textt={this.state.selectedFile ? "Profile Picture Selected" : "Select Profile Picture"} />
                 <Button btnType="SetButton">Update</Button>
             </form>
         );

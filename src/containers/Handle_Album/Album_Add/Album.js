@@ -174,7 +174,11 @@ class Album extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <FileUploader clicked={this.fileSelectedHandler} text="Album Thumbnail" />
+                <FileUploader clicked={this.fileSelectedHandler}
+                    text={"Select Thumbnail"}
+                    textt={this.state.selectedFile ? "Thumbnail Selected" : "Select Album Thumbnail"} />
+
+                />
                 <Button btnType="WebButton">Add Album</Button>
 
             </form>
