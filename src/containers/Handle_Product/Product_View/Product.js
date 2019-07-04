@@ -20,13 +20,56 @@ class Product extends Component {
     state = {
         productid: window.location.href.split("http://localhost:3000/dashboard/products/")[1],
         SelectedColor: null,
-        SelectedSize: null
+        SelectedSize: null,
+        favorited: false,
+        product: null
+    }
+
+    favorited = () => {
+        this.setState((prevState) => {
+            return { favorited: !prevState.favorited }
+        })
+
+        this.props.AddtoFavorite(this.props.token, this.state.productid)
     }
 
     componentDidMount() {
         let str = window.location.href.split("http://localhost:3000/dashboard/products/")[1];
         this.props.onfetchcurrentproduct(this.props.token, str)
+    }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.currentproduct !== prevState.product) {
+            return { product: nextProps.currentproduct };
+        }
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.currentproduct !== this.props.currentproduct) {
+            //Perform some operation here
+            this.setState({ product: this.props.currentproduct });
+            this.setFav();
+        }
+    }
+
+    setFav = () => {
+        // console.log(this.props.currentproduct._id)
+        // console.log(this.props.loggedinsettings[0].favoriteProducts)
+        let favprod = this.props.loggedinsettings[0].favoriteProducts;
+        if (favprod) {
+            let fav = false;
+            fav = (
+                favprod.map(fp => {
+                    if (fp === this.props.currentproduct._id) { fav = true }
+                    return fav
+                })
+            );
+
+            console.log(fav)
+
+            this.setState({ favorited: fav[0] })
+        }
     }
 
 
@@ -154,6 +197,10 @@ class Product extends Component {
                                     {product.description}
                                 </p>
                             </div>
+                            <div className={classes.Fav}>
+                                <h4>Favorited:</h4>
+                                <i className={this.state.favorited ? "fas fa-star" : "far fa-star"} onClick={this.favorited}></i>
+                            </div>
 
                             <div className={classes.Drops}>
                                 <h4>Select Size</h4>
@@ -190,7 +237,7 @@ class Product extends Component {
                         </div>
                     </div>
 
-                </Auxilary>
+                </Auxilary >
 
             )
         }
@@ -216,6 +263,8 @@ class Product extends Component {
                 <div className={classes.Link} key={index} onClick={() => this.pushProduct(product._id)}>
                     <ProductCard
                         key={product._id}
+                        pid={product._id}
+                        likes={product.likes}
                         name={product.productName}
                         price={product.price}
                         images={product.images}
@@ -269,7 +318,8 @@ const mapStateToProps = state => {
         loading: state.ViewProduct.loading,
         deleted: state.DeleteProduct.deleted,
         addedtocart: state.AddtoCart.added,
-        addedtocarterror: state.AddtoCart.error
+        addedtocarterror: state.AddtoCart.error,
+        loggedinsettings: state.UserSettings.settings
     }
 }
 
@@ -279,6 +329,7 @@ const mapDispatchToProps = dispatch => {
         onaddtocart: (token, productid, color, size) => dispatch(actions.AddToCart(token, productid, color, size)),
         onaddtocartmsg: () => dispatch(actions.AddToCartMsg()),
         onproductdelete: (token, productid) => dispatch(actions.DeleteProduct(token, productid)),
+        AddtoFavorite: (token, productid) => dispatch(actions.AddtoFavorite(token, productid)),
         ondelmsg: () => dispatch(actions.DeleteProductMsg())
     }
 }

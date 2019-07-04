@@ -319,6 +319,10 @@ export const Change_Order_Status_Success = 'Change_Order_Status_Success';
 export const Like_Product_Failed = 'Like_Product_Failed';
 export const Like_Product_Start = 'Like_Product_Start';
 export const Like_Product_Success = 'Like_Product_Success';
+/*Fav Product */
+export const Fav_Product_Failed = 'Fav_Product_Failed';
+export const Fav_Product_Start = 'Fav_Product_Start';
+export const Fav_Product_Success = 'Fav_Product_Success';
 
 /*Like Vlog */
 export const Like_Vlog_Failed = 'Like_Vlog_Failed';

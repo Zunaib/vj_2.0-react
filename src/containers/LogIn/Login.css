@@ -136,7 +136,9 @@ align-items: center;
 
 .Logo{
     margin-top:45px;
-}
+    margin-left:80px;
+
+  }
 
 .Forgot {
     color: #303030;

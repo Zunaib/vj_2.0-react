@@ -80,6 +80,9 @@ export {
     UpdateProductMsg
 } from './ProductActions/UpdateProduct';
 export {
+    AddtoFavorite
+} from './ProductActions/AddtoFavorite';
+export {
     Fetchproductdropdowns
 } from './ProductActions/FetchDropdowns';
 

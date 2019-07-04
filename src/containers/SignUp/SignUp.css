@@ -254,6 +254,7 @@ padding: 2px 8px;
 
 .Logo{
     margin-top:45px;
+    margin-left:80px;
 }
 
 @media (max-width:1212px) and (min-width:991px) {

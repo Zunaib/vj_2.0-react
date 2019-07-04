@@ -341,3 +341,15 @@ float: left;
     border-radius: 5px;
     margin: 0 5px;
 }
+
+.Fav h4{
+    display: inline-block;
+}
+.Fav i{
+    color: purple;
+    display: inline-block;
+    margin: 0px 10px;
+}
+.Fav i:hover{
+    font-size: 1.4rem;
+}
