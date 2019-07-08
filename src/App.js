@@ -7,6 +7,7 @@ import asyncComponent from './hoc/asyncComponent/asyncComponent';
 import LandingLayout from './hoc/Layout/LandingLayout';
 import Welcome from './containers/WelcomePage/Welcome';
 
+
 const asyncWebLayout = asyncComponent(() => {
   return import('./hoc/Layout/WebLayout');
 })
@@ -50,11 +51,11 @@ class App extends Component {
         );
       } else {
         routes = (
-          <Switch>
-            <Route path="/dashboard" component={asyncWebLayout} />
-            <Route path='/logout' component={asyncLogout} />
-            <Redirect to="/dashboard" />
-          </Switch>
+            <Switch>
+              <Route path="/dashboard" component={asyncWebLayout} />
+              <Route path='/logout' component={asyncLogout} />
+              <Redirect to="/dashboard" />
+            </Switch>
         );
       }
     }

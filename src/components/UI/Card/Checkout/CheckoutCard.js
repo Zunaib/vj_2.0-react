@@ -11,6 +11,8 @@ class ProfileCard extends Component {
         super();
         this.state = { checked: false, method: "cashondelivery" };
         this.handleChange = this.handleChange.bind(this);
+        this.further = this.further.bind(this);
+        this.handleToken = this.handleToken.bind(this);
     }
 
     handleChange(checked) {
@@ -30,7 +32,11 @@ class ProfileCard extends Component {
     }
 
     handleToken(token, addresses) {
-        console.log(token, addresses)
+        this.further(token)
+    }
+
+    further = (token) => {
+        this.props.pay(token)
     }
     render() {
         return (

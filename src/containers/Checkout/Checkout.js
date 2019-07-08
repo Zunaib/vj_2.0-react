@@ -191,9 +191,6 @@ class Checkout extends Component {
         }
 
 
-
-        console.log(this.props.cart)
-
         let order = {
             orderedProducts: this.props.cart,
             total: 6000,
@@ -213,7 +210,7 @@ class Checkout extends Component {
 
         console.log(order)
 
-        if (true) {
+        if (this.state.formIsValid) {
             if (this.state.type === "cashondelivery") {
                 this.props.oncheckout(this.props.token, order);
             }
@@ -249,6 +246,54 @@ class Checkout extends Component {
     settype = (type) => {
         this.setState({ type: type })
     }
+
+    paywithCard = (cardtoken) => {
+        const formData = {};
+        for (let formElementIdentifier in this.state.checkoutForm) {
+            formData[formElementIdentifier] = this.state.checkoutForm[formElementIdentifier].value;
+        }
+        let order = {
+            orderedProducts: this.props.cart,
+            total: 6000,
+            billingDetails: {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                province: formData.province,
+                streetAddress: formData.streetAddress,
+                city: formData.city,
+                zipcode: formData.zipcode,
+                country: formData.country,
+                phone: formData.phone
+            },
+            saveDetails: this.props.saveDetails,
+            paymentMethod: 'Pay By Card'
+        }
+
+        let carddetails = {
+            total: 6000,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            province: formData.province,
+            streetAddress: formData.streetAddress,
+            city: formData.city,
+            zipcode: formData.zipcode,
+            country: formData.country,
+            phone: formData.phone
+
+        }
+
+        console.log(order)
+
+        if (this.state.formIsValid) {
+            this.props.oncheckout(this.props.token, order);
+            this.props.onpaycard(this.props.token, cardtoken, carddetails);
+            console.log('valid')
+        } else {
+            console.log('Invalid')
+        }
+
+        this.setState({ redirect: <Redirect to="/dashboard/customerorders" /> })
+    }
     render() {
 
 
@@ -275,14 +320,17 @@ class Checkout extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
 
-                <Button btnType="CheckButton">Checkout</Button>
+                {
+                    this.state.type === "cashondelivery" ?
+                        <Button btnType="CheckButton">Checkout</Button> :
+                        null
+                }
             </form>
         );
 
         if (this.props.loading) {
             form = <Spinner />;
         }
-
 
         return (
             <div className={classes.Main}>
@@ -293,7 +341,10 @@ class Checkout extends Component {
 
                 </div>
                 <div className={classes.ProfileCard}>
-                    <CheckoutCard setType={(type) => this.settype(type)} />
+                    <CheckoutCard setType={(type) => this.settype(type)}
+                        pay={this.paywithCard}
+                        sett={this.props.settings[0]}
+                    />
                 </div>
 
             </div>
@@ -318,6 +369,7 @@ const mapDispatchToProps = dispatch => {
         onfetchcheckoutsettings: (token) => dispatch(actions.FetchCheckoutSettings(token)),
         onfetchcheckoutcart: (token) => dispatch(actions.FetchCheckoutCart(token)),
         oncheckout: (token, order) => dispatch(actions.Checkout(token, order)),
+        onpaycard: (token, cardtoken, carddetails) => dispatch(actions.PayWithCard(token, cardtoken, carddetails))
         // onMsgRefresh: () => dispatch(actions.MsgRefresh())
     }
 }

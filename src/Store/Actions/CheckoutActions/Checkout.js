@@ -37,10 +37,6 @@ export const FetchCheckoutCart = (token) => {
                 let myData = Object.keys(data).map(key => {
                     return data[key];
                 })
-
-                console.log(myData)
-
-
                 dispatch(fetchcheckoutcartSuccess(myData));
             })
             .catch(err => {
@@ -152,4 +148,25 @@ export const SetTemporary = (saveDetails) => {
         type: actionTypes.Set_Temporary,
         saveDetails: saveDetails
     }
+}
+
+export const PayWithCard = (token, cardtoken, carddetails) => {
+    return dispatch => {
+        // dispatch(checkoutStart());
+        axios.get('/api/checkoutViaCard?access_token=' + token, {
+            params: {
+                token: cardtoken,
+                user: carddetails
+            }
+        })
+            .then(res => {
+                console.log(res);
+                // console.log(res.data.success);
+                // dispatch(checkoutSuccess(res.data.success));
+            })
+            .catch(err => {
+                // dispatch(checkoutFailed(err.data.success));
+            });
+    }
+
 }

@@ -146,6 +146,7 @@ export {
     FetchCheckoutSettings,
     FetchCheckoutCart,
     Checkout,
+    PayWithCard,
     SetTemporary
 } from './CheckoutActions/Checkout';
 
