@@ -231,7 +231,7 @@ class Product extends Component {
                         </div>
                     </div>
 
-                </Auxilary >
+                </Auxilary>
 
             )
         }

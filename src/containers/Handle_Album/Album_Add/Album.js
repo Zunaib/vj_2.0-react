@@ -176,9 +176,10 @@ class Album extends Component {
                 ))}
                 <FileUploader clicked={this.fileSelectedHandler}
                     text={"Select Thumbnail"}
-                    textt={this.state.selectedFile ? "Thumbnail Selected" : "Select Album Thumbnail"} />
-
+                    textt={this.state.selectedFile ? "Thumbnail Selected" : "Select Album Thumbnail"}
                 />
+
+
                 <Button btnType="WebButton">Add Album</Button>
 
             </form>
