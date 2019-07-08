@@ -198,7 +198,7 @@ class Product extends Component {
                                 </p>
                             </div>
                             <div className={classes.Fav}>
-                                <h4>Favorited:</h4>
+                                <h4>Add to Favorites:</h4>
                                 <i className={this.state.favorited ? "fas fa-star" : "far fa-star"} onClick={this.favorited}></i>
                             </div>
 

@@ -178,7 +178,7 @@ class Album extends Component {
                     text={"Select Thumbnail"}
                     textt={this.state.selectedFile ? "Thumbnail Selected" : "Select Album Thumbnail"} />
 
-                />
+                
                 <Button btnType="WebButton">Add Album</Button>
 
             </form>
