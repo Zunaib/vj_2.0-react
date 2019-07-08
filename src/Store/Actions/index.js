@@ -226,3 +226,7 @@ export {
 export {
     ChangeOrderStatus
 } from './OrderActions/ChangeOrderStatusDesigner'
+
+export {
+    FetchFavProducts
+} from './FavProducts/FavProducts'

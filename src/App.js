@@ -46,16 +46,17 @@ class App extends Component {
         routes = (
           <Switch>
             <Route path='/welcome' component={Welcome} />
+            <Route path='/logout' component={asyncLogout} />
             <Redirect to="/welcome" />
           </Switch>
         );
       } else {
         routes = (
-            <Switch>
-              <Route path="/dashboard" component={asyncWebLayout} />
-              <Route path='/logout' component={asyncLogout} />
-              <Redirect to="/dashboard" />
-            </Switch>
+          <Switch>
+            <Route path="/dashboard" component={asyncWebLayout} />
+            <Route path='/logout' component={asyncLogout} />
+            <Redirect to="/dashboard" />
+          </Switch>
         );
       }
     }

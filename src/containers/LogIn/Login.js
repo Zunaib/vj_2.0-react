@@ -145,7 +145,9 @@ class Login extends Component {
             let msg = null;
             if (this.props.error.message === 'Email Not Found') {
                 msg = 'Email Not Registered';
-            } else {
+            } else if (this.props.error.message === "User need to be verified") {
+                msg = 'Verify Email To LogIn';
+            }else {
                 msg = 'Incorrect Password';
             }
             errorsnack = (<Snackbar message={msg} snackType="error" refresh={this.props.onErrorRefresh} />);

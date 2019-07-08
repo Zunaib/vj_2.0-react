@@ -22,11 +22,16 @@ export const fetchnotStart = () => {
     };
 };
 
-export const FetchNotifications = (token) => {
+export const FetchNotifications = (token, first) => {
+
     return dispatch => {
         //Album Fetch
         dispatch(fetchnotStart());
-        axios.get('/api/fetchNotifications?access_token=' + token)
+        axios.get('/api/fetchNotifications?access_token=' + token, {
+            params: {
+                firstTime: first
+            }
+        })
             .then(res => {
                 dispatch(fetchnotSuccess(res.data.notifications));
             })

@@ -149,13 +149,13 @@ export class Search extends Component {
                             <option value="vlogs">Vlogs</option>
                             <option value="blogs">Blogs</option>
                         </select>
-                        <h3>Sort By :</h3>
-                        <select className={classes.selectcss}>
+                        {/* <h3>Sort By :</h3> */}
+                        {/* <select className={classes.selectcss}>
                             <option value="volvo">Volvo</option>
                             <option value="saab">Saab</option>
                             <option value="mercedes">Mercedes</option>
                             <option value="audi">Audi</option>
-                        </select>
+                        </select> */}
                     </div>
                 </div>
                 {content}

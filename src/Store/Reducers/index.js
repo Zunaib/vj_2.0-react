@@ -78,7 +78,10 @@ import FetchSingleConvoReducer from './MessengerReducers/FetchSingleConversation
 import FetchAllConvoReducer from './MessengerReducers/FetchAllConversations';
 
 /*Notifications Reducers */
-import FetchNotificationsReducer from './UserReducers/FetchNotifications'
+import FetchNotificationsReducer from './UserReducers/FetchNotifications';
+
+import FavProductsReducer from './FavProducts/FavProducts'
+
 
 export default combineReducers({
     ContactUs: ContactUsReducer,
@@ -139,7 +142,8 @@ export default combineReducers({
     FetchSingleConvo: FetchSingleConvoReducer,
     FetchAllConvo: FetchAllConvoReducer,
 
-    FetchNotifications: FetchNotificationsReducer
+    FetchNotifications: FetchNotificationsReducer,
+    FavProducts: FavProductsReducer
 
 
 

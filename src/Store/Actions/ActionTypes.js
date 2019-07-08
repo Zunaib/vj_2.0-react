@@ -333,3 +333,8 @@ export const Like_Vlog_Success = 'Like_Vlog_Success';
 export const Like_Blog_Failed = 'Like_Blog_Failed';
 export const Like_Blog_Start = 'Like_Blog_Start';
 export const Like_Blog_Success = 'Like_Blog_Success';
+
+/* Fetch Fav Prod Actions */
+export const Fetch_Fav_Products_Start = 'Fetch_Fav_Products_Start';
+export const Fetch_Fav_Products_Success = 'Fetch_Fav_Products_Success';
+export const Fetch_Fav_Products_Failed = 'Fetch_Fav_Products_Failed';

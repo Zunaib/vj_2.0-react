@@ -14,7 +14,8 @@ class SimpleMenu extends Component {
     };
 
     componentDidMount() {
-        this.props.fetchnotifications(this.props.token)
+
+        this.props.fetchnotifications(this.props.token, true)
 
     }
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -34,7 +35,7 @@ class SimpleMenu extends Component {
 
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
-        this.props.fetchnotifications(this.props.token)
+        this.props.fetchnotifications(this.props.token, false)
     };
 
     handleClose = () => {
@@ -165,7 +166,7 @@ const mapDispatchToProps = dispatch => {
     return {
         changetoCustomer: (token) => dispatch(actions.UseAsCustomer(token)),
         changetoCreator: (token) => dispatch(actions.UseAsCreator(token)),
-        fetchnotifications: (token) => dispatch(actions.FetchNotifications(token)),
+        fetchnotifications: (token, first) => dispatch(actions.FetchNotifications(token, first)),
     };
 };
 

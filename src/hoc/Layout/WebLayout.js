@@ -22,6 +22,7 @@ import Checkout from '../../containers/Checkout/Checkout';
 import CustomerOrder from '../../containers/CustomerOrder/CustomerOrder';
 import DesignerOrder from '../../containers/DesignerOrder/DesignerOrder';
 import Messenger from '../../containers/Messenger/Messenger'
+import FavProducts from '../../containers/FavProducts/FavProducts'
 
 
 import UpdateAlbum from '../../containers/Handle_Album/Album_Update/AlbumUpdate';
@@ -107,6 +108,7 @@ class WebLayout extends Component {
                         <Route path="/dashboard/vlogs/:vlog" component={Vlog} />
                         <Route path="/dashboard/blogs/:blog" component={View_Blog} />
 
+                        <Route path="/dashboard/favproducts" component={FavProducts} />
                         <Route path="/dashboard/searchresults" component={SearchPage} />
                         <Route path="/dashboard/userprofile/:userid" component={UserProfile} />
 

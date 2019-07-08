@@ -61,6 +61,9 @@ class SimpleMenu extends Component {
                     <NavLink className={classes.Link} to="/dashboard">
                         <MenuItem onClick={this.handleClose}><i className="fas fa-toggle-on"></i>Active: Customer</MenuItem>
                     </NavLink>
+                    <NavLink className={classes.Link} to="/dashboard/favproducts">
+                        <MenuItem onClick={this.handleClose}><i className="fas fa-star"></i>Favorite Products</MenuItem>
+                    </NavLink>
                     <NavLink className={classes.Link} to="/dashboard">
                         <MenuItem onClick={this.handleClose}><i className="fas fa-home"></i>Dashboard</MenuItem>
                     </NavLink>

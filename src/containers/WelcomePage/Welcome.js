@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-// import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classes from './Welcome.css';
 import { connect } from 'react-redux';
 import * as actions from '../../Store/Actions/index';
@@ -57,6 +57,9 @@ class Welcome extends Component {
                     <div className={classes.Album}>
                         <div className={classes.Welcome}>
                             <h1>Welcome To Vogue Junction</h1>
+                            <NavLink to="/logout">
+                                <h3>Logout</h3>
+                            </NavLink>
                         </div>
                         <h2>What Would You Like To Be ?</h2>
                         <div className={classes.Album_Top}>

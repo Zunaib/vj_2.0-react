@@ -164,7 +164,7 @@ class SignUp extends Component {
         let signedUp = null;
         if (this.props.redirect) {
             signRedirect = <Redirect to='/login' />;
-            signedUp = (<Snack message={"Successfully Signed Up"} snackType="success" refresh={this.props.onErrorRefresh} />);
+            signedUp = (<Snack message={"Successfully Signed Up, Please Verify Email To Login"} snackType="success" refresh={this.props.onErrorRefresh} />);
         }
 
         let errorsnack = null;
