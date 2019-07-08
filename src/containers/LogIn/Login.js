@@ -19,13 +19,12 @@ class Login extends Component {
             email: {
                 elementType: 'input',
                 elementConfig: {
-                    type: 'email',
-                    placeholder: 'abc@xyz.com'
+                    type: 'text',
+                    placeholder: 'Enter Email / Username'
                 },
                 value: '',
                 validation: {
                     required: true,
-                    isEmail: true
                 },
                 valid: false,
                 touched: false
@@ -144,10 +143,10 @@ class Login extends Component {
         if (this.props.error) {
             let msg = null;
             if (this.props.error.message === 'Email Not Found') {
-                msg = 'Email Not Registered';
+                msg = 'Email / Username Not Registered';
             } else if (this.props.error.message === "User need to be verified") {
                 msg = 'Verify Email To LogIn';
-            }else {
+            } else {
                 msg = 'Incorrect Password';
             }
             errorsnack = (<Snackbar message={msg} snackType="error" refresh={this.props.onErrorRefresh} />);

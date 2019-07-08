@@ -2,11 +2,12 @@ import * as actionTypes from '../ActionTypes';
 import axios from '../../../axios';
 
 
-export const ContactUsSuccess = (userdata, contactUsData) => {
+export const ContactUsSuccess = (userdata, contactUsData, msg) => {
     return {
         type: actionTypes.ContactUsForm_Success,
         userData: userdata,
-        contactUsData: contactUsData
+        contactUsData: contactUsData,
+        msg: msg
 
 
     }
@@ -30,7 +31,8 @@ export const ContactUsForm = (contactUsData) => {
         dispatch(ContactUsFormStart());
         axios.post('/api/contactUs', contactUsData)
             .then(response => {
-                dispatch(ContactUsSuccess(response.data, contactUsData));
+                console.log(response)
+                dispatch(ContactUsSuccess(response.data, contactUsData, response.data.message));
             })
             .catch(error => {
                 dispatch(ContactUsFailed(error));
@@ -38,3 +40,9 @@ export const ContactUsForm = (contactUsData) => {
 
     }
 }
+
+export const ContactUsMsg = () => {
+    return {
+        type: actionTypes.ContactUs_Msg,
+    };
+};

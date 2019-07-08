@@ -1,6 +1,6 @@
 /*Contact Us Actions Export */
 export {
-    ContactUsForm
+    ContactUsForm, ContactUsMsg
 } from './ContactUSActions/ContactUs';
 
 /*Auth Actions Export */

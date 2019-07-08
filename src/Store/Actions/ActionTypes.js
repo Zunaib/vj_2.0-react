@@ -14,6 +14,7 @@ export const Change_User_Flag_Creator = "Change_User_Flag_Creator";
 export const ContactUsForm_Start = 'ContactUsForm_Start';
 export const ContactUsForm_Success = 'ContactUsForm_Success';
 export const ContactUsForm_Failed = 'ContactUsForm_Failed';
+export const ContactUs_Msg = 'ContactUs_Msg';
 
 /* Fetch Dashboard Actions */
 export const Fetch_Dash_Products_Start = 'Fetch_Products_Start';

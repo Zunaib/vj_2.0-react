@@ -53,6 +53,7 @@ class Blog extends Component {
                 },
             },
             formIsValid: false,
+            imageselected: null,
             selectedFile: null,
             selectedsnack: false,
             selectedFileURL: null,
@@ -68,7 +69,8 @@ class Blog extends Component {
             blog: null,
             selectedFile: event.target.files[0],
             selectedFileURL: URL.createObjectURL(event.target.files[0]),
-            selectedsnack: true
+            selectedsnack: true,
+            imageselected: true
         })
     }
 
@@ -86,7 +88,7 @@ class Blog extends Component {
             updatedblogForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ blogForm: updatedblogForm, formIsValid: false, editorHtml: '', selectedFile: null, selectedsnack: false });
+        this.setState({ blogForm: updatedblogForm, formIsValid: false, editorHtml: '', selectedFile: null, selectedsnack: false, imageselected: false });
     }
 
     blogHandler = (event) => {
@@ -114,6 +116,9 @@ class Blog extends Component {
 
     }
 
+    onaddBlogMsg = () => {
+        this.setState({ imageselected: false })
+    }
 
     inputChangedHandler = (event, inputIdentifier) => {
         const updatedblogForm = {
@@ -171,8 +176,8 @@ class Blog extends Component {
         );
 
         let imgsnack = null;
-        if (this.state.selectedFile) {
-            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onaddBlogMsg} />);
+        if (this.state.imageselected) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.onaddBlogMsg} />);
         }
 
         let addblog = null;
@@ -201,7 +206,10 @@ class Blog extends Component {
                                 <div className={classes.FormSide}>
                                     <div className={classes.Form} >
                                         {form}
-
+                                    </div>
+                                    <div className={classes.Err}>
+                                        <h4>{!this.state.selectedFile ? "No Image Selected" : null}</h4>
+                                        <h4>{this.state.editorHtml === '' ? "Empty Body Content" : null}</h4>
                                     </div>
                                 </div>
                             </div>

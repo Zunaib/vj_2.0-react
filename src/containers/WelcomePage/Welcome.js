@@ -78,6 +78,7 @@ class Welcome extends Component {
                                     <h5 style={{ backgroundColor: "#454140" }}>Follow Creators</h5>
                                     <h5 style={{ backgroundColor: "#c1502e" }}>Contact Other People</h5>
                                 </div>
+                                <hr className={classes.HR}></hr>
                                 <Button btnType="WebButton" clicked={() => this.viewContinueHandler("customer")}>Customer
                             <i className="fas fa-arrow-right"></i>
                                 </Button>
@@ -97,6 +98,8 @@ class Welcome extends Component {
                                     <h5 style={{ backgroundColor: "#7e4a35" }}>Follow Other Creators</h5>
                                     <h5 style={{ backgroundColor: "#d64161" }}>Contact Other People</h5>
                                 </div>
+                                <hr className={classes.HR}></hr>
+
                                 <Button btnType="WebButton" clicked={() => this.viewContinueHandler("creator")}>
                                     Creator Profile
                             <i className="fas fa-arrow-right"></i>

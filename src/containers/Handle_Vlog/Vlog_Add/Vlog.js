@@ -49,7 +49,8 @@ class Vlog extends Component {
         formIsValid: false,
         selectedFile: null,
         selectedsnack: false,
-        selectedFileURL: null
+        selectedFileURL: null,
+        fileselected: null
 
     }
 
@@ -58,7 +59,8 @@ class Vlog extends Component {
             vlog: null,
             selectedFile: event.target.files[0],
             selectedFileURL: URL.createObjectURL(event.target.files[0]),
-            selectedsnack: true
+            selectedsnack: true,
+            fileselected: true
         })
     }
 
@@ -77,7 +79,7 @@ class Vlog extends Component {
             updatedvlogForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ vlogForm: updatedvlogForm, selectedFile: null, selectedsnack: false });
+        this.setState({ vlogForm: updatedvlogForm, selectedFile: null, selectedsnack: false, fileselected: false });
     }
 
     vlogHandler = (event) => {
@@ -124,6 +126,10 @@ class Vlog extends Component {
             formIsValid = updatedvlogForm[inputIdentifier].valid && formIsValid;
         }
         this.setState({ vlogForm: updatedvlogForm, formIsValid: formIsValid });
+    }
+
+    onaddVlogMsg = () => {
+        this.setState({ fileselected: false })
     }
     render() {
 
@@ -180,13 +186,13 @@ class Vlog extends Component {
         }
 
         let imgsnack = null;
-        if (this.state.selectedFile) {
+        if (this.state.fileselected) {
             imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onaddVlogMsg} />);
         }
 
         let addvlog = null;
         if (this.props.added) {
-            addvlog = (<Snack message={"Vlog Successfully Added"} snackType="success" refresh={this.props.onaddVlogMsg} />);
+            addvlog = (<Snack message={"Vlog Successfully Added"} snackType="success" refresh={this.onaddVlogMsg} />);
 
         }
 
@@ -210,6 +216,9 @@ class Vlog extends Component {
                                 <div className={classes.FormSide}>
                                     <div className={classes.Form} >
                                         {form}
+                                    </div>
+                                    <div className={classes.Err}>
+                                        <h4>{!this.state.selectedFile ? "No Video Selected" : null}</h4>
                                     </div>
                                 </div>
                             </div>

@@ -9,6 +9,9 @@ import Button from '../../UI/Button/Button';
 import Spinner from '../../UI/Spinner/Spinner';
 import { checkValidity } from '../../../Shared/Validator';
 
+import Snack from '../../../components/UI/SnackBar/Snackbar';
+
+
 class ContactUsForm extends Component {
   state = {
     contactUsForm: {
@@ -166,8 +169,15 @@ class ContactUsForm extends Component {
       form = <Spinner />;
     }
 
+    let sended = null;
+    if (this.props.msg) {
+      sended = (<Snack message={"Message Sent Successfully"} snackType="success" refresh={this.props.refreshContact} />);
+    }
+
+
     return (
       <section className={classes.Misc} ref={this.props.contactUsRef}>
+        {sended}
         <h2>Contact Us</h2>
         {form}
 
@@ -179,6 +189,7 @@ class ContactUsForm extends Component {
 
 const mapStateToProps = state => {
   return {
+    msg: state.ContactUs.msg,
     loading: state.ContactUs.loading,
     error: state.ContactUs.error
   }
@@ -186,7 +197,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmitContactUsForm: (contactUsData) => dispatch(actions.ContactUsForm(contactUsData))
+    onSubmitContactUsForm: (contactUsData) => dispatch(actions.ContactUsForm(contactUsData)),
+    refreshContact: () => dispatch(actions.ContactUsMsg())
+
   }
 }
 
