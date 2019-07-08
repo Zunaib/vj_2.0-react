@@ -131,17 +131,18 @@ class Product extends Component {
         var colors, productTypes, shoesizes, topsizes, bottomsizes;
 
         await this.state.dropdowns.map(dropdown => {
-            if (dropdown.dropdownName == "Colors"){
+            if (dropdown.dropdownName === "Colors") {
                 colors = dropdown.values;
-            } else if (dropdown.dropdownName == "ProductType") {
+            } else if (dropdown.dropdownName === "ProductType") {
                 productTypes = dropdown.values;
-            } else if (dropdown.dropdownName == "ShoeSizes") {
+            } else if (dropdown.dropdownName === "ShoeSizes") {
                 shoesizes = dropdown.values;
-            } else if (dropdown.dropdownName == "TopSizes") {
+            } else if (dropdown.dropdownName === "TopSizes") {
                 topsizes = dropdown.values;
-            } else if (dropdown.dropdownName == "BottomSizes") {
+            } else if (dropdown.dropdownName === "BottomSizes") {
                 bottomsizes = dropdown.values;
             }
+            return null
         })
 
         var colorsdrop = [];
@@ -578,7 +579,7 @@ class Product extends Component {
         }
 
 
-        
+
         let imgsnack = null;
         if (this.state.maxselected) {
             imgsnack = (<Snack message={'Images Added: ( ' + this.state.selectedFiles.length + ' )'} snackType="success" refresh={this.onaddPMsg} />);

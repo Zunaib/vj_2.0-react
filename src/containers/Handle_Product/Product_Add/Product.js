@@ -57,19 +57,20 @@ class Product extends Component {
         var colors, productTypes, shoesizes, topsizes, bottomsizes;
 
         await this.state.dropdowns.map(dropdown => {
-            if (dropdown.dropdownName == "Colors"){
-                colors = dropdown.values;
-            } else if (dropdown.dropdownName == "ProductType") {
-                productTypes = dropdown.values;
-            } else if (dropdown.dropdownName == "ShoeSizes") {
-                shoesizes = dropdown.values;
-            } else if (dropdown.dropdownName == "TopSizes") {
-                topsizes = dropdown.values;
-            } else if (dropdown.dropdownName == "BottomSizes") {
-                bottomsizes = dropdown.values;
+            if (dropdown.dropdownName === "Colors") {
+                return colors = dropdown.values;
+            } else if (dropdown.dropdownName === "ProductType") {
+                return productTypes = dropdown.values;
+            } else if (dropdown.dropdownName === "ShoeSizes") {
+                return shoesizes = dropdown.values;
+            } else if (dropdown.dropdownName === "TopSizes") {
+                return topsizes = dropdown.values;
+            } else if (dropdown.dropdownName === "BottomSizes") {
+                return bottomsizes = dropdown.values;
             }
+            return null;
         })
-        
+
         var colorsdrop = [];
         var productTypesdrop = [];
         var shoesizesdrop = [];

@@ -21,17 +21,12 @@ class ProductCard extends Component {
     componentDidMount() {
         if (this.props.likes) {
             let like = false;
-            like = (
-                this.props.likes.map(lk => {
-                    if (lk === this.props.loggedinsettings[0]._id) { like = true }
-                    return like
-                })
-            );
-
-            this.setState({ favorited: like[0] })
+            like = this.props.likes.indexOf(this.props.loggedinsettings[0]._id) > -1;
+            this.setState({ favorited: like })
         }
 
     }
+
     render() {
 
         let imgpath = 'http://localhost:5000' + this.props.images[0];

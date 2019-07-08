@@ -7,7 +7,7 @@ import classes from './Checkout.css';
 // import Snackbar from '../../components/UI/SnackBar/SuccessSnackbar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
-import Input from '../../components/UI/Input/Input';
+import Input from '../../components/UI/Input/CustomInput/CustomInput';
 import CheckoutCard from '../../components/UI/Card/Checkout/CheckoutCard';
 import FormCard from '../../components/UI/Card/Form/FormCard';
 import { checkValidity } from '../../Shared/Validator';
@@ -31,6 +31,7 @@ class Checkout extends Component {
             const formElements = ['firstName', 'lastName', 'streetAddress', 'city',
                 'zipcode', 'province', 'country', 'phone'];
 
+            let count = 0;
 
             for (let i = 0; i < formElements.length; i++) {
                 const updatedFormElement = {
@@ -47,8 +48,8 @@ class Checkout extends Component {
                     updatedFormElement.value = this.props.settings[0][target];
                     updatedFormElement.valid = true;
                     updatedFormElement.touched = true;
+                    count++;
                 }
-
                 updatedcheckoutForm[formElements[i]] = updatedFormElement;
             }
 
@@ -56,6 +57,9 @@ class Checkout extends Component {
             for (let inputIdentifier in updatedcheckoutForm) {
                 formIsValid = updatedcheckoutForm[inputIdentifier].valid && formIsValid;
             }
+
+            if (count < 8) { formIsValid = false; }
+
             this.setState({ checkoutForm: updatedcheckoutForm, formIsValid: formIsValid });
         }, 500)
 
@@ -124,7 +128,7 @@ class Checkout extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    minLength: 5,
+                    minLength: 2,
                     maxLength: 5,
                     isNumeric: true
                 },
@@ -177,10 +181,6 @@ class Checkout extends Component {
         formIsValid: false,
         redirect: null,
         type: "cashondelivery"
-        // userName: "",
-        // // desc: "",
-        // selectedFile: null,
-        // selectedFileURL: null
     }
 
     checkoutHandler = (event) => {
@@ -208,18 +208,18 @@ class Checkout extends Component {
             paymentMethod: 'Cash On Delivery'
         }
 
-        console.log(order)
+        // console.log(order)
 
         if (this.state.formIsValid) {
             if (this.state.type === "cashondelivery") {
                 this.props.oncheckout(this.props.token, order);
             }
+            this.setState({ redirect: <Redirect to="/dashboard/customerorders" /> })
             console.log('valid')
         } else {
             console.log('Invalid')
         }
 
-        this.setState({ redirect: <Redirect to="/dashboard/customerorders" /> })
 
     }
 
@@ -232,14 +232,14 @@ class Checkout extends Component {
         };
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
+        console.log(updatedFormElement.valid)
         updatedFormElement.touched = true;
         updatedcheckoutForm[inputIdentifier] = updatedFormElement;
 
-        let formIsValid = false;
+        let formIsValid = true;
         for (let inputIdentifier in updatedcheckoutForm) {
             formIsValid = updatedcheckoutForm[inputIdentifier].valid && formIsValid;
         }
-        console.log(formIsValid)
         this.setState({ checkoutForm: updatedcheckoutForm, formIsValid: formIsValid });
     }
 
@@ -322,7 +322,7 @@ class Checkout extends Component {
 
                 {
                     this.state.type === "cashondelivery" ?
-                        <Button btnType="CheckButton">Checkout</Button> :
+                        <Button disabled={!this.state.formIsValid} btnType="CheckButton">Checkout</Button> :
                         null
                 }
             </form>
@@ -338,6 +338,9 @@ class Checkout extends Component {
 
                 <div className={classes.FormCard}>
                     <FormCard form={form} title="Checkout" />
+                    <div className={classes.Err}>
+                        <h4>{!this.state.formIsValid ? "Invalid Input Fields" : null}</h4>
+                    </div>
 
                 </div>
                 <div className={classes.ProfileCard}>

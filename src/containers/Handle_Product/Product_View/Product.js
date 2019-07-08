@@ -57,19 +57,13 @@ class Product extends Component {
         // console.log(this.props.currentproduct._id)
         // console.log(this.props.loggedinsettings[0].favoriteProducts)
         let favprod = this.props.loggedinsettings[0].favoriteProducts;
+
         if (favprod) {
             let fav = false;
-            fav = (
-                favprod.map(fp => {
-                    if (fp === this.props.currentproduct._id) { fav = true }
-                    return fav
-                })
-            );
-
-            console.log(fav)
-
-            this.setState({ favorited: fav[0] })
+            fav = favprod.indexOf(this.props.currentproduct._id) > -1;
+            this.setState({ favorited: fav })
         }
+
     }
 
 
@@ -198,7 +192,7 @@ class Product extends Component {
                                 </p>
                             </div>
                             <div className={classes.Fav}>
-                                <h4>Favorited:</h4>
+                                <h4>{this.state.favorited ? "Remove From Favorites" : "Add To Favorites"}:</h4>
                                 <i className={this.state.favorited ? "fas fa-star" : "far fa-star"} onClick={this.favorited}></i>
                             </div>
 

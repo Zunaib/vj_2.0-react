@@ -153,3 +153,21 @@ div.CardText h4{
     width: 50%;
 }
 
+.Sorting{
+    float: right;
+    text-align: center;
+    margin-top: -56px;
+    margin-right: 56px;
+    width: 20%;
+
+}
+
+.Sorting h4{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.Select{
+    width: 70%;
+    display: inline-block;
+}

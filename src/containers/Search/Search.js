@@ -7,6 +7,9 @@ import BlogCard from '../../components/UI/Card/Blog/BlogCard';
 import VlogCard from '../../components/UI/Card/Vlog/VlogCard';
 import ProductCard from '../../components/UI/Card/Product/ProductCard';
 
+import Select from 'react-select';
+
+
 export class Search extends Component {
 
     constructor(props) {
@@ -17,7 +20,9 @@ export class Search extends Component {
             blogs: null,
             vlogs: null,
             users: null,
-            content: 'users',
+            content: { value: "users", label: "Users" },
+            selectedSort: null,
+            sortByOptions: []
         }
 
 
@@ -58,25 +63,205 @@ export class Search extends Component {
     }
 
     setContent(event) {
-        let { value } = event.target;
+        let { value } = event;
+
+        console.log(value)
+
         if (value === 'users') {
-            this.setState({ content: 'users' });
+            this.setState({ content: event });
         }
         if (value === 'blogs') {
-            this.setState({ content: 'blogs' });
+            const options = [
+                { value: 'name a to z', label: 'Name A to Z' },
+                { value: 'name z to a', label: 'Name Z to A' },
+                { value: 'by earliest', label: 'By Earliest' },
+                { value: 'by oldest', label: 'By Oldest' },
+            ];
+            this.setState({ content: event, sortByOptions: options });
         }
         if (value === 'vlogs') {
-            this.setState({ content: 'vlogs' });
+            const options = [
+                { value: 'name a to z', label: 'Name A to Z' },
+                { value: 'name z to a', label: 'Name Z to A' },
+                { value: 'by earliest', label: 'By Earliest' },
+                { value: 'by oldest', label: 'By Oldest' },
+            ];
+            this.setState({ content: event, sortByOptions: options });
         }
         if (value === 'products') {
-            this.setState({ content: 'products' });
+
+            const options = [
+                { value: 'name a to z', label: 'Name A to Z' },
+                { value: 'name z to a', label: 'Name Z to A' },
+                { value: 'by earliest ', label: 'By Earliest' },
+                { value: 'by oldest', label: 'By Oldest' },
+                { value: 'price max first', label: 'Price Max First' },
+                { value: 'price min first', label: 'Price Min First' }
+            ];
+
+            this.setState({ content: event, sortByOptions: options });
+        }
+    }
+    handleSelectedSort = (selectedSort) => {
+
+        console.log(selectedSort)
+
+        this.setState({ selectedSort: selectedSort })
+        const prodtab = this.state.content.value === "products";
+        const blogtab = this.state.content.value === "blogs";
+        const vlogtab = this.state.content.value === "vlogs";
+
+        if (selectedSort.value === "by earliest") {
+            if (prodtab) {
+                let products = this.state.products;
+                products.sort(function (a, b) {
+                    var keyA = new Date(a.createdAt),
+                        keyB = new Date(b.createdAt);
+                    // Compare the 2 dates
+                    if (keyA > keyB) return -1;
+                    if (keyA < keyB) return 1;
+                    return 0;
+                });
+                this.setState({ products: products })
+            } else if (vlogtab) {
+                let vlogs = this.state.vlogs;
+                vlogs.sort(function (a, b) {
+                    var keyA = new Date(a.createdAt),
+                        keyB = new Date(b.createdAt);
+                    // Compare the 2 dates
+                    if (keyA > keyB) return -1;
+                    if (keyA < keyB) return 1;
+                    return 0;
+                });
+                this.setState({ vlogs: vlogs })
+            } else if (blogtab) {
+                let blogs = this.state.blogs;
+                blogs.sort(function (a, b) {
+                    var keyA = new Date(a.createdAt),
+                        keyB = new Date(b.createdAt);
+                    // Compare the 2 dates
+                    if (keyA > keyB) return -1;
+                    if (keyA < keyB) return 1;
+                    return 0;
+                });
+                this.setState({ blogs: blogs })
+            }
+        } else if (selectedSort.value === "by oldest") {
+            if (prodtab) {
+                let products = this.state.products;
+                let arr = products.sort(function (a, b) {
+                    var keyA = new Date(a.createdAt),
+                        keyB = new Date(b.createdAt);
+                    // Compare the 2 dates
+                    if (keyA < keyB) return -1;
+                    if (keyA > keyB) return 1;
+                    return 0;
+                });
+                this.setState({ products: arr })
+            } else if (vlogtab) {
+                let vlogs = this.state.vlogs;
+                let arr = vlogs.sort(function (a, b) {
+                    var keyA = new Date(a.createdAt),
+                        keyB = new Date(b.createdAt);
+                    // Compare the 2 dates
+                    if (keyA < keyB) return -1;
+                    if (keyA > keyB) return 1;
+                    return 0;
+                });
+                this.setState({ vlogs: arr })
+            } else if (blogtab) {
+                let blogs = this.state.blogs;
+                let arr = blogs.sort(function (a, b) {
+                    var keyA = new Date(a.createdAt),
+                        keyB = new Date(b.createdAt);
+                    // Compare the 2 dates
+                    if (keyA < keyB) return -1;
+                    if (keyA > keyB) return 1;
+                    return 0;
+                });
+                this.setState({ blogs: arr })
+            }
+        } else if (selectedSort.value === "name a to z") {
+            if (prodtab) {
+                let products = this.state.products;
+                let arr = products.sort(function (a, b) {
+                    if (a.productName < b.productName) { return -1; }
+                    if (a.productName > b.productName) { return 1; }
+                    return 0;
+                })
+                this.setState({ products: arr })
+            } else if (vlogtab) {
+                let vlogs = this.state.vlogs;
+                let arr = vlogs.sort(function (a, b) {
+                    if (a.title < b.title) { return -1; }
+                    if (a.title > b.title) { return 1; }
+                    return 0;
+                })
+                this.setState({ vlogs: arr })
+            } else if (blogtab) {
+                let blogs = this.state.blogs;
+                let arr = blogs.sort(function (a, b) {
+                    if (a.title < b.title) { return -1; }
+                    if (a.title > b.title) { return 1; }
+                    return 0;
+                })
+                this.setState({ blogs: arr })
+
+            }
+        } else if (selectedSort.value === "name z to a") {
+            if (prodtab) {
+                let products = this.state.products;
+                let arr = products.sort(function (a, b) {
+                    if (a.productName > b.productName) { return -1; }
+                    if (a.productName < b.productName) { return 1; }
+                    return 0;
+                })
+                this.setState({ products: arr })
+            } else if (vlogtab) {
+                let vlogs = this.state.vlogs;
+                let arr = vlogs.sort(function (a, b) {
+                    if (a.title > b.title) { return -1; }
+                    if (a.title < b.title) { return 1; }
+                    return 0;
+                })
+                this.setState({ vlogs: arr })
+            } else if (blogtab) {
+                let blogs = this.state.blogs;
+                let arr = blogs.sort(function (a, b) {
+                    if (a.title > b.title) { return -1; }
+                    if (a.title < b.title) { return 1; }
+                    return 0;
+                })
+                this.setState({ blogs: arr })
+
+            }
+        } else if (selectedSort.value === "price max first") {
+            if (prodtab) {
+                let products = this.state.products;
+                let arr = products.sort(function (a, b) {
+                    if (a.price > b.price) { return -1; }
+                    if (a.price < b.price) { return 1; }
+                    return 0;
+                })
+                this.setState({ products: arr })
+            }
+        } else if (selectedSort.value === "price min first") {
+            if (prodtab) {
+                let products = this.state.products;
+                let arr = products.sort(function (a, b) {
+                    if (a.price < b.price) { return -1; }
+                    if (a.price > b.price) { return 1; }
+                    return 0;
+                })
+                this.setState({ products: arr })
+            }
         }
     }
 
     render() {
 
         let content = null;
-        if (this.state.content === 'users') {
+        if (this.state.content.value === 'users') {
             if (this.state.users) {
                 content = (this.state.users.map((user, index = user._id) => (
                     <NavLink className={classes.Link} to={"/dashboard/userprofile/" + user._id} key={index}>
@@ -89,73 +274,77 @@ export class Search extends Component {
 
                 )));
             }
-        } else if (this.state.content === 'blogs') {
+        } else if (this.state.content.value === 'blogs') {
             if (this.state.blogs) {
                 content = (this.state.blogs.map((blog, index = blog._id) => (
-                    <NavLink className={classes.Link} to={"/dashboard/blogs/" + blog._id} key={index}>
-                        <BlogCard
-                            key={index}
-                            title={blog.title}
-                            description={blog.description}
-                            thumbnail={blog.thumbnail}
-                        />
-                    </NavLink>
+                    <BlogCard
+                        key={index}
+                        bid={blog._id}
+                        title={blog.title}
+                        likes={blog.likes}
+                        description={blog.description}
+                        thumbnail={blog.thumbnail}
+                    />
 
                 )));
             }
-        } else if (this.state.content === 'vlogs') {
+        } else if (this.state.content.value === 'vlogs') {
             if (this.state.vlogs) {
                 content = (this.state.vlogs.map((vlog, index = vlog._id) => (
-                    <NavLink className={classes.Link} to={"/dashboard/vlogs/" + vlog._id} key={index}>
-                        <VlogCard
-                            key={index}
-                            title={vlog.title}
-                            description={vlog.description}
-                            year={vlog.year}
-                            videoLink={vlog.videoLink}
-                        />
-                    </NavLink>
+                    <VlogCard
+                        key={index}
+                        vid={vlog._id}
+                        likes={vlog.likes}
+                        title={vlog.title}
+                        description={vlog.description}
+                        year={vlog.year}
+                        videoLink={vlog.videoLink}
+                    />
 
                 )));
             }
-        } else if (this.state.content === 'products') {
+        } else if (this.state.content.value === 'products') {
             if (this.state.products) {
                 content = (this.state.products.map((product, index = product._id) => (
-                    <NavLink className={classes.Link} to={"/dashboard/products/" + product._id} key={index}>
-                        <ProductCard
-                            key={product._id}
-                            name={product.productName}
-                            price={product.price}
-                            images={product.images}
-                        />
-                    </NavLink>
+                    <ProductCard
+                        key={product._id}
+                        pid={product._id}
+                        likes={product.likes}
+                        name={product.productName}
+                        price={product.price}
+                        images={product.images}
+                        desc={product.description}
+                    />
 
                 )));
             }
         }
 
-
-
-
+        const options = [
+            { value: 'users', label: 'Users' },
+            { value: 'products', label: 'Products' },
+            { value: 'vlogs', label: 'Vlogs' },
+            { value: 'blogs', label: 'Blogs' },
+        ];
 
         return (
             <div className={classes.Main}>
                 <div className={classes.FilterDiv}>
                     <div className={classes.FilterBy}>
                         <h3>Filter By :</h3>
-                        <select className={classes.selectcss} onChange={this.setContent}>
-                            <option value="users">Users</option>
-                            <option value="products">Products</option>
-                            <option value="vlogs">Vlogs</option>
-                            <option value="blogs">Blogs</option>
-                        </select>
-                        {/* <h3>Sort By :</h3> */}
-                        {/* <select className={classes.selectcss}>
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
-                        </select> */}
+                        <Select
+                            className={classes.selectcss}
+                            value={this.state.content}
+                            onChange={this.setContent}
+                            options={options}
+                        />
+                        <h3>Sort By :</h3>
+                        <Select
+                            className={classes.selectcss}
+                            value={this.state.selectedSort}
+                            onChange={this.handleSelectedSort}
+                            options={this.state.sortByOptions}
+                        />
                     </div>
                 </div>
                 {content}
