@@ -43,16 +43,33 @@ class Product extends Component {
         }
     }
 
-    setdropdowns() {
+    async setdropdowns() {
         let updatedproductForm = {
             ...this.state.productForm
         };
         let updatedFormElement;
-        var colors = this.state.dropdowns[0].values;
-        var productTypes = this.state.dropdowns[3].values;
-        var shoesizes = this.state.dropdowns[1].values;
-        var topsizes = this.state.dropdowns[2].values;
-        var bottomsizes = this.state.dropdowns[4].values;
+        // var colors = this.state.dropdowns[0].values;
+        // var productTypes = this.state.dropdowns[3].values;
+        // var shoesizes = this.state.dropdowns[1].values;
+        // var topsizes = this.state.dropdowns[2].values;
+        // var bottomsizes = this.state.dropdowns[4].values;
+
+        var colors, productTypes, shoesizes, topsizes, bottomsizes;
+
+        await this.state.dropdowns.map(dropdown => {
+            if (dropdown.dropdownName == "Colors"){
+                colors = dropdown.values;
+            } else if (dropdown.dropdownName == "ProductType") {
+                productTypes = dropdown.values;
+            } else if (dropdown.dropdownName == "ShoeSizes") {
+                shoesizes = dropdown.values;
+            } else if (dropdown.dropdownName == "TopSizes") {
+                topsizes = dropdown.values;
+            } else if (dropdown.dropdownName == "BottomSizes") {
+                bottomsizes = dropdown.values;
+            }
+        })
+        
         var colorsdrop = [];
         var productTypesdrop = [];
         var shoesizesdrop = [];
@@ -195,7 +212,7 @@ class Product extends Component {
 
     maxSelectFile = (event) => {
         let files = event.target.files // create file object
-        if (files.length <= 5 && files.length > 1) {
+        if (files.length <= 5 && files.length >= 1) {
             this.setState({ maxselected: true })
             console.log('max true');
             return files.length;
@@ -370,7 +387,7 @@ class Product extends Component {
                 <FileUploader clicked={this.fileSelectedHandler}
                     text={
                         this.state.selectedFiles ? this.state.selectedFiles.length + " Images Selected"
-                            : "Select 5 Images, 2 Atleast"} />
+                            : "Select Upto 5 Images"} />
                 <Button btnType="WebButton" >Add Product</Button>
             </form>
 
