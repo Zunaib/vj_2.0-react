@@ -9,10 +9,13 @@ const CustomerOrder = (props) => {
     let total = 0
     let productNames = []
     let designers = []
-    for (let i = 0; i < products.length; i++) {
-        total = products[i].price + total;
-        productNames[i] = products[i].product.productName
-        designers[i] = products[i].product.userId.firstName
+    if (products) {
+        for (let i = 0; i < products.length; i++) {
+            total = products[i].price + total;
+            productNames[i] = products[i].product.productName
+            designers[i] = products[i].product.userId.firstName;
+        }
+        console.log(products)
     }
 
     return (

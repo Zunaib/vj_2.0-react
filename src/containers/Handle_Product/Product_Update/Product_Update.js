@@ -122,11 +122,7 @@ class Product extends Component {
             ...this.state.productForm
         };
         let updatedFormElement;
-        // var colors = this.state.dropdowns[0].values;
-        // var productTypes = this.state.dropdowns[3].values;
-        // var shoesizes = this.state.dropdowns[1].values;
-        // var topsizes = this.state.dropdowns[2].values;
-        // var bottomsizes = this.state.dropdowns[4].values;
+
 
         var colors, productTypes, shoesizes, topsizes, bottomsizes;
 
@@ -280,7 +276,8 @@ class Product extends Component {
         shoesizes: null,
         selectedSizes: [],
         selectedColors: [],
-        colors: null
+        colors: null,
+        dropchanges: false
     }
 
     maxSelectFile = (event) => {
@@ -390,7 +387,7 @@ class Product extends Component {
         data.append('sizes', sizesArray);
         data.append('colors', colorsArray);
 
-        if (this.state.formIsValid && action) {
+        if ((this.state.formIsValid && action) || this.state.dropchanges) {
             console.log('valid')
             console.log(data)
             this.props.onupdatecurrentproduct(this.props.token, data);
@@ -451,11 +448,11 @@ class Product extends Component {
     }
 
     handleSizesChange = (selectedOptions) => {
-        this.setState({ selectedSizes: selectedOptions });
+        this.setState({ selectedSizes: selectedOptions, dropchanges: true });
         console.log(`Option selected:`, selectedOptions);
     };
     handleColorsChange = (selectedOptions) => {
-        this.setState({ selectedColors: selectedOptions });
+        this.setState({ selectedColors: selectedOptions, dropchanges: true });
         console.log(`Option selected:`, selectedOptions);
     };
 

@@ -31,10 +31,7 @@ class CustomerOrder extends Component {
     }
 
     cancelOrderHandler = (orderid) => {
-        // console.log(orderid);
         this.props.oncancelorder(this.props.token, orderid);
-        // this.props.onfetchorders(this.props.token)
-
     }
     viewOrderHandler = (order) => {
         this.setState({ orderopened: true, order: order })
@@ -57,17 +54,19 @@ class CustomerOrder extends Component {
                 ;
         } else if (this.props.orders) {
             if (this.props.orders.length > 0) {
-                carddata = (orders.map((order, index) => (
-                    <CustomerOrderBody
-                        key={order._id}
-                        index={index + 1}
-                        products={order.products}
-                        orderdate={order.createdAt}
-                        viewclicked={() => this.viewOrderHandler(order)}
-                        cancelclicked={() => this.cancelOrderHandler(order._id)}
-                    />
+                if (this.props.orders) {
+                    carddata = (orders.map((order, index) => (
+                        <CustomerOrderBody
+                            key={order._id}
+                            index={index + 1}
+                            products={order.products}
+                            orderdate={order.createdAt}
+                            viewclicked={() => this.viewOrderHandler(order)}
+                            cancelclicked={() => this.cancelOrderHandler(order._id)}
+                        />
 
-                )));
+                    )));
+                }
             } else {
                 carddata = (
                     <tr className={classes.Empty}>

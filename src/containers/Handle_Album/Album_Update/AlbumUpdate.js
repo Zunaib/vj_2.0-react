@@ -140,6 +140,7 @@ class Album extends Component {
         selectedsnack: false,
         selectedFileURL: null,
         albumthumbnail: null,
+        fileselected: null,
         albumid: window.location.href.split("http://localhost:3000/dashboard/handle_album/update_album/")[1]
     }
 
@@ -147,7 +148,9 @@ class Album extends Component {
         this.setState({
             selectedFile: event.target.files[0],
             selectedFileURL: URL.createObjectURL(event.target.files[0]),
-            selectedsnack: true
+            selectedsnack: true,
+            fileselected: true
+
         })
     }
 
@@ -166,7 +169,7 @@ class Album extends Component {
             updatedalbumForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ albumForm: updatedalbumForm, selectedFile: null, selectedsnack: false });
+        this.setState({ albumForm: updatedalbumForm, selectedFile: null, selectedsnack: false, fileselected: false });
     }
 
     albumHandler = (event) => {
@@ -228,6 +231,9 @@ class Album extends Component {
         this.setState({ albumForm: updatedalbumForm, formIsValid: formIsValid });
     }
 
+    onaddAlbumMsg = () => {
+        this.setState({ fileselected: false })
+    }
 
     render() {
         let body = <Spinner />;
@@ -266,7 +272,10 @@ class Album extends Component {
                                                 touched={formElement.config.touched}
                                                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                                         ))}
-                                        <FileUploader clicked={this.fileSelectedHandler} text="Thumbnail" />
+                                        <FileUploader clicked={this.fileSelectedHandler}
+                                            text={"Select Thumbnail"}
+                                            textt={this.state.selectedFile ? "Thumbnail Selected" : "Select Album Thumbnail"}
+                                        />
                                         <Button btnType="WebButton">Update Album</Button>
 
                                     </form>
@@ -283,8 +292,8 @@ class Album extends Component {
 
 
         let imgsnack = null;
-        if (this.state.selectedFile) {
-            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onalbumUpdateMsg} />);
+        if (this.state.fileselected) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onaddAlbumMsg} />);
         }
 
         let albumupdate = null;

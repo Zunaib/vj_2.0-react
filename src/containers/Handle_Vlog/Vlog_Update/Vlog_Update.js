@@ -51,7 +51,8 @@ class Vlog extends Component {
         formIsValid: false,
         selectedFile: null,
         selectedsnack: false,
-        selectedFileURL: null
+        selectedFileURL: null,
+        fileselected: null
 
     }
 
@@ -125,7 +126,8 @@ class Vlog extends Component {
             vlog: null,
             selectedFile: event.target.files[0],
             selectedFileURL: URL.createObjectURL(event.target.files[0]),
-            selectedsnack: true
+            selectedsnack: true,
+            fileselected: true
         })
     }
 
@@ -144,7 +146,7 @@ class Vlog extends Component {
             updatedvlogForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ vlogForm: updatedvlogForm, selectedFile: null, selectedsnack: false });
+        this.setState({ vlogForm: updatedvlogForm, selectedFile: null, selectedsnack: false, fileselected: false });
     }
 
     vlogHandler = (event) => {
@@ -206,6 +208,10 @@ class Vlog extends Component {
         }
         this.setState({ vlogForm: updatedvlogForm, formIsValid: formIsValid });
     }
+
+    onaddVlogMsg = () => {
+        this.setState({ fileselected: false })
+    }
     render() {
 
         const formElementsArray = [];
@@ -230,7 +236,9 @@ class Vlog extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <FileUploader clicked={this.fileSelectedHandler} text="Video file" />
+                <FileUploader clicked={this.fileSelectedHandler}
+                    text={"Select Video"}
+                    textt={this.state.selectedFile ? "Video Selected" : "Select Video File"} />
                 <Button btnType="WebButton">Update Vlog</Button>
 
             </form>
@@ -270,8 +278,8 @@ class Vlog extends Component {
         }
 
         let imgsnack = null;
-        if (this.state.selectedFile) {
-            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onUpdateMsgRefresh} />);
+        if (this.state.fileselected) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.onaddVlogMsg} />);
         }
 
 

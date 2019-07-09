@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './BlogCard.css';
+import classes from './Modified.css';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../../../Store/Actions/index';
@@ -55,12 +55,17 @@ class BlogCard extends Component {
                         </div>
                     </NavLink>
                     <div className={classes.BlogCardInfo}>
-                        <div className={classes.BlogCardButton}>
-                            <span>
-                                {this.state.length}
-                            </span>
-                            <i className={this.state.favorited ? "fas fa-heart" : "far fa-heart"} onClick={this.favorited}></i>
-                        </div>
+                        {this.props.show ?
+                            <div className={classes.BlogCardButton} >
+                                <span>
+                                    {this.state.length}
+                                </span>
+                                <i className="fas fa-thumbs-up">
+                                </i>
+                            </div>
+                            :
+                            null
+                        }
                     </div>
                 </div>
 

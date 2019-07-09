@@ -1,7 +1,7 @@
 
 .VlogCard{
     background-color: white;
-    width: 16%;
+    width: 34%;
     height: 100%;
     float: left;
     margin-top: 13px;
@@ -60,20 +60,13 @@ div.CardText h4{
 }
 
 .CardButton i{
-    cursor: pointer;
-    color: rgb(219, 0, 0);
+    cursor: default;
+    color: darkblue;
     font-size: 1.2rem;
     float: right;
     width: 60%;
 }
 
-.CardButton i:hover{
-    cursor: pointer;
-    color: rgb(168, 0, 0);
-    font-size: 1.4rem;
-    float: right;
-    width: 60%;
-}
 
 .Link{
     color: black;

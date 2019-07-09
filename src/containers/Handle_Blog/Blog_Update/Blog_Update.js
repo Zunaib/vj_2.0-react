@@ -54,6 +54,7 @@ class Blog extends Component {
             blog: null,
             blogthumbnail: null,
             formIsValid: false,
+            imageselected: null,
             selectedFile: null,
             selectedsnack: false,
             selectedFileURL: null,
@@ -86,42 +87,45 @@ class Blog extends Component {
 
     setData() {
         let prevBlog = this.state.blog;
-        console.log(this.state.blog)
-        const updatedblogForm = {
-            ...this.state.blogForm
-        };
 
-        const formElements = ['title', 'description'];
-
-        for (let i = 0; i < formElements.length; i++) {
-            const updatedFormElement = {
-                ...updatedblogForm[formElements[i]]
+        if (prevBlog) {
+            console.log(this.state.blog)
+            const updatedblogForm = {
+                ...this.state.blogForm
             };
 
-            let target = formElements[i];
+            const formElements = ['title', 'description'];
 
-            if (prevBlog[target] === null) {
-                updatedFormElement.value = "";
-                updatedFormElement.valid = false;
-                updatedFormElement.touched = false;
-            } else {
-                updatedFormElement.value = prevBlog[target];
-                updatedFormElement.valid = true;
-                updatedFormElement.touched = true;
+            for (let i = 0; i < formElements.length; i++) {
+                const updatedFormElement = {
+                    ...updatedblogForm[formElements[i]]
+                };
+
+                let target = formElements[i];
+
+                if (prevBlog[target] === null) {
+                    updatedFormElement.value = "";
+                    updatedFormElement.valid = false;
+                    updatedFormElement.touched = false;
+                } else {
+                    updatedFormElement.value = prevBlog[target];
+                    updatedFormElement.valid = true;
+                    updatedFormElement.touched = true;
+                }
+
+                updatedblogForm[formElements[i]] = updatedFormElement;
             }
 
-            updatedblogForm[formElements[i]] = updatedFormElement;
+            let formIsValid = true;
+            for (let inputIdentifier in updatedblogForm) {
+                formIsValid = updatedblogForm[inputIdentifier].valid && formIsValid;
+            }
+            let blog_thumbnail = null;
+            if (prevBlog.thumbnail) {
+                blog_thumbnail = 'http://localhost:5000' + prevBlog.thumbnail;
+            }
+            this.setState({ blogForm: updatedblogForm, formIsValid: formIsValid, blogthumbnail: blog_thumbnail, editorHtml: prevBlog.content });
         }
-
-        let formIsValid = true;
-        for (let inputIdentifier in updatedblogForm) {
-            formIsValid = updatedblogForm[inputIdentifier].valid && formIsValid;
-        }
-        let blog_thumbnail = null;
-        if (prevBlog.thumbnail) {
-            blog_thumbnail = 'http://localhost:5000' + prevBlog.thumbnail;
-        }
-        this.setState({ blogForm: updatedblogForm, formIsValid: formIsValid, blogthumbnail: blog_thumbnail, editorHtml: prevBlog.content });
     }
 
     fileSelectedHandler = (event) => {
@@ -129,7 +133,8 @@ class Blog extends Component {
             blog: null,
             selectedFile: event.target.files[0],
             selectedFileURL: URL.createObjectURL(event.target.files[0]),
-            selectedsnack: true
+            selectedsnack: true,
+            imageselected: true
         })
     }
 
@@ -147,7 +152,7 @@ class Blog extends Component {
             updatedblogForm[formElementIdentifier] = updatedFormElement;
         }
 
-        this.setState({ blogForm: updatedblogForm, formIsValid: false, editorHtml: '', selectedFile: null, selectedsnack: false });
+        this.setState({ blogForm: updatedblogForm, formIsValid: false, editorHtml: '', selectedFile: null, selectedsnack: false, imageselected: false });
     }
 
     blogHandler = (event) => {
@@ -221,6 +226,9 @@ class Blog extends Component {
         this.setState({ editorHtml: html });
     }
 
+    onaddBlogMsg = () => {
+        this.setState({ imageselected: false })
+    }
     render() {
 
         const formElementsArray = [];
@@ -245,7 +253,9 @@ class Blog extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
                 ))}
-                <FileUploader clicked={this.fileSelectedHandler} text="Blog Thumbail" />
+                <FileUploader clicked={this.fileSelectedHandler}
+                    text={"Select Thumbnail"}
+                    textt={this.state.selectedFile ? "Thumbnail Selected" : "Select Blog Thumbnail"} />
                 <Button btnType="WebButton">Update Blog</Button>
 
             </form>
@@ -257,8 +267,8 @@ class Blog extends Component {
         }
 
         let imgsnack = null;
-        if (this.state.selectedFile) {
-            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onupdatecurrentBlogMsg} />);
+        if (this.state.imageselected) {
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.onaddBlogMsg} />);
         }
 
         let updateblog = null;

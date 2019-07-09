@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from './VlogCard.css';
+import classes from './ModifiedCard.css';
 import ReactPlayer from 'react-player';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -61,12 +61,17 @@ class VlogCard extends Component {
                 </NavLink>
                 <div className={classes.CardInfo}>
 
-                    <div className={classes.CardButton}>
-                        <span>
-                            {this.state.length}
-                        </span>
-                        <i className={this.state.favorited ? "fas fa-heart" : "far fa-heart"} onClick={this.favorited}></i>
-                    </div>
+                    {this.props.show ?
+                        <div className={classes.CardButton} >
+                            <span>
+                                {this.state.length}
+                            </span>
+                            <i className="fas fa-thumbs-up">
+                            </i>
+                        </div>
+                        :
+                        null
+                    }
                 </div>
             </div>
         );

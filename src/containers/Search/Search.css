@@ -1,10 +1,11 @@
 .Main{
     margin-top: 15px;
     height: 100%;
-    overflow: hidden;
+    width: 100%;
 }
 
 .FilterDiv{
+    z-index: 200;
     margin: 0 auto;
     margin-bottom: 20px;
 border-bottom-left-radius: 10px;

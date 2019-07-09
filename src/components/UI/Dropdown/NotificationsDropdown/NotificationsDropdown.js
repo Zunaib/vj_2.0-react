@@ -66,7 +66,8 @@ class SimpleMenu extends Component {
             </NavLink>
         );
         if (this.state.notifications) {
-            if (this.state.notifications.isRead === false) {
+            console.log(this.state.notifications.isRead)
+            if (this.state.notifications.isRead === true) {
                 badge = <span className={classes.Badge}></span>;
             }
             let icon = null;

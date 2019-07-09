@@ -92,7 +92,6 @@ class Vlog extends Component {
                             <ReactPlayer url={video} {...videostyles} />
                             <h2>{vlog.title}</h2>
                             <h4>{vlog.description}</h4>
-                            <h5>Views</h5>
                         </div>
                         {/* <div className={classes.AlbumImageSide} >
                             <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' height="100px" width="180px" />

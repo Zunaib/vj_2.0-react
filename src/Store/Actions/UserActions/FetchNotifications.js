@@ -24,6 +24,7 @@ export const fetchnotStart = () => {
 
 export const FetchNotifications = (token, first) => {
 
+    console.log(first + "from not")
     return dispatch => {
         //Album Fetch
         dispatch(fetchnotStart());

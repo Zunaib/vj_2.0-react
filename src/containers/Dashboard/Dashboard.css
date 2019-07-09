@@ -6,6 +6,7 @@
     /* height: 100vh; */
     box-sizing: border-box;
     overflow: hidden;
+    background-color: #f2f2f2;
  
 }
 
@@ -41,11 +42,14 @@
 .Products{
     /* background-color: orange; */
     height: 100%;
-    margin: 65px 15px 15px 15px;
+    margin: 15px 15px 15px 15px;
     padding:25px;
     
 }
 
+.Products h2{
+    margin-left: 10px;
+}
 
 
 .Vlogs{
@@ -156,7 +160,7 @@ div.CardText h4{
 .Sorting{
     float: right;
     text-align: center;
-    margin-top: -56px;
+    margin-top: -70px;
     margin-right: 56px;
     width: 20%;
 
@@ -165,6 +169,10 @@ div.CardText h4{
 .Sorting h4{
     display: inline-block;
     margin-right: 10px;
+}
+
+.All{
+margin-top: 20px;
 }
 
 .Select{

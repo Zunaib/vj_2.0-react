@@ -151,14 +151,15 @@ class Product extends Component {
                     <h3>No Comments Yet, Be The First One To Add</h3>
                 </div>
             );
-            if (product.comments.length > 0) {
-                productcomments = (product.comments.map((comment, index) => (
-                    <div className={[classes.Comment]} key={comment._id}>
-                        <h3>{comment.userId.firstName ? comment.userId.firstName + " " + comment.userId.lastName : "Anonymous"}</h3>
-                        <p>{comment.comment}</p>
-                    </div>
-                )));
-
+            if (product.comments) {
+                if (product.comments.length > 0) {
+                    productcomments = (product.comments.map((comment, index) => (
+                        <div className={[classes.Comment]} key={comment._id}>
+                            <h3>{comment.userId.firstName ? comment.userId.firstName + " " + comment.userId.lastName : "Anonymous"}</h3>
+                            <p>{comment.comment}</p>
+                        </div>
+                    )));
+                }
             }
 
             productdata = (
