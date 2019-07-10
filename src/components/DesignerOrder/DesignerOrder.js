@@ -38,7 +38,7 @@ const CustomerOrder = (props) => {
                     products.status === "Completed" ?
                         < div className={classes.ibutton3}>
                             <h3>Completed</h3>
-                            <i className="fas fa-times-circle"></i>
+                            <i className="far fa-check-square"></i>
                         </div> :
                         <Fragment>
                             <div className={classes.ibutton} onClick={props.completeclicked}>

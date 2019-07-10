@@ -49,10 +49,17 @@ const CustomerOrder = (props) => {
                         <h3>Cancelled</h3>
                         <i className="fas fa-times-circle"></i>
                     </div>
-                    : <div className={classes.ibutton2} onClick={props.cancelclicked} >
-                        <h3>Cancel</h3>
-                        <i className="fas fa-times-circle"></i>
-                    </div>}
+                    :
+                    products[0].status === "Completed" ?
+                        <div className={classes.ibutton3}>
+                            <h3>Completed</h3>
+                            <i className="far fa-check-square"></i>
+                        </div>
+                        :
+                        <div className={classes.ibutton2} onClick={props.cancelclicked} >
+                            <h3>Cancel</h3>
+                            <i className="fas fa-times-circle"></i>
+                        </div>}
             </td>
         </tr>
     );

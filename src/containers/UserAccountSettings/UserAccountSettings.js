@@ -55,7 +55,7 @@ class UserAccountSettings extends Component {
         for (let inputIdentifier in updatedsettingsForm) {
             formIsValid = updatedsettingsForm[inputIdentifier].valid && formIsValid;
         }
-        this.setState({ settingsForm: updatedsettingsForm, formIsValid: formIsValid });
+        this.setState({ settingsForm: updatedsettingsForm, formIsValid: true });
         this.setState({ userName: this.props.settings[0].userName });
         this.setState({ desc: this.props.settings[0].description });
         this.setState({ userimage: this.props.settings[0].displayPicture });
@@ -138,7 +138,7 @@ class UserAccountSettings extends Component {
                 value: '',
                 validation: {
                     required: true,
-                    minLength: 5,
+                    minLength: 1,
                     maxLength: 5,
                     isNumeric: true
                 },
@@ -179,7 +179,7 @@ class UserAccountSettings extends Component {
                         { value: 'female', displayValue: 'Female' }
                     ]
                 },
-                value: 'Male',
+                value: '',
                 validation: {},
                 valid: true
             },
@@ -187,13 +187,13 @@ class UserAccountSettings extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: '(+92)3XXXXXXXXX'
+                    placeholder: '03XXXXXXXXX'
                 },
-                value: '0',
+                value: '',
                 validation: {
                     required: true,
-                    minLength: 10,
-                    maxLength: 10,
+                    minLength: 11,
+                    maxLength: 11,
                     isNumeric: true
                 },
                 valid: false,
@@ -279,6 +279,8 @@ class UserAccountSettings extends Component {
         for (let inputIdentifier in updatedsettingsForm) {
             formIsValid = updatedsettingsForm[inputIdentifier].valid && formIsValid;
         }
+
+        console.log(formIsValid)
         this.setState({ settingsForm: updatedsettingsForm, formIsValid: formIsValid });
     }
 
