@@ -20,6 +20,7 @@ class ProfileCard extends Component {
         this.setState({ checked });
         let saveDetails = checked;
         this.props.onsendtemporary(saveDetails)
+        this.props.ondis(checked)
     }
 
     onRadioChange = (value) => {

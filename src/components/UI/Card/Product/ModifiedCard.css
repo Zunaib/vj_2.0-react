@@ -2,11 +2,11 @@
 .ProductCard{
     text-align: center;
     background-color: white;
-    width: 28%;
+    width: 29%;
     height: 240px;
     float: left;
     margin-bottom: 20px;
-    margin-left: 13px;
+    margin-left: 16px;
     margin-right: 11px;
     border-radius: 10px;
     overflow: hidden;
@@ -79,7 +79,7 @@ div.CardText h4{
 
 .CardButton i{
     cursor: default;
-    color: darkblue;
+    color: #A80000;
     font-size: 1.2rem;
     float: right;
     width: 60%;

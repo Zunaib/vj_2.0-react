@@ -22,7 +22,7 @@ class TopVlogs extends Component {
 
         return (
             < div className={classes.TopVlog} >
-                <h2>Recent Vlogs</h2>
+                <h2>Top Vlogs</h2>
                 <hr></hr>
                 {cards}
             </div >

@@ -56,9 +56,6 @@ class BlogCard extends Component {
                     </NavLink>
                     <div className={classes.BlogCardInfo}>
                         <div className={classes.BlogCardButton}>
-                            <span>
-                                {this.state.length}
-                            </span>
                             <i className={this.state.favorited ? "fas fa-heart" : "far fa-heart"} onClick={this.favorited}></i>
                         </div>
                     </div>

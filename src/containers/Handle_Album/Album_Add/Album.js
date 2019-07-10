@@ -26,7 +26,9 @@ class Album extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    minLength: 5,
+                    maxLength: 40
                 },
                 valid: false,
                 touched: false
@@ -39,7 +41,9 @@ class Album extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    minLength: 5,
+                    maxLength: 40
                 },
                 valid: false,
                 touched: false
@@ -65,7 +69,9 @@ class Album extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    minLength: 10,
+                    maxLength: 200
                 },
                 valid: false,
                 touched: false
@@ -225,7 +231,7 @@ class Album extends Component {
                                         {form}
                                     </div>
                                     <div className={classes.Err}>
-                                        <h4>{!this.state.selectedFile ? "No Video Selected" : null}</h4>
+                                        <h4>{!this.state.selectedFile ? "No Thumbnail Selected" : null}</h4>
                                     </div>
                                 </div>
                             </div>

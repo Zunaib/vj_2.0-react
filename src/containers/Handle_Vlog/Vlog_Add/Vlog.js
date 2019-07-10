@@ -128,7 +128,7 @@ class Vlog extends Component {
         this.setState({ vlogForm: updatedvlogForm, formIsValid: formIsValid });
     }
 
-    onaddVlogMsg = () => {
+    addVlogmsg = () => {
         this.setState({ fileselected: false })
     }
     render() {
@@ -187,12 +187,12 @@ class Vlog extends Component {
 
         let imgsnack = null;
         if (this.state.fileselected) {
-            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.props.onaddVlogMsg} />);
+            imgsnack = (<Snack message={'File Added: ( ' + this.state.selectedFile.name + ' )'} snackType="success" refresh={this.addVlogmsg} />);
         }
 
         let addvlog = null;
         if (this.props.added) {
-            addvlog = (<Snack message={"Vlog Successfully Added"} snackType="success" refresh={this.onaddVlogMsg} />);
+            addvlog = (<Snack message={"Vlog Successfully Added"} snackType="success" refresh={this.props.onaddVlogMsg} />);
 
         }
 

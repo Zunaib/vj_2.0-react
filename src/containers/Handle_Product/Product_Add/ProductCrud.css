@@ -281,3 +281,15 @@ text-align: center;
   width: 100%;
  
 }
+
+
+.Err{
+  text-align: center;
+  margin: 15px auto;
+  }
+  
+  .Err h4{
+      display: inline-block;
+      color: red;
+      margin: 0px 20px;
+  }

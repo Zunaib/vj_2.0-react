@@ -90,7 +90,7 @@ const input = (props) => {
         if (props.shouldValidate.isNumeric) {
             error = <p className={classes.ErrorInput}>Inavlid Type or Length: 2-6 Numeric </p>;
         } else {
-            if (props.label === "name") {
+            if (props.label === "name" || props.label === "title" || props.label === "season") {
                 error = <p className={classes.ErrorInput}>Inavlid Length: 5-40 Characters </p>;
             } else {
                 error = <p className={classes.ErrorInput}>Inavlid Length: 10-200 Characters </p>;

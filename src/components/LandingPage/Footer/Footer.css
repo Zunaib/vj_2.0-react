@@ -20,8 +20,14 @@
     display: grid;
     padding: 0;
     margin: 0;
-    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     justify-items: center;
+    display: inline-block;
+  }
+
+  .Footer ul li{
+    display: inline-block;
+    padding: 0 8px;
   }
   
 .Footer ul li a {

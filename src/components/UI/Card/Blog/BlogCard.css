@@ -31,17 +31,17 @@ background-color: rgba(0, 0, 0, 0.288);
 }
 
 div.BlogCardText h4{
-    padding-top: 30px;
+    padding-top: 10px;
     margin: auto;
     font-size: 1.2rem;
     color: white;
 }
 
 .BlogCardText div{
-    margin-top: 60px;
+    margin-top: 50px;
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 2px;
     justify-content: center;
     align-content: center;
     color: white;

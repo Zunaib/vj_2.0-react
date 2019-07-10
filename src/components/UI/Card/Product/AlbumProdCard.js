@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import classes from './ProductCard.css';
+import classes from './AlbumProdCard.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../../Store/Actions/index';
 
@@ -55,6 +55,9 @@ class ProductCard extends Component {
                     </NavLink>
 
                     <div className={classes.CardButton} >
+                        <span>
+                            {this.state.length}
+                        </span>
                         <i className={this.state.favorited ? "fas fa-heart" : "far fa-heart"} onClick={this.favorited}>
                         </i>
                     </div>

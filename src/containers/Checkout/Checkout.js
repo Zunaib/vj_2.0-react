@@ -71,7 +71,8 @@ class Checkout extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'First Name Here'
+                    placeholder: 'First Name Here',
+                    disabled: false,
                 },
                 value: '',
                 validation: {
@@ -84,7 +85,8 @@ class Checkout extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Last Name Here'
+                    placeholder: 'Last Name Here',
+                    disabled: false,
                 },
                 value: '',
                 validation: {
@@ -180,7 +182,49 @@ class Checkout extends Component {
         },
         formIsValid: false,
         redirect: null,
-        type: "cashondelivery"
+        type: "cashondelivery",
+        setdis: false
+    }
+
+    setDisabled = (checked) => {
+
+        if (checked === true) {
+            const updatedcheckoutForm = {
+                ...this.state.checkoutForm
+            };
+            const updatedFormElement = {
+                ...updatedcheckoutForm["firstName"]
+            };
+            updatedFormElement.elementConfig.disabled = true;
+            updatedcheckoutForm["firstName"] = updatedFormElement;
+
+            const updatedFormElement1 = {
+                ...updatedcheckoutForm["lastName"]
+            };
+            updatedFormElement1.elementConfig.disabled = true;
+            updatedcheckoutForm["lastName"] = updatedFormElement1;
+
+            this.setState({ checkoutForm: updatedcheckoutForm });
+        }
+
+        if (checked === false) {
+            const updatedcheckoutForm = {
+                ...this.state.checkoutForm
+            };
+            const updatedFormElement = {
+                ...updatedcheckoutForm["firstName"]
+            };
+            updatedFormElement.elementConfig.disabled = false;
+            updatedcheckoutForm["firstName"] = updatedFormElement;
+
+            const updatedFormElement1 = {
+                ...updatedcheckoutForm["lastName"]
+            };
+            updatedFormElement1.elementConfig.disabled = false;
+            updatedcheckoutForm["lastName"] = updatedFormElement1;
+
+            this.setState({ checkoutForm: updatedcheckoutForm });
+        }
     }
 
     checkoutHandler = (event) => {
@@ -314,6 +358,7 @@ class Checkout extends Component {
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
+                        disable={formElement.config.elementConfig.disabled}
                         invalid={!formElement.config.valid}
                         shouldValidate={formElement.config.validation}
                         touched={formElement.config.touched}
@@ -347,6 +392,7 @@ class Checkout extends Component {
                     <CheckoutCard setType={(type) => this.settype(type)}
                         pay={this.paywithCard}
                         sett={this.props.settings[0]}
+                        ondis={(checked) => this.setDisabled(checked)}
                     />
                 </div>
 

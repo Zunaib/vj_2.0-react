@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Auxilary from "../../hoc/Auxilary/Auxilary";
 // import Spinner from '../UI/Spinner/Spinner';
-import ProductCard from "../UI/Card/Product/ProductCard";
+import ProductCard from "../UI/Card/Product/AlbumProdCard";
 
 class ALbumProducts extends Component {
   componentDidMount() {

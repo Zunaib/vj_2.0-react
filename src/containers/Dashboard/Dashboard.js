@@ -95,10 +95,13 @@ class Dashboard extends Component {
             this.setState({ RecentProducts: arr })
 
             let arr1 = products.sort(function (a, b) {
-                if (a.likes.length < b.likes.length) { return -1; }
-                if (a.likes.length > b.likes.length) { return 1; }
+                if (a.likes.length > b.likes.length) { return -1; }
+                if (a.likes.length < b.likes.length) { return 1; }
                 return 0;
             })
+
+            arr1 = arr1.slice(0, 5)
+
 
             this.setState({ TopProducts: arr1 })
 
@@ -122,10 +125,14 @@ class Dashboard extends Component {
             this.setState({ RecentVlogs: arr })
 
             let arr1 = vlogs.sort(function (a, b) {
-                if (a.likes.length < b.likes.length) { return -1; }
-                if (a.likes.length > b.likes.length) { return 1; }
+                if (a.likes.length > b.likes.length) { return -1; }
+                if (a.likes.length < b.likes.length) { return 1; }
                 return 0;
             })
+
+
+            arr1 = arr1.slice(0, 5)
+
 
             this.setState({ TopVlogs: arr1 })
 
@@ -148,10 +155,13 @@ class Dashboard extends Component {
             this.setState({ RecentBlogs: arr })
 
             let arr1 = blogs.sort(function (a, b) {
-                if (a.likes.length < b.likes.length) { return -1; }
-                if (a.likes.length > b.likes.length) { return 1; }
+                if (a.likes.length > b.likes.length) { return -1; }
+                if (a.likes.length < b.likes.length) { return 1; }
                 return 0;
             })
+
+            arr1 = arr1.slice(0, 5)
+
 
             this.setState({ TopBlogs: arr1 })
 
@@ -161,8 +171,8 @@ class Dashboard extends Component {
     getContent = (currentContent) => {
         const Content = {
             Products: <Products products={this.state.products} />,
-            Blogs: <Blogs blogs={this.props.blogs} />,
-            Vlogs: <Vlogs vlogs={this.props.vlogs} />
+            Blogs: <Blogs blogs={this.state.blogs} />,
+            Vlogs: <Vlogs vlogs={this.state.vlogs} />
         };
         return Content[currentContent];
     }
@@ -241,7 +251,7 @@ class Dashboard extends Component {
         if (selectedSort.value === "by earliest") {
             if (prodtab) {
                 let products = this.state.products;
-                products.sort(function (a, b) {
+                let arr = products.sort(function (a, b) {
                     var keyA = new Date(a.createdAt),
                         keyB = new Date(b.createdAt);
                     // Compare the 2 dates
@@ -249,7 +259,7 @@ class Dashboard extends Component {
                     if (keyA < keyB) return 1;
                     return 0;
                 });
-                this.setState({ products: products })
+                this.setState({ products: arr })
             } else if (vlogtab) {
                 let vlogs = this.state.vlogs;
                 vlogs.sort(function (a, b) {
@@ -332,6 +342,7 @@ class Dashboard extends Component {
                     if (a.title > b.title) { return 1; }
                     return 0;
                 })
+
                 this.setState({ blogs: arr })
 
             }

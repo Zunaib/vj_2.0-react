@@ -66,7 +66,7 @@ class VlogCard extends Component {
                             <span>
                                 {this.state.length}
                             </span>
-                            <i className="fas fa-thumbs-up">
+                            <i className="fas fa-heart">
                             </i>
                         </div>
                         :

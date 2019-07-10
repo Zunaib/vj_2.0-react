@@ -1,7 +1,7 @@
 import * as actionTypes from '../../Actions/ActionTypes';
 
 const initialState = {
-    settings: [],
+    settings: null,
     loading: true,
     error: null,
     message: null
@@ -41,7 +41,7 @@ const UserSettingsReducer = (state = initialState, action) => {
         case actionTypes.Fetch_UserSettings_Success:
             return {
                 ...state,
-                settings: state.settings.concat(action.UserSettings),
+                settings: action.UserSettings,
                 loading: false,
                 error: false
             };

@@ -13,6 +13,9 @@ import ProductCard from '../../../components/UI/Card/Product/ProductCard';
 import Select from 'react-select';
 import Slider from "react-slick";
 
+import CartModel from '../../../components/UI/CartModel/CartModel';
+import Continue from './Continue/Continue';
+
 import Magnifier from "react-magnifier";
 
 class Product extends Component {
@@ -22,7 +25,16 @@ class Product extends Component {
         SelectedColor: null,
         SelectedSize: null,
         favorited: false,
-        product: null
+        product: null,
+        continueOpened: false
+
+    }
+
+    openModal = () => {
+        this.setState({ continueOpened: true })
+    }
+    closeModal = () => {
+        this.setState({ continueOpened: false })
     }
 
     favorited = () => {
@@ -78,6 +90,7 @@ class Product extends Component {
         if (this.state.SelectedColor && this.state.SelectedSize) {
             this.props.onaddtocart(this.props.token, this.state.productid, this.state.SelectedColor.value, this.state.SelectedSize.value);
             this.setState({ SelectedColor: null, SelectedSize: null })
+            this.openModal()
         }
     }
 
@@ -282,24 +295,30 @@ class Product extends Component {
         }
 
         return (
-            <div className={classes.Main}>
-                {added}
-                {delprod}
-                {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
-                <div className={classes.Album}>
-                    {productdata}
-                </div>
-
-
-                <div className={classes.Album_Bottom}>
-                    <div className={classes.WorkDisplay}>
-                        {similarproducts}
+            <Auxilary>
+                <CartModel show={this.state.continueOpened} modalClosed={this.closeModal} >
+                    <Continue />
+                </CartModel>
+                <div className={classes.Main}>
+                    {added}
+                    {delprod}
+                    {this.props.deleted ? <Redirect to="/dashboard/designer" /> : null}
+                    <div className={classes.Album}>
+                        {productdata}
                     </div>
 
+
+                    <div className={classes.Album_Bottom}>
+                        <div className={classes.WorkDisplay}>
+                            {similarproducts}
+                        </div>
+
+                    </div>
+
+
                 </div>
+            </Auxilary>
 
-
-            </div>
         )
     }
 }

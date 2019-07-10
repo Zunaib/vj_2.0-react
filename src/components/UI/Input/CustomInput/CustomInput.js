@@ -10,6 +10,11 @@ const input = (props) => {
         inputClasses.push(classes.Invalid);
     }
 
+    if (props.disable) {
+        console.log("Added")
+        inputClasses.push(classes.Disbaled);
+    }
+
     switch (props.elementType) {
         case ('input'):
             inputElement = <input

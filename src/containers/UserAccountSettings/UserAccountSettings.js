@@ -9,7 +9,7 @@ import FileUploader from '../../components/FileUploader/FileUpload';
 import Snack from '../../components/UI/SnackBar/Snackbar';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
-import Input from '../../components/UI/Input/Input';
+import Input from '../../components/UI/Input/CustomInput/CustomInput';
 import ProfileCard from '../../components/UI/Card/Profile/ProfileCard';
 import ProfileStatsCard from '../../components/UI/Card/Profile/ProfileStats/ProfileStats';
 import FormCard from '../../components/UI/Card/Form/FormCard';
@@ -187,13 +187,13 @@ class UserAccountSettings extends Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: '03XX-XXXXXXX'
+                    placeholder: '(+92)3XXXXXXXXX'
                 },
-                value: '',
+                value: '0',
                 validation: {
                     required: true,
-                    minLength: 11,
-                    maxLength: 11,
+                    minLength: 10,
+                    maxLength: 10,
                     isNumeric: true
                 },
                 valid: false,
@@ -254,9 +254,9 @@ class UserAccountSettings extends Component {
         data.append('country', formData.country);
         data.append('phone', formData.phone);
 
-        if (action) {
+        if (action && this.state.formIsValid) {
             this.props.onUpdateSettings(this.props.token, data);
-            window.location.reload();
+            // window.location.reload();
             console.log('valid')
         } else {
             console.log('Invalid')
@@ -343,7 +343,11 @@ class UserAccountSettings extends Component {
                 {snack}
                 {statcard}
                 <div className={classes.FormCard}>
+                    <div className={classes.Err}>
+                        <h4>{!this.state.formIsValid ? "Invalid Input Fields" : null}</h4>
+                    </div>
                     <FormCard form={form} title="User Settings" />
+
 
                 </div>
                 <div className={classes.ProfileCard}>

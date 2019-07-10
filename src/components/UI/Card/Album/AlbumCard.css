@@ -24,7 +24,8 @@ background-repeat: no-repeat;
 
 .CollectionCardText{
     text-align:center;
-    padding-top: 90px;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 div.CollectionCardText h4{
@@ -35,7 +36,7 @@ div.CollectionCardText h4{
     font-size: 1.2rem;
     width: 60%;
     height: 25px;
-
+color: black
 }
 div.CollectionCardText h2{
     margin-top: -8px;    

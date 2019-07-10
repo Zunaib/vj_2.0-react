@@ -34,7 +34,11 @@ export const FetchSettings = (token) => {
                         ...res.data[key]
                     });
                 }
-                let data = fetchedUserSettings[1];
+
+                let data = [
+                    fetchedUserSettings[1]
+                ]
+
 
                 dispatch(fetchSuccess(data));
             })
@@ -73,7 +77,23 @@ export const UpdateSettings = (token, settingsData) => {
         dispatch(updateStart());
         axios.post('/api/changeSettings?access_token=' + token, settingsData)
             .then(res => {
+
+                const fetchedUserSettings = [];
+                for (let key in res.data) {
+                    fetchedUserSettings.push({
+                        ...res.data[key]
+                    });
+                }
+
+                let data = [
+                    fetchedUserSettings[1]
+                ]
+
+
+                dispatch(fetchSuccess(data));
+
                 dispatch(updateSuccess(res.data.message));
+
             })
             .catch(err => {
                 dispatch(updateFailed(err.data.success));

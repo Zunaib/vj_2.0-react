@@ -6,6 +6,7 @@ import AlbumCard from '../../UI/Card/Album/AlbumCard';
 class LatestAlbums extends Component {
     render() {
         const albums = this.props.albums;
+        console.log(albums)
         const cards = (albums.map((album, index = album._id) => (
             <NavLink className={classes.Link} to={"/dashboard/albums/" + album._id} key={index}>
                 <AlbumCard

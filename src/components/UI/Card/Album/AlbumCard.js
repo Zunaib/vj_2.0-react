@@ -22,7 +22,7 @@ const AlbumCard = (props) => {
                     <h2>{props.name}</h2>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 

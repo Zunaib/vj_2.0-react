@@ -62,9 +62,6 @@ class VlogCard extends Component {
                 <div className={classes.CardInfo}>
 
                     <div className={classes.CardButton}>
-                        <span>
-                            {this.state.length}
-                        </span>
                         <i className={this.state.favorited ? "fas fa-heart" : "far fa-heart"} onClick={this.favorited}></i>
                     </div>
                 </div>

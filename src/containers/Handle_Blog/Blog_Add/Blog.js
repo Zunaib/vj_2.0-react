@@ -33,7 +33,9 @@ class Blog extends Component {
                     },
                     value: '',
                     validation: {
-                        required: true
+                        required: true,
+                        minLength: 5,
+                        maxLength: 40
                     },
                     valid: false,
                     touched: false
@@ -46,7 +48,9 @@ class Blog extends Component {
                     },
                     value: '',
                     validation: {
-                        required: true
+                        minLength: 10,
+                        maxLength: 200,
+                        required: true,
                     },
                     valid: false,
                     touched: false

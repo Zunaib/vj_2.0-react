@@ -12,36 +12,39 @@ import NotificDropdown from '../../UI/Dropdown/NotificationsDropdown/Notificatio
 class NavigationItems extends Component {
 
     state = {
-        userimage: '',
-        userfirst: '',
-        userlast: ''
+        displayPicture: '',
+        firstName: '',
+        lastName: '',
+        settings: null
     }
 
 
-    componentDidMount = () => {
-        let user = this.props.settings[0];
-        const str = window.location.href.split("http://localhost:3000/")[1];
-        if (str === '') {
-            console.log("dikha")
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.settings !== prevState.settings) {
+            return { settings: nextProps.settings };
         }
-        if (user) {
-            this.setState({
-                userimage: user.displayPicture,
-                userfirst: user.firstName,
-                userlast: user.lastName
-            })
+        if (nextProps.settings !== prevState.settings) {
+            return { settings: nextProps.settings };
+        }
+        else return null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.settings !== this.props.settings) {
+            if (this.props.settings) {
+                //Perform some operation here
+                this.setState({ settings: this.props.settings });
+                this.setState({ userimage: this.props.settings[0].displayPicture });
+                this.setState({ userfirst: this.props.settings[0].firstName });
+                this.setState({ userlast: this.props.settings[0].lastName });
+            }
         }
     }
+
+
 
 
     render() {
-
-        let img = display;
-        let firstname = this.state.userfirst;
-        let lastname = this.state.userlast;
-        if (this.state.userimage) {
-            img = 'http://localhost:5000' + this.state.userimage;
-        }
 
 
         let navitems = null;
@@ -64,6 +67,19 @@ class NavigationItems extends Component {
                 </div>
             );
         } else if (this.props.Type === "Web") {
+            let img;
+            let firstname;
+            let lastname;
+            if (this.state.settings) {
+                img = display;
+                firstname = this.state.settings[0].firstName;
+                console.log(this.state.settings[0])
+                lastname = this.state.settings[0].lastName;
+                if (this.state.settings[0].displayPicture) {
+                    img = 'http://localhost:5000' + this.state.settings[0].displayPicture;
+                }
+            }
+
             navitems = (
                 <div className={classes.ContainerWeb}>
 

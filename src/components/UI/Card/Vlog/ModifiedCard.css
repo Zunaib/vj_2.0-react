@@ -1,12 +1,12 @@
 
 .VlogCard{
     background-color: white;
-    width: 34%;
+    width: 29%;
     height: 100%;
     float: left;
     margin-top: 13px;
     margin-bottom: 20px;
-    margin-left: 25px;
+    margin-left: 15px;
     margin-right: 11px;
     border-radius: 10px;
     overflow: hidden;
@@ -61,10 +61,16 @@ div.CardText h4{
 
 .CardButton i{
     cursor: default;
-    color: darkblue;
+    color: #A80000;
     font-size: 1.2rem;
     float: right;
     width: 60%;
+}
+
+.Desc{
+    float: left;
+    width: 70%;
+    padding-bottom: 5px;
 }
 
 
@@ -74,7 +80,7 @@ div.CardText h4{
     }
 
     .CardButton span{
-        margin-right: -155px;
+        margin-right: -140px;
         font-size: 1.2rem;
         display: inline-block;
     }

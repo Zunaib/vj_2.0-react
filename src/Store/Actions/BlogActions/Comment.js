@@ -36,6 +36,7 @@ export const BlogComment = (token, data) => {
     return dispatch => {
         axios.post('/api/addBlogComment?access_token=' + token, data)
             .then(res => {
+                console.log(res)
                 dispatch(fetchblogSuccess(res.data.blogs))
             })
             .catch(err => {
