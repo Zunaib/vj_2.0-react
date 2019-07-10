@@ -120,9 +120,6 @@ class DesignerProfile extends Component {
                         <h5>CREATOR</h5>
 
                         <div className={classes.ConnectIcons}>
-                            <i className="fab fa-pinterest-p" ></i>
-                            <i className="fab fa-behance" ></i>
-                            <i className="fas fa-globe" ></i>
                         </div>
 
                         <div className={classes.Desc}>

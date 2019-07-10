@@ -38,7 +38,7 @@ class VlogCard extends Component {
 
     render() {
         const videostyles = {
-            playing: true,
+            playing: false,
             controls: true,
             volume: 0,
             width: "100%",

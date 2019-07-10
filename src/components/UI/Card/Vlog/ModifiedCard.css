@@ -30,6 +30,8 @@ background-repeat: no-repeat;
 
 .CardText{
     text-align:center;
+    height: 123px;
+    overflow: hidden;
 }
 
 div.CardText h4{

@@ -146,7 +146,7 @@ class Product extends Component {
                 }
 
 
-                if (this.props.userId === product.userId) {
+                if (this.props.userId === product.userId._id) {
                     settingbutton = (
                         <div className={classes.SettingButton}>
                             <Settings editpath={editpath} delete={this.productdelete} />
@@ -208,6 +208,9 @@ class Product extends Component {
                             <div className={classes.Fav}>
                                 <h4>{this.state.favorited ? "Remove From Favorites" : "Add To Favorites"}:</h4>
                                 <i className={this.state.favorited ? "fas fa-star" : "far fa-star"} onClick={this.favorited}></i>
+                            </div>
+                            <div className={classes.Fav}>
+                                <h4>{"Designer: " + product.userId.firstName + " " + product.userId.lastName}</h4>
                             </div>
 
                             <div className={classes.Drops}>

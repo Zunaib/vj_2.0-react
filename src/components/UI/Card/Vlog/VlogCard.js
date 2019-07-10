@@ -38,7 +38,7 @@ class VlogCard extends Component {
 
     render() {
         const videostyles = {
-            playing: true,
+            playing: false,
             controls: true,
             volume: 0,
             width: "100%",
@@ -55,7 +55,6 @@ class VlogCard extends Component {
                         <h4><b>{this.props.title}</b></h4>
                         <div className={classes.Desc}>
                             {this.props.description}
-
                         </div>
                     </div>
                 </NavLink>
